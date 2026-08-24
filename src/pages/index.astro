@@ -1,0 +1,1984 @@
+---
+import "../styles/global.css";
+import Carrusel from "../components/Carrusel.astro";
+
+const titulo = "La Granjah";
+const subtitulo = "Club Social & Deportivo";
+
+const disciplinas = [
+  {
+    deporte: "⚽ Fútbol 11",
+    ramas: ["Masculino"],
+  },
+  {
+    deporte: "👟 Futsal Masculino",
+    ramas: ["Primera", "Reserva", "Sub 17", "Sub 15", "Sub 13"],
+  },
+  {
+    deporte: "👟 Futsal Femenino",
+    ramas: ["Primera", "Reserva"],
+  },
+  {
+    deporte: "🏀 Básquet",
+    ramas: ["Masculino"],
+  },
+];
+---
+
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{titulo} — {subtitulo}</title>
+  </head>
+  <body
+    class="bg-neutral-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between"
+  >
+    <!-- HEADER CON MENÚ ADAPTATIVO (CORREGIDO) -->
+    <header
+      class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <!-- Logo / Nombre del Club -->
+        <a
+          href="#"
+          class="flex items-center gap-2 text-xl font-black text-slate-100 tracking-wider"
+        >
+          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+          <span class="w-3 h-3 rounded-full bg-red-500"></span>
+          <span>LA GRANJAH</span>
+        </a>
+
+        <!-- Menú exclusivo para PC -->
+        <nav
+          class="desktop-only flex items-center gap-8 text-sm font-semibold text-slate-300"
+        >
+          <a href="#disciplinas" class="hover:text-amber-400 transition"
+            >Disciplinas</a
+          >
+          <a href="#indumentaria" class="hover:text-amber-400 transition"
+            >Indumentaria</a
+          >
+          <a href="#identidad" class="hover:text-amber-400 transition"
+            >Nuestra Esencia</a
+          >
+          <a
+            href="#sumate"
+            class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-bold px-5 py-2.5 rounded-xl hover:opacity-95 transition shadow-md"
+          >
+            Sumate al Club
+          </a>
+        </nav>
+
+        <!-- Botón Hamburguesa exclusivo para celulares -->
+        <button
+          id="menu-btn"
+          type="button"
+          aria-label="Abrir menú"
+          class="mobile-only text-slate-100 hover:text-amber-400 focus:outline-none p-2 rounded-lg bg-neutral-900 border border-neutral-800 cursor-pointer"
+        >
+          <svg
+            id="icon-open"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            id="icon-close"
+            class="w-6 h-6 hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Desplegable Exclusivo para Celulares -->
+      <div
+        id="mobile-menu"
+        class="hidden mobile-only bg-neutral-950/95 border-b border-neutral-800 px-6 pt-2 pb-6 space-y-3"
+      >
+        <nav class="flex flex-col gap-3 text-base font-medium text-slate-200">
+          <a
+            href="#disciplinas"
+            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            >Disciplinas Deportivas</a
+          >
+          <a
+            href="#indumentaria"
+            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            >Indumentaria</a
+          >
+          <a
+            href="#identidad"
+            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            >Nuestra Esencia</a
+          >
+          <a
+            href="#sumate"
+            class="mobile-link text-center bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-black py-3 rounded-xl uppercase tracking-wider shadow-md mt-2"
+            >Sumate al Club</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- ESTILOS DE VISIBILIDAD DEDICADOS -->
+    <style>
+      @media (max-width: 767px) {
+        .desktop-only {
+          display: none !important;
+        }
+      }
+      @media (min-width: 768px) {
+        .mobile-only {
+          display: none !important;
+        }
+      }
+    </style>
+
+    <!-- HERO PRINCIPAL CON LÍNEAS DE COLORES Y DEGRADÉ -->
+    <section class="py-20 md:py-28 text-center border-b border-neutral-800">
+      <div class="max-w-4xl mx-auto px-6 flex flex-col items-center">
+        <div class="flex items-center gap-1.5 mb-6">
+          <span class="w-10 h-1 bg-emerald-500 rounded-full"></span>
+          <span class="w-10 h-1 bg-amber-400 rounded-full"></span>
+          <span class="w-10 h-1 bg-red-500 rounded-full"></span>
+        </div>
+
+        <h1
+          class="text-4xl md:text-6xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 mb-6"
+        >
+          MÁS QUE UN CLUB, UNA FAMILIA
+        </h1>
+
+        <p
+          class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed mb-8"
+        >
+          Un club 100% social. No recibimos aportes externos, nos bancamos con
+          las cuotas de los socios y el amor gigante de cada integrante por este
+          espacio.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="#disciplinas"
+            class="px-6 py-3 bg-neutral-900 hover:bg-neutral-800 text-slate-200 font-bold rounded-xl border border-neutral-700 transition"
+          >
+            Ver disciplinas
+          </a>
+          <a
+            href="#sumate"
+            class="px-6 py-3 bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-black rounded-xl hover:opacity-95 transition shadow-lg"
+          >
+            Asociate
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFIESTO / IDENTIDAD -->
+    <section
+      id="identidad"
+      class="py-16 bg-neutral-900/40 border-b border-neutral-800"
+    >
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-100 mb-4">
+          Unidos por los mismos valores
+        </h2>
+        <p class="text-slate-300 leading-relaxed max-w-3xl mx-auto mb-10">
+          Llevamos estos colores en el corazón. Nuestro nombre rinde homenaje a
+          la cultura de <strong>paz</strong>, <strong>unión</strong> y <strong
+            >resistencia</strong
+          >. En <strong class="text-emerald-400">La Granjah</strong> cada entrenamiento,
+          cada camiseta y cada partido se sostienen gracias a la comunidad.
+        </p>
+        <Carrusel />
+      </div>
+    </section>
+
+    <!-- SECCIÓN INDUMENTARIA -->
+    <section
+      id="indumentaria"
+      class="py-20 bg-neutral-950 border-t border-neutral-800 relative overflow-hidden"
+    >
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-emerald-500/10 via-amber-500/10 to-red-500/10 blur-[140px] rounded-full pointer-events-none"
+      >
+      </div>
+
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <span
+            class="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full"
+          >
+            Piel Granjhistica
+          </span>
+          <h2
+            class="text-3xl md:text-5xl font-black uppercase text-slate-100 mt-4"
+          >
+            Indumentaria y <span class="text-emerald-400">Accesorios</span>
+          </h2>
+          <p class="text-slate-400 mt-2 text-sm md:text-base">
+            Pasá el cursor o tocá una carta para revelar el equipamiento oficial
+            de <strong class="text-slate-200">La Granjah</strong>.
+          </p>
+        </div>
+
+        <!-- GRID DE CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- CARD 1 -->
+          <div class="single-card-container group h-[420px] cursor-pointer">
+            <div
+              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-emerald-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+            >
+              <div
+                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
+              >
+                <span class="text-5xl mb-4">👕</span>
+                <span
+                  class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-1"
+                  >Edición 2026</span
+                >
+                <h3 class="text-2xl font-black uppercase text-slate-100">
+                  Camiseta Granjahmaica
+                </h3>
+                <p class="text-xs text-slate-500 mt-2">
+                  Inspirada en nuestros hermanos Jamaiquinos y la cultura
+                  Rastafari.
+                </p>
+                <span
+                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                >
+                  ✨ Girar para revelar
+                </span>
+              </div>
+
+              <div
+                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+              >
+                <div
+                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                >
+                </div>
+                <div class="w-full text-left z-10">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-neutral-900/90 border border-emerald-500/30 px-2.5 py-1 rounded-md"
+                  >
+                    Titular
+                  </span>
+                </div>
+                <div
+                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1580089540114-1ed5a0696377?q=80&w=600&auto=format&fit=crop"
+                    alt="Camiseta Titular La Granjah"
+                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
+                  />
+                </div>
+                <div
+                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                >
+                  <h4 class="text-lg font-black text-slate-100 uppercase">
+                    La Cuna del Fútbol
+                  </h4>
+                  <p class="text-xs font-bold text-amber-400 mt-0.5">
+                    $35.000 ARS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="single-card-container group h-[420px] cursor-pointer">
+            <div
+              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-amber-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+            >
+              <div
+                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
+              >
+                <span class="text-5xl mb-4">🛡️</span>
+                <span
+                  class="text-xs font-bold uppercase tracking-widest text-amber-400 mb-1"
+                  >Edición Especial</span
+                >
+                <h3 class="text-2xl font-black uppercase text-slate-100">
+                  Camiseta Suplente
+                </h3>
+                <p class="text-xs text-slate-500 mt-2">
+                  Negro Faraón con vivos Neón
+                </p>
+                <span
+                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                >
+                  ✨ Girar para revelar
+                </span>
+              </div>
+
+              <div
+                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+              >
+                <div
+                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                >
+                </div>
+                <div class="w-full text-left z-10">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-900/90 border border-amber-500/30 px-2.5 py-1 rounded-md"
+                  >
+                    Alternativa
+                  </span>
+                </div>
+                <div
+                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop"
+                    alt="Camiseta Suplente La Granjah"
+                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
+                  />
+                </div>
+                <div
+                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                >
+                  <h4 class="text-lg font-black text-slate-100 uppercase">
+                    Noche Faraónica
+                  </h4>
+                  <p class="text-xs font-bold text-amber-400 mt-0.5">
+                    $35.000 ARS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="single-card-container group h-[420px] cursor-pointer">
+            <div
+              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-red-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+            >
+              <div
+                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
+              >
+                <span class="text-5xl mb-4">🔥</span>
+                <span
+                  class="text-xs font-bold uppercase tracking-widest text-red-500 mb-1"
+                  >Entrenamiento</span
+                >
+                <h3 class="text-2xl font-black uppercase text-slate-100">
+                  Camiseta Pre-Match
+                </h3>
+                <p class="text-xs text-slate-500 mt-2">Llamas Granjhisticas</p>
+                <span
+                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                >
+                  ✨ Girar para revelar
+                </span>
+              </div>
+
+              <div
+                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+              >
+                <div
+                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                >
+                </div>
+                <div class="w-full text-left z-10">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-red-400 bg-neutral-900/90 border border-red-500/30 px-2.5 py-1 rounded-md"
+                  >
+                    Pre-Match
+                  </span>
+                </div>
+                <div
+                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format&fit=crop"
+                    alt="Camiseta Pre-Match La Granjah"
+                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
+                  />
+                </div>
+                <div
+                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                >
+                  <h4 class="text-lg font-black text-slate-100 uppercase">
+                    Calentamiento Oficial
+                  </h4>
+                  <p class="text-xs font-bold text-amber-400 mt-0.5">
+                    $28.000 ARS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4 -->
+          <div class="single-card-container group h-[420px] cursor-pointer">
+            <div
+              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-emerald-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+            >
+              <div
+                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
+              >
+                <span class="text-5xl mb-4">🦵</span>
+                <span
+                  class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-1"
+                  >Protección</span
+                >
+                <h3 class="text-2xl font-black uppercase text-slate-100">
+                  Canilleras Pro
+                </h3>
+                <p class="text-xs text-slate-500 mt-2">
+                  Fibra Reforzada y Escudo
+                </p>
+                <span
+                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                >
+                  ✨ Girar para revelar
+                </span>
+              </div>
+
+              <div
+                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+              >
+                <div
+                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                >
+                </div>
+                <div class="w-full text-left z-10">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-neutral-900/90 border border-emerald-500/30 px-2.5 py-1 rounded-md"
+                  >
+                    Accesorios
+                  </span>
+                </div>
+                <div
+                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=600&auto=format&fit=crop"
+                    alt="Canilleras Oficiales La Granjah"
+                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
+                  />
+                </div>
+                <div
+                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                >
+                  <h4 class="text-lg font-black text-slate-100 uppercase">
+                    Armadura Granjhística
+                  </h4>
+                  <p class="text-xs font-bold text-amber-400 mt-0.5">
+                    $14.000 ARS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 5 -->
+          <div class="single-card-container group h-[420px] cursor-pointer">
+            <div
+              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-amber-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+            >
+              <div
+                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
+              >
+                <span class="text-5xl mb-4">🧦</span>
+                <span
+                  class="text-xs font-bold uppercase tracking-widest text-amber-400 mb-1"
+                  >Complementos</span
+                >
+                <h3 class="text-2xl font-black uppercase text-slate-100">
+                  Medias Oficiales
+                </h3>
+                <p class="text-xs text-slate-500 mt-2">
+                  Tecnología Antideslizante
+                </p>
+                <span
+                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                >
+                  ✨ Girar para revelar
+                </span>
+              </div>
+
+              <div
+                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+              >
+                <div
+                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                >
+                </div>
+                <div class="w-full text-left z-10">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-900/90 border border-amber-500/30 px-2.5 py-1 rounded-md"
+                  >
+                    Juego Completo
+                  </span>
+                </div>
+                <div
+                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80&w=600&auto=format&fit=crop"
+                    alt="Medias Oficiales La Granjah"
+                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
+                  />
+                </div>
+                <div
+                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                >
+                  <h4 class="text-lg font-black text-slate-100 uppercase">
+                    Medias de Competencia
+                  </h4>
+                  <p class="text-xs font-bold text-amber-400 mt-0.5">
+                    $8.500 ARS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 6 -->
+          <div class="single-card-container group h-[420px] cursor-pointer">
+            <div
+              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-red-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+            >
+              <div
+                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
+              >
+                <span class="text-5xl mb-4">🧥</span>
+                <span
+                  class="text-xs font-bold uppercase tracking-widest text-red-500 mb-1"
+                  >Paseo / Salida</span
+                >
+                <h3 class="text-2xl font-black uppercase text-slate-100">
+                  Conjunto Buzo
+                </h3>
+                <p class="text-xs text-slate-500 mt-2">
+                  Campera + Chándal de Salida
+                </p>
+                <span
+                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                >
+                  ✨ Girar para revelar
+                </span>
+              </div>
+
+              <div
+                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+              >
+                <div
+                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                >
+                </div>
+                <div class="w-full text-left z-10">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-red-400 bg-neutral-900/90 border border-red-500/30 px-2.5 py-1 rounded-md"
+                  >
+                    Conjunto
+                  </span>
+                </div>
+                <div
+                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=600&auto=format&fit=crop"
+                    alt="Conjunto de Buzo La Granjah"
+                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
+                  />
+                </div>
+                <div
+                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                >
+                  <h4 class="text-lg font-black text-slate-100 uppercase">
+                    Tracksuit Faraónico
+                  </h4>
+                  <p class="text-xs font-bold text-amber-400 mt-0.5">
+                    $52.000 ARS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTILOS Y ANIMACIONES -->
+    <style>
+      .single-card-container {
+        perspective: 1200px;
+      }
+      .card-3d-inner {
+        transform-style: preserve-3d;
+      }
+      .card-face {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      .card-back-face {
+        transform: rotateY(180deg);
+      }
+      .single-card-container:hover .card-3d-inner,
+      .single-card-container.is-flipped .card-3d-inner {
+        transform: rotateY(1260deg);
+      }
+      .revealed-shirt {
+        opacity: 0;
+        transform: scale(0.8);
+        transition:
+          opacity 0.6s ease-in,
+          transform 0.6s ease-in;
+        transition-delay: 0s;
+      }
+      .single-card-container:hover .revealed-shirt,
+      .single-card-container.is-flipped .revealed-shirt {
+        opacity: 1;
+        transform: scale(1);
+        transition-delay: 1.8s;
+      }
+      .neon-glow-bg {
+        background: linear-gradient(
+          135deg,
+          #10b981 0%,
+          #fbbf24 50%,
+          #ef4444 100%
+        );
+        filter: blur(28px);
+        animation: neonPulse 3s ease-in-out infinite alternate;
+      }
+      @keyframes neonPulse {
+        0% {
+          opacity: 0.5;
+          filter: blur(22px);
+        }
+        100% {
+          opacity: 0.9;
+          filter: blur(35px);
+        }
+      }
+    </style>
+
+    <!-- SECCIÓN DISCIPLINAS DEPORTIVAS CON FIXTURE Y GALERÍA INTEGRADA -->
+    <section
+      id="disciplinas"
+      class="py-20 bg-neutral-900 border-t border-neutral-800 relative"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span
+            class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full"
+          >
+            Deporte y Pasión
+          </span>
+          <h2
+            class="text-3xl md:text-5xl font-black uppercase text-slate-100 mt-4"
+          >
+            Disciplinas <span class="text-amber-400">Deportivas</span>
+          </h2>
+          <p class="text-slate-400 mt-2 text-sm md:text-base">
+            Hacé clic en cualquier disciplina para consultar las categorías,
+            fotos y el fixture oficial de <strong class="text-slate-200"
+              >La Granjah</strong
+            >.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- CARD 1: FÚTBOL 11 -->
+          <div
+            class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-emerald-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
+            data-sport-title="Fútbol 11"
+            data-sport-icon="⚽"
+            data-categories='[
+             {
+               "name": "Liga de Profesionales",
+               "league": "Torneo Oficial Profesionales",
+               "matches": [
+                 {"fecha": "Fecha 1", "rival": "Abogados FC", "condicion": "Local", "dia": "Sáb 15/03 - 16:30 hs", "cancha": "Cancha Principal La Granjah"},
+                 {"fecha": "Fecha 2", "rival": "Contadores Unidos", "condicion": "Visitante", "dia": "Sáb 22/03 - 17:00 hs", "cancha": "Predio Profesionales"}
+               ]
+             }
+            ]'
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-4xl">⚽</span>
+                <span
+                  class="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-md"
+                >
+                  Masculino
+                </span>
+              </div>
+              <h3
+                class="text-xl font-black uppercase text-slate-100 group-hover:text-emerald-400 transition"
+              >
+                Fútbol 11
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Competencia tradicional del club en torneos competitivos.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-neutral-800/80 flex items-center justify-between"
+            >
+              <span class="text-xs font-semibold text-slate-400"
+                >2 Categorías</span
+              >
+              <span
+                class="text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
+              >
+                Ver Fixture ➔
+              </span>
+            </div>
+          </div>
+
+          <!-- CARD 2: FUTSAL MASCULINO -->
+          <div
+            class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-amber-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
+            data-sport-title="Futsal Masculino"
+            data-sport-icon="👟"
+            data-categories='[
+             {
+               "name": "Primera",
+               "league": "Torneo Oficial Futsal San Juan",
+               "matches": [
+                 {"fecha": "Fecha 1", "rival": "Barrio San Martín", "condicion": "Visitante", "dia": "Jue 20/03 - 21:30 hs", "cancha": "Club Barrio San Martín"}
+               ]
+             }
+            ]'
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-4xl">👟</span>
+                <span
+                  class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-md"
+                >
+                  Masculino
+                </span>
+              </div>
+              <h3
+                class="text-xl font-black uppercase text-slate-100 group-hover:text-amber-400 transition"
+              >
+                Futsal Masculino
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Estructura completa desde formativas hasta el primer equipo.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-neutral-800/80 flex items-center justify-between"
+            >
+              <span class="text-xs font-semibold text-slate-400"
+                >5 Categorías</span
+              >
+              <span
+                class="text-xs font-bold text-amber-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
+              >
+                Ver Fixture ➔
+              </span>
+            </div>
+          </div>
+
+          <!-- CARD 3: FUTSAL FEMENINO -->
+          <div
+            class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
+            data-sport-title="Futsal Femenino"
+            data-sport-icon="👑"
+            data-categories='[
+             {
+               "name": "Primera",
+               "league": "Torneo Femenino Futsal",
+               "matches": [
+                 {"fecha": "Fecha 1", "rival": "Palermo Futsal", "condicion": "Local", "dia": "Vier 21/03 - 21:00 hs", "cancha": "Polideportivo La Granjah"}
+               ]
+             }
+            ]'
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-4xl">👟</span>
+                <span
+                  class="text-[10px] font-black uppercase tracking-widest text-red-400 bg-red-500/10 border border-red-500/20 px-2.5 py-1 rounded-md"
+                >
+                  Femenino
+                </span>
+              </div>
+              <h3
+                class="text-xl font-black uppercase text-slate-100 group-hover:text-red-400 transition"
+              >
+                Futsal Femenino
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Representación femenina con garra y técnica en la pista.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-neutral-800/80 flex items-center justify-between"
+            >
+              <span class="text-xs font-semibold text-slate-400"
+                >2 Categorías</span
+              >
+              <span
+                class="text-xs font-bold text-red-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
+              >
+                Ver Fixture ➔
+              </span>
+            </div>
+          </div>
+
+          <!-- CARD 4: BÁSQUET -->
+          <div
+            class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-orange-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
+            data-sport-title="Básquet"
+            data-sport-icon="🏀"
+            data-categories='[
+             {
+               "name": "Primera Única",
+               "league": "Torneo Local Básquet",
+               "matches": [
+                 {"fecha": "Fecha 1", "rival": "Inca Huasi", "condicion": "Local", "dia": "Mié 18/03 - 21:45 hs", "cancha": "Polideportivo La Granjah"}
+               ]
+             }
+            ]'
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-4xl">🏀</span>
+                <span
+                  class="text-[10px] font-black uppercase tracking-widest text-orange-400 bg-orange-500/10 border border-orange-500/20 px-2.5 py-1 rounded-md"
+                >
+                  Polideportivo
+                </span>
+              </div>
+              <h3
+                class="text-xl font-black uppercase text-slate-100 group-hover:text-orange-400 transition"
+              >
+                Básquet
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Nuestra categoría única de básquet compitiendo en el torneo
+                local.
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-neutral-800/80 flex items-center justify-between"
+            >
+              <span class="text-xs font-semibold text-slate-400"
+                >1 Categoría</span
+              >
+              <span
+                class="text-xs font-bold text-orange-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
+              >
+                Ver Fixture ➔
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL FLOTANTE DE FIXTURE -->
+    <div
+      id="sport-modal"
+      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0"
+    >
+      <div
+        class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]"
+        id="modal-container"
+      >
+        <div
+          class="bg-neutral-950 p-5 border-b border-neutral-800 flex justify-between items-center shrink-0"
+        >
+          <div class="flex items-center gap-3">
+            <span id="modal-icon" class="text-3xl">⚽</span>
+            <div>
+              <span
+                class="text-[10px] font-black uppercase tracking-widest text-emerald-400"
+                >Fixture Oficial & Galería</span
+              >
+              <h3
+                id="modal-sport-title"
+                class="text-2xl font-black uppercase text-slate-100"
+              >
+                Fútbol 11
+              </h3>
+            </div>
+          </div>
+          <button
+            id="close-sport-modal"
+            class="text-slate-400 hover:text-white text-xl font-bold bg-neutral-900 hover:bg-neutral-800 w-8 h-8 rounded-full flex items-center justify-center border border-neutral-700 transition"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto divide-y lg:divide-y-0 lg:divide-x divide-neutral-800"
+        >
+          <div class="flex flex-col justify-between">
+            <div class="p-5 bg-neutral-950/50 border-b border-neutral-800/80">
+              <p
+                class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2"
+              >
+                Seleccioná Categoría:
+              </p>
+              <div
+                id="category-selector-container"
+                class="flex flex-wrap gap-2"
+              >
+              </div>
+            </div>
+
+            <div
+              class="p-5 space-y-3 max-h-[350px] lg:max-h-[420px] overflow-y-auto"
+              id="matches-list-container"
+            >
+            </div>
+          </div>
+
+          <div
+            class="relative bg-neutral-950 min-h-[280px] lg:min-h-full overflow-hidden group flex items-center justify-center"
+          >
+            <span
+              class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-950/90 border border-amber-500/30 px-3 py-1 rounded-md backdrop-blur-md shadow-lg"
+            >
+              La Granjah En Acción
+            </span>
+          </div>
+        </div>
+
+        <div
+          class="bg-neutral-950 p-3 border-t border-neutral-800 text-center shrink-0"
+        >
+          <p class="text-[11px] text-slate-500">
+            * Programación sujeta a modificaciones de la organización oficial.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN FORMULARIO DE ASOCIACIÓN -->
+    <section
+      id="sumate"
+      class="py-20 bg-neutral-900/40 border-t border-neutral-800"
+    >
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="text-center mb-10">
+          <span
+            class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full"
+          >
+            Hacete Socio
+          </span>
+          <h2
+            class="text-3xl md:text-4xl font-black uppercase text-slate-100 mt-4"
+          >
+            Sumate a <span class="text-amber-400">La Granjah</span>
+          </h2>
+          <p class="text-slate-400 mt-2">
+            Completá tus datos y sé parte de la familia que sostiene este club.
+          </p>
+        </div>
+
+        <!-- FORMULARIO UNIFICADO -->
+        <form
+          id="mi-formulario-actual"
+          action="https://script.google.com/macros/s/AKfycbz3TBobDBLVPWE5i1kDU1OR_wR8rtIZV9HTZJTc6Apg5oPjayfcSBQ0ZjFo3rNCUBMS/exec"
+          method="POST"
+          novalidate
+          class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-xl space-y-6"
+        >
+          <!-- Nombre y Apellido -->
+          <div>
+            <label
+              class="block text-sm font-semibold text-slate-300 mb-2"
+              for="nombre">Nombre y Apellido</label
+            >
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre completo"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition"
+            />
+            <span
+              id="error-nombre"
+              class="hidden text-xs text-red-500 mt-1.5 font-medium"
+              >⚠️ Solo se permiten caracteres alfabéticos.</span
+            >
+          </div>
+
+          <!-- Documento -->
+          <div>
+            <label
+              class="block text-sm font-semibold text-slate-300 mb-2"
+              for="numero-doc">Documento de Identidad</label
+            >
+            <div class="flex gap-2">
+              <select
+                id="tipo-doc"
+                name="tipo_documento"
+                class="bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer text-sm"
+              >
+                <option value="DNI">DNI</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="LC">LC</option>
+                <option value="LE">LE</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <input
+                type="text"
+                id="numero-doc"
+                name="numero_documento"
+                placeholder="Número de documento (solo números)"
+                class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition"
+              />
+            </div>
+            <span
+              id="error-doc"
+              class="hidden text-xs text-red-500 mt-1.5 font-medium"
+              >⚠️ Solo se permiten números para el documento.</span
+            >
+          </div>
+
+          <!-- Fecha de Nacimiento y Nacionalidad -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label
+                class="block text-sm font-semibold text-slate-300 mb-2"
+                for="fecha-nacimiento">Fecha de Nacimiento</label
+              >
+              <input
+                type="date"
+                id="fecha-nacimiento"
+                name="fecha_nacimiento"
+                class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer [color-scheme:dark]"
+              />
+              <span
+                id="error-fecha"
+                class="hidden text-xs text-red-500 mt-1.5 font-medium"
+                >⚠️ Seleccioná tu fecha de nacimiento.</span
+              >
+            </div>
+
+            <div>
+              <label
+                class="block text-sm font-semibold text-slate-300 mb-2"
+                for="nacionalidad">Nacionalidad</label
+              >
+              <select
+                id="nacionalidad"
+                name="nacionalidad"
+                class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer"
+              >
+                <option value="Argentina" selected>Argentina</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Chile">Chile</option>
+                <option value="Colombia">Colombia</option>
+                <option value="España">España</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="México">México</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Perú">Perú</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Otra">Otra</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Email y Teléfono -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label
+                class="block text-sm font-semibold text-slate-300 mb-2"
+                for="email">Correo Electrónico</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="tu@gmail.com"
+                class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition"
+              />
+              <span
+                id="error-email"
+                class="hidden text-xs text-red-500 mt-1.5 font-medium"
+                >⚠️ Correo inválido (debe finalizar en @gmail.com o
+                @hotmail.com).</span
+              >
+            </div>
+
+            <div>
+              <label
+                class="block text-sm font-semibold text-slate-300 mb-2"
+                for="telefono">Teléfono / WhatsApp</label
+              >
+              <div class="flex gap-2">
+                <select
+                  id="codigo-pais"
+                  class="bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer text-sm"
+                >
+                  <option value="+54">🇦🇷 +54</option>
+                  <option value="+598">🇺🇾 +598</option>
+                  <option value="+56">🇨🇱 +56</option>
+                  <option value="+591">🇧🇴 +591</option>
+                  <option value="+55">🇧🇷 +55</option>
+                  <option value="+51">🇵🇪 +51</option>
+                  <option value="+57">🇨🇴 +57</option>
+                  <option value="+52">🇲🇽 +52</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+1">🇺🇸 +1</option>
+                </select>
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  placeholder="264 234 5678"
+                  class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition"
+                />
+              </div>
+              <input
+                type="hidden"
+                id="telefono-completo"
+                name="telefono_completo"
+              />
+              <span
+                id="error-telefono"
+                class="hidden text-xs text-red-500 mt-1.5 font-medium"
+                >⚠️ Solo se permiten caracteres numéricos.</span
+              >
+            </div>
+          </div>
+
+          <!-- Residencia Actual -->
+          <div class="border-t border-neutral-800 pt-6">
+            <label
+              class="block text-sm font-semibold text-slate-300 mb-3"
+              for="lugar-residencia">¿Dónde residís actualmente?</label
+            >
+            <select
+              id="lugar-residencia"
+              name="lugar_residencia"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer"
+            >
+              <option value="San Juan" selected>San Juan</option>
+              <option value="Otra provincia">Otra provincia</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <!-- Condicional San Juan -->
+          <div id="campo-departamento-sj">
+            <label
+              class="block text-sm font-semibold text-emerald-400 mb-2 mt-3"
+              for="departamento-sj"
+              >¿En qué departamento de San Juan vivís?</label
+            >
+            <select
+              id="departamento-sj"
+              name="departamento_san_juan"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer"
+            >
+              <option value="Capital">Capital</option>
+              <option value="Rivadavia">Rivadavia</option>
+              <option value="Rawson">Rawson</option>
+              <option value="Chimbas">Chimbas</option>
+              <option value="Santa Lucía">Santa Lucía</option>
+              <option value="Pocito">Pocito</option>
+              <option value="Albardón">Albardón</option>
+              <option value="Angaco">Angaco</option>
+              <option value="Calingasta">Calingasta</option>
+              <option value="Caucete">Caucete</option>
+              <option value="Iglesia">Iglesia</option>
+              <option value="Jáchal">Jáchal</option>
+              <option value="9 de Julio">9 de Julio</option>
+              <option value="San Martín">San Martín</option>
+              <option value="Sarmiento">Sarmiento</option>
+              <option value="Ullum">Ullum</option>
+              <option value="Valle Fértil">Valle Fértil</option>
+              <option value="25 de Mayo">25 de Mayo</option>
+              <option value="Zonda">Zonda</option>
+            </select>
+          </div>
+
+          <!-- Condicional Otra Provincia -->
+          <div id="campo-otra-provincia" class="hidden">
+            <label
+              class="block text-sm font-semibold text-amber-400 mb-2 mt-3"
+              for="provincia-arg">Seleccioná tu provincia</label
+            >
+            <select
+              id="provincia-arg"
+              name="provincia_argentina"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer"
+            >
+              <option value="Buenos Aires">Buenos Aires</option>
+              <option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+              <option value="Catamarca">Catamarca</option>
+              <option value="Chaco">Chaco</option>
+              <option value="Chubut">Chubut</option>
+              <option value="Córdoba">Córdoba</option>
+              <option value="Corrientes">Corrientes</option>
+              <option value="Entre Ríos">Entre Ríos</option>
+              <option value="Formosa">Formosa</option>
+              <option value="Jujuy">Jujuy</option>
+              <option value="La Pampa">La Pampa</option>
+              <option value="La Rioja">La Rioja</option>
+              <option value="Mendoza">Mendoza</option>
+              <option value="Misiones">Misiones</option>
+              <option value="Neuquén">Neuquén</option>
+              <option value="Río Negro">Río Negro</option>
+              <option value="Salta">Salta</option>
+              <option value="San Luis">San Luis</option>
+              <option value="Santa Cruz">Santa Cruz</option>
+              <option value="Santa Fe">Santa Fe</option>
+              <option value="Santiago del Estero">Santiago del Estero</option>
+              <option value="Tierra del Fuego">Tierra del Fuego</option>
+              <option value="Tucumán">Tucumán</option>
+            </select>
+          </div>
+
+          <!-- Condicional Otro Residencia -->
+          <div id="campo-otro-residencia" class="hidden">
+            <label
+              class="block text-sm font-semibold text-amber-400 mb-2 mt-3"
+              for="otra-residencia-texto">Especificá dónde residís</label
+            >
+            <input
+              type="text"
+              id="otra-residencia-texto"
+              name="otra_residencia_detalle"
+              placeholder="Ciudad, País..."
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition"
+            />
+          </div>
+
+          <!-- ¿Te gustaría asociarte? -->
+          <div class="border-t border-neutral-800 pt-6">
+            <label class="block text-sm font-semibold text-slate-300 mb-3"
+              >¿Te gustaría asociarte a La Granjah?</label
+            >
+            <div class="space-y-3">
+              <label
+                class="flex items-center gap-3 text-slate-200 cursor-pointer p-3 bg-neutral-950 border border-neutral-800 rounded-xl hover:border-emerald-500 transition"
+              >
+                <input
+                  type="radio"
+                  name="quiere_asociarse"
+                  value="Sí"
+                  checked
+                  class="w-4 h-4 accent-emerald-500 cursor-pointer"
+                />
+                1- Sí, quiero ser socio/a y aportar mensualmente
+              </label>
+              <label
+                class="flex items-center gap-3 text-slate-200 cursor-pointer p-3 bg-neutral-950 border border-neutral-800 rounded-xl hover:border-red-500 transition"
+              >
+                <input
+                  type="radio"
+                  name="quiere_asociarse"
+                  value="No"
+                  class="w-4 h-4 accent-red-500 cursor-pointer"
+                />
+                2- No, en estos momentos no puedo aportar
+              </label>
+            </div>
+          </div>
+
+          <!-- Categoría de Socio -->
+          <div id="bloque-categorias-socio" class="mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-3"
+              >Elegí tu categoría de socio</label
+            >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <label
+                class="relative flex flex-col p-4 bg-neutral-950 border-2 border-neutral-800 rounded-xl cursor-pointer hover:border-emerald-500 transition [&:has(input:checked)]:border-emerald-500 [&:has(input:checked)]:bg-emerald-950/20"
+              >
+                <input
+                  type="radio"
+                  name="tipo_socio"
+                  value="Socio Granjhistico"
+                  class="sr-only"
+                  checked
+                />
+                <span class="text-emerald-400 font-bold text-lg mb-1"
+                  >1. Socio Granjhistico</span
+                >
+                <span class="text-xs text-slate-400"
+                  >Acceso a actividades sociales, eventos del club y apoyo
+                  mensual a las disciplinas.</span
+                >
+              </label>
+
+              <label
+                class="relative flex flex-col p-4 bg-neutral-950 border-2 border-neutral-800 rounded-xl cursor-pointer hover:border-amber-400 transition [&:has(input:checked)]:border-amber-400 [&:has(input:checked)]:bg-amber-950/20"
+              >
+                <input
+                  type="radio"
+                  name="tipo_socio"
+                  value="Socio Faraón"
+                  class="sr-only"
+                />
+                <span class="text-amber-400 font-bold text-lg mb-1"
+                  >2. Socio Granjhístico Premium</span
+                >
+                <span class="text-xs text-slate-400"
+                  >Sostenimiento especial del club con beneficios exclusivos y
+                  remera oficial de socio.</span
+                >
+              </label>
+            </div>
+          </div>
+
+          <!-- Forma de Aporte Extra -->
+          <div class="border-t border-neutral-800 pt-6">
+            <label
+              class="block text-sm font-semibold text-slate-300 mb-3"
+              for="forma-aporte"
+              >¿Cómo te gustaría aportar al club además de la cuota?</label
+            >
+            <select
+              id="forma-aporte"
+              name="forma_aporte_extra"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer"
+            >
+              <option value="Ayudando en eventos/localías"
+                >Ayudando en eventos/localías</option
+              >
+              <option value="Siendo sponsor">Siendo sponsor</option>
+              <option value="Donando materiales">Donando materiales</option>
+              <option value="Solo aporte mensual" selected
+                >Solo aporte mensual</option
+              >
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div id="campo-otro-aporte" class="hidden mt-3">
+            <label
+              class="block text-sm font-semibold text-amber-400 mb-2"
+              for="otro-aporte-texto">Especificá tu forma de aporte</label
+            >
+            <input
+              type="text"
+              id="otro-aporte-texto"
+              name="otro_aporte_detalle"
+              placeholder="¿De qué otra forma te gustaría colaborar?"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition"
+            />
+          </div>
+
+          <!-- ¿Jugás en el club? -->
+          <div class="border-t border-neutral-800 pt-6">
+            <label class="block text-sm font-semibold text-slate-300 mb-3"
+              >¿Jugás en el club?</label
+            >
+            <div class="flex gap-6">
+              <label
+                class="flex items-center gap-2 text-slate-200 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="juega_en_club"
+                  value="No"
+                  checked
+                  class="w-4 h-4 accent-amber-400 cursor-pointer"
+                />
+                No
+              </label>
+              <label
+                class="flex items-center gap-2 text-slate-200 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="juega_en_club"
+                  value="Sí"
+                  class="w-4 h-4 accent-amber-400 cursor-pointer"
+                />
+                Sí
+              </label>
+            </div>
+          </div>
+
+          <div
+            id="opciones-deporte"
+            class="hidden transition-all duration-300 mt-3"
+          >
+            <label
+              class="block text-sm font-semibold text-emerald-400 mb-2"
+              for="deporte_categoria"
+            >
+              ¿En qué disciplina / categoría jugás?
+            </label>
+            <select
+              id="deporte_categoria"
+              name="deporte_categoria"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition cursor-pointer"
+            >
+              <option value="Futbol 11 (Profesionales)"
+                >1- Fútbol 11 (Profesionales)</option
+              >
+              <option value="Futbol 11 (Universitario)"
+                >2- Fútbol 11 (Universitario)</option
+              >
+              <option value="Futsal masculino">3- Futsal masculino</option>
+              <option value="Futsal femenino">4- Futsal femenino</option>
+              <option value="Inferiores">5- Inferiores</option>
+            </select>
+          </div>
+
+          <!-- Mensaje Opcional -->
+          <div>
+            <label
+              class="block text-sm font-semibold text-slate-300 mb-2"
+              for="mensaje">Mensaje o consulta (Opcional)</label
+            >
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="3"
+              placeholder="Dejanos tu consulta/comentario"
+              class="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-amber-400 transition"
+            ></textarea>
+          </div>
+
+          <!-- Checkbox Protocolo -->
+          <div class="flex items-start gap-3 py-2 text-left">
+            <input
+              type="checkbox"
+              id="acepta-protocolo"
+              required
+              class="mt-1 w-4 h-4 rounded border-neutral-800 bg-neutral-950 text-emerald-500 focus:ring-emerald-500 focus:ring-offset-neutral-900 cursor-pointer"
+            />
+            <label
+              for="acepta-protocolo"
+              class="text-xs text-slate-400 leading-normal cursor-pointer"
+            >
+              He leído y acepto el&nbsp;<a
+                href="/protocolo-convivencia.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-amber-400 underline font-semibold hover:text-amber-300 transition inline-flex items-center gap-1"
+                >Protocolo de Convivencia y Antiviolencia <span
+                  class="text-[9px] text-amber-400 bg-amber-400/10 border border-amber-400/20 px-1 py-0.2 rounded font-mono"
+                  >PDF</span
+                ></a
+              >&nbsp;del club. *
+            </label>
+          </div>
+
+          <!-- Botón de Envío -->
+          <button
+            id="btn-submit-form"
+            type="submit"
+            class="w-full bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 hover:opacity-95 text-neutral-950 font-black py-4 rounded-xl transition uppercase tracking-wider text-center shadow-lg cursor-pointer"
+          >
+            Enviar Solicitud e Ir a Pagar
+          </button>
+        </form>
+
+        <!-- BLOQUE DE DATOS DE PAGO POR BRUBANK -->
+        <div
+          id="bloque-pago-brubank"
+          class="hidden bg-neutral-900 border border-neutral-800 p-6 rounded-2xl space-y-4"
+        >
+          <div class="flex items-center gap-3 pb-3 border-b border-neutral-800">
+            <span
+              class="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-sm"
+              >✓</span
+            >
+            <div>
+              <span
+                class="text-[10px] font-black uppercase tracking-widest text-emerald-400"
+                >¡Solicitud Recibida!</span
+              >
+              <h3 class="text-base font-black uppercase text-slate-100">
+                Datos para Transferir
+              </h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Realizá tu transferencia a la cuenta oficial del club y envianos el
+            comprobante por WhatsApp para confirmar tu ingreso.
+          </p>
+
+          <div
+            class="bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between"
+          >
+            <div>
+              <span class="text-[10px] font-bold text-slate-500 uppercase block"
+                >Banco / Entidad</span
+              >
+              <span class="text-sm font-bold text-slate-200">Brubank</span>
+            </div>
+            <span
+              class="text-xs font-black text-violet-400 bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded"
+              >Digital</span
+            >
+          </div>
+
+          <div class="bg-neutral-950 border border-neutral-800 p-3 rounded-xl">
+            <span class="text-[10px] font-bold text-slate-500 uppercase block"
+              >Titular de la Cuenta</span
+            >
+            <span class="text-sm font-bold text-slate-200"
+              >Camila Soledad Bustamante Barrera</span
+            >
+          </div>
+
+          <div
+            class="bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between"
+          >
+            <div>
+              <span class="text-[10px] font-bold text-slate-500 uppercase block"
+                >CUIT / CUIL</span
+              >
+              <span class="text-sm font-mono font-bold text-slate-200"
+                >27-38218813-1</span
+              >
+            </div>
+            <button
+              type="button"
+              id="btn-copy-cuit"
+              class="text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-slate-300 px-3 py-1.5 rounded-lg border border-neutral-700 transition cursor-pointer"
+            >
+              Copiar
+            </button>
+          </div>
+
+          <div
+            class="bg-neutral-950 border border-amber-500/30 p-3 rounded-xl flex items-center justify-between bg-amber-500/5"
+          >
+            <div>
+              <span class="text-[10px] font-bold text-amber-400 uppercase block"
+                >Alias Brubank</span
+              >
+              <span class="text-base font-mono font-black text-amber-300"
+                >granjah.socios.bru</span
+              >
+            </div>
+            <button
+              type="button"
+              id="btn-copy-alias"
+              class="text-xs font-bold bg-amber-400 hover:bg-amber-300 text-neutral-950 px-3.5 py-1.5 rounded-lg transition cursor-pointer"
+            >
+              Copiar
+            </button>
+          </div>
+
+          <div class="pt-2">
+            <a
+              href="https://wa.me/542645460230?text=Hola!%20Acabo%20de%20enviar%20mi%20solicitud%20y%20realizar%20la%20transferencia%20para%20La%20Granjah.%20Adjunto%20el%20comprobante:"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full bg-emerald-500 hover:bg-emerald-600 text-neutral-950 font-black py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow-lg text-sm uppercase tracking-wide"
+            >
+              <span>📲</span> Enviar Comprobante por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="border-t border-neutral-800 bg-neutral-950 py-10">
+    <div
+      class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6"
+    >
+      <div class="flex items-center gap-3">
+        <div class="flex flex-col gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span class="w-2 h-2 rounded-full bg-red-500"></span>
+        </div>
+        <div>
+          <span class="text-lg font-black uppercase text-slate-100"
+            >{titulo}</span
+          >
+          <p class="text-xs text-slate-500">Club Social y Deportivo</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 text-center">
+        &copy; {new Date().getFullYear()} La Granjah. Hecho con amor por y para el
+        club.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT UNIFICADO Y CORREGIDO -->
+  <script>
+    // 1. Giro de Tarjetas
+    document.querySelectorAll(".single-card-container").forEach((card) => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("is-flipped");
+      });
+    });
+
+    // 2. Lógica Menú Hamburguesa
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const iconOpen = document.getElementById("icon-open");
+    const iconClose = document.getElementById("icon-close");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
+
+    menuBtn?.addEventListener("click", () => {
+      mobileMenu?.classList.toggle("hidden");
+      iconOpen?.classList.toggle("hidden");
+      iconClose?.classList.toggle("hidden");
+    });
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu?.classList.add("hidden");
+        iconOpen?.classList.remove("hidden");
+        iconClose?.classList.add("hidden");
+      });
+    });
+
+    // 3. Lógica de Campos Condicionales del Formulario
+    const selectResidencia = document.getElementById(
+      "lugar-residencia",
+    ) as HTMLSelectElement;
+    const campoSJ = document.getElementById("campo-departamento-sj");
+    const campoOtraProvincia = document.getElementById("campo-otra-provincia");
+    const campoOtroResidencia = document.getElementById(
+      "campo-otro-residencia",
+    );
+
+    selectResidencia?.addEventListener("change", (e) => {
+      const val = (e.target as HTMLSelectElement).value;
+      campoSJ?.classList.toggle("hidden", val !== "San Juan");
+      campoOtraProvincia?.classList.toggle("hidden", val !== "Otra provincia");
+      campoOtroResidencia?.classList.toggle("hidden", val !== "Otro");
+    });
+
+    const radiosAsociarse = document.querySelectorAll(
+      'input[name="quiere_asociarse"]',
+    );
+    const bloqueCategorias = document.getElementById("bloque-categorias-socio");
+    const btnSubmit = document.getElementById(
+      "btn-submit-form",
+    ) as HTMLButtonElement;
+
+    radiosAsociarse.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.value === "Sí") {
+          bloqueCategorias?.classList.remove("hidden");
+          if (btnSubmit)
+            btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
+        } else {
+          bloqueCategorias?.classList.add("hidden");
+          if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
+        }
+      });
+    });
+
+    const selectAporte = document.getElementById(
+      "forma-aporte",
+    ) as HTMLSelectElement;
+    const campoOtroAporte = document.getElementById("campo-otro-aporte");
+
+    selectAporte?.addEventListener("change", (e) => {
+      const val = (e.target as HTMLSelectElement).value;
+      campoOtroAporte?.classList.toggle("hidden", val !== "Otro");
+    });
+
+    const radiosJuega = document.querySelectorAll(
+      'input[name="juega_en_club"]',
+    );
+    const contenedorDeporte = document.getElementById("opciones-deporte");
+
+    radiosJuega.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        contenedorDeporte?.classList.toggle("hidden", target.value !== "Sí");
+      });
+    });
+
+    // 4. Copiar Datos Brubank
+    const btnCopyAlias = document.getElementById("btn-copy-alias");
+    const btnCopyCuit = document.getElementById("btn-copy-cuit");
+
+    btnCopyAlias?.addEventListener("click", () => {
+      navigator.clipboard.writeText("granjah.socios.bru");
+      btnCopyAlias.textContent = "¡Copiado!";
+      btnCopyAlias.classList.add("bg-emerald-400");
+      setTimeout(() => {
+        btnCopyAlias.textContent = "Copiar";
+        btnCopyAlias.classList.remove("bg-emerald-400");
+      }, 2000);
+    });
+
+    btnCopyCuit?.addEventListener("click", () => {
+      navigator.clipboard.writeText("27382188131");
+      btnCopyCuit.textContent = "¡Copiado!";
+      btnCopyCuit.classList.add("bg-emerald-500", "text-neutral-950");
+      setTimeout(() => {
+        btnCopyCuit.textContent = "Copiar";
+        btnCopyCuit.classList.remove("bg-emerald-500", "text-neutral-950");
+      }, 2000);
+    });
+
+    // 5. Envío y Validación del Formulario
+    const form = document.getElementById(
+      "mi-formulario-actual",
+    ) as HTMLFormElement;
+    const bloquePago = document.getElementById("bloque-pago-brubank");
+    const inputNombre = document.getElementById("nombre") as HTMLInputElement;
+    const inputDoc = document.getElementById("numero-doc") as HTMLInputElement;
+    const inputFecha = document.getElementById(
+      "fecha-nacimiento",
+    ) as HTMLInputElement;
+    const inputEmail = document.getElementById("email") as HTMLInputElement;
+    const inputTelefono = document.getElementById(
+      "telefono",
+    ) as HTMLInputElement;
+    const selectCodigoPais = document.getElementById(
+      "codigo-pais",
+    ) as HTMLSelectElement;
+    const inputTelefonoCompleto = document.getElementById(
+      "telefono-completo",
+    ) as HTMLInputElement;
+
+    const errorNombre = document.getElementById("error-nombre");
+    const errorDoc = document.getElementById("error-doc");
+    const errorFecha = document.getElementById("error-fecha");
+    const errorEmail = document.getElementById("error-email");
+    const errorTelefono = document.getElementById("error-telefono");
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      let esValido = true;
+
+      // Validación Nombre
+      const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+      if (
+        !inputNombre.value.trim() ||
+        !regexNombre.test(inputNombre.value.trim())
+      ) {
+        errorNombre?.classList.remove("hidden");
+        inputNombre.classList.add("border-red-500");
+        esValido = false;
+      } else {
+        errorNombre?.classList.add("hidden");
+        inputNombre.classList.remove("border-red-500");
+      }
+
+      // Validación Documento
+      const regexNumeros = /^[0-9]+$/;
+      if (!inputDoc.value.trim() || !regexNumeros.test(inputDoc.value.trim())) {
+        errorDoc?.classList.remove("hidden");
+        inputDoc.classList.add("border-red-500");
+        esValido = false;
+      } else {
+        errorDoc?.classList.add("hidden");
+        inputDoc.classList.remove("border-red-500");
+      }
+
+      // Validación Fecha
+      if (!inputFecha.value) {
+        errorFecha?.classList.remove("hidden");
+        inputFecha.classList.add("border-red-500");
+        esValido = false;
+      } else {
+        errorFecha?.classList.add("hidden");
+        inputFecha.classList.remove("border-red-500");
+      }
+
+      // Validación Email
+      const emailValor = inputEmail.value.trim().toLowerCase();
+      if (
+        !emailValor.endsWith("@gmail.com") &&
+        !emailValor.endsWith("@hotmail.com")
+      ) {
+        errorEmail?.classList.remove("hidden");
+        inputEmail.classList.add("border-red-500");
+        esValido = false;
+      } else {
+        errorEmail?.classList.add("hidden");
+        inputEmail.classList.remove("border-red-500");
+      }
+
+      // Validación Teléfono
+      const telValor = inputTelefono.value.trim();
+      if (!telValor || !regexNumeros.test(telValor)) {
+        errorTelefono?.classList.remove("hidden");
+        inputTelefono.classList.add("border-red-500");
+        esValido = false;
+      } else {
+        errorTelefono?.classList.add("hidden");
+        inputTelefono.classList.remove("border-red-500");
+        inputTelefonoCompleto.value = `'${selectCodigoPais.value} ${telValor}`;
+      }
+
+      if (esValido) {
+        if (btnSubmit) {
+          btnSubmit.textContent = "Guardando solicitud...";
+          btnSubmit.disabled = true;
+          btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+        }
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: "POST",
+          body: formData,
+        })
+          .then(() => {
+            form.classList.add("hidden");
+            bloquePago?.classList.remove("hidden");
+          })
+          .catch((err) => {
+            console.error("Error al guardar:", err);
+            form.classList.add("hidden");
+            bloquePago?.classList.remove("hidden");
+          });
+      }
+    });
+
+    // 6. Lógica de Modal de Disciplinas
+    const sportCards = document.querySelectorAll(".sport-card");
+    const modal = document.getElementById("sport-modal");
+    const modalContainer = document.getElementById("modal-container");
+    const closeModalBtn = document.getElementById("close-sport-modal");
+
+    const modalIcon = document.getElementById("modal-icon");
+    const modalSportTitle = document.getElementById("modal-sport-title");
+    const categoryContainer = document.getElementById(
+      "category-selector-container",
+    );
+    const matchesListContainer = document.getElementById(
+      "matches-list-container",
+    );
+
+    function renderMatches(matches) {
+      if (!matches || matches.length === 0) {
+        matchesListContainer.innerHTML = `<p class="text-sm text-slate-500 text-center py-4">No hay partidos cargados para esta categoría.</p>`;
+        return;
+      }
+
+      matchesListContainer.innerHTML = matches
+        .map(
+          (m) => `
+      <div class="bg-neutral-950 border border-neutral-800 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-neutral-900 text-amber-400 border border-amber-500/20 text-xs font-black px-2.5 py-1 rounded-md whitespace-nowrap">
+            ${m.fecha}
+          </span>
+          <div>
+            <p class="text-sm font-black text-slate-100">vs ${m.rival}</p>
+            <p class="text-xs text-slate-400">${m.cancha}</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between md:justify-end gap-3 border-t md:border-t-0 pt-2 md:pt-0 border-neutral-800">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded ${m.condicion === "Local" ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" : "bg-neutral-800 text-slate-400"}">
+            ${m.condicion}
+          </span>
+          <span class="text-xs font-semibold text-slate-300">
+            🕒 ${m.dia}
+          </span>
+        </div>
+      </div>
+    `,
+        )
+        .join("");
+    }
+
+    sportCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const title = card.getAttribute("data-sport-title");
+        const icon = card.getAttribute("data-sport-icon");
+        const categories = JSON.parse(
+          card.getAttribute("data-categories") || "[]",
+        );
+
+        if (modalIcon) modalIcon.textContent = icon;
+        if (modalSportTitle) modalSportTitle.textContent = title;
+
+        if (categoryContainer) {
+          categoryContainer.innerHTML = categories
+            .map(
+              (cat, index) => `
+          <button 
+            data-cat-index="${index}"
+            class="cat-btn ${index === 0 ? "bg-amber-400 text-neutral-950 font-black" : "bg-neutral-800 text-slate-300 hover:bg-neutral-700"} text-xs px-3.5 py-2 rounded-lg transition font-bold">
+            ${cat.name}
+          </button>
+        `,
+            )
+            .join("");
+        }
+
+        if (categories.length > 0) {
+          renderMatches(categories[0].matches);
+        }
+
+        const catBtns = categoryContainer?.querySelectorAll(".cat-btn");
+        catBtns?.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            catBtns.forEach((b) => {
+              b.classList.remove(
+                "bg-amber-400",
+                "text-neutral-950",
+                "font-black",
+              );
+              b.classList.add("bg-neutral-800", "text-slate-300");
+            });
+            btn.classList.remove("bg-neutral-800", "text-slate-300");
+            btn.classList.add("bg-amber-400", "text-neutral-950", "font-black");
+
+            const catIdx = btn.getAttribute("data-cat-index");
+            if (catIdx !== null)
+              renderMatches(categories[parseInt(catIdx)].matches);
+          });
+        });
+
+        modal?.classList.remove("hidden");
+        setTimeout(() => {
+          modal?.classList.remove("opacity-0");
+          modalContainer?.classList.remove("scale-95");
+        }, 10);
+      });
+    });
+
+    const closeModal = () => {
+      modal?.classList.add("opacity-0");
+      modalContainer?.classList.add("scale-95");
+      setTimeout(() => {
+        modal?.classList.add("hidden");
+      }, 300);
+    };
+
+    closeModalBtn?.addEventListener("click", closeModal);
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+  </script>
+</html>
