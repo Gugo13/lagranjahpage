@@ -135,22 +135,33 @@ const subtitulo = "Club Social & Deportivo";
       }
     </style>
 
-    <!-- HERO PRINCIPAL CON ESCUDO DE FONDO CON TRANSPARENCIA -->
+    <!-- HERO PRINCIPAL CON ESCUDOS A LOS COSTADOS Y TRANSPARENCIA -->
     <section
       class="relative py-24 md:py-32 text-center border-b border-neutral-800 overflow-hidden bg-neutral-950"
     >
-      <!-- Escudo de fondo gigante con transparencia (Marca de agua) -->
+      <!-- Escudo Izquierdo de fondo -->
       <div
-        class="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
+        class="absolute left-[-5%] sm:left-[5%] md:left-[10%] top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-20 hidden sm:block"
       >
         <img
-          src="/escudo/escudoLg.jpg"
-          alt="Fondo Escudo La Granjah"
-          class="w-[300px] sm:w-[450px] md:w-[600px] h-[300px] sm:h-[450px] md:h-[600px] object-contain opacity-10 filter grayscale contrast-125"
+          src="/escudo/escudoLagranjah.png"
+          alt="Escudo Izquierdo La Granjah"
+          class="w-[200px] md:w-[280px] h-auto object-contain transform -rotate-12"
         />
       </div>
 
-      <!-- Contenido del Hero (por encima del escudo) -->
+      <!-- Escudo Derecho de fondo -->
+      <div
+        class="absolute right-[-5%] sm:right-[5%] md:right-[10%] top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-20 hidden sm:block"
+      >
+        <img
+          src="/escudo/escudoLagranjah.png"
+          alt="Escudo Derecho La Granjah"
+          class="w-[200px] md:w-[280px] h-auto object-contain transform rotate-12"
+        />
+      </div>
+
+      <!-- Contenido del Hero (por encima de los escudos) -->
       <div
         class="max-w-4xl mx-auto px-6 flex flex-col items-center relative z-10"
       >
