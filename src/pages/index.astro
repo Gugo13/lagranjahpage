@@ -1731,25 +1731,44 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </section>
 
-    <!-- PIE DE PÁGINA -->
-    <footer class="border-t border-neutral-800 bg-neutral-950 py-10">
+    <!-- PIE DE PÁGINA CON ESCUDO CENTRADO Y DESTACADO -->
+    <footer
+      class="border-t border-neutral-800 bg-neutral-950 py-12 relative overflow-hidden"
+    >
       <div
-        class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6"
+        class="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center gap-6 text-center"
       >
-        <div class="flex items-center gap-3">
-          <div class="flex flex-col gap-1">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+        <!-- Escudo centrado y con buen tamaño para que se luzca -->
+        <div
+          class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 shadow-xl p-1 transition hover:scale-105 duration-300"
+        >
+          <img
+            src="/escudo/escudoLagranjah.png"
+            alt="Escudo Oficial La Granjah"
+            class="w-full h-full object-cover rounded-full"
+          />
+        </div>
+
+        <!-- Título y Puntos de colores -->
+        <div class="flex flex-col items-center gap-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
           </div>
           <div>
-            <span class="text-lg font-black uppercase text-slate-100"
+            <span
+              class="text-xl font-black uppercase text-slate-100 tracking-wider"
               >{titulo}</span
             >
-            <p class="text-xs text-slate-500">{subtitulo}</p>
+            <p class="text-xs text-slate-400 mt-1">{subtitulo}</p>
           </div>
         </div>
-        <p class="text-xs text-slate-500 text-center">
+
+        <!-- Derechos / Copyright -->
+        <p
+          class="text-xs text-slate-500 border-t border-neutral-900 pt-6 w-full max-w-md"
+        >
           &copy; {new Date().getFullYear()} La Granjah. Hecho con amor por y para
           el club.
         </p>
