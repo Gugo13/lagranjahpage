@@ -1309,6 +1309,7 @@ const subtitulo = "Club Social & Deportivo";
               >Elegí tu categoría de socio</label
             >
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Opción 1: Socio Granjhistico -->
               <label
                 class="relative flex flex-col p-4 bg-neutral-950 border-2 border-neutral-800 rounded-xl cursor-pointer hover:border-emerald-500 transition [&:has(input:checked)]:border-emerald-500 [&:has(input:checked)]:bg-emerald-950/20"
               >
@@ -1319,15 +1320,40 @@ const subtitulo = "Club Social & Deportivo";
                   class="sr-only"
                   checked
                 />
-                <span class="text-emerald-400 font-bold text-lg mb-1"
-                  >1. Socio Granjhistico</span
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-emerald-400 font-bold text-lg"
+                    >1. Socio Granjhistico</span
+                  >
+                  <span
+                    class="text-emerald-400 font-bold text-base bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-800/50"
+                    >$15.000 / mes</span
+                  >
+                </div>
+
+                <span class="text-xs text-slate-400 mb-3"
+                  >Ideal para participar activamente en el día a día del club.</span
                 >
-                <span class="text-xs text-slate-400"
-                  >Acceso a actividades sociales, eventos del club y apoyo
-                  mensual a las disciplinas.</span
+
+                <!-- Beneficios -->
+                <ul
+                  class="text-xs text-slate-300 space-y-1 border-t border-neutral-800/80 pt-2 mt-auto"
                 >
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-emerald-400">✓</span> Acceso libre a las instalaciones
+                    principales
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-emerald-400">✓</span> Descuento en la entrada
+                    a eventos sociales
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-emerald-400">✓</span> Voz y voto en las asambleas
+                    del club
+                  </li>
+                </ul>
               </label>
 
+              <!-- Opción 2: Socio Granjhístico Premium -->
               <label
                 class="relative flex flex-col p-4 bg-neutral-950 border-2 border-neutral-800 rounded-xl cursor-pointer hover:border-amber-400 transition [&:has(input:checked)]:border-amber-400 [&:has(input:checked)]:bg-amber-950/20"
               >
@@ -1337,12 +1363,36 @@ const subtitulo = "Club Social & Deportivo";
                   value="Socio Faraón"
                   class="sr-only"
                 />
-                <span class="text-amber-400 font-bold text-lg mb-1"
-                  >2. Socio Granjhístico Premium</span
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-amber-400 font-bold text-lg"
+                    >2. Socio Granjhístico Premium</span
+                  >
+                  <span
+                    class="text-amber-400 font-bold text-base bg-amber-950/40 px-2.5 py-1 rounded-lg border border-amber-800/50"
+                    >$30.000 / mes</span
+                  >
+                </div>
+
+                <span class="text-xs text-slate-400 mb-3"
+                  >Sostenimiento especial del club con beneficios exclusivos y
+                  VIP.</span
                 >
                 <span class="text-xs text-slate-400"
                   >Sostenimiento especial del club con beneficios exclusivos!!.</span
                 >
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-amber-400">✓</span> Todos los beneficios del
+                    socio común
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-amber-400">✓</span> Estacionamiento exclusivo
+                    sin cargo
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <span class="text-amber-400">✓</span> Kit de merchandising oficial
+                    de regalo
+                  </li>
+                </ul>
               </label>
             </div>
           </div>
