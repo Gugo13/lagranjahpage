@@ -724,19 +724,19 @@ const subtitulo = "Club Social & Deportivo";
             data-sport-title="Fútbol 11"
             data-sport-icon="⚽"
             data-categories='[
-       {
-         "name": "Liga de Profesionales",
-         "matches": [
-           {"fecha": "Fecha 1", "rival": "Rival A", "cancha": "Cancha 1", "condicion": "Local", "dia": "Sáb 16:00 hs"}
-         ]
-       },
-       {
-         "name": "Liga Universitaria",
-         "matches": [
-           {"fecha": "Fecha 1", "rival": "Rival B", "cancha": "Cancha 2", "condicion": "Visitante", "dia": "Dom 11:00 hs"}
-         ]
-       }
-     ]'
+              {
+                "name": "Liga de Profesionales",
+                "matches": [
+                  { "fecha": "Fecha 1", "rival": "Rival A", "cancha": "Cancha 1", "condition": "Local", "date": "Sáb 16:00 hs" }
+                ]
+              },
+              {
+                "name": "Liga Universitaria",
+                "matches": [
+                  { "fecha": "Fecha 1", "rival": "Rival B", "cancha": "Cancha 2", "condition": "Visitante", "date": "Dom 11:00 hs" }
+                ]
+              }
+            ]'
           >
             <div>
               <div class="flex items-center justify-between mb-4">
@@ -776,12 +776,12 @@ const subtitulo = "Club Social & Deportivo";
             data-sport-title="Futsal Masculino"
             data-sport-icon="👟"
             data-categories='[
-       { "name": "Primera", "matches": [] },
-       { "name": "Reserva", "matches": [] },
-       { "name": "Sub 17", "matches": [] },
-       { "name": "Sub 15", "matches": [] },
-       { "name": "Sub 13", "matches": [] }
-     ]'
+              { "name": "Primera", "matches": [] },
+              { "name": "Reserva", "matches": [] },
+              { "name": "Sub 17", "matches": [] },
+              { "name": "Sub 15", "matches": [] },
+              { "name": "Sub 13", "matches": [] }
+            ]'
           >
             <div>
               <div class="flex items-center justify-between mb-4">
@@ -821,19 +821,19 @@ const subtitulo = "Club Social & Deportivo";
             data-sport-title="Futsal Femenino"
             data-sport-icon="👟"
             data-categories='[
-               {
-                 "name": "Primera",
-                 "matches": [
-                   { "rival": "CGT", "date": "Dom 30/08 - 19:00 hs", "condition": "Local" },
-                   { "rival": "San Martín", "date": "Sab 16/09 - 14:00 hs", "condition": "Visitante" }
-                 ]
-               },
-               {
-                 "name": "Reserva",
-                 "matches": [
-                   { "rival": "CGT", "date": "Dom 30/08 - 18:00 hs", "condition": "Local" }
-                 ]
-               }
+              {
+                "name": "Primera",
+                "matches": [
+                  { "fecha": "Fecha 1", "rival": "CGT", "date": "Dom 30/08 - 19:00 hs", "condition": "Local" },
+                  { "fecha": "Fecha 2", "rival": "San Martín", "date": "Sab 16/09 - 14:00 hs", "condition": "Visitante" }
+                ]
+              },
+              {
+                "name": "Reserva",
+                "matches": [
+                  { "fecha": "Fecha 1", "rival": "CGT", "date": "Dom 30/08 - 18:00 hs", "condition": "Local" }
+                ]
+              }
             ]'
           >
             <div>
@@ -874,7 +874,7 @@ const subtitulo = "Club Social & Deportivo";
     <!-- MODAL FLOTANTE DE FIXTURE Y GALERÍA -->
     <div
       id="sport-modal"
-      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4..."
+      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4"
     >
       <div
         class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]"
