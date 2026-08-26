@@ -135,51 +135,39 @@ const subtitulo = "Club Social & Deportivo";
       }
     </style>
 
-    <!-- HERO PRINCIPAL CON LÍNEAS DE COLORES Y DEGRADÉ -->
-    <section class="py-20 md:py-28 text-center border-b border-neutral-800">
-      <div class="max-w-4xl mx-auto px-6 flex flex-col items-center">
+    <!-- HERO PRINCIPAL CON ESCUDO DE FONDO CON TRANSPARENCIA -->
+    <section
+      class="relative py-24 md:py-32 text-center border-b border-neutral-800 overflow-hidden bg-neutral-950"
+    >
+      <!-- Escudo de fondo gigante con transparencia (Marca de agua) -->
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
+      >
+        <img
+          src="/escudo/escudoLg.jpg"
+          alt="Fondo Escudo La Granjah"
+          class="w-[300px] sm:w-[450px] md:w-[600px] h-[300px] sm:h-[450px] md:h-[600px] object-contain opacity-10 filter grayscale contrast-125"
+        />
+      </div>
+
+      <!-- Contenido del Hero (por encima del escudo) -->
+      <div
+        class="max-w-4xl mx-auto px-6 flex flex-col items-center relative z-10"
+      >
         <div class="flex items-center gap-1.5 mb-6">
           <span class="w-10 h-1 bg-emerald-500 rounded-full"></span>
           <span class="w-10 h-1 bg-amber-400 rounded-full"></span>
           <span class="w-10 h-1 bg-red-500 rounded-full"></span>
         </div>
 
-        <!-- Contenedor del título con los escudos a los costados -->
-        <div
-          class="flex items-center justify-center gap-3 md:gap-6 mb-6 w-full flex-wrap md:flex-nowrap"
+        <h1
+          class="text-4xl md:text-6xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 mb-6 drop-shadow-md"
         >
-          <!-- Escudo Izquierdo -->
-          <div
-            class="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 shadow-lg shrink-0 hidden sm:block"
-          >
-            <img
-              src="/escudo/escudoLg.jpg"
-              alt="Escudo La Granjah"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <!-- Título Principal con Degradé -->
-          <h1
-            class="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500"
-          >
-            MÁS QUE UN CLUB, UNA FAMILIA
-          </h1>
-
-          <!-- Escudo Derecho -->
-          <div
-            class="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 shadow-lg shrink-0 hidden sm:block"
-          >
-            <img
-              src="/escudo/escudoLg.jpg"
-              alt="Escudo La Granjah"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
+          MÁS QUE UN CLUB, UNA FAMILIA
+        </h1>
 
         <p
-          class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed mb-8"
+          class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed mb-8 drop-shadow"
         >
           Un club 100% social. No recibimos aportes externos, nos bancamos con
           las cuotas de los socios y el amor gigante de cada integrante por este
@@ -189,7 +177,7 @@ const subtitulo = "Club Social & Deportivo";
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a
             href="#disciplinas"
-            class="px-6 py-3 bg-neutral-900 hover:bg-neutral-800 text-slate-200 font-bold rounded-xl border border-neutral-700 transition"
+            class="px-6 py-3 bg-neutral-900/90 hover:bg-neutral-800 text-slate-200 font-bold rounded-xl border border-neutral-700 transition backdrop-blur-sm"
           >
             Ver disciplinas
           </a>
