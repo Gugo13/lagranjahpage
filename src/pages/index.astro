@@ -16,7 +16,126 @@ const subtitulo = "Club Social & Deportivo";
   <body
     class="bg-neutral-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between"
   >
-    <!-- HERO PRINCIPAL CON ESCUDOS ADAPTATIVOS PARA CELU Y PC -->
+    <!-- HEADER CON MENÚ ADAPTATIVO -->
+    <header
+      class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <!-- Logo / Nombre del Club -->
+        <a
+          href="#"
+          class="flex items-center gap-2 text-xl font-black text-slate-100 tracking-wider"
+        >
+          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+          <span class="w-3 h-3 rounded-full bg-red-500"></span>
+          <span>LA GRANJAH</span>
+        </a>
+
+        <!-- Menú exclusivo para PC -->
+        <nav
+          class="desktop-only flex items-center gap-8 text-sm font-semibold text-slate-300"
+        >
+          <a href="#disciplinas" class="hover:text-amber-400 transition"
+            >Disciplinas</a
+          >
+          <a href="#indumentaria" class="hover:text-amber-400 transition"
+            >Indumentaria</a
+          >
+          <a href="#identidad" class="hover:text-amber-400 transition"
+            >Nuestra Esencia</a
+          >
+          <a
+            href="#sumate"
+            class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-bold px-5 py-2.5 rounded-xl hover:opacity-95 transition shadow-md"
+          >
+            Sumate al Club
+          </a>
+        </nav>
+
+        <!-- Botón Hamburguesa exclusivo para celulares -->
+        <button
+          id="menu-btn"
+          type="button"
+          aria-label="Abrir menú"
+          class="mobile-only text-slate-100 hover:text-amber-400 focus:outline-none p-2 rounded-lg bg-neutral-900 border border-neutral-800 cursor-pointer"
+        >
+          <svg
+            id="icon-open"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg
+            id="icon-close"
+            class="w-6 h-6 hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Desplegable Exclusivo para Celulares -->
+      <div
+        id="mobile-menu"
+        class="hidden mobile-only bg-neutral-950/95 border-b border-neutral-800 px-6 pt-2 pb-6 space-y-3"
+      >
+        <nav class="flex flex-col gap-3 text-base font-medium text-slate-200">
+          <a
+            href="#disciplinas"
+            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            >Disciplinas Deportivas</a
+          >
+          <a
+            href="#indumentaria"
+            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            >Indumentaria</a
+          >
+          <a
+            href="#identidad"
+            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            >Nuestra Esencia</a
+          >
+          <a
+            href="#sumate"
+            class="mobile-link text-center bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-black py-3 rounded-xl uppercase tracking-wider shadow-md mt-2"
+            >Sumate al Club</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- ESTILOS DE VISIBILIDAD DEDICADOS -->
+    <style>
+      @media (max-width: 767px) {
+        .desktop-only {
+          display: none !important;
+        }
+      }
+      @media (min-width: 768px) {
+        .mobile-only {
+          display: none !important;
+        }
+      }
+    </style>
+
+<!-- HERO PRINCIPAL CON ESCUDOS ADAPTATIVOS PARA CELU Y PC -->
     <section
       class="relative py-20 md:py-32 text-center border-b border-neutral-800 overflow-hidden bg-neutral-950"
     >
@@ -39,87 +158,6 @@ const subtitulo = "Club Social & Deportivo";
           src="/escudo/escudoLagranjah.png"
           alt="Escudo Derecho La Granjah"
           class="w-[110px] sm:w-[200px] md:w-[280px] h-auto object-contain transform rotate-12"
-        />
-      </div>
-
-      <!-- Contenido del Hero (por encima de los escudos) -->
-      <div
-        class="max-w-4xl mx-auto px-6 flex flex-col items-center relative z-10"
-      >
-        <div class="flex items-center gap-1.5 mb-6">
-          <span class="w-10 h-1 bg-emerald-500 rounded-full"></span>
-          <span class="w-10 h-1 bg-amber-400 rounded-full"></span>
-          <span class="w-10 h-1 bg-red-500 rounded-full"></span>
-        </div>
-
-        <h1
-          class="text-4xl md:text-6xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 mb-6 drop-shadow-md"
-        >
-          MÁS QUE UN CLUB, UNA FAMILIA
-        </h1>
-
-        <p
-          class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed mb-8 drop-shadow"
-        >
-          Un club 100% social. No recibimos aportes externos, nos bancamos con
-          las cuotas de los socios y el amor gigante de cada integrante por este
-          espacio.
-        </p>
-
-        <div class="flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#disciplinas"
-            class="px-6 py-3 bg-neutral-900/90 hover:bg-neutral-800 text-slate-200 font-bold rounded-xl border border-neutral-700 transition backdrop-blur-sm"
-          >
-            Ver disciplinas
-          </a>
-          <a
-            href="#sumate"
-            class="px-6 py-3 bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-black rounded-xl hover:opacity-95 transition shadow-lg"
-          >
-            Asociate
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESTILOS DE VISIBILIDAD DEDICADOS -->
-    <style>
-      @media (max-width: 767px) {
-        .desktop-only {
-          display: none !important;
-        }
-      }
-      @media (min-width: 768px) {
-        .mobile-only {
-          display: none !important;
-        }
-      }
-    </style>
-
-    <!-- HERO PRINCIPAL CON ESCUDOS A LOS COSTADOS Y TRANSPARENCIA -->
-    <section
-      class="relative py-24 md:py-32 text-center border-b border-neutral-800 overflow-hidden bg-neutral-950"
-    >
-      <!-- Escudo Izquierdo de fondo -->
-      <div
-        class="absolute left-[-5%] sm:left-[5%] md:left-[10%] top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-20 hidden sm:block"
-      >
-        <img
-          src="/escudo/escudoLagranjah.png"
-          alt="Escudo Izquierdo La Granjah"
-          class="w-[200px] md:w-[280px] h-auto object-contain transform -rotate-12"
-        />
-      </div>
-
-      <!-- Escudo Derecho de fondo -->
-      <div
-        class="absolute right-[-5%] sm:right-[5%] md:right-[10%] top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-20 hidden sm:block"
-      >
-        <img
-          src="/escudo/escudoLagranjah.png"
-          alt="Escudo Derecho La Granjah"
-          class="w-[200px] md:w-[280px] h-auto object-contain transform rotate-12"
         />
       </div>
 
