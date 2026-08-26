@@ -1,9 +1,12 @@
 ---
 const fotos = [
-  { url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=800", titulo: "Fútbol 11 Masculino" },
-  { url: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&q=80&w=800", titulo: "Futsal Masculino" },
-  { url: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&q=80&w=800", titulo: "Futsal Femenino" },
-  { url: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=800", titulo: "Básquet Masculino" }
+  { url: "/disciplinas/futbol11/foto29.jpg", titulo: "Fútbol 11" },
+  { url: "/disciplinas/futsalMasc/foto25.jpg", titulo: "Futsal Masculino" },
+  { url: "/disciplinas/futsalFem/foto16.jpg", titulo: "Futsal Femenino" },
+  { url: "/disciplinas/futbol11/foto28.jpg", titulo: "Fútbol 11" },
+  { url: "/disciplinas/futsalMasc/foto26.jpg", titulo: "Futsal Masculino" },
+  { url: "/disciplinas/futsalFem/foto17.jpg", titulo: "Futsal Femenino" },
+
 ];
 ---
 
@@ -34,8 +37,9 @@ const fotos = [
   const btnPrev = document.getElementById('btn-prev');
   const btnNext = document.getElementById('btn-next');
   
+  // Obtenemos el total dinámicamente desde los elementos renderizados
+  const total = contenedor?.children.length || 0;
   let index = 0;
-  const total = 4;
 
   function actualizarCarrusel() {
     if (contenedor) {
@@ -44,11 +48,13 @@ const fotos = [
   }
 
   btnNext?.addEventListener('click', () => {
+    if (total === 0) return;
     index = (index + 1) % total;
     actualizarCarrusel();
   });
 
   btnPrev?.addEventListener('click', () => {
+    if (total === 0) return;
     index = (index - 1 + total) % total;
     actualizarCarrusel();
   });

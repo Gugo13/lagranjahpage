@@ -4,25 +4,6 @@ import Carrusel from "../components/Carrusel.astro";
 
 const titulo = "La Granjah";
 const subtitulo = "Club Social & Deportivo";
-
-const disciplinas = [
-  {
-    deporte: "⚽ Fútbol 11",
-    ramas: ["Masculino"],
-  },
-  {
-    deporte: "👟 Futsal Masculino",
-    ramas: ["Primera", "Reserva", "Sub 17", "Sub 15", "Sub 13"],
-  },
-  {
-    deporte: "👟 Futsal Femenino",
-    ramas: ["Primera", "Reserva"],
-  },
-  {
-    deporte: "🏀 Básquet",
-    ramas: ["Masculino"],
-  },
-];
 ---
 
 <html lang="es" class="scroll-smooth">
@@ -35,7 +16,7 @@ const disciplinas = [
   <body
     class="bg-neutral-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between"
   >
-    <!-- HEADER CON MENÚ ADAPTATIVO (CORREGIDO) -->
+    <!-- HEADER CON MENÚ ADAPTATIVO -->
     <header
       class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800"
     >
@@ -203,7 +184,9 @@ const disciplinas = [
         <h2 class="text-2xl md:text-3xl font-extrabold text-slate-100 mb-4">
           Unidos por los mismos valores
         </h2>
-        <p class="text-slate-300 leading-relaxed max-w-3xl mx-auto mb-10">
+        <p
+          class="text-slate-300 text-lg leading-relaxed max-w-3xl mx-auto mb-10"
+        >
           Llevamos estos colores en el corazón. Nuestro nombre rinde homenaje a
           la cultura de <strong>paz</strong>, <strong>unión</strong> y <strong
             >resistencia</strong
@@ -224,6 +207,7 @@ const disciplinas = [
       >
       </div>
 
+      <!-- CONTENEDOR GENERAL CON POSITION RELATIVE PARA EL CARTEL FLOTANTE -->
       <div class="max-w-6xl mx-auto px-6 relative z-10">
         <div class="text-center mb-16">
           <span
@@ -242,380 +226,408 @@ const disciplinas = [
           </p>
         </div>
 
-        <!-- GRID DE CARDS -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          <!-- CARD 1 -->
-          <div class="single-card-container group h-[420px] cursor-pointer">
+        <!-- WRAPPER RELATIVO PARA APLICAR EL BLUR A LAS CARDS Y PONER EL CARTEL ENCIMA -->
+        <div class="relative w-full">
+          <!-- CARTEL TRICOLOR FLOTANTE POR ENCIMA -->
+          <div
+            class="absolute inset-0 z-30 flex items-center justify-center p-4"
+          >
             <div
-              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-emerald-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+              class="bg-neutral-900/95 border-2 border-neutral-700 px-6 py-8 sm:px-10 sm:py-10 rounded-2xl shadow-2xl max-w-lg w-full text-center backdrop-blur-md transform -rotate-1 hover:rotate-0 transition-transform duration-300"
             >
-              <div
-                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
+              <h3
+                class="text-xl sm:text-3xl font-black uppercase tracking-wider mb-3 flex flex-wrap justify-center gap-x-2"
               >
-                <span class="text-5xl mb-4">👕</span>
-                <span
-                  class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-1"
-                  >Edición 2026</span
-                >
-                <h3 class="text-2xl font-black uppercase text-slate-100">
-                  Camiseta Granjahmaica
-                </h3>
-                <p class="text-xs text-slate-500 mt-2">
-                  Inspirada en nuestros hermanos Jamaiquinos y la cultura
-                  Rastafari.
-                </p>
-                <span
-                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
-                >
-                  ✨ Girar para revelar
-                </span>
-              </div>
-
-              <div
-                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
-              >
-                <div
-                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
-                >
-                </div>
-                <div class="w-full text-left z-10">
-                  <span
-                    class="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-neutral-900/90 border border-emerald-500/30 px-2.5 py-1 rounded-md"
-                  >
-                    Titular
-                  </span>
-                </div>
-                <div
-                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1580089540114-1ed5a0696377?q=80&w=600&auto=format&fit=crop"
-                    alt="Camiseta Titular La Granjah"
-                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
-                  />
-                </div>
-                <div
-                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
-                >
-                  <h4 class="text-lg font-black text-slate-100 uppercase">
-                    La Cuna del Fútbol
-                  </h4>
-                  <p class="text-xs font-bold text-amber-400 mt-0.5">
-                    $35.000 ARS
-                  </p>
-                </div>
-              </div>
+                <span class="text-emerald-500">PRÓXIMAMENTE</span>
+                <span class="text-amber-400">INDUMENTARIA</span>
+                <span class="text-rose-500">GRANJHÍSTICA</span>
+              </h3>
+              <p class="text-neutral-400 text-sm sm:text-base">
+                Se viene la nueva colección oficial. ¡Estate atento a los
+                lanzamientos!
+              </p>
             </div>
           </div>
 
-          <!-- CARD 2 -->
-          <div class="single-card-container group h-[420px] cursor-pointer">
-            <div
-              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-amber-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
-            >
+          <!-- GRID DE CARDS CON BLUR APLICADO -->
+          <div
+            class="filter blur-md pointer-events-none select-none opacity-40 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+          >
+            <!-- CARD 1 -->
+            <div class="single-card-container group h-[420px] cursor-pointer">
               <div
-                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
-              >
-                <span class="text-5xl mb-4">🛡️</span>
-                <span
-                  class="text-xs font-bold uppercase tracking-widest text-amber-400 mb-1"
-                  >Edición Especial</span
-                >
-                <h3 class="text-2xl font-black uppercase text-slate-100">
-                  Camiseta Suplente
-                </h3>
-                <p class="text-xs text-slate-500 mt-2">
-                  Negro Faraón con vivos Neón
-                </p>
-                <span
-                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
-                >
-                  ✨ Girar para revelar
-                </span>
-              </div>
-
-              <div
-                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+                class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-emerald-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
               >
                 <div
-                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
                 >
-                </div>
-                <div class="w-full text-left z-10">
+                  <span class="text-5xl mb-4">👕</span>
                   <span
-                    class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-900/90 border border-amber-500/30 px-2.5 py-1 rounded-md"
+                    class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-1"
+                    >Edición 2026</span
                   >
-                    Alternativa
+                  <h3 class="text-2xl font-black uppercase text-slate-100">
+                    Camiseta Granjahmaica
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Inspirada en nuestros hermanos Jamaiquinos y la cultura
+                    Rastafari.
+                  </p>
+                  <span
+                    class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                  >
+                    ✨ Girar para revelar
                   </span>
                 </div>
+
                 <div
-                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop"
-                    alt="Camiseta Suplente La Granjah"
-                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
-                  />
-                </div>
-                <div
-                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
-                >
-                  <h4 class="text-lg font-black text-slate-100 uppercase">
-                    Noche Faraónica
-                  </h4>
-                  <p class="text-xs font-bold text-amber-400 mt-0.5">
-                    $35.000 ARS
-                  </p>
+                  <div
+                    class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  >
+                  </div>
+                  <div class="w-full text-left z-10">
+                    <span
+                      class="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-neutral-900/90 border border-emerald-500/30 px-2.5 py-1 rounded-md"
+                    >
+                      Titular
+                    </span>
+                  </div>
+                  <div
+                    class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1580089540114-1ed5a0696377?q=80&w=600&auto=format&fit=crop"
+                      alt="Camiseta Titular La Granjah"
+                      class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
+                    />
+                  </div>
+                  <div
+                    class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                  >
+                    <h4 class="text-lg font-black text-slate-100 uppercase">
+                      La Cuna del Fútbol
+                    </h4>
+                    <p class="text-xs font-bold text-amber-400 mt-0.5">
+                      $35.000 ARS
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- CARD 3 -->
-          <div class="single-card-container group h-[420px] cursor-pointer">
-            <div
-              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-red-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
-            >
+            <!-- CARD 2 -->
+            <div class="single-card-container group h-[420px] cursor-pointer">
               <div
-                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
-              >
-                <span class="text-5xl mb-4">🔥</span>
-                <span
-                  class="text-xs font-bold uppercase tracking-widest text-red-500 mb-1"
-                  >Entrenamiento</span
-                >
-                <h3 class="text-2xl font-black uppercase text-slate-100">
-                  Camiseta Pre-Match
-                </h3>
-                <p class="text-xs text-slate-500 mt-2">Llamas Granjhisticas</p>
-                <span
-                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
-                >
-                  ✨ Girar para revelar
-                </span>
-              </div>
-
-              <div
-                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+                class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-amber-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
               >
                 <div
-                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
                 >
-                </div>
-                <div class="w-full text-left z-10">
+                  <span class="text-5xl mb-4">🛡️</span>
                   <span
-                    class="text-[10px] font-black uppercase tracking-widest text-red-400 bg-neutral-900/90 border border-red-500/30 px-2.5 py-1 rounded-md"
+                    class="text-xs font-bold uppercase tracking-widest text-amber-400 mb-1"
+                    >Edición Especial</span
                   >
-                    Pre-Match
+                  <h3 class="text-2xl font-black uppercase text-slate-100">
+                    Camiseta Suplente
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Negro Faraón con vivos Neón
+                  </p>
+                  <span
+                    class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                  >
+                    ✨ Girar para revelar
                   </span>
                 </div>
+
                 <div
-                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format&fit=crop"
-                    alt="Camiseta Pre-Match La Granjah"
-                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
-                  />
-                </div>
-                <div
-                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
-                >
-                  <h4 class="text-lg font-black text-slate-100 uppercase">
-                    Calentamiento Oficial
-                  </h4>
-                  <p class="text-xs font-bold text-amber-400 mt-0.5">
-                    $28.000 ARS
-                  </p>
+                  <div
+                    class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  >
+                  </div>
+                  <div class="w-full text-left z-10">
+                    <span
+                      class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-900/90 border border-amber-500/30 px-2.5 py-1 rounded-md"
+                    >
+                      Alternativa
+                    </span>
+                  </div>
+                  <div
+                    class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop"
+                      alt="Camiseta Suplente La Granjah"
+                      class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
+                    />
+                  </div>
+                  <div
+                    class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                  >
+                    <h4 class="text-lg font-black text-slate-100 uppercase">
+                      Noche Faraónica
+                    </h4>
+                    <p class="text-xs font-bold text-amber-400 mt-0.5">
+                      $35.000 ARS
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- CARD 4 -->
-          <div class="single-card-container group h-[420px] cursor-pointer">
-            <div
-              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-emerald-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
-            >
+            <!-- CARD 3 -->
+            <div class="single-card-container group h-[420px] cursor-pointer">
               <div
-                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
-              >
-                <span class="text-5xl mb-4">🦵</span>
-                <span
-                  class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-1"
-                  >Protección</span
-                >
-                <h3 class="text-2xl font-black uppercase text-slate-100">
-                  Canilleras Pro
-                </h3>
-                <p class="text-xs text-slate-500 mt-2">
-                  Fibra Reforzada y Escudo
-                </p>
-                <span
-                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
-                >
-                  ✨ Girar para revelar
-                </span>
-              </div>
-
-              <div
-                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+                class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-red-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
               >
                 <div
-                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
                 >
-                </div>
-                <div class="w-full text-left z-10">
+                  <span class="text-5xl mb-4">🔥</span>
                   <span
-                    class="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-neutral-900/90 border border-emerald-500/30 px-2.5 py-1 rounded-md"
+                    class="text-xs font-bold uppercase tracking-widest text-red-500 mb-1"
+                    >Entrenamiento</span
                   >
-                    Accesorios
+                  <h3 class="text-2xl font-black uppercase text-slate-100">
+                    Camiseta Pre-Match
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Llamas Granjhisticas
+                  </p>
+                  <span
+                    class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                  >
+                    ✨ Girar para revelar
                   </span>
                 </div>
+
                 <div
-                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=600&auto=format&fit=crop"
-                    alt="Canilleras Oficiales La Granjah"
-                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
-                  />
-                </div>
-                <div
-                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
-                >
-                  <h4 class="text-lg font-black text-slate-100 uppercase">
-                    Armadura Granjhística
-                  </h4>
-                  <p class="text-xs font-bold text-amber-400 mt-0.5">
-                    $14.000 ARS
-                  </p>
+                  <div
+                    class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  >
+                  </div>
+                  <div class="w-full text-left z-10">
+                    <span
+                      class="text-[10px] font-black uppercase tracking-widest text-red-400 bg-neutral-900/90 border border-red-500/30 px-2.5 py-1 rounded-md"
+                    >
+                      Pre-Match
+                    </span>
+                  </div>
+                  <div
+                    class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format&fit=crop"
+                      alt="Camiseta Pre-Match La Granjah"
+                      class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
+                    />
+                  </div>
+                  <div
+                    class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                  >
+                    <h4 class="text-lg font-black text-slate-100 uppercase">
+                      Calentamiento Oficial
+                    </h4>
+                    <p class="text-xs font-bold text-amber-400 mt-0.5">
+                      $28.000 ARS
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- CARD 5 -->
-          <div class="single-card-container group h-[420px] cursor-pointer">
-            <div
-              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-amber-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
-            >
+            <!-- CARD 4 -->
+            <div class="single-card-container group h-[420px] cursor-pointer">
               <div
-                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
-              >
-                <span class="text-5xl mb-4">🧦</span>
-                <span
-                  class="text-xs font-bold uppercase tracking-widest text-amber-400 mb-1"
-                  >Complementos</span
-                >
-                <h3 class="text-2xl font-black uppercase text-slate-100">
-                  Medias Oficiales
-                </h3>
-                <p class="text-xs text-slate-500 mt-2">
-                  Tecnología Antideslizante
-                </p>
-                <span
-                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
-                >
-                  ✨ Girar para revelar
-                </span>
-              </div>
-
-              <div
-                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+                class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-emerald-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
               >
                 <div
-                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
                 >
-                </div>
-                <div class="w-full text-left z-10">
+                  <span class="text-5xl mb-4">🦵</span>
                   <span
-                    class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-900/90 border border-amber-500/30 px-2.5 py-1 rounded-md"
+                    class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-1"
+                    >Protección</span
                   >
-                    Juego Completo
+                  <h3 class="text-2xl font-black uppercase text-slate-100">
+                    Canilleras Pro
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Fibra Reforzada y Escudo
+                  </p>
+                  <span
+                    class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                  >
+                    ✨ Girar para revelar
                   </span>
                 </div>
+
                 <div
-                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80&w=600&auto=format&fit=crop"
-                    alt="Medias Oficiales La Granjah"
-                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
-                  />
-                </div>
-                <div
-                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
-                >
-                  <h4 class="text-lg font-black text-slate-100 uppercase">
-                    Medias de Competencia
-                  </h4>
-                  <p class="text-xs font-bold text-amber-400 mt-0.5">
-                    $8.500 ARS
-                  </p>
+                  <div
+                    class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  >
+                  </div>
+                  <div class="w-full text-left z-10">
+                    <span
+                      class="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-neutral-900/90 border border-emerald-500/30 px-2.5 py-1 rounded-md"
+                    >
+                      Accesorios
+                    </span>
+                  </div>
+                  <div
+                    class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=600&auto=format&fit=crop"
+                      alt="Canilleras Oficiales La Granjah"
+                      class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
+                    />
+                  </div>
+                  <div
+                    class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                  >
+                    <h4 class="text-lg font-black text-slate-100 uppercase">
+                      Armadura Granjhística
+                    </h4>
+                    <p class="text-xs font-bold text-amber-400 mt-0.5">
+                      $14.000 ARS
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- CARD 6 -->
-          <div class="single-card-container group h-[420px] cursor-pointer">
-            <div
-              class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-red-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
-            >
+            <!-- CARD 5 -->
+            <div class="single-card-container group h-[420px] cursor-pointer">
               <div
-                class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
-              >
-                <span class="text-5xl mb-4">🧥</span>
-                <span
-                  class="text-xs font-bold uppercase tracking-widest text-red-500 mb-1"
-                  >Paseo / Salida</span
-                >
-                <h3 class="text-2xl font-black uppercase text-slate-100">
-                  Conjunto Buzo
-                </h3>
-                <p class="text-xs text-slate-500 mt-2">
-                  Campera + Chándal de Salida
-                </p>
-                <span
-                  class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
-                >
-                  ✨ Girar para revelar
-                </span>
-              </div>
-
-              <div
-                class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+                class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-amber-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
               >
                 <div
-                  class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
                 >
-                </div>
-                <div class="w-full text-left z-10">
+                  <span class="text-5xl mb-4">🧦</span>
                   <span
-                    class="text-[10px] font-black uppercase tracking-widest text-red-400 bg-neutral-900/90 border border-red-500/30 px-2.5 py-1 rounded-md"
+                    class="text-xs font-bold uppercase tracking-widest text-amber-400 mb-1"
+                    >Complementos</span
                   >
-                    Conjunto
+                  <h3 class="text-2xl font-black uppercase text-slate-100">
+                    Medias Oficiales
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Tecnología Antideslizante
+                  </p>
+                  <span
+                    class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                  >
+                    ✨ Girar para revelar
                   </span>
                 </div>
+
                 <div
-                  class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=600&auto=format&fit=crop"
-                    alt="Conjunto de Buzo La Granjah"
-                    class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
-                  />
+                  <div
+                    class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  >
+                  </div>
+                  <div class="w-full text-left z-10">
+                    <span
+                      class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-900/90 border border-amber-500/30 px-2.5 py-1 rounded-md"
+                    >
+                      Juego Completo
+                    </span>
+                  </div>
+                  <div
+                    class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80&w=600&auto=format&fit=crop"
+                      alt="Medias Oficiales La Granjah"
+                      class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
+                    />
+                  </div>
+                  <div
+                    class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                  >
+                    <h4 class="text-lg font-black text-slate-100 uppercase">
+                      Medias de Competencia
+                    </h4>
+                    <p class="text-xs font-bold text-amber-400 mt-0.5">
+                      $8.500 ARS
+                    </p>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="single-card-container group h-[420px] cursor-pointer">
+              <div
+                class="card-3d-inner relative w-full h-full rounded-2xl border-2 border-red-500/30 bg-neutral-900 transition-transform duration-[2200ms] ease-out"
+              >
                 <div
-                  class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                  class="card-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-neutral-900"
                 >
-                  <h4 class="text-lg font-black text-slate-100 uppercase">
-                    Tracksuit Faraónico
-                  </h4>
-                  <p class="text-xs font-bold text-amber-400 mt-0.5">
-                    $52.000 ARS
+                  <span class="text-5xl mb-4">🧥</span>
+                  <span
+                    class="text-xs font-bold uppercase tracking-widest text-red-500 mb-1"
+                    >Paseo / Salida</span
+                  >
+                  <h3 class="text-2xl font-black uppercase text-slate-100">
+                    Conjunto Buzo
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-2">
+                    Campera + Chándal de Salida
                   </p>
+                  <span
+                    class="mt-6 text-xs text-amber-400/80 font-semibold uppercase tracking-wider flex items-center gap-1"
+                  >
+                    ✨ Girar para revelar
+                  </span>
+                </div>
+
+                <div
+                  class="card-face card-back-face absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-between bg-neutral-950"
+                >
+                  <div
+                    class="neon-glow-bg absolute inset-3 rounded-xl opacity-80 -z-10"
+                  >
+                  </div>
+                  <div class="w-full text-left z-10">
+                    <span
+                      class="text-[10px] font-black uppercase tracking-widest text-red-400 bg-neutral-900/90 border border-red-500/30 px-2.5 py-1 rounded-md"
+                    >
+                      Conjunto
+                    </span>
+                  </div>
+                  <div
+                    class="relative w-full h-52 flex items-center justify-center my-auto z-10"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=600&auto=format&fit=crop"
+                      alt="Conjunto de Buzo La Granjah"
+                      class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
+                    />
+                  </div>
+                  <div
+                    class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
+                  >
+                    <h4 class="text-lg font-black text-slate-100 uppercase">
+                      Tracksuit Faraónico
+                    </h4>
+                    <p class="text-xs font-bold text-amber-400 mt-0.5">
+                      $52.000 ARS
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -697,29 +709,34 @@ const disciplinas = [
             Disciplinas <span class="text-amber-400">Deportivas</span>
           </h2>
           <p class="text-slate-400 mt-2 text-sm md:text-base">
-            Hacé clic en cualquier disciplina para consultar las categorías,
-            fotos y el fixture oficial de <strong class="text-slate-200"
-              >La Granjah</strong
+            Hacé clic en cualquier disciplina para consultar las categorías y el
+            fixture oficial de <strong class="text-slate-200">La Granjah</strong
             >.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto justify-items-center"
+        >
           <!-- CARD 1: FÚTBOL 11 -->
           <div
             class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-emerald-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
             data-sport-title="Fútbol 11"
             data-sport-icon="⚽"
             data-categories='[
-             {
-               "name": "Liga de Profesionales",
-               "league": "Torneo Oficial Profesionales",
-               "matches": [
-                 {"fecha": "Fecha 1", "rival": "Abogados FC", "condicion": "Local", "dia": "Sáb 15/03 - 16:30 hs", "cancha": "Cancha Principal La Granjah"},
-                 {"fecha": "Fecha 2", "rival": "Contadores Unidos", "condicion": "Visitante", "dia": "Sáb 22/03 - 17:00 hs", "cancha": "Predio Profesionales"}
-               ]
-             }
-            ]'
+       {
+         "name": "Liga de Profesionales",
+         "matches": [
+           {"fecha": "Fecha 1", "rival": "Rival A", "cancha": "Cancha 1", "condicion": "Local", "dia": "Sáb 16:00 hs"}
+         ]
+       },
+       {
+         "name": "Liga Universitaria",
+         "matches": [
+           {"fecha": "Fecha 1", "rival": "Rival B", "cancha": "Cancha 2", "condicion": "Visitante", "dia": "Dom 11:00 hs"}
+         ]
+       }
+     ]'
           >
             <div>
               <div class="flex items-center justify-between mb-4">
@@ -759,14 +776,12 @@ const disciplinas = [
             data-sport-title="Futsal Masculino"
             data-sport-icon="👟"
             data-categories='[
-             {
-               "name": "Primera",
-               "league": "Torneo Oficial Futsal San Juan",
-               "matches": [
-                 {"fecha": "Fecha 1", "rival": "Barrio San Martín", "condicion": "Visitante", "dia": "Jue 20/03 - 21:30 hs", "cancha": "Club Barrio San Martín"}
-               ]
-             }
-            ]'
+       { "name": "Primera", "matches": [] },
+       { "name": "Reserva", "matches": [] },
+       { "name": "Sub 17", "matches": [] },
+       { "name": "Sub 15", "matches": [] },
+       { "name": "Sub 13", "matches": [] }
+     ]'
           >
             <div>
               <div class="flex items-center justify-between mb-4">
@@ -804,16 +819,11 @@ const disciplinas = [
           <div
             class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
             data-sport-title="Futsal Femenino"
-            data-sport-icon="👑"
+            data-sport-icon="👟"
             data-categories='[
-             {
-               "name": "Primera",
-               "league": "Torneo Femenino Futsal",
-               "matches": [
-                 {"fecha": "Fecha 1", "rival": "Palermo Futsal", "condicion": "Local", "dia": "Vier 21/03 - 21:00 hs", "cancha": "Polideportivo La Granjah"}
-               ]
-             }
-            ]'
+       { "name": "Primera", "matches": [] },
+       { "name": "Reserva", "matches": [] }
+     ]'
           >
             <div>
               <div class="flex items-center justify-between mb-4">
@@ -846,67 +856,20 @@ const disciplinas = [
               </span>
             </div>
           </div>
-
-          <!-- CARD 4: BÁSQUET -->
-          <div
-            class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-orange-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
-            data-sport-title="Básquet"
-            data-sport-icon="🏀"
-            data-categories='[
-             {
-               "name": "Primera Única",
-               "league": "Torneo Local Básquet",
-               "matches": [
-                 {"fecha": "Fecha 1", "rival": "Inca Huasi", "condicion": "Local", "dia": "Mié 18/03 - 21:45 hs", "cancha": "Polideportivo La Granjah"}
-               ]
-             }
-            ]'
-          >
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-4xl">🏀</span>
-                <span
-                  class="text-[10px] font-black uppercase tracking-widest text-orange-400 bg-orange-500/10 border border-orange-500/20 px-2.5 py-1 rounded-md"
-                >
-                  Polideportivo
-                </span>
-              </div>
-              <h3
-                class="text-xl font-black uppercase text-slate-100 group-hover:text-orange-400 transition"
-              >
-                Básquet
-              </h3>
-              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Nuestra categoría única de básquet compitiendo en el torneo
-                local.
-              </p>
-            </div>
-            <div
-              class="mt-6 pt-4 border-t border-neutral-800/80 flex items-center justify-between"
-            >
-              <span class="text-xs font-semibold text-slate-400"
-                >1 Categoría</span
-              >
-              <span
-                class="text-xs font-bold text-orange-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
-              >
-                Ver Fixture ➔
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- MODAL FLOTANTE DE FIXTURE -->
+    <!-- MODAL FLOTANTE DE FIXTURE Y GALERÍA -->
     <div
       id="sport-modal"
-      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0"
+      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4..."
     >
       <div
         class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]"
         id="modal-container"
       >
+        <!-- CABECERA DEL MODAL -->
         <div
           class="bg-neutral-950 p-5 border-b border-neutral-800 flex justify-between items-center shrink-0"
         >
@@ -933,11 +896,13 @@ const disciplinas = [
           </button>
         </div>
 
+        <!-- CUERPO DEL MODAL (GRID 2 COLUMNAS) -->
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto divide-y lg:divide-y-0 lg:divide-x divide-neutral-800"
+          class="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1"
         >
-          <div class="flex flex-col justify-between">
-            <div class="p-5 bg-neutral-950/50 border-b border-neutral-800/80">
+          <!-- COLUMNA IZQUIERDA: CATEGORÍAS Y FIXTURE -->
+          <div class="flex flex-col justify-between p-5">
+            <div>
               <p
                 class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2"
               >
@@ -945,29 +910,60 @@ const disciplinas = [
               </p>
               <div
                 id="category-selector-container"
-                class="flex flex-wrap gap-2"
+                class="flex flex-wrap gap-2 mb-4"
+              >
+              </div>
+
+              <div
+                class="space-y-3 max-h-[350px] overflow-y-auto pr-1"
+                id="matches-list-container"
               >
               </div>
             </div>
-
-            <div
-              class="p-5 space-y-3 max-h-[350px] lg:max-h-[420px] overflow-y-auto"
-              id="matches-list-container"
-            >
-            </div>
           </div>
 
+          <!-- COLUMNA DERECHA: VISOR DE FOTOS DE LA DISCIPLINA -->
           <div
-            class="relative bg-neutral-950 min-h-[280px] lg:min-h-full overflow-hidden group flex items-center justify-center"
+            class="relative bg-neutral-950 p-5 flex flex-col items-center justify-center min-h-[250px] lg:min-h-full"
           >
-            <span
-              class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-neutral-950/90 border border-amber-500/30 px-3 py-1 rounded-md backdrop-blur-md shadow-lg"
+            <div
+              id="modal-carrusel"
+              class="relative w-full h-64 sm:h-80 overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center"
             >
-              La Granjah En Acción
-            </span>
+              <img
+                id="modal-carrusel-img"
+                src=""
+                alt="Foto disciplina"
+                class="w-full h-full object-cover transition-all duration-300"
+              />
+
+              <!-- Botones de navegación -->
+              <button
+                id="modal-prev-btn"
+                type="button"
+                class="absolute left-2 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-amber-400 hover:text-neutral-950 text-white p-2.5 rounded-full transition text-xs font-black"
+              >
+                ❮
+              </button>
+              <button
+                id="modal-next-btn"
+                type="button"
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-amber-400 hover:text-neutral-950 text-white p-2.5 rounded-full transition text-xs font-black"
+              >
+                ❯
+              </button>
+
+              <span
+                id="modal-carrusel-contador"
+                class="absolute bottom-2 right-2 bg-neutral-950/80 border border-neutral-800 text-amber-400 px-2 py-0.5 text-[10px] font-bold rounded-md"
+              >
+                1 / 1
+              </span>
+            </div>
           </div>
         </div>
 
+        <!-- FOOTER DEL MODAL -->
         <div
           class="bg-neutral-950 p-3 border-t border-neutral-800 text-center shrink-0"
         >
@@ -1602,35 +1598,34 @@ const disciplinas = [
         </div>
       </div>
     </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="border-t border-neutral-800 bg-neutral-950 py-10">
+      <div
+        class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6"
+      >
+        <div class="flex items-center gap-3">
+          <div class="flex flex-col gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+          </div>
+          <div>
+            <span class="text-lg font-black uppercase text-slate-100"
+              >{titulo}</span
+            >
+            <p class="text-xs text-slate-500">{subtitulo}</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-500 text-center">
+          &copy; {new Date().getFullYear()} La Granjah. Hecho con amor por y para
+          el club.
+        </p>
+      </div>
+    </footer>
   </body>
 
-  <!-- PIE DE PÁGINA -->
-  <footer class="border-t border-neutral-800 bg-neutral-950 py-10">
-    <div
-      class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6"
-    >
-      <div class="flex items-center gap-3">
-        <div class="flex flex-col gap-1">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-          <span class="w-2 h-2 rounded-full bg-red-500"></span>
-        </div>
-        <div>
-          <span class="text-lg font-black uppercase text-slate-100"
-            >{titulo}</span
-          >
-          <p class="text-xs text-slate-500">Club Social y Deportivo</p>
-        </div>
-      </div>
-      <p class="text-xs text-slate-500 text-center">
-        &copy; {new Date().getFullYear()} La Granjah. Hecho con amor por y para el
-        club.
-      </p>
-    </div>
-  </footer>
-
-  <!-- SCRIPT UNIFICADO Y CORREGIDO -->
-  <script>
+  <script is:inline>
     // 1. Giro de Tarjetas
     document.querySelectorAll(".single-card-container").forEach((card) => {
       card.addEventListener("click", () => {
@@ -1645,68 +1640,73 @@ const disciplinas = [
     const iconClose = document.getElementById("icon-close");
     const mobileLinks = document.querySelectorAll(".mobile-link");
 
-    menuBtn?.addEventListener("click", () => {
-      mobileMenu?.classList.toggle("hidden");
-      iconOpen?.classList.toggle("hidden");
-      iconClose?.classList.toggle("hidden");
-    });
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        if (mobileMenu) mobileMenu.classList.toggle("hidden");
+        if (iconOpen) iconOpen.classList.toggle("hidden");
+        if (iconClose) iconClose.classList.toggle("hidden");
+      });
+    }
 
     mobileLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        mobileMenu?.classList.add("hidden");
-        iconOpen?.classList.remove("hidden");
-        iconClose?.classList.add("hidden");
+        if (mobileMenu) mobileMenu.classList.add("hidden");
+        if (iconOpen) iconOpen.classList.remove("hidden");
+        if (iconClose) iconClose.classList.add("hidden");
       });
     });
 
     // 3. Lógica de Campos Condicionales del Formulario
-    const selectResidencia = document.getElementById(
-      "lugar-residencia",
-    ) as HTMLSelectElement;
+    const selectResidencia = document.getElementById("lugar-residencia");
     const campoSJ = document.getElementById("campo-departamento-sj");
     const campoOtraProvincia = document.getElementById("campo-otra-provincia");
     const campoOtroResidencia = document.getElementById(
       "campo-otro-residencia",
     );
 
-    selectResidencia?.addEventListener("change", (e) => {
-      const val = (e.target as HTMLSelectElement).value;
-      campoSJ?.classList.toggle("hidden", val !== "San Juan");
-      campoOtraProvincia?.classList.toggle("hidden", val !== "Otra provincia");
-      campoOtroResidencia?.classList.toggle("hidden", val !== "Otro");
-    });
+    if (selectResidencia) {
+      selectResidencia.addEventListener("change", (e) => {
+        const val = e.target.value;
+        if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
+        if (campoOtraProvincia)
+          campoOtraProvincia.classList.toggle(
+            "hidden",
+            val !== "Otra provincia",
+          );
+        if (campoOtroResidencia)
+          campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
+      });
+    }
 
     const radiosAsociarse = document.querySelectorAll(
       'input[name="quiere_asociarse"]',
     );
     const bloqueCategorias = document.getElementById("bloque-categorias-socio");
-    const btnSubmit = document.getElementById(
-      "btn-submit-form",
-    ) as HTMLButtonElement;
+    const btnSubmit = document.getElementById("btn-submit-form");
 
     radiosAsociarse.forEach((radio) => {
       radio.addEventListener("change", (e) => {
-        const target = e.target as HTMLInputElement;
-        if (target.value === "Sí") {
-          bloqueCategorias?.classList.remove("hidden");
+        if (e.target.value === "Sí") {
+          if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
           if (btnSubmit)
             btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
         } else {
-          bloqueCategorias?.classList.add("hidden");
+          if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
           if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
         }
       });
     });
 
-    const selectAporte = document.getElementById(
-      "forma-aporte",
-    ) as HTMLSelectElement;
+    const selectAporte = document.getElementById("forma-aporte");
     const campoOtroAporte = document.getElementById("campo-otro-aporte");
 
-    selectAporte?.addEventListener("change", (e) => {
-      const val = (e.target as HTMLSelectElement).value;
-      campoOtroAporte?.classList.toggle("hidden", val !== "Otro");
-    });
+    if (selectAporte) {
+      selectAporte.addEventListener("change", (e) => {
+        const val = e.target.value;
+        if (campoOtroAporte)
+          campoOtroAporte.classList.toggle("hidden", val !== "Otro");
+      });
+    }
 
     const radiosJuega = document.querySelectorAll(
       'input[name="juega_en_club"]',
@@ -1715,8 +1715,8 @@ const disciplinas = [
 
     radiosJuega.forEach((radio) => {
       radio.addEventListener("change", (e) => {
-        const target = e.target as HTMLInputElement;
-        contenedorDeporte?.classList.toggle("hidden", target.value !== "Sí");
+        if (contenedorDeporte)
+          contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
       });
     });
 
@@ -1724,46 +1724,40 @@ const disciplinas = [
     const btnCopyAlias = document.getElementById("btn-copy-alias");
     const btnCopyCuit = document.getElementById("btn-copy-cuit");
 
-    btnCopyAlias?.addEventListener("click", () => {
-      navigator.clipboard.writeText("granjah.socios.bru");
-      btnCopyAlias.textContent = "¡Copiado!";
-      btnCopyAlias.classList.add("bg-emerald-400");
-      setTimeout(() => {
-        btnCopyAlias.textContent = "Copiar";
-        btnCopyAlias.classList.remove("bg-emerald-400");
-      }, 2000);
-    });
+    if (btnCopyAlias) {
+      btnCopyAlias.addEventListener("click", () => {
+        navigator.clipboard.writeText("granjah.socios.bru");
+        btnCopyAlias.textContent = "¡Copiado!";
+        btnCopyAlias.classList.add("bg-emerald-400");
+        setTimeout(() => {
+          btnCopyAlias.textContent = "Copiar";
+          btnCopyAlias.classList.remove("bg-emerald-400");
+        }, 2000);
+      });
+    }
 
-    btnCopyCuit?.addEventListener("click", () => {
-      navigator.clipboard.writeText("27382188131");
-      btnCopyCuit.textContent = "¡Copiado!";
-      btnCopyCuit.classList.add("bg-emerald-500", "text-neutral-950");
-      setTimeout(() => {
-        btnCopyCuit.textContent = "Copiar";
-        btnCopyCuit.classList.remove("bg-emerald-500", "text-neutral-950");
-      }, 2000);
-    });
+    if (btnCopyCuit) {
+      btnCopyCuit.addEventListener("click", () => {
+        navigator.clipboard.writeText("27382188131");
+        btnCopyCuit.textContent = "¡Copiado!";
+        btnCopyCuit.classList.add("bg-emerald-500", "text-neutral-950");
+        setTimeout(() => {
+          btnCopyCuit.textContent = "Copiar";
+          btnCopyCuit.classList.remove("bg-emerald-500", "text-neutral-950");
+        }, 2000);
+      });
+    }
 
     // 5. Envío y Validación del Formulario
-    const form = document.getElementById(
-      "mi-formulario-actual",
-    ) as HTMLFormElement;
+    const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
-    const inputNombre = document.getElementById("nombre") as HTMLInputElement;
-    const inputDoc = document.getElementById("numero-doc") as HTMLInputElement;
-    const inputFecha = document.getElementById(
-      "fecha-nacimiento",
-    ) as HTMLInputElement;
-    const inputEmail = document.getElementById("email") as HTMLInputElement;
-    const inputTelefono = document.getElementById(
-      "telefono",
-    ) as HTMLInputElement;
-    const selectCodigoPais = document.getElementById(
-      "codigo-pais",
-    ) as HTMLSelectElement;
-    const inputTelefonoCompleto = document.getElementById(
-      "telefono-completo",
-    ) as HTMLInputElement;
+    const inputNombre = document.getElementById("nombre");
+    const inputDoc = document.getElementById("numero-doc");
+    const inputFecha = document.getElementById("fecha-nacimiento");
+    const inputEmail = document.getElementById("email");
+    const inputTelefono = document.getElementById("telefono");
+    const selectCodigoPais = document.getElementById("codigo-pais");
+    const inputTelefonoCompleto = document.getElementById("telefono-completo");
 
     const errorNombre = document.getElementById("error-nombre");
     const errorDoc = document.getElementById("error-doc");
@@ -1771,98 +1765,151 @@ const disciplinas = [
     const errorEmail = document.getElementById("error-email");
     const errorTelefono = document.getElementById("error-telefono");
 
-    form?.addEventListener("submit", (e) => {
-      e.preventDefault();
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-      let esValido = true;
+        let esValido = true;
 
-      // Validación Nombre
-      const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-      if (
-        !inputNombre.value.trim() ||
-        !regexNombre.test(inputNombre.value.trim())
-      ) {
-        errorNombre?.classList.remove("hidden");
-        inputNombre.classList.add("border-red-500");
-        esValido = false;
-      } else {
-        errorNombre?.classList.add("hidden");
-        inputNombre.classList.remove("border-red-500");
-      }
-
-      // Validación Documento
-      const regexNumeros = /^[0-9]+$/;
-      if (!inputDoc.value.trim() || !regexNumeros.test(inputDoc.value.trim())) {
-        errorDoc?.classList.remove("hidden");
-        inputDoc.classList.add("border-red-500");
-        esValido = false;
-      } else {
-        errorDoc?.classList.add("hidden");
-        inputDoc.classList.remove("border-red-500");
-      }
-
-      // Validación Fecha
-      if (!inputFecha.value) {
-        errorFecha?.classList.remove("hidden");
-        inputFecha.classList.add("border-red-500");
-        esValido = false;
-      } else {
-        errorFecha?.classList.add("hidden");
-        inputFecha.classList.remove("border-red-500");
-      }
-
-      // Validación Email
-      const emailValor = inputEmail.value.trim().toLowerCase();
-      if (
-        !emailValor.endsWith("@gmail.com") &&
-        !emailValor.endsWith("@hotmail.com")
-      ) {
-        errorEmail?.classList.remove("hidden");
-        inputEmail.classList.add("border-red-500");
-        esValido = false;
-      } else {
-        errorEmail?.classList.add("hidden");
-        inputEmail.classList.remove("border-red-500");
-      }
-
-      // Validación Teléfono
-      const telValor = inputTelefono.value.trim();
-      if (!telValor || !regexNumeros.test(telValor)) {
-        errorTelefono?.classList.remove("hidden");
-        inputTelefono.classList.add("border-red-500");
-        esValido = false;
-      } else {
-        errorTelefono?.classList.add("hidden");
-        inputTelefono.classList.remove("border-red-500");
-        inputTelefonoCompleto.value = `'${selectCodigoPais.value} ${telValor}`;
-      }
-
-      if (esValido) {
-        if (btnSubmit) {
-          btnSubmit.textContent = "Guardando solicitud...";
-          btnSubmit.disabled = true;
-          btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+        // Validación Nombre
+        const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+        if (
+          !inputNombre ||
+          !inputNombre.value.trim() ||
+          !regexNombre.test(inputNombre.value.trim())
+        ) {
+          if (errorNombre) errorNombre.classList.remove("hidden");
+          if (inputNombre) inputNombre.classList.add("border-red-500");
+          esValido = false;
+        } else {
+          if (errorNombre) errorNombre.classList.add("hidden");
+          if (inputNombre) inputNombre.classList.remove("border-red-500");
         }
 
-        const formData = new FormData(form);
+        // Validación Documento
+        const regexNumeros = /^[0-9]+$/;
+        if (
+          !inputDoc ||
+          !inputDoc.value.trim() ||
+          !regexNumeros.test(inputDoc.value.trim())
+        ) {
+          if (errorDoc) errorDoc.classList.remove("hidden");
+          if (inputDoc) inputDoc.classList.add("border-red-500");
+          esValido = false;
+        } else {
+          if (errorDoc) errorDoc.classList.add("hidden");
+          if (inputDoc) inputDoc.classList.remove("border-red-500");
+        }
 
-        fetch(form.action, {
-          method: "POST",
-          body: formData,
-        })
-          .then(() => {
-            form.classList.add("hidden");
-            bloquePago?.classList.remove("hidden");
+        // Validación Fecha
+        if (!inputFecha || !inputFecha.value) {
+          if (errorFecha) errorFecha.classList.remove("hidden");
+          if (inputFecha) inputFecha.classList.add("border-red-500");
+          esValido = false;
+        } else {
+          if (errorFecha) errorFecha.classList.add("hidden");
+          if (inputFecha) inputFecha.classList.remove("border-red-500");
+        }
+
+        // Validación Email
+        const emailValor = inputEmail
+          ? inputEmail.value.trim().toLowerCase()
+          : "";
+        if (
+          !emailValor.endsWith("@gmail.com") &&
+          !emailValor.endsWith("@hotmail.com")
+        ) {
+          if (errorEmail) errorEmail.classList.remove("hidden");
+          if (inputEmail) inputEmail.classList.add("border-red-500");
+          esValido = false;
+        } else {
+          if (errorEmail) errorEmail.classList.add("hidden");
+          if (inputEmail) inputEmail.classList.remove("border-red-500");
+        }
+
+        // Validación Teléfono
+        const telValor = inputTelefono ? inputTelefono.value.trim() : "";
+        if (!telValor || !regexNumeros.test(telValor)) {
+          if (errorTelefono) errorTelefono.classList.remove("hidden");
+          if (inputTelefono) inputTelefono.classList.add("border-red-500");
+          esValido = false;
+        } else {
+          if (errorTelefono) errorTelefono.classList.add("hidden");
+          if (inputTelefono) inputTelefono.classList.remove("border-red-500");
+          if (inputTelefonoCompleto && selectCodigoPais) {
+            inputTelefonoCompleto.value = `'${selectCodigoPais.value} ${telValor}`;
+          }
+        }
+
+        if (esValido) {
+          if (btnSubmit) {
+            btnSubmit.textContent = "Guardando solicitud...";
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+          }
+
+          const formData = new FormData(form);
+
+          fetch(form.action, {
+            method: "POST",
+            body: formData,
           })
-          .catch((err) => {
-            console.error("Error al guardar:", err);
-            form.classList.add("hidden");
-            bloquePago?.classList.remove("hidden");
-          });
-      }
-    });
+            .then(() => {
+              form.classList.add("hidden");
+              if (bloquePago) bloquePago.classList.remove("hidden");
+            })
+            .catch((err) => {
+              console.error("Error al guardar:", err);
+              form.classList.add("hidden");
+              if (bloquePago) bloquePago.classList.remove("hidden");
+            });
+        }
+      });
+    }
 
-    // 6. Lógica de Modal de Disciplinas
+    // 6. Lógica del Modal de Disciplinas
+    const fotosDisciplinas = {
+      "futbol 11": [
+        "/disciplinas/futbol11/foto1.jpg",
+        "/disciplinas/futbol11/foto2.jpg",
+        "/disciplinas/futbol11/foto3.jpg",
+        "/disciplinas/futbol11/foto4.jpg",
+        "/disciplinas/futbol11/foto5.jpg",
+        "/disciplinas/futbol11/foto6.jpg",
+        "/disciplinas/futbol11/foto7.jpg",
+        "/disciplinas/futbol11/foto8.jpg",
+        "/disciplinas/futbol11/foto9.jpg",
+        "/disciplinas/futbol11/foto10.jpg",
+      ],
+      "futsal masculino": [
+        "/disciplinas/futsalMasc/foto1.jpg",
+        "/disciplinas/futsalMasc/foto2.jpg",
+        "/disciplinas/futsalMasc/foto3.jpg",
+        "/disciplinas/futsalMasc/foto4.jpg",
+        "/disciplinas/futsalMasc/foto5.jpg",
+        "/disciplinas/futsalMasc/foto6.jpg",
+        "/disciplinas/futsalMasc/foto7.jpg",
+        "/disciplinas/futsalMasc/foto8.jpg",
+        "/disciplinas/futsalMasc/foto9.jpg",
+        "/disciplinas/futsalMasc/foto10.jpg",
+      ],
+      "futsal femenino": [
+        "/disciplinas/futsalFem/foto1.jpg",
+        "/disciplinas/futsalFem/foto2.jpg",
+        "/disciplinas/futsalFem/foto3.jpg",
+        "/disciplinas/futsalFem/foto4.jpg",
+        "/disciplinas/futsalFem/foto5.jpg",
+        "/disciplinas/futsalFem/foto6.jpg",
+        "/disciplinas/futsalFem/foto7.jpg",
+        "/disciplinas/futsalFem/foto8.jpg",
+        "/disciplinas/futsalFem/foto9.jpg",
+        "/disciplinas/futsalFem/foto10.jpg",
+      ],
+    };
+
+    let fotosActuales = [];
+    let fotoIndex = 0;
+
     const sportCards = document.querySelectorAll(".sport-card");
     const modal = document.getElementById("sport-modal");
     const modalContainer = document.getElementById("modal-container");
@@ -1877,7 +1924,38 @@ const disciplinas = [
       "matches-list-container",
     );
 
+    const carruselImg = document.getElementById("modal-carrusel-img");
+    const carruselContador = document.getElementById("modal-carrusel-contador");
+    const btnPrev = document.getElementById("modal-prev-btn");
+    const btnNext = document.getElementById("modal-next-btn");
+
+    function actualizarFotoModal(index) {
+      if (!fotosActuales || fotosActuales.length === 0) return;
+      if (carruselImg) carruselImg.src = fotosActuales[index];
+      if (carruselContador)
+        carruselContador.textContent = `${index + 1} / ${fotosActuales.length}`;
+    }
+
+    const avanzarFoto = (e) => {
+      if (e) e.stopPropagation();
+      if (fotosActuales.length === 0) return;
+      fotoIndex = (fotoIndex + 1) % fotosActuales.length;
+      actualizarFotoModal(fotoIndex);
+    };
+
+    const retrocederFoto = (e) => {
+      if (e) e.stopPropagation();
+      if (fotosActuales.length === 0) return;
+      fotoIndex = (fotoIndex - 1 + fotosActuales.length) % fotosActuales.length;
+      actualizarFotoModal(fotoIndex);
+    };
+
+    if (btnPrev) btnPrev.addEventListener("click", retrocederFoto);
+    if (btnNext) btnNext.addEventListener("click", avanzarFoto);
+    if (carruselImg) carruselImg.addEventListener("click", avanzarFoto);
+
     function renderMatches(matches) {
+      if (!matchesListContainer) return;
       if (!matches || matches.length === 0) {
         matchesListContainer.innerHTML = `<p class="text-sm text-slate-500 text-center py-4">No hay partidos cargados para esta categoría.</p>`;
         return;
@@ -1910,9 +1988,18 @@ const disciplinas = [
         .join("");
     }
 
+    const normalizarString = (str) =>
+      str
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+
     sportCards.forEach((card) => {
       card.addEventListener("click", () => {
-        const title = card.getAttribute("data-sport-title");
+        const rawTitle = card.getAttribute("data-sport-title") || "";
+        const title = rawTitle.replace(/\s+/g, " ").trim();
         const icon = card.getAttribute("data-sport-icon");
         const categories = JSON.parse(
           card.getAttribute("data-categories") || "[]",
@@ -1921,16 +2008,41 @@ const disciplinas = [
         if (modalIcon) modalIcon.textContent = icon;
         if (modalSportTitle) modalSportTitle.textContent = title;
 
+        const busqueda = normalizarString(title);
+        const claveEncontrada = Object.keys(fotosDisciplinas).find(
+          (key) => normalizarString(key) === busqueda,
+        );
+
+        fotosActuales = claveEncontrada
+          ? fotosDisciplinas[claveEncontrada]
+          : [];
+        fotoIndex = 0;
+
+        const contenedorCarrusel = document.getElementById("modal-carrusel");
+
+        if (fotosActuales.length > 0) {
+          if (contenedorCarrusel) {
+            contenedorCarrusel.style.display = "flex";
+            contenedorCarrusel.classList.remove("hidden");
+          }
+          actualizarFotoModal(0);
+        } else {
+          if (contenedorCarrusel) {
+            contenedorCarrusel.style.display = "none";
+            contenedorCarrusel.classList.add("hidden");
+          }
+        }
+
         if (categoryContainer) {
           categoryContainer.innerHTML = categories
             .map(
               (cat, index) => `
-          <button 
-            data-cat-index="${index}"
-            class="cat-btn ${index === 0 ? "bg-amber-400 text-neutral-950 font-black" : "bg-neutral-800 text-slate-300 hover:bg-neutral-700"} text-xs px-3.5 py-2 rounded-lg transition font-bold">
-            ${cat.name}
-          </button>
-        `,
+        <button 
+          data-cat-index="${index}"
+          class="cat-btn ${index === 0 ? "bg-amber-400 text-neutral-950 font-black" : "bg-neutral-800 text-slate-300 hover:bg-neutral-700"} text-xs px-3.5 py-2 rounded-lg transition font-bold">
+          ${cat.name}
+        </button>
+      `,
             )
             .join("");
         }
@@ -1939,8 +2051,10 @@ const disciplinas = [
           renderMatches(categories[0].matches);
         }
 
-        const catBtns = categoryContainer?.querySelectorAll(".cat-btn");
-        catBtns?.forEach((btn) => {
+        const catBtns = categoryContainer
+          ? categoryContainer.querySelectorAll(".cat-btn")
+          : [];
+        catBtns.forEach((btn) => {
           btn.addEventListener("click", (e) => {
             e.stopPropagation();
             catBtns.forEach((b) => {
@@ -1960,25 +2074,28 @@ const disciplinas = [
           });
         });
 
-        modal?.classList.remove("hidden");
+        if (modal) modal.classList.remove("hidden");
         setTimeout(() => {
-          modal?.classList.remove("opacity-0");
-          modalContainer?.classList.remove("scale-95");
+          if (modal) modal.classList.remove("opacity-0");
+          if (modalContainer) modalContainer.classList.remove("scale-95");
+          actualizarFotoModal(0);
         }, 10);
       });
     });
 
     const closeModal = () => {
-      modal?.classList.add("opacity-0");
-      modalContainer?.classList.add("scale-95");
+      if (modal) modal.classList.add("opacity-0");
+      if (modalContainer) modalContainer.classList.add("scale-95");
       setTimeout(() => {
-        modal?.classList.add("hidden");
+        if (modal) modal.classList.add("hidden");
       }, 300);
     };
 
-    closeModalBtn?.addEventListener("click", closeModal);
-    modal?.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal();
-    });
+    if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
   </script>
 </html>
