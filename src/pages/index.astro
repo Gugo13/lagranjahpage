@@ -2332,7 +2332,6 @@ const subtitulo = "Club Social & Deportivo";
             btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
 
-          // CORRECCIÓN AQUÍ: Usar 'tipo_socio' en lugar de 'categoria_socio'
           const inputCategoriaSeleccionada = document.querySelector(
             'input[name="tipo_socio"]:checked',
           );
@@ -2372,6 +2371,7 @@ const subtitulo = "Club Social & Deportivo";
               });
           };
 
+          // MODIFICACIÓN AQUÍ: Manejo blindado de la foto
           if (archivoFotoFinal) {
             const reader = new FileReader();
             reader.readAsDataURL(archivoFotoFinal);
@@ -2380,6 +2380,7 @@ const subtitulo = "Club Social & Deportivo";
               enviarAlServidor(datosAEnviar);
             };
           } else {
+            datosAEnviar.append("foto_perfil", "");
             enviarAlServidor(datosAEnviar);
           }
         }
