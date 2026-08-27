@@ -2198,7 +2198,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario con Generación de Carnet Digital (Fraccionando imagen si es grande)
+    // 5. Envío y Validación del Formulario con Cloudinary para la tarjeta generada
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
@@ -2246,15 +2246,6 @@ const subtitulo = "Club Social & Deportivo";
           if (txtFechaCarnet && inputFecha)
             txtFechaCarnet.textContent = inputFecha.value;
 
-          const paramsData = new URLSearchParams();
-          const formData = new FormData(form);
-
-          for (const [key, value] of formData.entries()) {
-            if (key !== "foto_perfil" && value) {
-              paramsData.append(key, value);
-            }
-          }
-
           const enviarAlServidor = (payloadParams) => {
             fetch(form.action, {
               method: "POST",
@@ -2283,6 +2274,14 @@ const subtitulo = "Club Social & Deportivo";
             }
 
             const elementoTarjeta = document.getElementById("tarjeta-carnet");
+            const paramsData = new URLSearchParams();
+            const formData = new FormData(form);
+
+            for (const [key, value] of formData.entries()) {
+              if (key !== "foto_perfil" && value) {
+                paramsData.append(key, value);
+              }
+            }
 
             if (elementoTarjeta) {
               try {
@@ -2295,31 +2294,48 @@ const subtitulo = "Club Social & Deportivo";
                   backgroundColor: "#171717",
                 });
 
-                const imagenCarnetBase64 = canvas.toDataURL("image/jpeg", 0.65);
+                // Convertimos el canvas a blob para subirlo limpiamente a Cloudinary
+                canvas.toBlob(
+                  async (blob) => {
+                    try {
+                      const formDataCloudinary = new FormData();
+                      formDataCloudinary.append("file", blob);
+                      formDataCloudinary.append("upload_preset", "la granjah");
 
-                const mitad = Math.floor(imagenCarnetBase64.length / 2);
-                paramsData.append(
-                  "foto_part1",
-                  imagenCarnetBase64.substring(0, mitad),
-                );
-                paramsData.append(
-                  "foto_part2",
-                  imagenCarnetBase64.substring(mitad),
+                      const respuestaCloud = await fetch(
+                        "https://api.cloudinary.com/v1_1/ffv1vsn2/image/upload",
+                        {
+                          method: "POST",
+                          body: formDataCloudinary,
+                        },
+                      );
+                      const datosCloud = await respuestaCloud.json();
+
+                      if (datosCloud.secure_url) {
+                        paramsData.append("url_carnet", datosCloud.secure_url);
+                      }
+                    } catch (errCloud) {
+                      console.error(
+                        "Error al subir carnet a Cloudinary:",
+                        errCloud,
+                      );
+                    }
+
+                    enviarAlServidor(paramsData);
+                  },
+                  "image/jpeg",
+                  0.8,
                 );
               } catch (errCanvas) {
                 console.error(
                   "Error al generar imagen de la tarjeta:",
                   errCanvas,
                 );
-                if (fotoPerfilBase64) {
-                  paramsData.append("foto_part1", fotoPerfilBase64);
-                }
+                enviarAlServidor(paramsData);
               }
-            } else if (fotoPerfilBase64) {
-              paramsData.append("foto_part1", fotoPerfilBase64);
+            } else {
+              enviarAlServidor(paramsData);
             }
-
-            enviarAlServidor(paramsData);
           };
 
           if (archivoFotoFinal) {
