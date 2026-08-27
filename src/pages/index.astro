@@ -1846,7 +1846,7 @@ const subtitulo = "Club Social & Deportivo";
               <!-- FRENTE DEL CARNET -->
               <div
                 id="tarjeta-carnet"
-                class="absolute inset-0 w-full h-full bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800 flex flex-col justify-between p-5 backface-hidden"
+                style="position: absolute; inset: 0px; width: 100%; height: 100%; background-color: #0f172a; border-radius: 1rem; overflow: hidden; border: 1px solid #1e293b; display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem;"
               >
                 <!-- Escudo de fondo (Marca de agua) -->
                 <div
@@ -1861,10 +1861,12 @@ const subtitulo = "Club Social & Deportivo";
                 </div>
 
                 <!-- Franja Tricolor Superior -->
-                <div class="absolute top-0 left-0 right-0 h-2.5 flex z-10">
-                  <div class="w-1/3 bg-emerald-500"></div>
-                  <div class="w-1/3 bg-amber-400"></div>
-                  <div class="w-1/3 bg-rose-500"></div>
+                <div
+                  style="position: absolute; top: 0px; left: 0px; right: 0px; height: 0.625rem; display: flex; z-index: 10;"
+                >
+                  <div style="width: 33.333%; background-color: #10b981;"></div>
+                  <div style="width: 33.333%; background-color: #fbbf24;"></div>
+                  <div style="width: 33.333%; background-color: #f43f5e;"></div>
                 </div>
 
                 <!-- Encabezado / Logo con Escudo -->
@@ -1883,60 +1885,68 @@ const subtitulo = "Club Social & Deportivo";
                   </div>
                   <span
                     id="badge-socio"
-                    class="text-xs font-semibold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded-full border border-emerald-800"
+                    style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #34d399; background-color: #064e3b; padding-left: 0.625rem; padding-right: 0.625rem; padding-top: 0.25rem; padding-bottom: 0.25rem; border-radius: 9999px; border: 1px solid #065f46;"
                     >Socio Activo</span
                   >
                 </div>
 
                 <!-- Cuerpo: Foto y Datos -->
-                <div class="flex items-center space-x-4 my-auto z-10">
+                <div
+                  style="display: flex; align-items: center; gap: 1rem; margin-top: auto; margin-bottom: auto; position: relative; z-index: 10;"
+                >
                   <div
                     id="contenedor-foto"
-                    class="w-20 h-24 bg-slate-800/90 rounded-lg border-2 border-slate-700 flex items-center justify-center text-slate-500 text-xs font-medium text-center overflow-hidden flex-shrink-0"
+                    style="width: 5rem; height: 6rem; background-color: #1e293b; border-radius: 0.5rem; border: 2px solid #334155; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.75rem; font-weight: 500; text-align: center; overflow: hidden; flex-shrink: 0;"
                   >
                     FOTO
                   </div>
-                  <div class="flex flex-col space-y-1">
+                  <div
+                    style="display: flex; flex-direction: column; gap: 0.25rem;"
+                  >
                     <div>
                       <p
                         id="label-nombre"
-                        class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                        style="font-size: 0.625rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;"
                       >
                         Apellido y Nombre
                       </p>
                       <p
                         id="txt-nombre"
-                        class="text-white font-bold text-base leading-tight"
+                        style="color: #ffffff; font-weight: 700; font-size: 1rem; line-height: 1.25;"
                       >
                         Cargando...
                       </p>
                     </div>
                     <div>
                       <p
-                        class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                        style="font-size: 0.625rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;"
                       >
                         DNI
                       </p>
-                      <p id="txt-dni" class="text-slate-200 text-sm font-mono">
+                      <p
+                        id="txt-dni"
+                        style="color: #e2e8f0; font-size: 0.875rem; font-family: monospace;"
+                      >
                         -
                       </p>
                     </div>
                     <div>
                       <p
-                        class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                        style="font-size: 0.625rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;"
                       >
                         Categoría
                       </p>
                       <p
                         id="txt-socio"
-                        class="text-amber-400 font-mono font-bold text-sm"
+                        style="color: #fbbf24; font-family: monospace; font-weight: 700; font-size: 0.875rem;"
                       >
                         Activo
                       </p>
                     </div>
                   </div>
                 </div>
-                <div class="h-1 z-10"></div>
+                <div style="height: 0.25rem; position: relative; z-index: 10;">
+                </div>
               </div>
             </div>
           </div>
