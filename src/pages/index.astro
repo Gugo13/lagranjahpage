@@ -1989,7 +1989,7 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
 
-<!-- SCRIPT -->
+  <!-- SCRIPT -->
   <script is:inline>
     // 1. Giro de Tarjetas Generales
     document.querySelectorAll(".single-card-container").forEach((card) => {
@@ -2335,7 +2335,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 6. Lógica de Disciplinas Deportivas (Fixture y Carrusel)
+    // 6. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
     const sportCards = document.querySelectorAll(".sport-card");
     const sportModal = document.getElementById("sport-modal");
     const modalContainer = document.getElementById("modal-container");
@@ -2343,47 +2343,54 @@ const subtitulo = "Club Social & Deportivo";
 
     const modalIcon = document.getElementById("modal-icon");
     const modalSportTitle = document.getElementById("modal-sport-title");
-    const categorySelectorContainer = document.getElementById("category-selector-container");
-    const matchesListContainer = document.getElementById("matches-list-container");
+    const categorySelectorContainer = document.getElementById(
+      "category-selector-container",
+    );
+    const matchesListContainer = document.getElementById(
+      "matches-list-container",
+    );
     const modalImg = document.getElementById("modal-carrusel-img");
     const prevBtn = document.getElementById("modal-prev-btn");
     const nextBtn = document.getElementById("modal-next-btn");
     const contador = document.getElementById("modal-carrusel-contador");
 
-    // Fotos de ejemplo por disciplina (puedes cambiarlas por las reales de tu club)
+    // Función auxiliar para generar automáticamente las 10 primeras fotos por carpeta
+    const generarRutasFotos = (carpeta) => {
+      let fotos = [];
+      for (let i = 1; i <= 10; i++) {
+        fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
+      }
+      return fotos;
+    };
+
     const fotosPorDisciplina = {
-      "Fútbol 11": [
-        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=800&auto=format&fit=crop"
-      ],
-      "Futsal Masculino": [
-        "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop"
-      ],
-      "Futsal Femenino": [
-        "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=800&auto=format&fit=crop"
-      ]
+      "Fútbol 11": generarRutasFotos("futbol11"),
+      "Futsal Masculino": generarRutasFotos("futsalMasc"),
+      "Futsal Femenino": generarRutasFotos("futsalFem"),
     };
 
     let currentIndex = 0;
     let currentImages = [];
 
-    sportCards.forEach(card => {
+    sportCards.forEach((card) => {
       card.addEventListener("click", () => {
         const title = card.getAttribute("data-sport-title");
         const icon = card.getAttribute("data-sport-icon");
         const categoriesRaw = card.getAttribute("data-categories");
-        
+
         let categories = [];
         try {
           categories = JSON.parse(categoriesRaw);
-        } catch(e) {
+        } catch (e) {
           categories = [];
         }
 
         if (modalSportTitle) modalSportTitle.textContent = title;
         if (modalIcon) modalIcon.textContent = icon;
 
-        currentImages = fotosPorDisciplina[title] || ["https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=800&auto=format&fit=crop"];
+        currentImages = fotosPorDisciplina[title] || [
+          "/disciplinas/futbol11/foto1.jpg",
+        ];
         currentIndex = 0;
         updateCarousel();
 
@@ -2395,18 +2402,22 @@ const subtitulo = "Club Social & Deportivo";
             const btnCat = document.createElement("button");
             btnCat.type = "button";
             btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
-              index === 0 
-                ? "bg-emerald-500 text-neutral-950 border-emerald-400" 
+              index === 0
+                ? "bg-emerald-500 text-neutral-950 border-emerald-400"
                 : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
             }`;
             btnCat.textContent = cat.name;
 
             btnCat.addEventListener("click", () => {
-              categorySelectorContainer.querySelectorAll("button").forEach(b => {
-                b.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
-              });
-              btnCat.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
-              
+              categorySelectorContainer
+                .querySelectorAll("button")
+                .forEach((b) => {
+                  b.className =
+                    "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
+                });
+              btnCat.className =
+                "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
+
               renderMatches(cat.matches);
             });
 
@@ -2438,10 +2449,11 @@ const subtitulo = "Club Social & Deportivo";
         return;
       }
 
-      matches.forEach(m => {
+      matches.forEach((m) => {
         const matchCard = document.createElement("div");
-        matchCard.className = "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
-        
+        matchCard.className =
+          "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
+
         const fecha = m.fecha || "Fecha";
         const rival = m.rival || "Rival a confirmar";
         const cancha = m.cancha || "Predio del club";
@@ -2465,13 +2477,15 @@ const subtitulo = "Club Social & Deportivo";
     function updateCarousel() {
       if (modalImg && currentImages.length > 0) {
         modalImg.src = currentImages[currentIndex];
-        if (contador) contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        if (contador)
+          contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
       }
     }
 
     if (prevBtn) {
       prevBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        currentIndex =
+          (currentIndex - 1 + currentImages.length) % currentImages.length;
         updateCarousel();
       });
     }
@@ -2493,7 +2507,8 @@ const subtitulo = "Club Social & Deportivo";
       }, 200);
     }
 
-    if (closeSportModal) closeSportModal.addEventListener("click", closeModalFunc);
+    if (closeSportModal)
+      closeSportModal.addEventListener("click", closeModalFunc);
     if (sportModal) {
       sportModal.addEventListener("click", (e) => {
         if (e.target === sportModal) closeModalFunc();
