@@ -1017,21 +1017,21 @@ const subtitulo = "Club Social & Deportivo";
     <!-- SECCIÓN FORMULARIO DE ASOCIACIÓN -->
     <section
       id="sumate"
-      class="py-20 bg-neutral-900/40 border-t border-neutral-800"
+      style="padding-top: 5rem; padding-bottom: 5rem; background-color: rgba(23, 23, 23, 0.4); border-top: 1px solid #262626;"
     >
       <div class="max-w-3xl mx-auto px-6">
-        <div class="text-center mb-10">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
           <span
-            class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full"
+            style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #34d399; background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); padding-left: 0.75rem; padding-right: 0.75rem; padding-top: 0.25rem; padding-bottom: 0.25rem; border-radius: 9999px;"
           >
             Hacete Socio
           </span>
           <h2
-            class="text-3xl md:text-4xl font-black uppercase text-slate-100 mt-4"
+            style="font-size: 1.875rem; font-weight: 900; text-transform: uppercase; color: #f1f5f9; margin-top: 1rem;"
           >
-            Sumate a <span class="text-amber-400">La Granjah</span>
+            Sumate a <span style="color: #fbbf24;">La Granjah</span>
           </h2>
-          <p class="text-slate-400 mt-2">
+          <p style="color: #94a3b8; margin-top: 0.5rem;">
             Completá tus datos y sé parte de la familia que sostiene este club.
           </p>
         </div>
@@ -1830,9 +1830,11 @@ const subtitulo = "Club Social & Deportivo";
         <!-- BLOQUE DEL CARNET DIGITAL (ÚNICO Y CORREGIDO) -->
         <div
           id="bloque-carnet-digital"
-          class="hidden flex flex-col items-center justify-center gap-4 w-full my-6"
+          style="display: none; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; width: 100%; margin-top: 1.5rem; margin-bottom: 1.5rem;"
         >
-          <p class="text-slate-200 text-sm font-medium text-center">
+          <p
+            style="color: #e2e8f0; font-size: 0.875rem; font-weight: 500; text-align: center;"
+          >
             ¡Solicitud enviada con éxito! Este es tu carnet provisional. Hacé
             clic sobre él para girarlo o ver el dorso.
           </p>
@@ -1846,17 +1848,17 @@ const subtitulo = "Club Social & Deportivo";
               <!-- FRENTE DEL CARNET -->
               <div
                 id="tarjeta-carnet"
-                style="position: absolute; inset: 0px; width: 100%; height: 100%; background-color: #0f172a; border-radius: 1rem; overflow: hidden; border: 1px solid #1e293b; display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem;"
+                style="position: absolute; inset: 0px; width: 100%; height: 100%; background-color: #0f172a; color: #ffffff; font-family: sans-serif; border-radius: 1rem; overflow: hidden; border: 1px solid #1e293b; display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem;"
               >
                 <!-- Escudo de fondo (Marca de agua) -->
                 <div
-                  class="absolute right-[-20px] bottom-[-20px] w-48 h-48 pointer-events-none z-0 flex items-center justify-center"
+                  style="position: absolute; right: -20px; bottom: -20px; width: 12rem; height: 12rem; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center;"
                 >
                   <img
                     src="/escudo/escudoLagranjah.png"
                     alt="Marca de agua"
                     id="escudo-fondo"
-                    class="w-full h-full object-contain opacity-10 filter grayscale"
+                    style="width: 100%; height: 100%; object-fit: contain; opacity: 0.1; filter: grayscale(100%);"
                   />
                 </div>
 
@@ -1870,16 +1872,18 @@ const subtitulo = "Club Social & Deportivo";
                 </div>
 
                 <!-- Encabezado / Logo con Escudo -->
-                <div class="flex justify-between items-center mt-2 z-10">
-                  <div class="flex items-center space-x-2">
+                <div
+                  style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; position: relative; z-index: 10;"
+                >
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
                     <img
                       src="/escudo/escudoLagranjah.png"
                       alt="Escudo La Granjah"
-                      class="w-8 h-8 object-contain"
+                      style="width: 2rem; height: 2rem; object-fit: contain;"
                     />
                     <span
                       id="texto-titulo"
-                      class="text-white font-black tracking-wider uppercase text-lg"
+                      style="color: #ffffff; font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase; font-size: 1.125rem;"
                       >La Granjah</span
                     >
                   </div>
