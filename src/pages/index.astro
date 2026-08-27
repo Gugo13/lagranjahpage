@@ -135,7 +135,7 @@ const subtitulo = "Club Social & Deportivo";
       }
     </style>
 
-<!-- HERO PRINCIPAL CON ESCUDOS ADAPTATIVOS PARA CELU Y PC -->
+    <!-- HERO PRINCIPAL CON ESCUDOS ADAPTATIVOS PARA CELU Y PC -->
     <section
       class="relative py-20 md:py-32 text-center border-b border-neutral-800 overflow-hidden bg-neutral-950"
     >
@@ -1776,6 +1776,7 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
 
+  <!-- SCRIPT -->
   <script is:inline>
     // 1. Giro de Tarjetas
     document.querySelectorAll(".single-card-container").forEach((card) => {
@@ -1899,9 +1900,16 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario
+    // 5. Envío y Validación del Formulario + Sincronización con Carnet Digital
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
+
+    // Elementos del carnet digital (Asegúrate de que existan en tu HTML con estos IDs)
+    const bloqueCarnet = document.getElementById("bloque-carnet-digital");
+    const carnetNombre = document.getElementById("carnet-nombre");
+    const carnetDoc = document.getElementById("carnet-doc");
+    const carnetCategoria = document.getElementById("carnet-categoria");
+
     const inputNombre = document.getElementById("nombre");
     const inputDoc = document.getElementById("numero-doc");
     const inputFecha = document.getElementById("fecha-nacimiento");
@@ -1999,6 +2007,24 @@ const subtitulo = "Club Social & Deportivo";
             btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
 
+          // Inyectar datos en el carnet digital antes de mostrarlo
+          if (inputNombre && carnetNombre) {
+            carnetNombre.textContent = inputNombre.value.trim();
+          }
+          if (inputDoc && carnetDoc) {
+            carnetDoc.textContent = inputDoc.value.trim();
+          }
+
+          // Captura la categoría seleccionada (ej: input radio con name="categoria_socio")
+          const inputCategoriaSeleccionada =
+            document.querySelector('input[name="categoria_socio"]:checked') ||
+            document.getElementById("categoria_socio");
+          if (inputCategoriaSeleccionada && carnetCategoria) {
+            carnetCategoria.textContent =
+              inputCategoriaSeleccionada.value ||
+              inputCategoriaSeleccionada.textContent;
+          }
+
           const formData = new FormData(form);
 
           fetch(form.action, {
@@ -2008,11 +2034,13 @@ const subtitulo = "Club Social & Deportivo";
             .then(() => {
               form.classList.add("hidden");
               if (bloquePago) bloquePago.classList.remove("hidden");
+              if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
             })
             .catch((err) => {
               console.error("Error al guardar:", err);
               form.classList.add("hidden");
               if (bloquePago) bloquePago.classList.remove("hidden");
+              if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
             });
         }
       });
