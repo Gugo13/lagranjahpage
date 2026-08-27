@@ -2003,7 +2003,6 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
 
-<!-- SCRIPT -->
   <script is:inline>
     // 1. Giro de Tarjetas Generales
     document.querySelectorAll(".single-card-container").forEach((card) => {
@@ -2120,8 +2119,8 @@ const subtitulo = "Club Social & Deportivo";
 
     if (btnModoArchivo && btnModoCamara) {
       btnModoArchivo.addEventListener("click", () => {
-        contenedorArchivo.classList.remove("hidden");
-        contenedorCamara.classList.add("hidden");
+        if (contenedorArchivo) contenedorArchivo.classList.remove("hidden");
+        if (contenedorCamara) contenedorCamara.classList.add("hidden");
         btnModoArchivo.className =
           "flex-1 py-2 text-xs font-black bg-amber-400 text-neutral-950 rounded-xl transition";
         btnModoCamara.className =
@@ -2130,8 +2129,8 @@ const subtitulo = "Club Social & Deportivo";
       });
 
       btnModoCamara.addEventListener("click", async () => {
-        contenedorArchivo.classList.add("hidden");
-        contenedorCamara.classList.remove("hidden");
+        if (contenedorArchivo) contenedorArchivo.classList.add("hidden");
+        if (contenedorCamara) contenedorCamara.classList.remove("hidden");
         btnModoCamara.className =
           "flex-1 py-2 text-xs font-black bg-amber-400 text-neutral-950 rounded-xl transition";
         btnModoArchivo.className =
@@ -2164,7 +2163,7 @@ const subtitulo = "Club Social & Deportivo";
 
     if (btnCapturar) {
       btnCapturar.addEventListener("click", () => {
-        if (!videoCamara) return;
+        if (!videoCamara || !canvasCamara || !imagenCapturada) return;
         const context = canvasCamara.getContext("2d");
         canvasCamara.width = videoCamara.videoWidth || 300;
         canvasCamara.height = videoCamara.videoHeight || 300;
@@ -2182,10 +2181,10 @@ const subtitulo = "Club Social & Deportivo";
               type: "image/jpeg",
             });
             const urlTemporal = URL.createObjectURL(archivoFotoFinal);
-            imagenCapturada.src = urlTemporal;
-            videoCamara.classList.add("hidden");
-            btnCapturar.classList.add("hidden");
-            previewCapturada.classList.remove("hidden");
+            if (imagenCapturada) imagenCapturada.src = urlTemporal;
+            if (videoCamara) videoCamara.classList.add("hidden");
+            if (btnCapturar) btnCapturar.classList.add("hidden");
+            if (previewCapturada) previewCapturada.classList.remove("hidden");
             detenerCamara();
           },
           "image/jpeg",
@@ -2197,9 +2196,9 @@ const subtitulo = "Club Social & Deportivo";
     if (btnRepetir) {
       btnRepetir.addEventListener("click", async () => {
         archivoFotoFinal = null;
-        previewCapturada.classList.add("hidden");
-        videoCamara.classList.remove("hidden");
-        btnCapturar.classList.remove("hidden");
+        if (previewCapturada) previewCapturada.classList.add("hidden");
+        if (videoCamara) videoCamara.classList.remove("hidden");
+        if (btnCapturar) btnCapturar.classList.remove("hidden");
         await iniciarCamara();
       });
     }
@@ -2244,9 +2243,10 @@ const subtitulo = "Club Social & Deportivo";
           const txtSocioCarnet = document.getElementById("txt-socio");
           if (inputCategoriaSeleccionada && txtSocioCarnet) {
             const labelPadre = inputCategoriaSeleccionada.closest("label");
-            txtSocioCarnet.textContent = labelPadre
-              ? labelPadre.querySelector("span").textContent.trim()
-              : inputCategoriaSeleccionada.value;
+            txtSocioCarnet.textContent =
+              labelPadre && labelPadre.querySelector("span")
+                ? labelPadre.querySelector("span").textContent.trim()
+                : inputCategoriaSeleccionada.value;
           }
 
           const txtNombreCarnet = document.getElementById("txt-nombre");
@@ -2547,6 +2547,7 @@ const subtitulo = "Club Social & Deportivo";
     }
 
     if (prevBtn) {
+      prevBtn.preventDefault ? null : null; // Safe
       prevBtn.addEventListener("click", () => {
         currentIndex =
           (currentIndex - 1 + currentImages.length) % currentImages.length;
