@@ -2302,7 +2302,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario
+    // 5. Envío y Validación del Formulario con Generación de Carnet Digital
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
@@ -2320,18 +2320,18 @@ const subtitulo = "Club Social & Deportivo";
         e.preventDefault();
         let esValido = true;
 
-        // Validaciones básicas...
         if (!inputNombre || !inputNombre.value.trim()) esValido = false;
         if (!inputDoc || !inputDoc.value.trim()) esValido = false;
         if (!inputFecha || !inputFecha.value) esValido = false;
 
         if (esValido) {
           if (btnSubmit) {
-            btnSubmit.textContent = "Guardando solicitud...";
+            btnSubmit.textContent = "Generando carnet y guardando...";
             btnSubmit.disabled = true;
             btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
 
+          // Rellenar datos en el diseño del carnet visual
           const inputCategoriaSeleccionada = document.querySelector(
             'input[name="tipo_socio"]:checked',
           );
@@ -2342,6 +2342,17 @@ const subtitulo = "Club Social & Deportivo";
               ? labelPadre.querySelector("span").textContent.trim()
               : inputCategoriaSeleccionada.value;
           }
+
+          const txtNombreCarnet = document.getElementById("txt-nombre");
+          const txtDocCarnet = document.getElementById("txt-doc");
+          const txtFechaCarnet = document.getElementById("txt-fecha");
+
+          if (txtNombreCarnet && inputNombre)
+            txtNombreCarnet.textContent = inputNombre.value;
+          if (txtDocCarnet && inputDoc)
+            txtDocCarnet.textContent = inputDoc.value;
+          if (txtFechaCarnet && inputFecha)
+            txtFechaCarnet.textContent = inputFecha.value;
 
           const formData = new FormData(form);
           const datosAEnviar = new URLSearchParams();
@@ -2371,17 +2382,49 @@ const subtitulo = "Club Social & Deportivo";
               });
           };
 
-          // MODIFICACIÓN AQUÍ: Manejo blindado de la foto
+          // Función para procesar la foto de perfil, capturar el carnet en imagen y enviarlo
+          const procesarYEnviarCarnet = async (fotoPerfilBase64) => {
+            // Si hay foto de perfil, la asignamos al img del carnet
+            if (fotoPerfilBase64) {
+              const imgPerfilCarnet =
+                document.getElementById("img-perfil-carnet");
+              if (imgPerfilCarnet) imgPerfilCarnet.src = fotoPerfilBase64;
+            }
+
+            // Capturamos el bloque visual del carnet con html2canvas
+            if (bloqueCarnet) {
+              try {
+                // Lo mostramos brevemente para que html2canvas pueda renderizarlo
+                bloqueCarnet.classList.remove("hidden");
+
+                const canvas = await html2canvas(bloqueCarnet, {
+                  scale: 2,
+                  useCORS: true,
+                });
+                const imagenCarnetBase64 = canvas.toDataURL("image/jpeg", 0.9);
+
+                // Mandamos la imagen del carnet completo en el campo foto_perfil para que se guarde en Drive
+                datosAEnviar.append("foto_perfil", imagenCarnetBase64);
+              } catch (errCanvas) {
+                console.error("Error al generar imagen del carnet:", errCanvas);
+                datosAEnviar.append("foto_perfil", fotoPerfilBase64 || "");
+              }
+            } else {
+              datosAEnviar.append("foto_perfil", fotoPerfilBase64 || "");
+            }
+
+            enviarAlServidor(datosAEnviar);
+          };
+
+          // Si el usuario cargó/capturó una foto de perfil, la leemos primero
           if (archivoFotoFinal) {
             const reader = new FileReader();
             reader.readAsDataURL(archivoFotoFinal);
             reader.onload = function () {
-              datosAEnviar.append("foto_perfil", reader.result);
-              enviarAlServidor(datosAEnviar);
+              procesarYEnviarCarnet(reader.result);
             };
           } else {
-            datosAEnviar.append("foto_perfil", "");
-            enviarAlServidor(datosAEnviar);
+            procesarYEnviarCarnet("");
           }
         }
       });
