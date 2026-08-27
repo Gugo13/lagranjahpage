@@ -1039,7 +1039,7 @@ const subtitulo = "Club Social & Deportivo";
         <!-- FORMULARIO UNIFICADO -->
         <form
           id="mi-formulario-actual"
-          action="https://script.google.com/macros/s/AKfycbwxOQvksB33IsOpzSc12nf8hQTZ9O0Lm3-HleuQA1DM7wh9ztPimDyExyzMdZ-cPI0/exec"
+          action="https://script.google.com/macros/s/AKfycbwmwTNsdHeBF0ZlMLZRQj573HQWNMN6eTezbXIA1C18YZy8tbTyr-8XYqPO23C73UX7/exec"
           method="POST"
           novalidate
           class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-xl space-y-6"
@@ -2246,9 +2246,9 @@ const subtitulo = "Club Social & Deportivo";
         });
         if (videoCamara) videoCamara.srcObject = streamCamara;
       } catch (err) {
-        console.error("No se pudo acceder a la cámara:", err);
+        console.error("No se pudo acceder à la cámara:", err);
         alert(
-          "No pudimos acceder à tu cámara. Revisa los permisos o elegí subir un archivo.",
+          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
       }
     }
@@ -2338,7 +2338,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario (Sin html2canvas para evitar errores)
+    // 5. Envío y Validación del Formulario
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
@@ -2467,28 +2467,45 @@ const subtitulo = "Club Social & Deportivo";
           }
 
           const formData = new FormData(form);
-          if (
-            archivoFotoFinal &&
-            (!inputFotoSocio || !inputFotoSocio.files.length)
-          ) {
-            formData.set("foto_perfil", archivoFotoFinal);
-          }
 
-          fetch(form.action, {
-            method: "POST",
-            body: formData,
-          })
-            .then(() => {
-              form.classList.add("hidden");
-              if (bloquePago) bloquePago.classList.remove("hidden");
-              if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
+          // Función interna para enviar al servidor con la foto en Base64
+          const enviarAlServidor = (datosAEnviar) => {
+            fetch(form.action, {
+              method: "POST",
+              body: datosAEnviar,
             })
-            .catch((err) => {
-              console.error("Error al guardar:", err);
-              form.classList.add("hidden");
-              if (bloquePago) bloquePago.classList.remove("hidden");
-              if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
-            });
+              .then((res) => res.json())
+              .then(() => {
+                form.classList.add("hidden");
+                if (bloquePago) bloquePago.classList.remove("hidden");
+                if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
+              })
+              .catch((err) => {
+                console.error("Error al guardar:", err);
+                form.classList.add("hidden");
+                if (bloquePago) bloquePago.classList.remove("hidden");
+                if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
+              });
+          };
+
+          if (archivoFotoFinal) {
+            const reader = new FileReader();
+            reader.readAsDataURL(archivoFotoFinal);
+            reader.onload = function () {
+              const fotoBase64 = reader.result;
+              const datosAEnviar = new URLSearchParams();
+              for (const pair of formData.entries()) {
+                if (pair[0] !== "foto_perfil") {
+                  datosAEnviar.append(pair[0], pair[1]);
+                }
+              }
+              datosAEnviar.append("foto_perfil", fotoBase64);
+              enviarAlServidor(datosAEnviar);
+            };
+          } else {
+            const datosAEnviar = new URLSearchParams(formData);
+            enviarAlServidor(datosAEnviar);
+          }
         }
       });
     }
