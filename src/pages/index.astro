@@ -1576,28 +1576,100 @@ const subtitulo = "Club Social & Deportivo";
               <option value="Inferiores">5- Inferiores</option>
             </select>
           </div>
-          <!-- Campo para subir la foto -->
-          <div class="space-y-2">
+
+          <!-- SECCIÓN DE FOTO DE PERFIL (Con opción de Archivo o Cámara) -->
+          <div
+            class="space-y-3 p-4 bg-neutral-950 border border-neutral-800 rounded-2xl"
+          >
             <label
-              for="foto-perfil"
               class="block text-xs font-bold uppercase tracking-wider text-slate-300"
             >
               Foto de perfil (Para tu Carnet Digital) <span
                 class="text-amber-400">*</span
               >
             </label>
-            <input
-              type="file"
-              id="foto-perfil"
-              name="foto_perfil"
-              accept="image/*"
-              required
-              class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-amber-400 file:text-neutral-950 hover:file:bg-amber-300 cursor-pointer bg-neutral-900 border border-neutral-800 rounded-xl p-2 transition"
-            />
-            <p class="text-[11px] text-slate-500">
-              Subí una foto tipo carnet o selfie clara donde se vea bien tu
-              rostro.
-            </p>
+
+            <!-- Botones para elegir el método -->
+            <div class="flex gap-2">
+              <button
+                type="button"
+                id="btn-modo-archivo"
+                class="flex-1 py-2 text-xs font-black bg-amber-400 text-neutral-950 rounded-xl transition"
+              >
+                📁 Subir Archivo
+              </button>
+              <button
+                type="button"
+                id="btn-modo-camara"
+                class="flex-1 py-2 text-xs font-black bg-neutral-900 text-slate-300 border border-neutral-800 rounded-xl hover:text-white transition"
+              >
+                📷 Usar Cámara
+              </button>
+            </div>
+
+            <!-- OPCIÓN A: SUBIR ARCHIVO -->
+            <div id="contenedor-modo-archivo" class="space-y-2">
+              <input
+                type="file"
+                id="foto-perfil"
+                name="foto_perfil"
+                accept="image/*"
+                class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:bg-amber-400 file:text-neutral-950 hover:file:bg-amber-300 cursor-pointer bg-neutral-900 border border-neutral-800 rounded-xl p-2 transition"
+              />
+              <p class="text-[11px] text-slate-500">
+                Subí una foto tipo carnet o selfie clara.
+              </p>
+            </div>
+
+            <!-- OPCIÓN B: SACARSE FOTO CON LA CÁMARA (Oculto por defecto) -->
+            <div
+              id="contenedor-modo-camara"
+              class="hidden space-y-3 flex flex-col items-center"
+            >
+              <!-- Vista previa de la cámara -->
+              <div
+                class="w-full h-48 bg-black rounded-xl overflow-hidden relative border border-neutral-800"
+              >
+                <video
+                  id="video-camara"
+                  autoplay
+                  playsinline
+                  class="w-full h-full object-cover"></video>
+                <!-- Canvas oculto para tomar la foto -->
+                <canvas id="canvas-camara" class="hidden"></canvas>
+              </div>
+
+              <!-- Botón para disparar la foto -->
+              <button
+                type="button"
+                id="btn-capturar-foto"
+                class="w-full py-2.5 bg-emerald-500 text-neutral-950 text-xs font-black rounded-xl hover:bg-emerald-400 transition"
+              >
+                📸 Sacar Foto
+              </button>
+
+              <!-- Previsualización de la foto ya sacada -->
+              <div
+                id="preview-foto-capturada"
+                class="hidden w-full text-center space-y-2"
+              >
+                <p class="text-[11px] text-emerald-400 font-bold">
+                  ¡Foto capturada con éxito!
+                </p>
+                <img
+                  id="imagen-capturada"
+                  src=""
+                  alt="Foto capturada"
+                  class="w-24 h-24 object-cover rounded-xl mx-auto border-2 border-emerald-500"
+                />
+                <button
+                  type="button"
+                  id="btn-repetir-foto"
+                  class="text-[11px] text-slate-400 underline hover:text-white"
+                  >Volver a sacar</button
+                >
+              </div>
+            </div>
           </div>
 
           <!-- Mensaje Opcional -->
@@ -2005,6 +2077,119 @@ const subtitulo = "Club Social & Deportivo";
       });
     });
 
+    // 3.1 NUEVA LÓGICA DE FOTO (Archivo o Cámara)
+    const btnModoArchivo = document.getElementById("btn-modo-archivo");
+    const btnModoCamara = document.getElementById("btn-modo-camara");
+    const contenedorArchivo = document.getElementById(
+      "contenedor-modo-archivo",
+    );
+    const contenedorCamara = document.getElementById("contenedor-modo-camara");
+
+    const videoCamara = document.getElementById("video-camara");
+    const canvasCamara = document.getElementById("canvas-camara");
+    const btnCapturar = document.getElementById("btn-capturar-foto");
+    const previewCapturada = document.getElementById("preview-foto-capturada");
+    const imagenCapturada = document.getElementById("imagen-capturada");
+    const btnRepetir = document.getElementById("btn-repetir-foto");
+    const inputFotoSocio = document.getElementById("foto-perfil");
+
+    let streamCamara = null;
+    let archivoFotoFinal = null;
+
+    if (btnModoArchivo && btnModoCamara) {
+      btnModoArchivo.addEventListener("click", () => {
+        contenedorArchivo.classList.remove("hidden");
+        contenedorCamara.classList.add("hidden");
+        btnModoArchivo.className =
+          "flex-1 py-2 text-xs font-black bg-amber-400 text-neutral-950 rounded-xl transition";
+        btnModoCamara.className =
+          "flex-1 py-2 text-xs font-black bg-neutral-900 text-slate-300 border border-neutral-800 rounded-xl hover:text-white transition";
+        detenerCamara();
+      });
+
+      btnModoCamara.addEventListener("click", async () => {
+        contenedorArchivo.classList.add("hidden");
+        contenedorCamara.classList.remove("hidden");
+        btnModoCamara.className =
+          "flex-1 py-2 text-xs font-black bg-amber-400 text-neutral-950 rounded-xl transition";
+        btnModoArchivo.className =
+          "flex-1 py-2 text-xs font-black bg-neutral-900 text-slate-300 border border-neutral-800 rounded-xl hover:text-white transition";
+        await iniciarCamara();
+      });
+    }
+
+    async function iniciarCamara() {
+      try {
+        streamCamara = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" },
+          audio: false,
+        });
+        if (videoCamara) videoCamara.srcObject = streamCamara;
+      } catch (err) {
+        console.error("No se pudo acceder a la cámara:", err);
+        alert(
+          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
+        );
+      }
+    }
+
+    function detenerCamara() {
+      if (streamCamara) {
+        streamCamara.getTracks().forEach((track) => track.stop());
+        streamCamara = null;
+      }
+    }
+
+    if (btnCapturar) {
+      btnCapturar.addEventListener("click", () => {
+        if (!videoCamara) return;
+        const context = canvasCamara.getContext("2d");
+        canvasCamara.width = videoCamara.videoWidth || 300;
+        canvasCamara.height = videoCamara.videoHeight || 300;
+        context.drawImage(
+          videoCamara,
+          0,
+          0,
+          canvasCamara.width,
+          canvasCamara.height,
+        );
+
+        canvasCamara.toBlob(
+          (blob) => {
+            archivoFotoFinal = new File([blob], "foto-camara.jpg", {
+              type: "image/jpeg",
+            });
+            const urlTemporal = URL.createObjectURL(archivoFotoFinal);
+            imagenCapturada.src = urlTemporal;
+            videoCamara.classList.add("hidden");
+            btnCapturar.classList.add("hidden");
+            previewCapturada.classList.remove("hidden");
+            detenerCamara();
+          },
+          "image/jpeg",
+          0.9,
+        );
+      });
+    }
+
+    if (btnRepetir) {
+      btnRepetir.addEventListener("click", async () => {
+        archivoFotoFinal = null;
+        previewCapturada.classList.add("hidden");
+        videoCamara.classList.remove("hidden");
+        btnCapturar.classList.remove("hidden");
+        await iniciarCamara();
+      });
+    }
+
+    if (inputFotoSocio) {
+      inputFotoSocio.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files[0]) {
+          archivoFotoFinal = e.target.files[0];
+        }
+      });
+    }
+
     // 4. Copiar Datos Brubank
     const btnCopyAlias = document.getElementById("btn-copy-alias");
     const btnCopyCuit = document.getElementById("btn-copy-cuit");
@@ -2037,14 +2222,12 @@ const subtitulo = "Club Social & Deportivo";
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
 
-    // Elementos del carnet digital
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
     const carnetNombre = document.getElementById("carnet-nombre");
     const carnetDoc = document.getElementById("carnet-doc");
     const carnetCategoria = document.getElementById("carnet-categoria");
-    const carnetFoto = document.getElementById("carnet-foto"); // Elemento <img> del carnet
+    const carnetFoto = document.getElementById("carnet-foto");
 
-    // Elementos del formulario
     const inputNombre = document.getElementById("nombre");
     const inputDoc = document.getElementById("numero-doc");
     const inputFecha = document.getElementById("fecha-nacimiento");
@@ -2052,7 +2235,6 @@ const subtitulo = "Club Social & Deportivo";
     const inputTelefono = document.getElementById("telefono");
     const selectCodigoPais = document.getElementById("codigo-pais");
     const inputTelefonoCompleto = document.getElementById("telefono-completo");
-    const inputFotoSocio = document.getElementById("foto-perfil"); // Input type="file" del formulario
 
     const errorNombre = document.getElementById("error-nombre");
     const errorDoc = document.getElementById("error-doc");
@@ -2066,7 +2248,6 @@ const subtitulo = "Club Social & Deportivo";
 
         let esValido = true;
 
-        // Validación Nombre
         const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
         if (
           !inputNombre ||
@@ -2081,7 +2262,6 @@ const subtitulo = "Club Social & Deportivo";
           if (inputNombre) inputNombre.classList.remove("border-red-500");
         }
 
-        // Validación Documento
         const regexNumeros = /^[0-9]+$/;
         if (
           !inputDoc ||
@@ -2096,7 +2276,6 @@ const subtitulo = "Club Social & Deportivo";
           if (inputDoc) inputDoc.classList.remove("border-red-500");
         }
 
-        // Validación Fecha
         if (!inputFecha || !inputFecha.value) {
           if (errorFecha) errorFecha.classList.remove("hidden");
           if (inputFecha) inputFecha.classList.add("border-red-500");
@@ -2106,7 +2285,6 @@ const subtitulo = "Club Social & Deportivo";
           if (inputFecha) inputFecha.classList.remove("border-red-500");
         }
 
-        // Validación Email
         const emailValor = inputEmail
           ? inputEmail.value.trim().toLowerCase()
           : "";
@@ -2122,7 +2300,6 @@ const subtitulo = "Club Social & Deportivo";
           if (inputEmail) inputEmail.classList.remove("border-red-500");
         }
 
-        // Validación Teléfono
         const telValor = inputTelefono ? inputTelefono.value.trim() : "";
         if (!telValor || !regexNumeros.test(telValor)) {
           if (errorTelefono) errorTelefono.classList.remove("hidden");
@@ -2143,13 +2320,10 @@ const subtitulo = "Club Social & Deportivo";
             btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
 
-          // --- INYECTAR DATOS AL CARNET ANTES DE MOSTRARLO ---
-          if (inputNombre && carnetNombre) {
+          if (inputNombre && carnetNombre)
             carnetNombre.textContent = inputNombre.value.trim();
-          }
-          if (inputDoc && carnetDoc) {
+          if (inputDoc && carnetDoc)
             carnetDoc.textContent = inputDoc.value.trim();
-          }
 
           const inputCategoriaSeleccionada =
             document.querySelector('input[name="categoria_socio"]:checked') ||
@@ -2160,19 +2334,19 @@ const subtitulo = "Club Social & Deportivo";
               inputCategoriaSeleccionada.textContent;
           }
 
-          // Lógica para inyectar la foto en el carnet digital
-          if (
-            inputFotoSocio &&
-            inputFotoSocio.files &&
-            inputFotoSocio.files[0] &&
-            carnetFoto
-          ) {
-            const archivoFoto = inputFotoSocio.files[0];
-            // Crea una URL temporal para mostrar la foto que el usuario acaba de seleccionar
-            carnetFoto.src = URL.createObjectURL(archivoFoto);
+          // Inyectar foto en el carnet digital
+          if (archivoFotoFinal && carnetFoto) {
+            carnetFoto.src = URL.createObjectURL(archivoFotoFinal);
           }
 
           const formData = new FormData(form);
+          // Si usó la cámara, inyectamos el archivo manualmente en el FormData para que se envíe bien
+          if (
+            archivoFotoFinal &&
+            (!inputFotoSocio || !inputFotoSocio.files.length)
+          ) {
+            formData.set("foto_perfil", archivoFotoFinal);
+          }
 
           fetch(form.action, {
             method: "POST",
@@ -2290,26 +2464,26 @@ const subtitulo = "Club Social & Deportivo";
       matchesListContainer.innerHTML = matches
         .map(
           (m) => `
-      <div class="bg-neutral-950 border border-neutral-800 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3">
-        <div class="flex items-center gap-3">
-          <span class="bg-neutral-900 text-amber-400 border border-amber-500/20 text-xs font-black px-2.5 py-1 rounded-md whitespace-nowrap">
-            ${m.fecha}
-          </span>
-          <div>
-            <p class="text-sm font-black text-slate-100">vs ${m.rival}</p>
-            <p class="text-xs text-slate-400">${m.cancha}</p>
+        <div class="bg-neutral-950 border border-neutral-800 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="bg-neutral-900 text-amber-400 border border-amber-500/20 text-xs font-black px-2.5 py-1 rounded-md whitespace-nowrap">
+              ${m.fecha}
+            </span>
+            <div>
+              <p class="text-sm font-black text-slate-100">vs ${m.rival}</p>
+              <p class="text-xs text-slate-400">${m.cancha}</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between md:justify-end gap-3 border-t md:border-t-0 pt-2 md:pt-0 border-neutral-800">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded ${m.condicion === "Local" ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" : "bg-neutral-800 text-slate-400"}">
+              ${m.condicion}
+            </span>
+            <span class="text-xs font-semibold text-slate-300">
+              🕒 ${m.dia}
+            </span>
           </div>
         </div>
-        <div class="flex items-center justify-between md:justify-end gap-3 border-t md:border-t-0 pt-2 md:pt-0 border-neutral-800">
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded ${m.condicion === "Local" ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" : "bg-neutral-800 text-slate-400"}">
-            ${m.condicion}
-          </span>
-          <span class="text-xs font-semibold text-slate-300">
-            🕒 ${m.dia}
-          </span>
-        </div>
-      </div>
-    `,
+      `,
         )
         .join("");
     }
@@ -2363,12 +2537,12 @@ const subtitulo = "Club Social & Deportivo";
           categoryContainer.innerHTML = categories
             .map(
               (cat, index) => `
-        <button 
-          data-cat-index="${index}"
-          class="cat-btn ${index === 0 ? "bg-amber-400 text-neutral-950 font-black" : "bg-neutral-800 text-slate-300 hover:bg-neutral-700"} text-xs px-3.5 py-2 rounded-lg transition font-bold">
-          ${cat.name}
-        </button>
-      `,
+            <button 
+              data-cat-index="${index}"
+              class="cat-btn ${index === 0 ? "bg-amber-400 text-neutral-950 font-black" : "bg-neutral-800 text-slate-300 hover:bg-neutral-700"} text-xs px-3.5 py-2 rounded-lg transition font-bold">
+              ${cat.name}
+            </button>
+          `,
             )
             .join("");
         }
