@@ -2003,7 +2003,7 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
 
-  <!-- SCRIPT -->
+<!-- SCRIPT -->
   <script is:inline>
     // 1. Giro de Tarjetas Generales
     document.querySelectorAll(".single-card-container").forEach((card) => {
@@ -2283,7 +2283,8 @@ const subtitulo = "Club Social & Deportivo";
             if (fotoPerfilBase64) {
               const contenedorFoto = document.getElementById("contenedor-foto");
               if (contenedorFoto) {
-                contenedorFoto.innerHTML = `<img src="${fotoPerfilBase64}" alt="Foto Socio" class="w-full h-full object-cover">`;
+                // CORREGIDO: Se usan estilos en línea en vez de clases de Tailwind
+                contenedorFoto.innerHTML = `<img src="${fotoPerfilBase64}" alt="Foto Socio" style="width: 100%; height: 100%; object-fit: cover;">`;
               }
             }
 
@@ -2300,12 +2301,12 @@ const subtitulo = "Club Social & Deportivo";
             if (elementoTarjeta) {
               try {
                 elementoTarjeta.style.display = "flex";
-                elementoTarjeta.style.backgroundColor = "#171717";
+                elementoTarjeta.style.backgroundColor = "#0f172a";
 
                 const canvas = await html2canvas(elementoTarjeta, {
                   scale: 1.5,
                   useCORS: true,
-                  backgroundColor: "#171717",
+                  backgroundColor: "#0f172a",
                 });
 
                 // Convertimos el canvas a blob para subirlo limpiamente a Cloudinary
@@ -2315,6 +2316,7 @@ const subtitulo = "Club Social & Deportivo";
                       const formDataCloudinary = new FormData();
                       formDataCloudinary.append("file", blob);
                       formDataCloudinary.append("upload_preset", "la granjah");
+                      formDataCloudinary.append("folder", "carnets_socios"); // Organización automática en Cloudinary
 
                       const respuestaCloud = await fetch(
                         "https://api.cloudinary.com/v1_1/ffv1vsn2/image/upload",
@@ -2384,7 +2386,6 @@ const subtitulo = "Club Social & Deportivo";
     const nextBtn = document.getElementById("modal-next-btn");
     const contador = document.getElementById("modal-carrusel-contador");
 
-    // Función auxiliar para generar automáticamente las 10 primeras fotos por carpeta
     const generarRutasFotos = (carpeta) => {
       let fotos = [];
       for (let i = 1; i <= 10; i++) {
