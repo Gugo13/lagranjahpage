@@ -2003,6 +2003,7 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
 
+  //SCRIPT!
   <script is:inline>
     // 1. Giro de Tarjetas Generales
     document.querySelectorAll(".single-card-container").forEach((card) => {
@@ -2333,8 +2334,8 @@ const subtitulo = "Club Social & Deportivo";
                 canvas.toBlob(
                   async (blob) => {
                     if (!blob) {
-                      console.error(
-                        "El canvas no pudo generar el blob de la imagen",
+                      console.warn(
+                        "El canvas no pudo generar el blob, continuando sin imagen de carnet.",
                       );
                       enviarAlServidor(paramsData);
                       return;
@@ -2355,10 +2356,6 @@ const subtitulo = "Club Social & Deportivo";
                       );
 
                       const datosCloud = await respuestaCloud.json();
-                      console.log(
-                        "Respuesta completa de Cloudinary:",
-                        datosCloud,
-                      );
 
                       if (datosCloud.secure_url) {
                         paramsData.append("url_carnet", datosCloud.secure_url);
@@ -2547,7 +2544,6 @@ const subtitulo = "Club Social & Deportivo";
     }
 
     if (prevBtn) {
-      prevBtn.preventDefault ? null : null; // Safe
       prevBtn.addEventListener("click", () => {
         currentIndex =
           (currentIndex - 1 + currentImages.length) % currentImages.length;
