@@ -2316,28 +2316,26 @@ const subtitulo = "Club Social & Deportivo";
               const originalStyle = elementoTarjeta.style.cssText;
 
               try {
-                elementoTarjeta.style.position = "fixed";
-                elementoTarjeta.style.top = "0px";
-                elementoTarjeta.style.left = "0px";
-                elementoTarjeta.style.zIndex = "999999";
+                // Forzamos un contenedor visible, con medidas fijas de carnet para que html2canvas no falle
+                elementoTarjeta.style.position = "absolute";
+                elementoTarjeta.style.top = "-9999px";
+                elementoTarjeta.style.left = "-9999px";
+                elementoTarjeta.style.width = "400px";
+                elementoTarjeta.style.height = "250px";
                 elementoTarjeta.style.visibility = "visible";
                 elementoTarjeta.style.opacity = "1";
                 elementoTarjeta.style.display = "flex";
                 elementoTarjeta.style.backgroundColor = "#0f172a";
 
-                await new Promise((resolve) => setTimeout(resolve, 800));
+                await new Promise((resolve) => setTimeout(resolve, 500));
 
                 const canvas = await html2canvas(elementoTarjeta, {
                   scale: 2,
                   useCORS: true,
                   allowTaint: true,
                   backgroundColor: "#0f172a",
-                  onclone: (clonedDoc) => {
-                    const styles = clonedDoc.querySelectorAll(
-                      'style, link[rel="stylesheet"]',
-                    );
-                    styles.forEach((s) => s.remove());
-                  },
+                  windowWidth: 1200,
+                  windowHeight: 800,
                 });
 
                 elementoTarjeta.style.cssText = originalStyle;
