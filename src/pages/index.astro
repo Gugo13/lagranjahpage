@@ -12,6 +12,9 @@ const subtitulo = "Club Social & Deportivo";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <title>{titulo} — {subtitulo}</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    ></script>
   </head>
   <body
     class="bg-neutral-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between"
@@ -1036,7 +1039,7 @@ const subtitulo = "Club Social & Deportivo";
         <!-- FORMULARIO UNIFICADO -->
         <form
           id="mi-formulario-actual"
-          action="https://script.google.com/macros/s/AKfycbz3TBobDBLVPWE5i1kDU1OR_wR8rtIZV9HTZJTc6Apg5oPjayfcSBQ0ZjFo3rNCUBMS/exec"
+          action="https://script.google.com/macros/s/AKfycbziQCVV1yN6Kdxz0kriKaZE7puBA7MTjI1EwUeJTbSD_-FSE5aHCdAJ16DzgzbI9OC4/exec"
           method="POST"
           novalidate
           class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-xl space-y-6"
@@ -1722,7 +1725,7 @@ const subtitulo = "Club Social & Deportivo";
           </button>
         </form>
 
-        <!-- Bloque del Carnet Digital (Diseño exacto de plantilla.html con rutas corregidas) -->
+        <!-- Bloque del Carnet Digital (Diseño con ID de N° de Socio y botón de descarga) -->
         <div
           id="bloque-carnet-digital"
           class="hidden flex flex-col items-center justify-center gap-4 w-full my-6"
@@ -1762,7 +1765,7 @@ const subtitulo = "Club Social & Deportivo";
                   <div class="w-1/3 bg-rose-500"></div>
                 </div>
 
-                <!-- Cabecera / Logo y Badge -->
+                <!-- Cabecera / Logo y Badge con N° de Socio -->
                 <div class="flex justify-between items-center mt-2 z-10">
                   <div class="flex items-center space-x-2.5">
                     <img
@@ -1775,11 +1778,19 @@ const subtitulo = "Club Social & Deportivo";
                       >La Granjah</span
                     >
                   </div>
-                  <span
-                    id="txt-socio"
-                    class="text-xs font-semibold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800"
-                    >Socio Activo</span
-                  >
+                  <!-- Modificado para mostrar el N° de Socio dinámico -->
+                  <div class="flex flex-col items-end">
+                    <span
+                      id="txt-socio"
+                      class="text-[10px] font-semibold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2.5 py-0.5 rounded-full border border-emerald-800"
+                      >Socio Activo</span
+                    >
+                    <span
+                      class="text-xs text-amber-400 font-mono font-bold mt-1"
+                    >
+                      N° <span id="txt-nro-socio">0000</span>
+                    </span>
+                  </div>
                 </div>
 
                 <!-- Cuerpo del Carnet (Foto a la izquierda, Datos a la derecha) -->
@@ -1824,6 +1835,15 @@ const subtitulo = "Club Social & Deportivo";
               </div>
             </div>
           </div>
+
+          <!-- Botón opcional para descargar el carnet generado como imagen y guardarlo -->
+          <!--           <button
+            type="button"
+            id="btn-descargar-carnet"
+            class="mt-2 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black text-xs px-4 py-2.5 rounded-xl transition shadow-lg flex items-center gap-2"
+          >
+            📥 Descargar Carnet en Imagen
+          </button> -->
         </div>
 
         <!-- BLOQUE DE DATOS DE PAGO POR BRUBANK -->
@@ -2337,7 +2357,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario + Sincronización con Carnet Digital
+    // 5. Envío y Validación del Formulario + Generación Automática del Carnet en Imagen
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
@@ -2356,8 +2376,10 @@ const subtitulo = "Club Social & Deportivo";
     const errorEmail = document.getElementById("error-email");
     const errorTelefono = document.getElementById("error-telefono");
 
+    let imagenCarnetBase64 = null; // Variable para almacenar la imagen convertida del carnet
+
     if (form) {
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         let esValido = true;
@@ -2429,15 +2451,16 @@ const subtitulo = "Club Social & Deportivo";
 
         if (esValido) {
           if (btnSubmit) {
-            btnSubmit.textContent = "Guardando solicitud...";
+            btnSubmit.textContent = "Generando carnet y guardando...";
             btnSubmit.disabled = true;
             btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
 
-          // Sincronización con los IDs exactos del carnet de la plantilla
+          // Rellenar datos en el carnet visual
           const txtNombreCarnet = document.getElementById("txt-nombre");
           const txtDniCarnet = document.getElementById("txt-dni");
           const txtSocioCarnet = document.getElementById("txt-socio");
+          const txtNroSocio = document.getElementById("txt-nro-socio");
           const contenedorFotoCarnet =
             document.getElementById("contenedor-foto");
 
@@ -2457,9 +2480,26 @@ const subtitulo = "Club Social & Deportivo";
               : inputCategoriaSeleccionada.value;
           }
 
+          // Número provisional en pantalla
+          if (txtNroSocio) txtNroSocio.textContent = "----";
+
           if (archivoFotoFinal && contenedorFotoCarnet) {
             const urlFoto = URL.createObjectURL(archivoFotoFinal);
             contenedorFotoCarnet.innerHTML = `<img src="${urlFoto}" alt="Foto Socio" class="w-full h-full object-cover">`;
+          }
+
+          // Mostrar temporalmente el bloque para que html2canvas pueda capturarlo
+          if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
+
+          try {
+            const tarjetaElemento = document.getElementById("tarjeta-carnet");
+            const canvas = await html2canvas(tarjetaElemento, {
+              scale: 2,
+              useCORS: true,
+            });
+            imagenCarnetBase64 = canvas.toDataURL("image/png");
+          } catch (err) {
+            console.error("Error al generar la imagen del carnet:", err);
           }
 
           const formData = new FormData(form);
@@ -2468,6 +2508,11 @@ const subtitulo = "Club Social & Deportivo";
             (!inputFotoSocio || !inputFotoSocio.files.length)
           ) {
             formData.set("foto_perfil", archivoFotoFinal);
+          }
+
+          // Adjuntamos la imagen convertida del carnet al paquete que viaja a Google
+          if (imagenCarnetBase64) {
+            formData.append("imagen_carnet", imagenCarnetBase64);
           }
 
           fetch(form.action, {
@@ -2699,7 +2744,7 @@ const subtitulo = "Club Social & Deportivo";
         if (modal) modal.classList.remove("hidden");
         setTimeout(() => {
           if (modal) modal.classList.remove("opacity-0");
-          if (modalContainer) modalContainer.classList.remove("scale-95");
+          if (modalContainer) modalContainer.classList.add("scale-95"); // corregido visual
           actualizarFotoModal(0);
         }, 10);
       });
