@@ -2150,7 +2150,7 @@ const subtitulo = "Club Social & Deportivo";
         });
         if (videoCamara) videoCamara.srcObject = streamCamara;
       } catch (err) {
-        console.error("No se pudo acceder a la cámara:", err);
+        console.error("No se pudo acceder à la cámara:", err);
         alert(
           "No pudimos acceder à tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
@@ -2313,23 +2313,28 @@ const subtitulo = "Club Social & Deportivo";
             }
 
             if (elementoTarjeta) {
+              const originalStyle = elementoTarjeta.style.cssText;
+
               try {
-                // Posicionamiento seguro para evitar que html2canvas capture un cuadro vacío o tainted
-                elementoTarjeta.style.position = "absolute";
-                elementoTarjeta.style.left = "0";
-                elementoTarjeta.style.top = "0";
+                // FORZAMOS VISIBILIDAD REAL EN PANTALLA (Fixed evita problemas de scroll y tamaño 0)
+                elementoTarjeta.style.position = "fixed";
+                elementoTarjeta.style.top = "0px";
+                elementoTarjeta.style.left = "0px";
+                elementoTarjeta.style.zIndex = "999999";
                 elementoTarjeta.style.visibility = "visible";
                 elementoTarjeta.style.opacity = "1";
                 elementoTarjeta.style.display = "flex";
                 elementoTarjeta.style.backgroundColor = "#0f172a";
 
-                await new Promise((resolve) => setTimeout(resolve, 350));
+                // Damos un respiro más largo para que el motor de render lo dibuje sí o sí
+                await new Promise((resolve) => setTimeout(resolve, 600));
 
                 const canvas = await html2canvas(elementoTarjeta, {
-                  scale: 1.5,
+                  scale: 2,
                   useCORS: true,
-                  allowTaint: true, // Permitimos datos locales para manejar el Base64 de la cámara/archivo
+                  allowTaint: true,
                   backgroundColor: "#0f172a",
+                  logging: true,
                   onclone: (clonedDoc) => {
                     const styles = clonedDoc.querySelectorAll(
                       'style, link[rel="stylesheet"]',
@@ -2338,56 +2343,61 @@ const subtitulo = "Club Social & Deportivo";
                   },
                 });
 
-                // Devolvemos la tarjeta a su posición oculta
-                elementoTarjeta.style.left = "-9999px";
+                // Restauramos el elemento a su estado original de inmediato
+                elementoTarjeta.style.cssText = originalStyle;
+                elementoTarjeta.style.display = "none";
 
-                canvas.toBlob(
-                  async (blob) => {
-                    if (!blob) {
-                      console.warn(
-                        "El canvas no pudo generar el blob, continuando sin imagen de carnet.",
-                      );
-                      enviarAlServidor(paramsData);
-                      return;
-                    }
+                // Método alternativo infalible por si a toBlob le da la chiripiorca
+                let dataUrl;
+                try {
+                  dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+                } catch (errDataUrl) {
+                  console.error("Fallo crítico en toDataURL:", errDataUrl);
+                  enviarAlServidor(paramsData);
+                  return;
+                }
 
-                    try {
-                      const formDataCloudinary = new FormData();
-                      formDataCloudinary.append("file", blob);
-                      formDataCloudinary.append("upload_preset", "la granjah");
-                      formDataCloudinary.append("folder", "carnets_socios");
+                const byteString = atob(dataUrl.split(",")[1]);
+                const mimeString = dataUrl
+                  .split(",")[0]
+                  .split(":")[1]
+                  .split(";")[0];
+                const ab = new ArrayBuffer(byteString.length);
+                const ia = new Uint8Array(ab);
+                for (let i = 0; i < byteString.length; i++) {
+                  ia[i] = byteString.charCodeAt(i);
+                }
+                const blob = new Blob([ab], { type: mimeString });
 
-                      const respuestaCloud = await fetch(
-                        "https://api.cloudinary.com/v1_1/ffv1vsn2/image/upload",
-                        {
-                          method: "POST",
-                          body: formDataCloudinary,
-                        },
-                      );
+                if (!blob || blob.size === 0) {
+                  console.warn("El blob resultante sigue estando vacío.");
+                  enviarAlServidor(paramsData);
+                  return;
+                }
 
-                      const datosCloud = await respuestaCloud.json();
+                const formDataCloudinary = new FormData();
+                formDataCloudinary.append("file", blob);
+                formDataCloudinary.append("upload_preset", "la granjah");
+                formDataCloudinary.append("folder", "carnets_socios");
 
-                      if (datosCloud.secure_url) {
-                        paramsData.append("url_carnet", datosCloud.secure_url);
-                      }
-                    } catch (errCloud) {
-                      console.error(
-                        "Error al subir carnet a Cloudinary:",
-                        errCloud,
-                      );
-                    }
-
-                    enviarAlServidor(paramsData);
-                  },
-                  "image/jpeg",
-                  0.8,
+                const respuestaCloud = await fetch(
+                  "https://api.cloudinary.com/v1_1/ffv1vsn2/image/upload",
+                  { method: "POST", body: formDataCloudinary },
                 );
+
+                const datosCloud = await respuestaCloud.json();
+                if (datosCloud.secure_url) {
+                  paramsData.append("url_carnet", datosCloud.secure_url);
+                }
+
+                enviarAlServidor(paramsData);
               } catch (errCanvas) {
+                elementoTarjeta.style.cssText = originalStyle;
+                elementoTarjeta.style.display = "none";
                 console.error(
                   "Error al generar imagen de la tarjeta:",
                   errCanvas,
                 );
-                if (elementoTarjeta) elementoTarjeta.style.left = "-9999px";
                 enviarAlServidor(paramsData);
               }
             } else {
