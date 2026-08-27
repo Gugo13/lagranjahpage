@@ -1039,7 +1039,7 @@ const subtitulo = "Club Social & Deportivo";
         <!-- FORMULARIO UNIFICADO -->
         <form
           id="mi-formulario-actual"
-          action="https://script.google.com/macros/s/AKfycbzpyamCDairovulvPJ9QLsYSzVPk1FVnUSPUD0OegkaHGXI9B4QqkRQtXqcddy8948b/exec"
+          action="https://script.google.com/macros/s/AKfycbzsc2zhaAZ_5xd97GCFWpqg_bwjXqNDs_ikoNJz7DrYHgQGQdMvvU-QCCxNa-UBGE4r/exec"
           method="POST"
           novalidate
           class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-xl space-y-6"
@@ -2175,7 +2175,7 @@ const subtitulo = "Club Social & Deportivo";
             detenerCamara();
           },
           "image/jpeg",
-          0.9,
+          0.8,
         );
       });
     }
@@ -2198,7 +2198,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario con Generación de Carnet Digital (Compatible con URLSearchParams y sin fallos de oklch)
+    // 5. Envío y Validación del Formulario con Generación de Carnet Digital (Fraccionando imagen si es grande)
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
@@ -2246,7 +2246,6 @@ const subtitulo = "Club Social & Deportivo";
           if (txtFechaCarnet && inputFecha)
             txtFechaCarnet.textContent = inputFecha.value;
 
-          // Preparamos URLSearchParams (evita CORS en Google Apps Script)
           const paramsData = new URLSearchParams();
           const formData = new FormData(form);
 
@@ -2275,7 +2274,6 @@ const subtitulo = "Club Social & Deportivo";
               });
           };
 
-          // Procesar foto y capturar carnet con html2canvas asegurando colores hexadecimales
           const procesarYEnviarCarnet = async (fotoPerfilBase64) => {
             if (fotoPerfilBase64) {
               const contenedorFoto = document.getElementById("contenedor-foto");
@@ -2289,25 +2287,37 @@ const subtitulo = "Club Social & Deportivo";
             if (elementoTarjeta) {
               try {
                 elementoTarjeta.style.display = "flex";
-                elementoTarjeta.style.backgroundColor = "#171717"; // Color seguro neutral-900
+                elementoTarjeta.style.backgroundColor = "#171717";
 
                 const canvas = await html2canvas(elementoTarjeta, {
-                  scale: 2,
+                  scale: 1.5, // Escala optimizada para que no pese tanto pero se vea nítido
                   useCORS: true,
                   backgroundColor: "#171717",
                 });
-                const imagenCarnetBase64 = canvas.toDataURL("image/jpeg", 0.8);
 
-                paramsData.append("foto_perfil", imagenCarnetBase64);
+                const imagenCarnetBase64 = canvas.toDataURL("image/jpeg", 0.65);
+
+                // Dividir la imagen en 2 para evitar restricciones de tamaño de Google Apps Script
+                const mitad = Math.floor(imagenCarnetBase64.length / 2);
+                paramsData.append(
+                  "foto_part1",
+                  imagenCarnetBase64.substring(0, mitad),
+                );
+                paramsData.append(
+                  "foto_part2",
+                  imagenCarnetBase64.substring(mitad),
+                );
               } catch (errCanvas) {
                 console.error(
                   "Error al generar imagen de la tarjeta:",
                   errCanvas,
                 );
-                paramsData.append("foto_perfil", fotoPerfilBase64 || "");
+                if (fotoPerfilBase64) {
+                  paramsData.append("foto_part1", fotoPerfilBase64);
+                }
               }
-            } else {
-              paramsData.append("foto_perfil", fotoPerfilBase64 || "");
+            } else if (fotoPerfilBase64) {
+              paramsData.append("foto_part1", fotoPerfilBase64);
             }
 
             enviarAlServidor(paramsData);
