@@ -2198,7 +2198,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario con Generación de Carnet Digital (Modificado a JSON)
+    // 5. Envío y Validación del Formulario con Generación de Carnet Digital (Compatible con URLSearchParams y sin fallos de oklch)
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
@@ -2206,8 +2206,6 @@ const subtitulo = "Club Social & Deportivo";
     const inputNombre = document.getElementById("nombre");
     const inputDoc = document.getElementById("numero-doc");
     const inputFecha = document.getElementById("fecha-nacimiento");
-    const inputEmail = document.getElementById("email");
-    const inputTelefono = document.getElementById("telefono");
 
     if (form) {
       form.addEventListener("submit", async (e) => {
@@ -2248,23 +2246,20 @@ const subtitulo = "Club Social & Deportivo";
           if (txtFechaCarnet && inputFecha)
             txtFechaCarnet.textContent = inputFecha.value;
 
-          // Creamos objeto JSON con los datos del formulario
-          const datosJson = {};
+          // Preparamos URLSearchParams (evita CORS en Google Apps Script)
+          const paramsData = new URLSearchParams();
           const formData = new FormData(form);
 
           for (const [key, value] of formData.entries()) {
             if (key !== "foto_perfil" && value) {
-              datosJson[key] = value;
+              paramsData.append(key, value);
             }
           }
 
-          const enviarAlServidor = (payloadJson) => {
+          const enviarAlServidor = (payloadParams) => {
             fetch(form.action, {
               method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(payloadJson),
+              body: payloadParams,
             })
               .then((res) => res.json())
               .then(() => {
@@ -2280,7 +2275,7 @@ const subtitulo = "Club Social & Deportivo";
               });
           };
 
-          // Función para procesar la foto, armar la tarjeta y enviarla
+          // Procesar foto y capturar carnet con html2canvas asegurando colores hexadecimales
           const procesarYEnviarCarnet = async (fotoPerfilBase64) => {
             if (fotoPerfilBase64) {
               const contenedorFoto = document.getElementById("contenedor-foto");
@@ -2294,26 +2289,28 @@ const subtitulo = "Club Social & Deportivo";
             if (elementoTarjeta) {
               try {
                 elementoTarjeta.style.display = "flex";
+                elementoTarjeta.style.backgroundColor = "#171717"; // Color seguro neutral-900
 
                 const canvas = await html2canvas(elementoTarjeta, {
                   scale: 2,
                   useCORS: true,
+                  backgroundColor: "#171717",
                 });
                 const imagenCarnetBase64 = canvas.toDataURL("image/jpeg", 0.8);
 
-                datosJson["foto_perfil"] = imagenCarnetBase64;
+                paramsData.append("foto_perfil", imagenCarnetBase64);
               } catch (errCanvas) {
                 console.error(
                   "Error al generar imagen de la tarjeta:",
                   errCanvas,
                 );
-                datosJson["foto_perfil"] = fotoPerfilBase64 || "";
+                paramsData.append("foto_perfil", fotoPerfilBase64 || "");
               }
             } else {
-              datosJson["foto_perfil"] = fotoPerfilBase64 || "";
+              paramsData.append("foto_perfil", fotoPerfilBase64 || "");
             }
 
-            enviarAlServidor(datosJson);
+            enviarAlServidor(paramsData);
           };
 
           if (archivoFotoFinal) {
