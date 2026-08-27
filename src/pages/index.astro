@@ -2280,11 +2280,22 @@ const subtitulo = "Club Social & Deportivo";
           };
 
           const procesarYEnviarCarnet = async (fotoPerfilBase64) => {
-            if (fotoPerfilBase64) {
-              const contenedorFoto = document.getElementById("contenedor-foto");
-              if (contenedorFoto) {
-                contenedorFoto.innerHTML = `<img src="${fotoPerfilBase64}" alt="Foto Socio" style="width: 100%; height: 100%; object-fit: cover;">`;
-              }
+            const contenedorFoto = document.getElementById("contenedor-foto");
+
+            if (fotoPerfilBase64 && contenedorFoto) {
+              await new Promise((resolve) => {
+                const imgTemp = new Image();
+                imgTemp.onload = () => {
+                  contenedorFoto.innerHTML = "";
+                  contenedorFoto.appendChild(imgTemp);
+                  imgTemp.style.width = "100%";
+                  imgTemp.style.height = "100%";
+                  imgTemp.style.objectFit = "cover";
+                  resolve();
+                };
+                imgTemp.onerror = () => resolve();
+                imgTemp.src = fotoPerfilBase64;
+              });
             }
 
             const elementoTarjeta = document.getElementById("tarjeta-carnet");
