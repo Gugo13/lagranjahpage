@@ -1856,6 +1856,7 @@ const subtitulo = "Club Social & Deportivo";
                 >
                   <img
                     src="/escudo/escudoLagranjah.png"
+                    crossorigin="anonymous"
                     alt="Marca de agua"
                     id="escudo-fondo"
                     style="width: 100%; height: 100%; object-fit: contain; opacity: 0.1; filter: grayscale(100%);"
@@ -1878,6 +1879,7 @@ const subtitulo = "Club Social & Deportivo";
                   <div style="display: flex; align-items: center; gap: 0.5rem;">
                     <img
                       src="/escudo/escudoLagranjah.png"
+                      crossorigin="anonymous"
                       alt="Escudo La Granjah"
                       style="width: 2rem; height: 2rem; object-fit: contain;"
                     />
@@ -2003,7 +2005,7 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
 
-  //SCRIPT!
+  <!--SCRIPT!-->
   <script is:inline>
     // 1. Giro de Tarjetas Generales
     document.querySelectorAll(".single-card-container").forEach((card) => {
@@ -2150,7 +2152,7 @@ const subtitulo = "Club Social & Deportivo";
       } catch (err) {
         console.error("No se pudo acceder a la cámara:", err);
         alert(
-          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
+          "No pudimos acceder à tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
       }
     }
@@ -2312,16 +2314,21 @@ const subtitulo = "Club Social & Deportivo";
 
             if (elementoTarjeta) {
               try {
-                elementoTarjeta.style.display = "flex";
+                // Posicionamiento seguro para evitar que html2canvas capture un cuadro vacío o tainted
+                elementoTarjeta.style.position = "absolute";
+                elementoTarjeta.style.left = "0";
+                elementoTarjeta.style.top = "0";
                 elementoTarjeta.style.visibility = "visible";
                 elementoTarjeta.style.opacity = "1";
+                elementoTarjeta.style.display = "flex";
                 elementoTarjeta.style.backgroundColor = "#0f172a";
 
-                await new Promise((resolve) => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, 350));
 
                 const canvas = await html2canvas(elementoTarjeta, {
                   scale: 1.5,
                   useCORS: true,
+                  allowTaint: true, // Permitimos datos locales para manejar el Base64 de la cámara/archivo
                   backgroundColor: "#0f172a",
                   onclone: (clonedDoc) => {
                     const styles = clonedDoc.querySelectorAll(
@@ -2330,6 +2337,9 @@ const subtitulo = "Club Social & Deportivo";
                     styles.forEach((s) => s.remove());
                   },
                 });
+
+                // Devolvemos la tarjeta a su posición oculta
+                elementoTarjeta.style.left = "-9999px";
 
                 canvas.toBlob(
                   async (blob) => {
@@ -2377,6 +2387,7 @@ const subtitulo = "Club Social & Deportivo";
                   "Error al generar imagen de la tarjeta:",
                   errCanvas,
                 );
+                if (elementoTarjeta) elementoTarjeta.style.left = "-9999px";
                 enviarAlServidor(paramsData);
               }
             } else {
