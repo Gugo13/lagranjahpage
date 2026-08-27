@@ -42,102 +42,236 @@
       </button>
     </div>
 
-    <!-- Tarjeta de Carnet Unificada (Sin pie) -->
+    <!-- Tarjeta de Carnet Unificada (Estilos en línea puros con Hex para evitar errores de oklch en html2canvas) -->
     <div
       id="tarjeta-carnet"
-      class="w-[400px] h-[250px] bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800 relative flex flex-col justify-between p-5 transition-all duration-300"
+      style="
+        width: 400px;
+        height: 250px;
+        background-color: #0f172a;
+        border-radius: 1rem;
+        overflow: hidden;
+        border: 1px solid #1e293b;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1.25rem;
+      "
     >
       <!-- Escudo de fondo con transparencia (Marca de agua lado derecho) -->
       <div
-        class="absolute right-[-20px] bottom-[-20px] w-48 h-48 pointer-events-none z-0 flex items-center justify-center"
+        style="
+          position: absolute;
+          right: -20px;
+          bottom: -20px;
+          width: 12rem;
+          height: 12rem;
+          pointer-events: none;
+          z-index: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
       >
         <img
           src="../../public/escudo/escudoLagranjah.png"
           alt="Marca de agua"
           id="escudo-fondo"
-          class="w-full h-full object-contain opacity-10 filter grayscale"
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.1;
+            filter: grayscale(100%);
+          "
         />
       </div>
 
       <!-- Franja Tricolor Superior -->
-      <div class="absolute top-0 left-0 right-0 h-2.5 flex z-10">
-        <div class="w-1/3 bg-emerald-500"></div>
-        <div class="w-1/3 bg-amber-400"></div>
-        <div class="w-1/3 bg-rose-500"></div>
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 10px;
+          display: flex;
+          z-index: 10;
+        "
+      >
+        <div style="width: 33.333%; background-color: #10b981"></div>
+        <div style="width: 33.333%; background-color: #fbbf24"></div>
+        <div style="width: 33.333%; background-color: #f43f5e"></div>
       </div>
 
       <!-- Encabezado / Logo con Escudo -->
-      <div class="flex justify-between items-center mt-2 z-10">
-        <div class="flex items-center space-x-2">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 0.5rem;
+          z-index: 10;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 0.5rem">
           <img
             src="../../public/escudo/escudoLagranjah.png"
             alt="Escudo La Granjah"
-            class="w-8 h-8 object-contain"
+            style="width: 2rem; height: 2rem; object-fit: contain"
           />
           <span
             id="texto-titulo"
-            class="text-white font-black tracking-wider uppercase text-lg"
+            style="
+              color: #ffffff;
+              font-weight: 900;
+              letter-spacing: 0.05em;
+              text-transform: uppercase;
+              font-size: 1.125rem;
+            "
             >La Granjah</span
           >
         </div>
         <span
           id="badge-socio"
-          class="text-xs font-semibold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded-full border border-emerald-800"
+          style="
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #34d399;
+            background-color: #022c22;
+            padding: 0.25rem 0.625rem;
+            border-radius: 9999px;
+            border: 1px solid #065f46;
+          "
           >Socio Activo</span
         >
       </div>
 
-      <!-- Cuerpo: Foto y Datos (Ocupa el espacio central cómodamente) -->
-      <div class="flex items-center space-x-4 my-auto z-10">
+      <!-- Cuerpo: Foto y Datos -->
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin: auto 0;
+          z-index: 10;
+        "
+      >
         <!-- Foto Carnet -->
         <div
           id="contenedor-foto"
-          class="w-20 h-24 bg-slate-800/90 rounded-lg border-2 border-slate-700 flex items-center justify-center text-slate-500 text-xs font-medium text-center overflow-hidden backdrop-blur-xs"
+          style="
+            width: 5rem;
+            height: 6rem;
+            background-color: rgba(30, 41, 59, 0.9);
+            border-radius: 0.5rem;
+            border: 2px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-align: center;
+            overflow: hidden;
+          "
         >
           FOTO
         </div>
         <!-- Datos del Socio -->
-        <div class="flex flex-col space-y-1">
+        <div style="display: flex; flex-direction: column; gap: 0.25rem">
           <div>
             <p
               id="label-nombre"
-              class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+              style="
+                font-size: 10px;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-weight: 600;
+                margin: 0;
+              "
             >
               Apellido y Nombre
             </p>
             <p
               id="txt-nombre"
-              class="text-white font-bold text-base leading-tight"
+              style="
+                color: #ffffff;
+                font-weight: bold;
+                font-size: 1rem;
+                line-height: 1.25;
+                margin: 0;
+              "
             >
               Cargando...
             </p>
           </div>
           <div>
             <p
-              class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+              style="
+                font-size: 10px;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-weight: 600;
+                margin: 0;
+              "
             >
               DNI
             </p>
-            <p id="txt-dni" class="text-slate-200 text-sm">-</p>
+            <p
+              id="txt-dni"
+              style="color: #e2e8f0; font-size: 0.875rem; margin: 0"
+            >
+              -
+            </p>
           </div>
-          <!-- NUEVO: Campo de Fecha de Nacimiento -->
           <div>
             <p
-              class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+              style="
+                font-size: 10px;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-weight: 600;
+                margin: 0;
+              "
             >
               F. Nacimiento
             </p>
-            <p id="txt-fecha" class="text-slate-200 text-sm">-</p>
+            <p
+              id="txt-fecha"
+              style="color: #e2e8f0; font-size: 0.875rem; margin: 0"
+            >
+              -
+            </p>
           </div>
           <div>
             <p
-              class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+              style="
+                font-size: 10px;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-weight: 600;
+                margin: 0;
+              "
             >
               N° de Socio
             </p>
             <p
               id="txt-socio"
-              class="text-amber-400 font-mono font-bold text-sm"
+              style="
+                color: #fbbf24;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 0.875rem;
+                margin: 0;
+              "
             >
               #----
             </p>
@@ -145,13 +279,12 @@
         </div>
       </div>
 
-      <!-- Elemento decorativo inferior sutil para cerrar la tarjeta sin texto -->
-      <div class="h-1 z-10"></div>
+      <!-- Elemento decorativo inferior -->
+      <div style="height: 0.25rem; z-index: 10"></div>
     </div>
 
     <!-- Script para leer los datos de la URL y alternar estilos -->
     <script>
-      // 1. Inyectar datos automáticamente desde los parámetros de la URL al cargar
       window.addEventListener("DOMContentLoaded", () => {
         const params = new URLSearchParams(window.location.search);
 
@@ -171,11 +304,11 @@
 
         if (fotoUrl) {
           const contenedorFoto = document.getElementById("contenedor-foto");
-          contenedorFoto.innerHTML = `<img src="${decodeURIComponent(fotoUrl)}" alt="Foto Socio" class="w-full h-full object-cover">`;
+          contenedorFoto.innerHTML = `<img src="${decodeURIComponent(fotoUrl)}" alt="Foto Socio" style="width: 100%; height: 100%; object-fit: cover;">`;
         }
       });
 
-      // 2. Función para alternar temas (Oscuro / Blanco Impresión)
+      // Función para alternar temas de visualización e impresión de forma segura
       function cambiarTema(tipo) {
         const tarjeta = document.getElementById("tarjeta-carnet");
         const textoTitulo = document.getElementById("texto-titulo");
@@ -188,39 +321,35 @@
         const escudoFondo = document.getElementById("escudo-fondo");
 
         if (tipo === "blanco") {
-          tarjeta.className =
-            "w-[400px] h-[250px] bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-300 relative flex flex-col justify-between p-5 transition-all duration-300";
-          textoTitulo.className =
-            "text-slate-900 font-black tracking-wider uppercase text-lg";
-          badgeSocio.className =
-            "text-xs font-semibold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200";
-          contenedorFoto.className =
-            "w-20 h-24 bg-slate-100/90 rounded-lg border-2 border-slate-300 flex items-center justify-center text-slate-400 text-xs font-medium text-center overflow-hidden";
-          labelNombre.className =
-            "text-[10px] text-slate-500 uppercase tracking-wider font-semibold";
-          txtNombre.className =
-            "text-slate-900 font-bold text-base leading-tight";
-          txtDni.className = "text-slate-700 text-sm";
-          if (txtFecha) txtFecha.className = "text-slate-700 text-sm";
-
-          escudoFondo.className = "w-full h-full object-contain opacity-70";
+          tarjeta.style.backgroundColor = "#ffffff";
+          tarjeta.style.borderColor = "#cbd5e1";
+          textoTitulo.style.color = "#0f172a";
+          badgeSocio.style.color = "#047857";
+          badgeSocio.style.backgroundColor = "#ecfdf5";
+          badgeSocio.style.borderColor = "#a7f3d0";
+          contenedorFoto.style.backgroundColor = "#f1f5f9";
+          contenedorFoto.style.borderColor = "#cbd5e1";
+          contenedorFoto.style.color = "#94a3b8";
+          labelNombre.style.color = "#64748b";
+          txtNombre.style.color = "#0f172a";
+          txtDni.style.color = "#334155";
+          if (txtFecha) txtFecha.style.color = "#334155";
+          escudoFondo.style.opacity = "0.7";
         } else {
-          tarjeta.className =
-            "w-[400px] h-[250px] bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800 relative flex flex-col justify-between p-5 transition-all duration-300";
-          textoTitulo.className =
-            "text-white font-black tracking-wider uppercase text-lg";
-          badgeSocio.className =
-            "text-xs font-semibold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded-full border border-emerald-800";
-          contenedorFoto.className =
-            "w-20 h-24 bg-slate-800/90 rounded-lg border-2 border-slate-700 flex items-center justify-center text-slate-500 text-xs font-medium text-center overflow-hidden";
-          labelNombre.className =
-            "text-[10px] text-slate-400 uppercase tracking-wider font-semibold";
-          txtNombre.className = "text-white font-bold text-base leading-tight";
-          txtDni.className = "text-slate-200 text-sm";
-          if (txtFecha) txtFecha.className = "text-slate-200 text-sm";
-
-          escudoFondo.className =
-            "w-full h-full object-contain opacity-10 filter grayscale";
+          tarjeta.style.backgroundColor = "#0f172a";
+          tarjeta.style.borderColor = "#1e293b";
+          textoTitulo.style.color = "#ffffff";
+          badgeSocio.style.color = "#34d399";
+          badgeSocio.style.backgroundColor = "#022c22";
+          badgeSocio.style.borderColor = "#065f46";
+          contenedorFoto.style.backgroundColor = "rgba(30, 41, 59, 0.9)";
+          contenedorFoto.style.borderColor = "#334155";
+          contenedorFoto.style.color = "#64748b";
+          labelNombre.style.color = "#94a3b8";
+          txtNombre.style.color = "#ffffff";
+          txtDni.style.color = "#e2e8f0";
+          if (txtFecha) txtFecha.style.color = "#e2e8f0";
+          escudoFondo.style.opacity = "0.1";
         }
       }
     </script>
