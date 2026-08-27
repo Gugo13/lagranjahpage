@@ -1725,108 +1725,6 @@ const subtitulo = "Club Social & Deportivo";
           </button>
         </form>
 
-        <!-- Bloque del Carnet Digital Optimizado -->
-        <div
-          id="bloque-carnet-digital"
-          class="hidden flex flex-col items-center justify-center gap-4 w-full my-6"
-        >
-          <p class="text-slate-200 text-sm font-medium text-center">
-            ¡Solicitud enviada con éxito! Este es tu carnet digital, una vez
-            chequeado el pago se te envía.
-          </p>
-
-          <!-- Contenedor del Carnet -->
-          <div class="single-card-container cursor-pointer w-[420px] h-[260px]">
-            <div class="relative w-full h-full">
-              <!-- FRENTE DEL CARNET (Estilos en línea puramente seguros para html2canvas) -->
-              <div
-                id="tarjeta-carnet"
-                style="background-color: #030712; border: 1px solid #1e293b; border-radius: 1rem; width: 420px; height: 260px; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; position: relative; overflow: hidden; box-sizing: border-box;"
-              >
-                <!-- Franja Tricolor Superior -->
-                <div
-                  style="position: absolute; top: 0; left: 0; right: 0; height: 12px; display: flex;"
-                >
-                  <div style="width: 33.33%; background-color: #10b981;"></div>
-                  <div style="width: 33.33%; background-color: #fbbf24;"></div>
-                  <div style="width: 33.33%; background-color: #f43f5e;"></div>
-                </div>
-
-                <!-- Cabecera / Título y Badge con N° de Socio -->
-                <div
-                  style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;"
-                >
-                  <div style="display: flex; align-items: center; gap: 10px;">
-                    <span
-                      style="color: #ffffff; font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: 1px;"
-                      >La Granjah</span
-                    >
-                  </div>
-                  <div
-                    style="display: flex; flex-direction: column; align-items: flex-end;"
-                  >
-                    <span
-                      id="txt-socio"
-                      style="font-size: 10px; font-weight: 600; text-transform: uppercase; color: #34d399; background-color: #064e3b; padding: 2px 10px; border-radius: 9999px; border: 1px solid #065f46;"
-                      >Socio Activo</span
-                    >
-                    <span
-                      style="font-size: 12px; color: #fbbf24; font-family: monospace; font-weight: bold; margin-top: 4px;"
-                    >
-                      N° <span id="txt-nro-socio">0000</span>
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Cuerpo del Carnet (Foto y Datos) -->
-                <div
-                  style="display: flex; align-items: center; gap: 20px; margin: auto 0;"
-                >
-                  <!-- Contenedor de la foto -->
-                  <div
-                    id="contenedor-foto"
-                    style="width: 96px; height: 112px; background-color: #0f172a; border: 2px solid #334155; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 12px; overflow: hidden; flex-shrink: 0;"
-                  >
-                    FOTO
-                  </div>
-                  <!-- Textos y datos -->
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <div>
-                      <p
-                        style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 600; margin: 0;"
-                      >
-                        Apellido y Nombre
-                      </p>
-                      <p
-                        id="txt-nombre"
-                        style="color: #ffffff; font-weight: bold; font-size: 16px; line-height: 1.2; margin: 2px 0 0 0;"
-                      >
-                        Cargando...
-                      </p>
-                    </div>
-                    <div>
-                      <p
-                        style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 600; margin: 0;"
-                      >
-                        DNI
-                      </p>
-                      <p
-                        id="txt-dni"
-                        style="color: #e2e8f0; font-size: 14px; font-family: monospace; margin: 2px 0 0 0;"
-                      >
-                        -
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Pie sutil -->
-                <div style="height: 4px;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- BLOQUE DE DATOS DE PAGO POR BRUBANK -->
         <div
           id="bloque-pago-brubank"
@@ -1929,7 +1827,7 @@ const subtitulo = "Club Social & Deportivo";
           </div>
         </div>
 
-        <!-- Bloque del Carnet Digital (Usa el diseño exacto de plantilla.html) -->
+        <!-- BLOQUE DEL CARNET DIGITAL (ÚNICO Y CORREGIDO) -->
         <div
           id="bloque-carnet-digital"
           class="hidden flex flex-col items-center justify-center gap-4 w-full my-6"
@@ -1939,14 +1837,13 @@ const subtitulo = "Club Social & Deportivo";
             clic sobre él para girarlo o ver el dorso.
           </p>
 
-          <!-- Contenedor con efecto 3D para el carnet -->
           <div
             class="single-card-container cursor-pointer perspective-1000 w-[400px] h-[250px]"
           >
             <div
               class="card-inner relative w-full h-full duration-500 transform-style-3d transition-transform"
             >
-              <!-- FRENTE DEL CARNET (Diseño Plantilla) -->
+              <!-- FRENTE DEL CARNET -->
               <div
                 id="tarjeta-carnet"
                 class="absolute inset-0 w-full h-full bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800 flex flex-col justify-between p-5 backface-hidden"
@@ -1995,7 +1892,7 @@ const subtitulo = "Club Social & Deportivo";
                 <div class="flex items-center space-x-4 my-auto z-10">
                   <div
                     id="contenedor-foto"
-                    class="w-20 h-24 bg-slate-800/90 rounded-lg border-2 border-slate-700 flex items-center justify-center text-slate-500 text-xs font-medium text-center overflow-hidden"
+                    class="w-20 h-24 bg-slate-800/90 rounded-lg border-2 border-slate-700 flex items-center justify-center text-slate-500 text-xs font-medium text-center overflow-hidden flex-shrink-0"
                   >
                     FOTO
                   </div>
@@ -2020,13 +1917,15 @@ const subtitulo = "Club Social & Deportivo";
                       >
                         DNI
                       </p>
-                      <p id="txt-dni" class="text-slate-200 text-sm">-</p>
+                      <p id="txt-dni" class="text-slate-200 text-sm font-mono">
+                        -
+                      </p>
                     </div>
                     <div>
                       <p
                         class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
                       >
-                        Categoría / N°
+                        Categoría
                       </p>
                       <p
                         id="txt-socio"
@@ -2039,9 +1938,6 @@ const subtitulo = "Club Social & Deportivo";
                 </div>
                 <div class="h-1 z-10"></div>
               </div>
-
-              <!-- DORSO DEL CARNET (Opcional si querés armarlo atrás, o replicar estructura) -->
-              <!-- Si usás rotación 3D, recuerda agregar las clases CSS backface-hidden y transform-style-3d en tu CSS global -->
             </div>
           </div>
         </div>
