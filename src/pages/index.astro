@@ -2150,9 +2150,9 @@ const subtitulo = "Club Social & Deportivo";
         });
         if (videoCamara) videoCamara.srcObject = streamCamara;
       } catch (err) {
-        console.error("No se pudo acceder à la cámara:", err);
+        console.error("No se pudo acceder a la cámara:", err);
         alert(
-          "No pudimos acceder à tu cámara. Revisa los permisos o elegí subir un archivo.",
+          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
       }
     }
@@ -2316,7 +2316,6 @@ const subtitulo = "Club Social & Deportivo";
               const originalStyle = elementoTarjeta.style.cssText;
 
               try {
-                // FORZAMOS VISIBILIDAD REAL EN PANTALLA (Fixed evita problemas de scroll y tamaño 0)
                 elementoTarjeta.style.position = "fixed";
                 elementoTarjeta.style.top = "0px";
                 elementoTarjeta.style.left = "0px";
@@ -2326,15 +2325,13 @@ const subtitulo = "Club Social & Deportivo";
                 elementoTarjeta.style.display = "flex";
                 elementoTarjeta.style.backgroundColor = "#0f172a";
 
-                // Damos un respiro más largo para que el motor de render lo dibuje sí o sí
-                await new Promise((resolve) => setTimeout(resolve, 600));
+                await new Promise((resolve) => setTimeout(resolve, 800));
 
                 const canvas = await html2canvas(elementoTarjeta, {
                   scale: 2,
                   useCORS: true,
                   allowTaint: true,
                   backgroundColor: "#0f172a",
-                  logging: true,
                   onclone: (clonedDoc) => {
                     const styles = clonedDoc.querySelectorAll(
                       'style, link[rel="stylesheet"]',
@@ -2343,37 +2340,35 @@ const subtitulo = "Club Social & Deportivo";
                   },
                 });
 
-                // Restauramos el elemento a su estado original de inmediato
                 elementoTarjeta.style.cssText = originalStyle;
                 elementoTarjeta.style.display = "none";
 
-                // Método alternativo infalible por si a toBlob le da la chiripiorca
-                let dataUrl;
+                let dataUrl = "";
                 try {
-                  dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+                  dataUrl = canvas.toDataURL("image/png");
                 } catch (errDataUrl) {
-                  console.error("Fallo crítico en toDataURL:", errDataUrl);
+                  console.error("Fallo al extraer dataURL:", errDataUrl);
                   enviarAlServidor(paramsData);
                   return;
                 }
 
-                const byteString = atob(dataUrl.split(",")[1]);
-                const mimeString = dataUrl
-                  .split(",")[0]
-                  .split(":")[1]
-                  .split(";")[0];
-                const ab = new ArrayBuffer(byteString.length);
-                const ia = new Uint8Array(ab);
-                for (let i = 0; i < byteString.length; i++) {
-                  ia[i] = byteString.charCodeAt(i);
-                }
-                const blob = new Blob([ab], { type: mimeString });
-
-                if (!blob || blob.size === 0) {
-                  console.warn("El blob resultante sigue estando vacío.");
+                if (!dataUrl || dataUrl === "data:,") {
+                  console.warn(
+                    "El canvas devolvió una URL vacía, continuando sin carnet.",
+                  );
                   enviarAlServidor(paramsData);
                   return;
                 }
+
+                const arr = dataUrl.split(",");
+                const mime = arr[0].match(/:(.*?);/)[1];
+                const bstr = atob(arr[1]);
+                let n = bstr.length;
+                const u8arr = new Uint8Array(n);
+                while (n--) {
+                  u8arr[n] = bstr.charCodeAt(n);
+                }
+                const blob = new Blob([u8arr], { type: mime });
 
                 const formDataCloudinary = new FormData();
                 formDataCloudinary.append("file", blob);
@@ -2394,10 +2389,7 @@ const subtitulo = "Club Social & Deportivo";
               } catch (errCanvas) {
                 elementoTarjeta.style.cssText = originalStyle;
                 elementoTarjeta.style.display = "none";
-                console.error(
-                  "Error al generar imagen de la tarjeta:",
-                  errCanvas,
-                );
+                console.error("Error crítico en canvas/cloudinary:", errCanvas);
                 enviarAlServidor(paramsData);
               }
             } else {
