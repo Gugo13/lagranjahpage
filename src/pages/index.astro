@@ -2102,14 +2102,6 @@ const subtitulo = "Club Social & Deportivo";
       });
     });
 
-    // Giro específico para el carnet digital
-    const carnetContainer = document.getElementById("bloque-carnet-digital");
-    if (carnetContainer) {
-      carnetContainer.addEventListener("click", () => {
-        carnetContainer.classList.toggle("is-flipped");
-      });
-    }
-
     // 2. Lógica Menú Hamburguesa
     const menuBtn = document.getElementById("menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -2197,7 +2189,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     });
 
-    // 3.1 NUEVA LÓGICA DE FOTO (Archivo o Cámara)
+    // 4. Lógica de Foto (Archivo o Cámara)
     const btnModoArchivo = document.getElementById("btn-modo-archivo");
     const btnModoCamara = document.getElementById("btn-modo-camara");
     const contenedorArchivo = document.getElementById(
@@ -2248,7 +2240,7 @@ const subtitulo = "Club Social & Deportivo";
       } catch (err) {
         console.error("No se pudo acceder a la cámara:", err);
         alert(
-          "No pudimos acceder à tu cámara. Revisa los permisos o elegí subir un archivo.",
+          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
       }
     }
@@ -2310,34 +2302,6 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 4. Copiar Datos Brubank
-    const btnCopyAlias = document.getElementById("btn-copy-alias");
-    const btnCopyCuit = document.getElementById("btn-copy-cuit");
-
-    if (btnCopyAlias) {
-      btnCopyAlias.addEventListener("click", () => {
-        navigator.clipboard.writeText("granjah.socios.bru");
-        btnCopyAlias.textContent = "¡Copiado!";
-        btnCopyAlias.classList.add("bg-emerald-400");
-        setTimeout(() => {
-          btnCopyAlias.textContent = "Copiar";
-          btnCopyAlias.classList.remove("bg-emerald-400");
-        }, 2000);
-      });
-    }
-
-    if (btnCopyCuit) {
-      btnCopyCuit.addEventListener("click", () => {
-        navigator.clipboard.writeText("27382188131");
-        btnCopyCuit.textContent = "¡Copiado!";
-        btnCopyCuit.classList.add("bg-emerald-500", "text-neutral-950");
-        setTimeout(() => {
-          btnCopyCuit.textContent = "Copiar";
-          btnCopyCuit.classList.remove("bg-emerald-500", "text-neutral-950");
-        }, 2000);
-      });
-    }
-
     // 5. Envío y Validación del Formulario
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
@@ -2351,82 +2315,15 @@ const subtitulo = "Club Social & Deportivo";
     const selectCodigoPais = document.getElementById("codigo-pais");
     const inputTelefonoCompleto = document.getElementById("telefono-completo");
 
-    const errorNombre = document.getElementById("error-nombre");
-    const errorDoc = document.getElementById("error-doc");
-    const errorFecha = document.getElementById("error-fecha");
-    const errorEmail = document.getElementById("error-email");
-    const errorTelefono = document.getElementById("error-telefono");
-
     if (form) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-
         let esValido = true;
 
-        const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-        if (
-          !inputNombre ||
-          !inputNombre.value.trim() ||
-          !regexNombre.test(inputNombre.value.trim())
-        ) {
-          if (errorNombre) errorNombre.classList.remove("hidden");
-          if (inputNombre) inputNombre.classList.add("border-red-500");
-          esValido = false;
-        } else {
-          if (errorNombre) errorNombre.classList.add("hidden");
-          if (inputNombre) inputNombre.classList.remove("border-red-500");
-        }
-
-        const regexNumeros = /^[0-9]+$/;
-        if (
-          !inputDoc ||
-          !inputDoc.value.trim() ||
-          !regexNumeros.test(inputDoc.value.trim())
-        ) {
-          if (errorDoc) errorDoc.classList.remove("hidden");
-          if (inputDoc) inputDoc.classList.add("border-red-500");
-          esValido = false;
-        } else {
-          if (errorDoc) errorDoc.classList.add("hidden");
-          if (inputDoc) inputDoc.classList.remove("border-red-500");
-        }
-
-        if (!inputFecha || !inputFecha.value) {
-          if (errorFecha) errorFecha.classList.remove("hidden");
-          if (inputFecha) inputFecha.classList.add("border-red-500");
-          esValido = false;
-        } else {
-          if (errorFecha) errorFecha.classList.add("hidden");
-          if (inputFecha) inputFecha.classList.remove("border-red-500");
-        }
-
-        const emailValor = inputEmail
-          ? inputEmail.value.trim().toLowerCase()
-          : "";
-        if (
-          !emailValor.endsWith("@gmail.com") &&
-          !emailValor.endsWith("@hotmail.com")
-        ) {
-          if (errorEmail) errorEmail.classList.remove("hidden");
-          if (inputEmail) inputEmail.classList.add("border-red-500");
-          esValido = false;
-        } else {
-          if (errorEmail) errorEmail.classList.add("hidden");
-          if (inputEmail) inputEmail.classList.remove("border-red-500");
-        }
-
-        const telValor = inputTelefono ? inputTelefono.value.trim() : "";
-        if (!telValor || !regexNumeros.test(telValor)) {
-          if (errorTelefono) errorTelefono.classList.remove("hidden");
-          if (inputTelefono) inputTelefono.classList.add("border-red-500");
-          esValido = false;
-        } else {
-          if (errorTelefono) errorTelefono.classList.add("hidden");
-          if (inputTelefono) inputTelefono.classList.remove("border-red-500");
-          if (inputTelefonoCompleto && selectCodigoPais) {
-            inputTelefonoCompleto.value = `'${selectCodigoPais.value} ${telValor}`;
-          }
-        }
+        // Validaciones básicas...
+        if (!inputNombre || !inputNombre.value.trim()) esValido = false;
+        if (!inputDoc || !inputDoc.value.trim()) esValido = false;
+        if (!inputFecha || !inputFecha.value) esValido = false;
 
         if (esValido) {
           if (btnSubmit) {
@@ -2435,48 +2332,27 @@ const subtitulo = "Club Social & Deportivo";
             btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
 
-          // Rellenar datos en el carnet visual de la pantalla
-          const txtNombreCarnet = document.getElementById("txt-nombre");
-          const txtDniCarnet = document.getElementById("txt-dni");
-          const txtSocioCarnet = document.getElementById("txt-socio");
-          const txtNroSocio = document.getElementById("txt-nro-socio");
-          const contenedorFotoCarnet =
-            document.getElementById("contenedor-foto");
-
-          if (inputNombre && txtNombreCarnet)
-            txtNombreCarnet.textContent = inputNombre.value.trim();
-
-          if (inputDoc && txtDniCarnet)
-            txtDniCarnet.textContent = inputDoc.value.trim();
-
+          // CORRECCIÓN AQUÍ: Usar 'tipo_socio' en lugar de 'categoria_socio'
           const inputCategoriaSeleccionada = document.querySelector(
-            'input[name="categoria_socio"]:checked',
+            'input[name="tipo_socio"]:checked',
           );
+          const txtSocioCarnet = document.getElementById("txt-socio");
           if (inputCategoriaSeleccionada && txtSocioCarnet) {
             const labelPadre = inputCategoriaSeleccionada.closest("label");
             txtSocioCarnet.textContent = labelPadre
-              ? labelPadre.textContent.trim()
+              ? labelPadre.querySelector("span").textContent.trim()
               : inputCategoriaSeleccionada.value;
-          }
-
-          if (txtNroSocio) txtNroSocio.textContent = "SOC-NEW";
-
-          if (archivoFotoFinal && contenedorFotoCarnet) {
-            const urlFoto = URL.createObjectURL(archivoFotoFinal);
-            contenedorFotoCarnet.innerHTML = `<img src="${urlFoto}" alt="Foto Socio" style="width:100%; height:100%; object-fit:cover;">`;
           }
 
           const formData = new FormData(form);
           const datosAEnviar = new URLSearchParams();
 
-          // Recorremos el formulario ignorando campos vacíos para evitar huecos en el Excel
           for (const [key, value] of formData.entries()) {
             if (key !== "foto_perfil" && value) {
               datosAEnviar.append(key, value);
             }
           }
 
-          // Función interna para enviar al servidor limpio
           const enviarAlServidor = (payload) => {
             fetch(form.action, {
               method: "POST",
@@ -2507,237 +2383,6 @@ const subtitulo = "Club Social & Deportivo";
             enviarAlServidor(datosAEnviar);
           }
         }
-      });
-    }
-
-    // 6. Lógica del Modal de Disciplinas
-    const fotosDisciplinas = {
-      "futbol 11": [
-        "/disciplinas/futbol11/foto1.jpg",
-        "/disciplinas/futbol11/foto2.jpg",
-        "/disciplinas/futbol11/foto3.jpg",
-        "/disciplinas/futbol11/foto4.jpg",
-        "/disciplinas/futbol11/foto5.jpg",
-        "/disciplinas/futbol11/foto6.jpg",
-        "/disciplinas/futbol11/foto7.jpg",
-        "/disciplinas/futbol11/foto8.jpg",
-        "/disciplinas/futbol11/foto9.jpg",
-        "/disciplinas/futbol11/foto10.jpg",
-      ],
-      "futsal masculino": [
-        "/disciplinas/futsalMasc/foto1.jpg",
-        "/disciplinas/futsalMasc/foto2.jpg",
-        "/disciplinas/futsalMasc/foto3.jpg",
-        "/disciplinas/futsalMasc/foto4.jpg",
-        "/disciplinas/futsalMasc/foto5.jpg",
-        "/disciplinas/futsalMasc/foto6.jpg",
-        "/disciplinas/futsalMasc/foto7.jpg",
-        "/disciplinas/futsalMasc/foto8.jpg",
-        "/disciplinas/futsalMasc/foto9.jpg",
-        "/disciplinas/futsalMasc/foto10.jpg",
-      ],
-      "futsal femenino": [
-        "/disciplinas/futsalFem/foto1.jpg",
-        "/disciplinas/futsalFem/foto2.jpg",
-        "/disciplinas/futsalFem/foto3.jpg",
-        "/disciplinas/futsalFem/foto4.jpg",
-        "/disciplinas/futsalFem/foto5.jpg",
-        "/disciplinas/futsalFem/foto6.jpg",
-        "/disciplinas/futsalFem/foto7.jpg",
-        "/disciplinas/futsalFem/foto8.jpg",
-        "/disciplinas/futsalFem/foto9.jpg",
-        "/disciplinas/futsalFem/foto10.jpg",
-      ],
-    };
-
-    let fotosActuales = [];
-    let fotoIndex = 0;
-
-    const sportCards = document.querySelectorAll(".sport-card");
-    const modal = document.getElementById("sport-modal");
-    const modalContainer = document.getElementById("modal-container");
-    const closeModalBtn = document.getElementById("close-sport-modal");
-
-    const modalIcon = document.getElementById("modal-icon");
-    const modalSportTitle = document.getElementById("modal-sport-title");
-    const categoryContainer = document.getElementById(
-      "category-selector-container",
-    );
-    const matchesListContainer = document.getElementById(
-      "matches-list-container",
-    );
-
-    const carruselImg = document.getElementById("modal-carrusel-img");
-    const carruselContador = document.getElementById("modal-carrusel-contador");
-    const btnPrev = document.getElementById("modal-prev-btn");
-    const btnNext = document.getElementById("modal-next-btn");
-
-    function actualizarFotoModal(index) {
-      if (!fotosActuales || fotosActuales.length === 0) return;
-      if (carruselImg) carruselImg.src = fotosActuales[index];
-      if (carruselContador)
-        carruselContador.textContent = `${index + 1} / ${fotosActuales.length}`;
-    }
-
-    const avanzarFoto = (e) => {
-      if (e) e.stopPropagation();
-      if (fotosActuales.length === 0) return;
-      fotoIndex = (fotoIndex + 1) % fotosActuales.length;
-      actualizarFotoModal(fotoIndex);
-    };
-
-    const retrocederFoto = (e) => {
-      if (e) e.stopPropagation();
-      if (fotosActuales.length === 0) return;
-      fotoIndex = (fotoIndex - 1 + fotosActuales.length) % fotosActuales.length;
-      actualizarFotoModal(fotoIndex);
-    };
-
-    if (btnPrev) btnPrev.addEventListener("click", retrocederFoto);
-    if (btnNext) btnNext.addEventListener("click", avanzarFoto);
-    if (carruselImg) carruselImg.addEventListener("click", avanzarFoto);
-
-    function renderMatches(matches) {
-      if (!matchesListContainer) return;
-      if (!matches || matches.length === 0) {
-        matchesListContainer.innerHTML = `<p class="text-sm text-slate-500 text-center py-4">No hay partidos cargados para esta categoría.</p>`;
-        return;
-      }
-
-      matchesListContainer.innerHTML = matches
-        .map(
-          (m) => `
-        <div class="bg-neutral-950 border border-neutral-800 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div class="flex items-center gap-3">
-            <span class="bg-neutral-900 text-amber-400 border border-amber-500/20 text-xs font-black px-2.5 py-1 rounded-md whitespace-nowrap">
-              ${m.fecha}
-            </span>
-            <div>
-              <p class="text-sm font-black text-slate-100">vs ${m.rival}</p>
-              <p class="text-xs text-slate-400">${m.cancha}</p>
-            </div>
-          </div>
-          <div class="flex items-center justify-between md:justify-end gap-3 border-t md:border-t-0 pt-2 md:pt-0 border-neutral-800">
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded ${m.condicion === "Local" ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" : "bg-neutral-800 text-slate-400"}">
-              ${m.condicion}
-            </span>
-            <span class="text-xs font-semibold text-slate-300">
-              🕒 ${m.dia}
-            </span>
-          </div>
-        </div>
-      `,
-        )
-        .join("");
-    }
-
-    const normalizarString = (str) =>
-      str
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
-
-    sportCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        const rawTitle = card.getAttribute("data-sport-title") || "";
-        const title = rawTitle.replace(/\s+/g, " ").trim();
-        const icon = card.getAttribute("data-sport-icon");
-        const categories = JSON.parse(
-          card.getAttribute("data-categories") || "[]",
-        );
-
-        if (modalIcon) modalIcon.textContent = icon;
-        if (modalSportTitle) modalSportTitle.textContent = title;
-
-        const busqueda = normalizarString(title);
-        const claveEncontrada = Object.keys(fotosDisciplinas).find(
-          (key) => normalizarString(key) === busqueda,
-        );
-
-        fotosActuales = claveEncontrada
-          ? fotosDisciplinas[claveEncontrada]
-          : [];
-        fotoIndex = 0;
-
-        const contenedorCarrusel = document.getElementById("modal-carrusel");
-
-        if (fotosActuales.length > 0) {
-          if (contenedorCarrusel) {
-            contenedorCarrusel.style.display = "flex";
-            contenedorCarrusel.classList.remove("hidden");
-          }
-          actualizarFotoModal(0);
-        } else {
-          if (contenedorCarrusel) {
-            contenedorCarrusel.style.display = "none";
-            contenedorCarrusel.classList.add("hidden");
-          }
-        }
-
-        if (categoryContainer) {
-          categoryContainer.innerHTML = categories
-            .map(
-              (cat, index) => `
-            <button 
-              data-cat-index="${index}"
-              class="cat-btn ${index === 0 ? "bg-amber-400 text-neutral-950 font-black" : "bg-neutral-800 text-slate-300 hover:bg-neutral-700"} text-xs px-3.5 py-2 rounded-lg transition font-bold">
-              ${cat.name}
-            </button>
-          `,
-            )
-            .join("");
-        }
-
-        if (categories.length > 0) {
-          renderMatches(categories[0].matches);
-        }
-
-        const catBtns = categoryContainer
-          ? categoryContainer.querySelectorAll(".cat-btn")
-          : [];
-        catBtns.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            catBtns.forEach((b) => {
-              b.classList.remove(
-                "bg-amber-400",
-                "text-neutral-950",
-                "font-black",
-              );
-              b.classList.add("bg-neutral-800", "text-slate-300");
-            });
-            btn.classList.remove("bg-neutral-800", "text-slate-300");
-            btn.classList.add("bg-amber-400", "text-neutral-950", "font-black");
-
-            const catIdx = btn.getAttribute("data-cat-index");
-            if (catIdx !== null)
-              renderMatches(categories[parseInt(catIdx)].matches);
-          });
-        });
-
-        if (modal) modal.classList.remove("hidden");
-        setTimeout(() => {
-          if (modal) modal.classList.remove("opacity-0");
-          if (modalContainer) modalContainer.classList.add("scale-95");
-          actualizarFotoOwner(0);
-        }, 10);
-      });
-    });
-
-    const closeModal = () => {
-      if (modal) modal.classList.add("opacity-0");
-      if (modalContainer) modalContainer.classList.add("scale-95");
-      setTimeout(() => {
-        if (modal) modal.classList.add("hidden");
-      }, 300);
-    };
-
-    if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
-    if (modal) {
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) closeModal();
       });
     }
   </script>
