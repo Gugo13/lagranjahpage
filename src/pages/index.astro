@@ -1039,7 +1039,7 @@ const subtitulo = "Club Social & Deportivo";
         <!-- FORMULARIO UNIFICADO -->
         <form
           id="mi-formulario-actual"
-          action="https://script.google.com/macros/s/AKfycbza1tcqAS5tqk19aYP5eD6aIYSxxgMgiYqaoMQHZ96za0BcP7REoNy7Qhgx0WcgP-Jg/exec"
+          action="https://script.google.com/macros/s/AKfycbzokGFgcVTyAUqLqx9tjkV2c1DQPxAOgrBOtdYFH_w6cqEJsyoipetbe_UPyZaOQDnd/exec"
           method="POST"
           novalidate
           class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-xl space-y-6"
@@ -2248,7 +2248,7 @@ const subtitulo = "Club Social & Deportivo";
       } catch (err) {
         console.error("No se pudo acceder a la cámara:", err);
         alert(
-          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
+          "No pudimos acceder à tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
       }
     }
@@ -2467,12 +2467,20 @@ const subtitulo = "Club Social & Deportivo";
           }
 
           const formData = new FormData(form);
+          const datosAEnviar = new URLSearchParams();
+
+          // Recorremos el formulario ignorando campos vacíos para evitar huecos en el Excel
+          for (const [key, value] of formData.entries()) {
+            if (key !== "foto_perfil" && value) {
+              datosAEnviar.append(key, value);
+            }
+          }
 
           // Función interna para enviar al servidor limpio
-          const enviarAlServidor = (datosAEnviar) => {
+          const enviarAlServidor = (payload) => {
             fetch(form.action, {
               method: "POST",
-              body: datosAEnviar,
+              body: payload,
             })
               .then((res) => res.json())
               .then(() => {
@@ -2492,18 +2500,10 @@ const subtitulo = "Club Social & Deportivo";
             const reader = new FileReader();
             reader.readAsDataURL(archivoFotoFinal);
             reader.onload = function () {
-              const fotoBase64 = reader.result;
-              const datosAEnviar = new URLSearchParams();
-              for (const pair of formData.entries()) {
-                if (pair[0] !== "foto_perfil") {
-                  datosAEnviar.append(pair[0], pair[1]);
-                }
-              }
-              datosAEnviar.append("foto_perfil", fotoBase64);
+              datosAEnviar.append("foto_perfil", reader.result);
               enviarAlServidor(datosAEnviar);
             };
           } else {
-            const datosAEnviar = new URLSearchParams(formData);
             enviarAlServidor(datosAEnviar);
           }
         }
