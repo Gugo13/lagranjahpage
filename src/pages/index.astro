@@ -1039,7 +1039,7 @@ const subtitulo = "Club Social & Deportivo";
         <!-- FORMULARIO UNIFICADO -->
         <form
           id="mi-formulario-actual"
-          action="https://script.google.com/macros/s/AKfycbwmwTNsdHeBF0ZlMLZRQj573HQWNMN6eTezbXIA1C18YZy8tbTyr-8XYqPO23C73UX7/exec"
+          action="https://script.google.com/macros/s/AKfycbza1tcqAS5tqk19aYP5eD6aIYSxxgMgiYqaoMQHZ96za0BcP7REoNy7Qhgx0WcgP-Jg/exec"
           method="POST"
           novalidate
           class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-xl space-y-6"
@@ -2246,7 +2246,7 @@ const subtitulo = "Club Social & Deportivo";
         });
         if (videoCamara) videoCamara.srcObject = streamCamara;
       } catch (err) {
-        console.error("No se pudo acceder à la cámara:", err);
+        console.error("No se pudo acceder a la cámara:", err);
         alert(
           "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
@@ -2468,7 +2468,7 @@ const subtitulo = "Club Social & Deportivo";
 
           const formData = new FormData(form);
 
-          // Función interna para enviar al servidor con la foto en Base64
+          // Función interna para enviar al servidor limpio
           const enviarAlServidor = (datosAEnviar) => {
             fetch(form.action, {
               method: "POST",
@@ -2721,7 +2721,7 @@ const subtitulo = "Club Social & Deportivo";
         setTimeout(() => {
           if (modal) modal.classList.remove("opacity-0");
           if (modalContainer) modalContainer.classList.add("scale-95");
-          actualizarFotoModal(0);
+          actualizarFotoOwner(0);
         }, 10);
       });
     });
