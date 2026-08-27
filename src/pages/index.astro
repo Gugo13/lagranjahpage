@@ -2322,7 +2322,7 @@ const subtitulo = "Club Social & Deportivo";
                     try {
                       const formDataCloudinary = new FormData();
                       formDataCloudinary.append("file", blob);
-                      formDataCloudinary.append("upload_preset", "la granjah");
+                      formDataCloudinary.append("upload_preset", "carnets_socios");
                       formDataCloudinary.append("folder", "carnets_socios"); // Organización automática en Cloudinary
 
                       const respuestaCloud = await fetch(
