@@ -2322,7 +2322,10 @@ const subtitulo = "Club Social & Deportivo";
                     try {
                       const formDataCloudinary = new FormData();
                       formDataCloudinary.append("file", blob);
-                      formDataCloudinary.append("upload_preset", "carnets_socios");
+                      formDataCloudinary.append(
+                        "upload_preset",
+                        "carnets_socios",
+                      );
                       formDataCloudinary.append("folder", "carnets_socios"); // Organización automática en Cloudinary
 
                       const respuestaCloud = await fetch(
@@ -2332,7 +2335,12 @@ const subtitulo = "Club Social & Deportivo";
                           body: formDataCloudinary,
                         },
                       );
+
                       const datosCloud = await respuestaCloud.json();
+                      console.log(
+                        "Respuesta completa de Cloudinary:",
+                        datosCloud,
+                      ); // <-- Agrega esto
 
                       if (datosCloud.secure_url) {
                         paramsData.append("url_carnet", datosCloud.secure_url);
