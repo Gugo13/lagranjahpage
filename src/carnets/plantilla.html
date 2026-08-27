@@ -118,7 +118,16 @@
             >
               DNI
             </p>
-            <p id="txt-doc" class="text-slate-200 text-sm">-</p>
+            <p id="txt-dni" class="text-slate-200 text-sm">-</p>
+          </div>
+          <!-- NUEVO: Campo de Fecha de Nacimiento -->
+          <div>
+            <p
+              class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+            >
+              F. Nacimiento
+            </p>
+            <p id="txt-fecha" class="text-slate-200 text-sm">-</p>
           </div>
           <div>
             <p
@@ -148,6 +157,7 @@
 
         const nombre = params.get("nombre");
         const dni = params.get("dni");
+        const fecha = params.get("fecha");
         const socio = params.get("socio");
         const fotoUrl = params.get("foto");
 
@@ -155,6 +165,7 @@
           document.getElementById("txt-nombre").textContent =
             decodeURIComponent(nombre);
         if (dni) document.getElementById("txt-dni").textContent = dni;
+        if (fecha) document.getElementById("txt-fecha").textContent = fecha;
         if (socio)
           document.getElementById("txt-socio").textContent = `#${socio}`;
 
@@ -173,6 +184,7 @@
         const labelNombre = document.getElementById("label-nombre");
         const txtNombre = document.getElementById("txt-nombre");
         const txtDni = document.getElementById("txt-dni");
+        const txtFecha = document.getElementById("txt-fecha");
         const escudoFondo = document.getElementById("escudo-fondo");
 
         if (tipo === "blanco") {
@@ -189,9 +201,9 @@
           txtNombre.className =
             "text-slate-900 font-bold text-base leading-tight";
           txtDni.className = "text-slate-700 text-sm";
+          if (txtFecha) txtFecha.className = "text-slate-700 text-sm";
 
-          // MODO BLANCO: Escudo A COLOR (sin escala de grises) y con 20% de opacidad para que se luzca el tricolor
-          escudoFondo.className = "w-full h-full object-contain opacity-0";
+          escudoFondo.className = "w-full h-full object-contain opacity-70";
         } else {
           tarjeta.className =
             "w-[400px] h-[250px] bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800 relative flex flex-col justify-between p-5 transition-all duration-300";
@@ -205,8 +217,8 @@
             "text-[10px] text-slate-400 uppercase tracking-wider font-semibold";
           txtNombre.className = "text-white font-bold text-base leading-tight";
           txtDni.className = "text-slate-200 text-sm";
+          if (txtFecha) txtFecha.className = "text-slate-200 text-sm";
 
-          // MODO OSCURO: Escudo con escala de grises y opacidad sutil (10%)
           escudoFondo.className =
             "w-full h-full object-contain opacity-10 filter grayscale";
         }

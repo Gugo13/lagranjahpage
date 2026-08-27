@@ -2342,12 +2342,15 @@ const subtitulo = "Club Social & Deportivo";
           }
 
           const txtNombreCarnet = document.getElementById("txt-nombre");
-          const txtDniCarnet = document.getElementById("txt-dni"); // Coincide con tu plantilla.html
+          const txtDniCarnet = document.getElementById("txt-dni");
+          const txtFechaCarnet = document.getElementById("txt-fecha"); // NUEVO: Elemento de fecha en el carnet
 
           if (txtNombreCarnet && inputNombre)
             txtNombreCarnet.textContent = inputNombre.value;
           if (txtDniCarnet && inputDoc)
             txtDniCarnet.textContent = inputDoc.value;
+          if (txtFechaCarnet && inputFecha)
+            txtFechaCarnet.textContent = inputFecha.value; // Inyecta la fecha de nacimiento
 
           const formData = new FormData(form);
           const datosAEnviar = new URLSearchParams();
