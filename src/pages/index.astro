@@ -2003,7 +2003,7 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
 
-  <!-- SCRIPT -->
+<!-- SCRIPT -->
   <script is:inline>
     // 1. Giro de Tarjetas Generales
     document.querySelectorAll(".single-card-container").forEach((card) => {
@@ -2285,6 +2285,7 @@ const subtitulo = "Club Social & Deportivo";
             if (fotoPerfilBase64 && contenedorFoto) {
               await new Promise((resolve) => {
                 const imgTemp = new Image();
+                imgTemp.crossOrigin = "anonymous";
                 imgTemp.onload = () => {
                   contenedorFoto.innerHTML = "";
                   contenedorFoto.appendChild(imgTemp);
@@ -2311,7 +2312,11 @@ const subtitulo = "Club Social & Deportivo";
             if (elementoTarjeta) {
               try {
                 elementoTarjeta.style.display = "flex";
+                elementoTarjeta.style.visibility = "visible";
+                elementoTarjeta.style.opacity = "1";
                 elementoTarjeta.style.backgroundColor = "#0f172a";
+
+                await new Promise((resolve) => setTimeout(resolve, 100));
 
                 const canvas = await html2canvas(elementoTarjeta, {
                   scale: 1.5,
