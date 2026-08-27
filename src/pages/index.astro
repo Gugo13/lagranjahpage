@@ -1039,7 +1039,7 @@ const subtitulo = "Club Social & Deportivo";
         <!-- FORMULARIO UNIFICADO -->
         <form
           id="mi-formulario-actual"
-          action="https://script.google.com/macros/s/AKfycby0qgXaBl8sMzruDP15UdOthch5S5tAjY6870nxXilWlbS6JUa4eIKP4TlDBu8hF2Z7/exec"
+          action="https://script.google.com/macros/s/AKfycbwxOQvksB33IsOpzSc12nf8hQTZ9O0Lm3-HleuQA1DM7wh9ztPimDyExyzMdZ-cPI0/exec"
           method="POST"
           novalidate
           class="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl shadow-xl space-y-6"
@@ -2248,7 +2248,7 @@ const subtitulo = "Club Social & Deportivo";
       } catch (err) {
         console.error("No se pudo acceder a la cámara:", err);
         alert(
-          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
+          "No pudimos acceder à tu cámara. Revisa los permisos o elegí subir un archivo.",
         );
       }
     }
@@ -2338,7 +2338,7 @@ const subtitulo = "Club Social & Deportivo";
       });
     }
 
-    // 5. Envío y Validación del Formulario + Generación Automática del Carnet en Imagen
+    // 5. Envío y Validación del Formulario (Sin html2canvas para evitar errores)
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
     const bloqueCarnet = document.getElementById("bloque-carnet-digital");
@@ -2356,8 +2356,6 @@ const subtitulo = "Club Social & Deportivo";
     const errorFecha = document.getElementById("error-fecha");
     const errorEmail = document.getElementById("error-email");
     const errorTelefono = document.getElementById("error-telefono");
-
-    let imagenCarnetBase64 = null; // Variable para almacenar la imagen convertida del carnet
 
     if (form) {
       form.addEventListener("submit", async (e) => {
@@ -2432,12 +2430,12 @@ const subtitulo = "Club Social & Deportivo";
 
         if (esValido) {
           if (btnSubmit) {
-            btnSubmit.textContent = "Generando carnet y guardando...";
+            btnSubmit.textContent = "Guardando solicitud...";
             btnSubmit.disabled = true;
             btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
 
-          // Rellenar datos en el carnet visual
+          // Rellenar datos en el carnet visual de la pantalla
           const txtNombreCarnet = document.getElementById("txt-nombre");
           const txtDniCarnet = document.getElementById("txt-dni");
           const txtSocioCarnet = document.getElementById("txt-socio");
@@ -2461,26 +2459,11 @@ const subtitulo = "Club Social & Deportivo";
               : inputCategoriaSeleccionada.value;
           }
 
-          // Número provisional en pantalla
-          if (txtNroSocio) txtNroSocio.textContent = "----";
+          if (txtNroSocio) txtNroSocio.textContent = "SOC-NEW";
 
           if (archivoFotoFinal && contenedorFotoCarnet) {
             const urlFoto = URL.createObjectURL(archivoFotoFinal);
-            contenedorFotoCarnet.innerHTML = `<img src="${urlFoto}" alt="Foto Socio" class="w-full h-full object-cover">`;
-          }
-
-          // Mostrar temporalmente el bloque para que html2canvas pueda capturarlo
-          if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
-
-          try {
-            const tarjetaElemento = document.getElementById("tarjeta-carnet");
-            const canvas = await html2canvas(tarjetaElemento, {
-              scale: 2,
-              useCORS: true,
-            });
-            imagenCarnetBase64 = canvas.toDataURL("image/png");
-          } catch (err) {
-            console.error("Error al generar la imagen del carnet:", err);
+            contenedorFotoCarnet.innerHTML = `<img src="${urlFoto}" alt="Foto Socio" style="width:100%; height:100%; object-fit:cover;">`;
           }
 
           const formData = new FormData(form);
@@ -2489,11 +2472,6 @@ const subtitulo = "Club Social & Deportivo";
             (!inputFotoSocio || !inputFotoSocio.files.length)
           ) {
             formData.set("foto_perfil", archivoFotoFinal);
-          }
-
-          // Adjuntamos la imagen convertida del carnet al paquete que viaja a Google
-          if (imagenCarnetBase64) {
-            formData.append("imagen_carnet", imagenCarnetBase64);
           }
 
           fetch(form.action, {
@@ -2725,7 +2703,7 @@ const subtitulo = "Club Social & Deportivo";
         if (modal) modal.classList.remove("hidden");
         setTimeout(() => {
           if (modal) modal.classList.remove("opacity-0");
-          if (modalContainer) modalContainer.classList.add("scale-95"); // corregido visual
+          if (modalContainer) modalContainer.classList.add("scale-95");
           actualizarFotoModal(0);
         }, 10);
       });
