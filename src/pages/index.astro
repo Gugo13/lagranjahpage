@@ -2118,7 +2118,6 @@ const subtitulo = "Club Social & Deportivo";
     const inputFotoSocio = document.getElementById("foto-perfil");
 
     let streamCamara = null;
-    let archivoFotoFinal = null;
 
     if (btnModoArchivo && btnModoCamara) {
       btnModoArchivo.addEventListener("click", () => {
@@ -2180,7 +2179,7 @@ const subtitulo = "Club Social & Deportivo";
 
         canvasCamara.toBlob(
           (blob) => {
-            archivoFotoFinal = new File([blob], "foto-camara.jpg", {
+            const archivoFotoFinal = new File([blob], "foto-camara.jpg", {
               type: "image/jpeg",
             });
             const urlTemporal = URL.createObjectURL(archivoFotoFinal);
@@ -2189,6 +2188,11 @@ const subtitulo = "Club Social & Deportivo";
             if (btnCapturar) btnCapturar.classList.add("hidden");
             if (previewCapturada) previewCapturada.classList.remove("hidden");
             detenerCamara();
+
+            // Opcional: Inyectar el archivo capturado en el input file oculto/existente si se requiere enviar por formulario clásico
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(archivoFotoFinal);
+            if (inputFotoSocio) inputFotoSocio.files = dataTransfer.files;
           },
           "image/jpeg",
           0.8,
@@ -2198,213 +2202,34 @@ const subtitulo = "Club Social & Deportivo";
 
     if (btnRepetir) {
       btnRepetir.addEventListener("click", async () => {
-        archivoFotoFinal = null;
         if (previewCapturada) previewCapturada.classList.add("hidden");
         if (videoCamara) videoCamara.classList.remove("hidden");
-        if (btnCapturar) btnCapturar.classList.remove("hidden");
+        if (btnCapturar) btnCapturar.classList.add("hidden"); // Asegurar visibilidad si aplica
         await iniciarCamara();
       });
     }
 
-    if (inputFotoSocio) {
-      inputFotoSocio.addEventListener("change", (e) => {
-        if (e.target.files && e.target.files[0]) {
-          archivoFotoFinal = e.target.files[0];
-        }
-      });
-    }
-
-    // 5. Envío y Validación del Formulario con Cloudinary para la tarjeta generada
+    // 5. Envío Estándar del Formulario (Sin Generación de Carnet Automática)
     const form = document.getElementById("mi-formulario-actual");
     const bloquePago = document.getElementById("bloque-pago-brubank");
-    const bloqueCarnet = document.getElementById("bloque-carnet-digital");
 
     const inputNombre = document.getElementById("nombre");
     const inputDoc = document.getElementById("numero-doc");
     const inputFecha = document.getElementById("fecha-nacimiento");
 
     if (form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+      form.addEventListener("submit", (e) => {
         let esValido = true;
 
         if (!inputNombre || !inputNombre.value.trim()) esValido = false;
         if (!inputDoc || !inputDoc.value.trim()) esValido = false;
         if (!inputFecha || !inputFecha.value) esValido = false;
 
-        if (esValido) {
-          if (btnSubmit) {
-            btnSubmit.textContent = "Generando carnet y guardando...";
-            btnSubmit.disabled = true;
-            btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
-          }
-
-          // Rellenar datos en el diseño de la tarjeta del carnet
-          const inputCategoriaSeleccionada = document.querySelector(
-            'input[name="tipo_socio"]:checked',
-          );
-          const txtSocioCarnet = document.getElementById("txt-socio");
-          if (inputCategoriaSeleccionada && txtSocioCarnet) {
-            const labelPadre = inputCategoriaSeleccionada.closest("label");
-            txtSocioCarnet.textContent =
-              labelPadre && labelPadre.querySelector("span")
-                ? labelPadre.querySelector("span").textContent.trim()
-                : inputCategoriaSeleccionada.value;
-          }
-
-          const txtNombreCarnet = document.getElementById("txt-nombre");
-          const txtDniCarnet = document.getElementById("txt-dni");
-          const txtFechaCarnet = document.getElementById("txt-fecha");
-
-          if (txtNombreCarnet && inputNombre)
-            txtNombreCarnet.textContent = inputNombre.value;
-          if (txtDniCarnet && inputDoc)
-            txtDniCarnet.textContent = inputDoc.value;
-          if (txtFechaCarnet && inputFecha)
-            txtFechaCarnet.textContent = inputFecha.value;
-
-          const enviarAlServidor = (payloadParams) => {
-            fetch(form.action, {
-              method: "POST",
-              body: payloadParams,
-            })
-              .then((res) => res.json())
-              .then(() => {
-                form.classList.add("hidden");
-                if (bloquePago) bloquePago.classList.remove("hidden");
-                if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
-              })
-              .catch((err) => {
-                console.error("Error al guardar:", err);
-                form.classList.add("hidden");
-                if (bloquePago) bloquePago.classList.remove("hidden");
-                if (bloqueCarnet) bloqueCarnet.classList.remove("hidden");
-              });
-          };
-
-          const procesarYEnviarCarnet = async (fotoPerfilBase64) => {
-            const contenedorFoto = document.getElementById("contenedor-foto");
-
-            if (fotoPerfilBase64 && contenedorFoto) {
-              await new Promise((resolve) => {
-                const imgTemp = new Image();
-                imgTemp.crossOrigin = "anonymous";
-                imgTemp.onload = () => {
-                  contenedorFoto.innerHTML = "";
-                  contenedorFoto.appendChild(imgTemp);
-                  imgTemp.style.width = "100%";
-                  imgTemp.style.height = "100%";
-                  imgTemp.style.objectFit = "cover";
-                  resolve();
-                };
-                imgTemp.onerror = () => resolve();
-                imgTemp.src = fotoPerfilBase64;
-              });
-            }
-
-            const elementoTarjeta = document.getElementById("tarjeta-carnet");
-            const paramsData = new URLSearchParams();
-            const formData = new FormData(form);
-
-            for (const [key, value] of formData.entries()) {
-              if (key !== "foto_perfil" && value) {
-                paramsData.append(key, value);
-              }
-            }
-
-            if (elementoTarjeta) {
-              const originalStyle = elementoTarjeta.style.cssText;
-
-              try {
-                // Forzamos un contenedor visible, con medidas fijas de carnet para que html2canvas no falle
-                elementoTarjeta.style.position = "absolute";
-                elementoTarjeta.style.top = "-9999px";
-                elementoTarjeta.style.left = "-9999px";
-                elementoTarjeta.style.width = "400px";
-                elementoTarjeta.style.height = "250px";
-                elementoTarjeta.style.visibility = "visible";
-                elementoTarjeta.style.opacity = "1";
-                elementoTarjeta.style.display = "flex";
-                elementoTarjeta.style.backgroundColor = "#0f172a";
-
-                await new Promise((resolve) => setTimeout(resolve, 500));
-
-                const canvas = await html2canvas(elementoTarjeta, {
-                  scale: 2,
-                  useCORS: true,
-                  allowTaint: true,
-                  backgroundColor: "#0f172a",
-                  windowWidth: 1200,
-                  windowHeight: 800,
-                });
-
-                elementoTarjeta.style.cssText = originalStyle;
-                elementoTarjeta.style.display = "none";
-
-                let dataUrl = "";
-                try {
-                  dataUrl = canvas.toDataURL("image/png");
-                } catch (errDataUrl) {
-                  console.error("Fallo al extraer dataURL:", errDataUrl);
-                  enviarAlServidor(paramsData);
-                  return;
-                }
-
-                if (!dataUrl || dataUrl === "data:,") {
-                  console.warn(
-                    "El canvas devolvió una URL vacía, continuando sin carnet.",
-                  );
-                  enviarAlServidor(paramsData);
-                  return;
-                }
-
-                const arr = dataUrl.split(",");
-                const mime = arr[0].match(/:(.*?);/)[1];
-                const bstr = atob(arr[1]);
-                let n = bstr.length;
-                const u8arr = new Uint8Array(n);
-                while (n--) {
-                  u8arr[n] = bstr.charCodeAt(n);
-                }
-                const blob = new Blob([u8arr], { type: mime });
-
-                const formDataCloudinary = new FormData();
-                formDataCloudinary.append("file", blob);
-                formDataCloudinary.append("upload_preset", "la granjah");
-                formDataCloudinary.append("folder", "carnets_socios");
-
-                const respuestaCloud = await fetch(
-                  "https://api.cloudinary.com/v1_1/ffv1vsn2/image/upload",
-                  { method: "POST", body: formDataCloudinary },
-                );
-
-                const datosCloud = await respuestaCloud.json();
-                if (datosCloud.secure_url) {
-                  paramsData.append("url_carnet", datosCloud.secure_url);
-                }
-
-                enviarAlServidor(paramsData);
-              } catch (errCanvas) {
-                elementoTarjeta.style.cssText = originalStyle;
-                elementoTarjeta.style.display = "none";
-                console.error("Error crítico en canvas/cloudinary:", errCanvas);
-                enviarAlServidor(paramsData);
-              }
-            } else {
-              enviarAlServidor(paramsData);
-            }
-          };
-
-          if (archivoFotoFinal) {
-            const reader = new FileReader();
-            reader.readAsDataURL(archivoFotoFinal);
-            reader.onload = function () {
-              procesarYEnviarCarnet(reader.result);
-            };
-          } else {
-            procesarYEnviarCarnet("");
-          }
+        if (!esValido) {
+          e.preventDefault();
+          alert("Por favor completa los campos obligatorios.");
         }
+        // Si todo es válido, el formulario se envía de manera estándar o mediante fetch tradicional sin procesar imágenes pesadas en cliente.
       });
     }
 
