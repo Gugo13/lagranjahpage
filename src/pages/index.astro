@@ -2003,23 +2003,55 @@ const subtitulo = "Club Social & Deportivo";
       });
     });
 
-    // 4. Envío Estándar del Formulario
+    // 4. Envío por Fetch del Formulario (Sin recargar / Sin pantalla negra de Google)
     const form = document.getElementById("mi-formulario-actual");
+    const bloquePago = document.getElementById("bloque-pago-brubank");
     const inputNombre = document.getElementById("nombre");
     const inputDoc = document.getElementById("numero-doc");
     const inputFecha = document.getElementById("fecha-nacimiento");
 
     if (form) {
-      form.addEventListener("submit", (e) => {
-        let esValido = true;
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Evita que el navegador abra la respuesta en una pestaña/pantalla nueva
 
+        let esValido = true;
         if (!inputNombre || !inputNombre.value.trim()) esValido = false;
         if (!inputDoc || !inputDoc.value.trim()) esValido = false;
         if (!inputFecha || !inputFecha.value) esValido = false;
 
         if (!esValido) {
-          e.preventDefault();
           alert("Por favor completa los campos obligatorios.");
+          return;
+        }
+
+        if (btnSubmit) {
+          btnSubmit.textContent = "Enviando solicitud...";
+          btnSubmit.disabled = true;
+          btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+        }
+
+        const formData = new FormData(form);
+        const actionUrl = form.action;
+
+        try {
+          await fetch(actionUrl, {
+            method: "POST",
+            body: formData,
+            mode: "no-cors",
+          });
+
+          // Éxito: Oculta el formulario y muestra los datos de pago de Brubank en la misma página
+          form.classList.add("hidden");
+          if (bloquePago) bloquePago.classList.remove("hidden");
+        } catch (err) {
+          console.error("Error al enviar:", err);
+          alert("Hubo un error al enviar tus datos. Inténtalo de nuevo.");
+
+          if (btnSubmit) {
+            btnSubmit.textContent = "Enviar Solicitud";
+            btnSubmit.disabled = false;
+            btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+          }
         }
       });
     }
