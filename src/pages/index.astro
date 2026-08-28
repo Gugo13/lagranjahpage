@@ -12,9 +12,6 @@ const subtitulo = "Club Social & Deportivo";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <title>{titulo} — {subtitulo}</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-    ></script>
   </head>
   <body
     class="bg-neutral-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between"
@@ -2101,118 +2098,8 @@ const subtitulo = "Club Social & Deportivo";
       });
     });
 
-    // 4. Lógica de Foto (Archivo o Cámara)
-    const btnModoArchivo = document.getElementById("btn-modo-archivo");
-    const btnModoCamara = document.getElementById("btn-modo-camara");
-    const contenedorArchivo = document.getElementById(
-      "contenedor-modo-archivo",
-    );
-    const contenedorCamara = document.getElementById("contenedor-modo-camara");
-
-    const videoCamara = document.getElementById("video-camara");
-    const canvasCamara = document.getElementById("canvas-camara");
-    const btnCapturar = document.getElementById("btn-capturar-foto");
-    const previewCapturada = document.getElementById("preview-foto-capturada");
-    const imagenCapturada = document.getElementById("imagen-capturada");
-    const btnRepetir = document.getElementById("btn-repetir-foto");
-    const inputFotoSocio = document.getElementById("foto-perfil");
-
-    let streamCamara = null;
-
-    if (btnModoArchivo && btnModoCamara) {
-      btnModoArchivo.addEventListener("click", () => {
-        if (contenedorArchivo) contenedorArchivo.classList.remove("hidden");
-        if (contenedorCamara) contenedorCamara.classList.add("hidden");
-        btnModoArchivo.className =
-          "flex-1 py-2 text-xs font-black bg-amber-400 text-neutral-950 rounded-xl transition";
-        btnModoCamara.className =
-          "flex-1 py-2 text-xs font-black bg-neutral-900 text-slate-300 border border-neutral-800 rounded-xl hover:text-white transition";
-        detenerCamara();
-      });
-
-      btnModoCamara.addEventListener("click", async () => {
-        if (contenedorArchivo) contenedorArchivo.classList.add("hidden");
-        if (contenedorCamara) contenedorCamara.classList.remove("hidden");
-        btnModoCamara.className =
-          "flex-1 py-2 text-xs font-black bg-amber-400 text-neutral-950 rounded-xl transition";
-        btnModoArchivo.className =
-          "flex-1 py-2 text-xs font-black bg-neutral-900 text-slate-300 border border-neutral-800 rounded-xl hover:text-white transition";
-        await iniciarCamara();
-      });
-    }
-
-    async function iniciarCamara() {
-      try {
-        streamCamara = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "user" },
-          audio: false,
-        });
-        if (videoCamara) videoCamara.srcObject = streamCamara;
-      } catch (err) {
-        console.error("No se pudo acceder a la cámara:", err);
-        alert(
-          "No pudimos acceder a tu cámara. Revisa los permisos o elegí subir un archivo.",
-        );
-      }
-    }
-
-    function detenerCamara() {
-      if (streamCamara) {
-        streamCamara.getTracks().forEach((track) => track.stop());
-        streamCamara = null;
-      }
-    }
-
-    if (btnCapturar) {
-      btnCapturar.addEventListener("click", () => {
-        if (!videoCamara || !canvasCamara || !imagenCapturada) return;
-        const context = canvasCamara.getContext("2d");
-        canvasCamara.width = videoCamara.videoWidth || 300;
-        canvasCamara.height = videoCamara.videoHeight || 300;
-        context.drawImage(
-          videoCamara,
-          0,
-          0,
-          canvasCamara.width,
-          canvasCamara.height,
-        );
-
-        canvasCamara.toBlob(
-          (blob) => {
-            const archivoFotoFinal = new File([blob], "foto-camara.jpg", {
-              type: "image/jpeg",
-            });
-            const urlTemporal = URL.createObjectURL(archivoFotoFinal);
-            if (imagenCapturada) imagenCapturada.src = urlTemporal;
-            if (videoCamara) videoCamara.classList.add("hidden");
-            if (btnCapturar) btnCapturar.classList.add("hidden");
-            if (previewCapturada) previewCapturada.classList.remove("hidden");
-            detenerCamara();
-
-            // Opcional: Inyectar el archivo capturado en el input file oculto/existente si se requiere enviar por formulario clásico
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(archivoFotoFinal);
-            if (inputFotoSocio) inputFotoSocio.files = dataTransfer.files;
-          },
-          "image/jpeg",
-          0.8,
-        );
-      });
-    }
-
-    if (btnRepetir) {
-      btnRepetir.addEventListener("click", async () => {
-        if (previewCapturada) previewCapturada.classList.add("hidden");
-        if (videoCamara) videoCamara.classList.remove("hidden");
-        if (btnCapturar) btnCapturar.classList.add("hidden"); // Asegurar visibilidad si aplica
-        await iniciarCamara();
-      });
-    }
-
-    // 5. Envío Estándar del Formulario (Sin Generación de Carnet Automática)
+    // 4. Envío Estándar del Formulario
     const form = document.getElementById("mi-formulario-actual");
-    const bloquePago = document.getElementById("bloque-pago-brubank");
-
     const inputNombre = document.getElementById("nombre");
     const inputDoc = document.getElementById("numero-doc");
     const inputFecha = document.getElementById("fecha-nacimiento");
@@ -2229,11 +2116,10 @@ const subtitulo = "Club Social & Deportivo";
           e.preventDefault();
           alert("Por favor completa los campos obligatorios.");
         }
-        // Si todo es válido, el formulario se envía de manera estándar o mediante fetch tradicional sin procesar imágenes pesadas en cliente.
       });
     }
 
-    // 6. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
+    // 5. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
     const sportCards = document.querySelectorAll(".sport-card");
     const sportModal = document.getElementById("sport-modal");
     const modalContainer = document.getElementById("modal-container");
