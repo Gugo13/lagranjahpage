@@ -276,9 +276,9 @@ const subtitulo = "Club Social & Deportivo";
             </div>
           </div>
 
-          <!-- GRID DE CARDS CON BLUR APLICADO -->
+          <!-- GRID DE CARDS CON BLUR APLICADO (Muestra solo 3 en celu, las 6 en sm en adelante) -->
           <div
-            class="filter blur-md pointer-events-none select-none opacity-40 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+            class="filter blur-md pointer-events-none select-none opacity-40 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 [&>div:nth-child(n+4)]:hidden sm:[&>div:nth-child(n+4)]:block"
           >
             <!-- CARD 1 -->
             <div class="single-card-container group h-[420px] cursor-pointer">
@@ -523,7 +523,7 @@ const subtitulo = "Club Social & Deportivo";
                     class="w-full text-center border-t border-neutral-800/80 pt-3 z-10"
                   >
                     <h4 class="text-lg font-black text-slate-100 uppercase">
-                      Armadura Granjhística
+                      Canilleras Granjhística
                     </h4>
                     <p class="text-xs font-bold text-amber-400 mt-0.5">
                       $14.000 ARS
@@ -661,7 +661,7 @@ const subtitulo = "Club Social & Deportivo";
           </div>
         </div>
       </div>
-    </section>
+    </section> 
 
     <!-- ESTILOS Y ANIMACIONES -->
     <style>
