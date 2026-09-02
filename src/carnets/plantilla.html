@@ -6,13 +6,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @media print {
-        body {
+        @page {
+          size: 400px 250px;
+          margin: 0;
+        }
+        body, html {
           background: white !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 400px !important;
+          height: 250px !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
+        body * {
+          visibility: hidden;
+        }
         .no-print {
           display: none !important;
+        }
+        #tarjeta-carnet, #tarjeta-carnet * {
+          visibility: visible;
+        }
+        #tarjeta-carnet {
+          position: absolute;
+          left: 0;
+          top: 0;
+          margin: 0 !important;
+          box-shadow: none !important;
         }
       }
     </style>
@@ -179,7 +200,11 @@
             overflow: hidden;
           "
         >
-          FOTO
+          <img 
+            src="fotosCarnet/FacundoDarioRocoPelaezFaraon .jpg" 
+            alt="Foto Carnet" 
+            style="width: 100%; height: 100%; object-fit: cover;"
+          >
         </div>
         <!-- Datos del Socio -->
         <div style="display: flex; flex-direction: column; gap: 0.25rem">
@@ -207,7 +232,7 @@
                 margin: 0;
               "
             >
-              Cargando...
+              Facundo Dario Roco Pelaez
             </p>
           </div>
           <div>
@@ -227,10 +252,10 @@
               id="txt-dni"
               style="color: #e2e8f0; font-size: 0.875rem; margin: 0"
             >
-              -
+              39.008.271
             </p>
           </div>
-          <div>
+<!--           <div>
             <p
               style="
                 font-size: 10px;
@@ -247,9 +272,9 @@
               id="txt-fecha"
               style="color: #e2e8f0; font-size: 0.875rem; margin: 0"
             >
-              -
+              07/08/1993
             </p>
-          </div>
+          </div> -->
           <div>
             <p
               style="
@@ -273,7 +298,33 @@
                 margin: 0;
               "
             >
-              #----
+              #03
+            </p>
+          </div>
+                    <div>
+            <p
+              style="
+                font-size: 10px;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-weight: 600;
+                margin: 0;
+              "
+            >
+              Tipo de Socio
+            </p>
+            <p
+              id="txt-socio"
+              style="
+                color: #fbbf24;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 0.875rem;
+                margin: 0;
+              "
+            >
+              Socio Faraón
             </p>
           </div>
         </div>
