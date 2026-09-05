@@ -899,7 +899,121 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </section>
 
-    <!-- SECCIÓN: RESULTADOS DE LA FECHA -->
+    <!-- MODAL FLOTANTE DE FIXTURE Y GALERÍA -->
+    <div
+      id="sport-modal"
+      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]"
+        id="modal-container"
+      >
+        <!-- CABECERA DEL MODAL -->
+        <div
+          class="bg-neutral-950 p-5 border-b border-neutral-800 flex justify-between items-center shrink-0"
+        >
+          <div class="flex items-center gap-3">
+            <span id="modal-icon" class="text-3xl">⚽</span>
+            <div>
+              <span
+                class="text-[10px] font-black uppercase tracking-widest text-emerald-400"
+                >Fixture Oficial & Galería</span
+              >
+              <h3
+                id="modal-sport-title"
+                class="text-2xl font-black uppercase text-slate-100"
+              >
+                Fútbol 11
+              </h3>
+            </div>
+          </div>
+          <button
+            id="close-sport-modal"
+            class="text-slate-400 hover:text-white text-xl font-bold bg-neutral-900 hover:bg-neutral-800 w-8 h-8 rounded-full flex items-center justify-center border border-neutral-700 transition"
+          >
+            ✕
+          </button>
+        </div>
+
+        <!-- CUERPO DEL MODAL (GRID 2 COLUMNAS) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1"
+        >
+          <!-- COLUMNA IZQUIERDA: CATEGORÍAS Y FIXTURE -->
+          <div class="flex flex-col justify-between p-5">
+            <div>
+              <p
+                class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2"
+              >
+                Seleccioná Categoría:
+              </p>
+              <div
+                id="category-selector-container"
+                class="flex flex-wrap gap-2 mb-4"
+              >
+              </div>
+
+              <div
+                class="space-y-3 max-h-[350px] overflow-y-auto pr-1"
+                id="matches-list-container"
+              >
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMNA DERECHA: VISOR DE FOTOS DE LA DISCIPLINA -->
+          <div
+            class="relative bg-neutral-950 p-5 flex flex-col items-center justify-center min-h-[250px] lg:min-h-full"
+          >
+            <div
+              id="modal-carrusel"
+              class="relative w-full h-64 sm:h-80 overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center"
+            >
+              <img
+                id="modal-carrusel-img"
+                src=""
+                alt="Foto disciplina"
+                class="w-full h-full object-cover transition-all duration-300"
+              />
+
+              <!-- Botones de navegación -->
+              <button
+                id="modal-prev-btn"
+                type="button"
+                class="absolute left-2 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-amber-400 hover:text-neutral-950 text-white p-2.5 rounded-full transition text-xs font-black"
+              >
+                ❮
+              </button>
+              <button
+                id="modal-next-btn"
+                type="button"
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-amber-400 hover:text-neutral-950 text-white p-2.5 rounded-full transition text-xs font-black"
+              >
+                ❯
+              </button>
+
+              <span
+                id="modal-carrusel-contador"
+                class="absolute bottom-2 right-2 bg-neutral-950/80 border border-neutral-800 text-amber-400 px-2 py-0.5 text-[10px] font-bold rounded-md"
+              >
+                1 / 1
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER DEL MODAL -->
+        <div
+          class="bg-neutral-950 p-3 border-t border-neutral-800 text-center shrink-0"
+        >
+          <p class="text-[11px] text-slate-500">
+            * Programación sujeta a modificaciones de la organización oficial.
+          </p>
+        </div>
+      </div>
+    </div>
+
+        <!-- SECCIÓN: RESULTADOS DE LA FECHA -->
 <section class="py-12 px-4 max-w-4xl mx-auto">
   <div class="text-center mb-8">
     <h2 class="text-2xl font-black uppercase tracking-wider text-white">Resultados de la Fecha</h2>
@@ -1023,120 +1137,6 @@ const subtitulo = "Club Social & Deportivo";
     </div>
   </div>
 </section>
-
-    <!-- MODAL FLOTANTE DE FIXTURE Y GALERÍA -->
-    <div
-      id="sport-modal"
-      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4"
-    >
-      <div
-        class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]"
-        id="modal-container"
-      >
-        <!-- CABECERA DEL MODAL -->
-        <div
-          class="bg-neutral-950 p-5 border-b border-neutral-800 flex justify-between items-center shrink-0"
-        >
-          <div class="flex items-center gap-3">
-            <span id="modal-icon" class="text-3xl">⚽</span>
-            <div>
-              <span
-                class="text-[10px] font-black uppercase tracking-widest text-emerald-400"
-                >Fixture Oficial & Galería</span
-              >
-              <h3
-                id="modal-sport-title"
-                class="text-2xl font-black uppercase text-slate-100"
-              >
-                Fútbol 11
-              </h3>
-            </div>
-          </div>
-          <button
-            id="close-sport-modal"
-            class="text-slate-400 hover:text-white text-xl font-bold bg-neutral-900 hover:bg-neutral-800 w-8 h-8 rounded-full flex items-center justify-center border border-neutral-700 transition"
-          >
-            ✕
-          </button>
-        </div>
-
-        <!-- CUERPO DEL MODAL (GRID 2 COLUMNAS) -->
-        <div
-          class="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1"
-        >
-          <!-- COLUMNA IZQUIERDA: CATEGORÍAS Y FIXTURE -->
-          <div class="flex flex-col justify-between p-5">
-            <div>
-              <p
-                class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2"
-              >
-                Seleccioná Categoría:
-              </p>
-              <div
-                id="category-selector-container"
-                class="flex flex-wrap gap-2 mb-4"
-              >
-              </div>
-
-              <div
-                class="space-y-3 max-h-[350px] overflow-y-auto pr-1"
-                id="matches-list-container"
-              >
-              </div>
-            </div>
-          </div>
-
-          <!-- COLUMNA DERECHA: VISOR DE FOTOS DE LA DISCIPLINA -->
-          <div
-            class="relative bg-neutral-950 p-5 flex flex-col items-center justify-center min-h-[250px] lg:min-h-full"
-          >
-            <div
-              id="modal-carrusel"
-              class="relative w-full h-64 sm:h-80 overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center"
-            >
-              <img
-                id="modal-carrusel-img"
-                src=""
-                alt="Foto disciplina"
-                class="w-full h-full object-cover transition-all duration-300"
-              />
-
-              <!-- Botones de navegación -->
-              <button
-                id="modal-prev-btn"
-                type="button"
-                class="absolute left-2 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-amber-400 hover:text-neutral-950 text-white p-2.5 rounded-full transition text-xs font-black"
-              >
-                ❮
-              </button>
-              <button
-                id="modal-next-btn"
-                type="button"
-                class="absolute right-2 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-amber-400 hover:text-neutral-950 text-white p-2.5 rounded-full transition text-xs font-black"
-              >
-                ❯
-              </button>
-
-              <span
-                id="modal-carrusel-contador"
-                class="absolute bottom-2 right-2 bg-neutral-950/80 border border-neutral-800 text-amber-400 px-2 py-0.5 text-[10px] font-bold rounded-md"
-              >
-                1 / 1
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- FOOTER DEL MODAL -->
-        <div
-          class="bg-neutral-950 p-3 border-t border-neutral-800 text-center shrink-0"
-        >
-          <p class="text-[11px] text-slate-500">
-            * Programación sujeta a modificaciones de la organización oficial.
-          </p>
-        </div>
-      </div>
-    </div>
 
     <!-- SECCIÓN FORMULARIO DE ASOCIACIÓN -->
     <section
