@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Carrusel from "../components/Carrusel.astro";
-import Analytics from '@vercel/analytics/astro';
+import Analytics from "@vercel/analytics/astro";
 
 const titulo = "La Granjah";
 const subtitulo = "Club Social & Deportivo";
@@ -1013,130 +1013,703 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </div>
 
-        <!-- SECCIÓN: RESULTADOS DE LA FECHA -->
-<section class="py-12 px-4 max-w-4xl mx-auto">
-  <div class="text-center mb-8">
-    <h2 class="text-2xl font-black uppercase tracking-wider text-white">Resultados de la Fecha</h2>
-    <p class="text-xs text-slate-400 mt-1">Torneo Oficial – Fecha 4</p>
-  </div>
-
-  <!-- DISCIPLINAS PRINCIPALES (Pestañas Generales) -->
-  <div class="flex justify-center gap-2 mb-6">
-    <button onclick="cambiarDisciplina('f11')" id="btn-f11" class="px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg">Fútbol 11</button>
-    <button onclick="cambiarDisciplina('futsal-m')" id="btn-futsal-m" class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">Futsal Masculino</button>
-    <button onclick="cambiarDisciplina('futsal-f')" id="btn-futsal-f" class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">Futsal Femenino</button>
-  </div>
-
-  <!-- CONTENEDOR FÚTBOL 11 (2 Categorías) -->
-  <div id="seccion-f11" class="disciplina-content space-y-6">
-    <!-- Sub-pestañas Categorías F11 -->
-    <div class="flex justify-center gap-2">
-      <button onclick="cambiarCat('f11', 'cat1')" id="btn-f11-cat1" class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer">Primera</button>
-      <button onclick="cambiarCat('f11', 'cat2')" id="btn-f11-cat2" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">Reserva</button>
-    </div>
-
-    <!-- Tabla Categoría 1: Primera -->
-    <div id="f11-cat1" class="cat-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
-      <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Fútbol 11 – Primera</div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse text-sm">
-          <tbody>
-            <tr class="bg-emerald-950/20">
-              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
-              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">2 - 0</span></td>
-              <td class="py-3 px-4 text-right text-slate-300 font-medium">Defensores</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- SECCIÓN: RESULTADOS DE LA FECHA -->
+    <section class="py-12 px-4 max-w-4xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-black uppercase tracking-wider text-white">
+          Resultados de la Fecha
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">
+          Torneo Oficial – Temporada Actual
+        </p>
       </div>
-    </div>
 
-    <!-- Tabla Categoría 2: Reserva (Oculta por defecto) -->
-    <div id="f11-cat2" class="cat-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
-      <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Fútbol 11 – Reserva</div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse text-sm">
-          <tbody>
-            <tr class="bg-emerald-950/20">
-              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
-              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">1 - 1</span></td>
-              <td class="py-3 px-4 text-right text-slate-300 font-medium">Defensores</td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- DISCIPLINAS PRINCIPALES (Pestañas Generales) -->
+      <div class="flex justify-center gap-2 mb-6">
+        <button
+          onclick="cambiarDisciplina('f11')"
+          id="btn-f11"
+          class="px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg"
+          >Fútbol 11</button
+        >
+        <button
+          onclick="cambiarDisciplina('futsal-m')"
+          id="btn-futsal-m"
+          class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
+          >Futsal Masculino</button
+        >
+        <button
+          onclick="cambiarDisciplina('futsal-f')"
+          id="btn-futsal-f"
+          class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
+          >Futsal Femenino</button
+        >
       </div>
-    </div>
-  </div>
 
-  <!-- CONTENEDOR FUTSAL MASCULINO (5 Categorías) -->
-  <div id="seccion-futsal-m" class="disciplina-content space-y-6 hidden">
-    <div class="flex justify-center gap-1.5 flex-wrap">
-      <button onclick="cambiarCat('futsal-m', 'm1')" id="btn-futsal-m-m1" class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-750">1ra</button>
-      <button onclick="cambiarCat('futsal-m', 'm2')" id="btn-futsal-m-m2" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">3ra</button>
-      <button onclick="cambiarCat('futsal-m', 'm3')" id="btn-futsal-m-m3" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">4ta</button>
-      <button onclick="cambiarCat('futsal-m', 'm4')" id="btn-futsal-m-m4" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">5ta</button>
-      <button onclick="cambiarCat('futsal-m', 'm5')" id="btn-futsal-m-m5" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">6ta</button>
-    </div>
-    <!-- Repetir estructura de tabla para cada categoría de futsal masculino aquí -->
-    <div id="futsal-m-m1" class="cat-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
-      <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Masculino – Primera</div>
-      <table class="w-full text-left border-collapse text-sm">
-        <tbody>
-          <tr class="bg-emerald-950/20">
-            <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
-            <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">4 - 2</span></td>
-            <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div id="futsal-m-m2" class="cat-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
-      <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Masculino – Tercera</div>
-      <table class="w-full text-left border-collapse text-sm">
-        <tbody>
-          <tr class="bg-emerald-950/20">
-            <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
-            <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">3 - 3</span></td>
-            <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- (Misma lógica para m3, m4 y m5) -->
-  </div>
+      <!-- ========================================== -->
+      <!-- CONTENEDOR FÚTBOL 11 (2 Categorías) -->
+      <!-- ========================================== -->
+      <div id="seccion-f11" class="disciplina-content space-y-6">
+        <div class="flex justify-center gap-2">
+          <button
+            onclick="cambiarCat('f11', 'cat1')"
+            id="btn-f11-cat1"
+            class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer"
+            >Primera</button
+          >
+          <button
+            onclick="cambiarCat('f11', 'cat2')"
+            id="btn-f11-cat2"
+            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
+            >Reserva</button
+          >
+        </div>
 
-  <!-- CONTENEDOR FUTSAL FEMENINO (2 Categorías) -->
-  <div id="seccion-futsal-f" class="disciplina-content space-y-6 hidden">
-    <div class="flex justify-center gap-2">
-      <button onclick="cambiarCat('futsal-f', 'f1')" id="btn-futsal-f-f1" class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700">A</button>
-      <button onclick="cambiarCat('futsal-f', 'f2')" id="btn-futsal-f-f2" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">B</button>
-    </div>
-    <div id="futsal-f-f1" class="cat-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
-      <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Femenino – Categoría A</div>
-      <table class="w-full text-left border-collapse text-sm">
-        <tbody>
-          <tr class="bg-emerald-950/20">
-            <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
-            <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">5 - 1</span></td>
-            <td class="py-3 px-4 text-right text-slate-300 font-medium">Racing</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div id="futsal-f-f2" class="cat-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
-      <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Femenino – Categoría B</div>
-      <table class="w-full text-left border-collapse text-sm">
-        <tbody>
-          <tr class="bg-emerald-950/20">
-            <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
-            <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">0 - 0</span></td>
-            <td class="py-3 px-4 text-right text-slate-300 font-medium">Racing</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+        <!-- F11: Categoría 1 (Primera) -->
+        <div id="f11-cat1" class="cat-content space-y-4">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('f11-cat1', 'f11-c1-f1')"
+              id="btn-f11-cat1-f11-c1-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+            <button
+              onclick="cambiarFecha('f11-cat1', 'f11-c1-f2')"
+              id="btn-f11-cat1-f11-c1-f2"
+              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
+              >Fecha 2</button
+            >
+          </div>
+
+          <div
+            id="f11-c1-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Fútbol 11 – Primera – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >2 - 0</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Defensores</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            id="f11-c1-f2"
+            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Fútbol 11 – Primera – Fecha 2
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >1 - 1</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Defensores</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- F11: Categoría 2 (Reserva) -->
+        <div id="f11-cat2" class="cat-content space-y-4 hidden">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('f11-cat2', 'f11-c2-f1')"
+              id="btn-f11-cat2-f11-c2-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+            <button
+              onclick="cambiarFecha('f11-cat2', 'f11-c2-f2')"
+              id="btn-f11-cat2-f11-c2-f2"
+              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
+              >Fecha 2</button
+            >
+          </div>
+
+          <div
+            id="f11-c2-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Fútbol 11 – Reserva – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >1 - 1</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Defensores</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            id="f11-c2-f2"
+            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Fútbol 11 – Reserva – Fecha 2
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >2 - 1</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Defensores</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- CONTENEDOR FUTSAL MASCULINO (5 Categorías) -->
+      <!-- ========================================== -->
+      <div id="seccion-futsal-m" class="disciplina-content space-y-6 hidden">
+        <div class="flex justify-center gap-1.5 flex-wrap">
+          <button
+            onclick="cambiarCat('futsal-m', 'm1')"
+            id="btn-futsal-m-m1"
+            class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-750"
+            >Primera</button
+          >
+          <button
+            onclick="cambiarCat('futsal-m', 'm2')"
+            id="btn-futsal-m-m2"
+            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
+            >Reserva</button
+          >
+          <button
+            onclick="cambiarCat('futsal-m', 'm3')"
+            id="btn-futsal-m-m3"
+            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
+            >Sub 17</button
+          >
+          <button
+            onclick="cambiarCat('futsal-m', 'm4')"
+            id="btn-futsal-m-m4"
+            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
+            >Sub 15</button
+          >
+          <button
+            onclick="cambiarCat('futsal-m', 'm5')"
+            id="btn-futsal-m-m5"
+            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
+            >Sub 13</button
+          >
+        </div>
+
+        <!-- Futsal M: m1 (Primera) -->
+        <div id="futsal-m-m1" class="cat-content space-y-4">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('futsal-m-m1', 'fm-m1-f1')"
+              id="btn-futsal-m-m1-fm-m1-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+            <button
+              onclick="cambiarFecha('futsal-m-m1', 'fm-m1-f2')"
+              id="btn-futsal-m-m1-fm-m1-f2"
+              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
+              >Fecha 2</button
+            >
+          </div>
+          <div
+            id="fm-m1-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal M. – Primera – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >4 - 2</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Los Andes</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            id="fm-m1-f2"
+            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal M. – Primera – Fecha 2
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >3 - 1</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Los Andes</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Futsal M: m2 (Reserva) -->
+        <div id="futsal-m-m2" class="cat-content space-y-4 hidden">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('futsal-m-m2', 'fm-m2-f1')"
+              id="btn-futsal-m-m2-fm-m2-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+            <button
+              onclick="cambiarFecha('futsal-m-m2', 'fm-m2-f2')"
+              id="btn-futsal-m-m2-fm-m2-f2"
+              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
+              >Fecha 2</button
+            >
+          </div>
+          <div
+            id="fm-m2-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal M. – Reserva – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >3 - 3</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Los Andes</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            id="fm-m2-f2"
+            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal M. – Reserva – Fecha 2
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >2 - 0</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Los Andes</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Futsal M: m3 (Sub 17) -->
+        <div id="futsal-m-m3" class="cat-content space-y-4 hidden">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('futsal-m-m3', 'fm-m3-f1')"
+              id="btn-futsal-m-m3-fm-m3-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+          </div>
+          <div
+            id="fm-m3-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal M. – Sub 17 – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >1 - 0</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Los Andes</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Futsal M: m4 (Sub 15) -->
+        <div id="futsal-m-m4" class="cat-content space-y-4 hidden">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('futsal-m-m4', 'fm-m4-f1')"
+              id="btn-futsal-m-m4-fm-m4-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+          </div>
+          <div
+            id="fm-m4-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal M. – Sub 15 – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >4 - 4</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Los Andes</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Futsal M: m5 (Sub 13) -->
+        <div id="futsal-m-m5" class="cat-content space-y-4 hidden">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('futsal-m-m5', 'fm-m5-f1')"
+              id="btn-futsal-m-m5-fm-m5-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+          </div>
+          <div
+            id="fm-m5-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal M. – Sub 13 – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >2 - 0</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Los Andes</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- CONTENEDOR FUTSAL FEMENINO (2 Categorías) -->
+      <!-- ========================================== -->
+      <div id="seccion-futsal-f" class="disciplina-content space-y-6 hidden">
+        <div class="flex justify-center gap-2">
+          <button
+            onclick="cambiarCat('futsal-f', 'f1')"
+            id="btn-futsal-f-f1"
+            class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700"
+            >Primera</button
+          >
+          <button
+            onclick="cambiarCat('futsal-f', 'f2')"
+            id="btn-futsal-f-f2"
+            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
+            >Reserva</button
+          >
+        </div>
+
+        <!-- Futsal F: f1 (Primera) -->
+        <div id="futsal-f-f1" class="cat-content space-y-4">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('futsal-f-f1', 'ff-f1-f1')"
+              id="btn-futsal-f-f1-ff-f1-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+            <button
+              onclick="cambiarFecha('futsal-f-f1', 'ff-f1-f2')"
+              id="btn-futsal-f-f1-ff-f1-f2"
+              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
+              >Fecha 2</button
+            >
+          </div>
+          <div
+            id="ff-f1-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal Femenino – Primera – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >5 - 1</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Racing</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            id="ff-f1-f2"
+            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal Femenino – Primera – Fecha 2
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >2 - 0</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Racing</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Futsal F: f2 (Reserva) -->
+        <div id="futsal-f-f2" class="cat-content space-y-4 hidden">
+          <div
+            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
+          >
+            <button
+              onclick="cambiarFecha('futsal-f-f2', 'ff-f2-f1')"
+              id="btn-futsal-f-f2-ff-f2-f1"
+              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
+              >Fecha 1</button
+            >
+            <button
+              onclick="cambiarFecha('futsal-f-f2', 'ff-f2-f2')"
+              id="btn-futsal-f-f2-ff-f2-f2"
+              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
+              >Fecha 2</button
+            >
+          </div>
+          <div
+            id="ff-f2-f1"
+            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal Femenino – Reserva – Fecha 1
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >0 - 0</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Racing</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            id="ff-f2-f2"
+            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
+            >
+              Futsal Femenino – Reserva – Fecha 2
+            </div>
+            <table class="w-full text-left border-collapse text-sm">
+              <tbody>
+                <tr class="bg-emerald-950/20">
+                  <td class="py-3 px-4 font-bold text-emerald-400"
+                    >La Granjah</td
+                  >
+                  <td class="py-3 px-4 text-center font-black text-white"
+                    ><span
+                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
+                      >1 - 0</span
+                    ></td
+                  >
+                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
+                    >Racing</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SECCIÓN FORMULARIO DE ASOCIACIÓN -->
     <section
@@ -2029,10 +2602,7 @@ const subtitulo = "Club Social & Deportivo";
         </p>
       </div>
     </footer>
-  </body>
-
-  <!--SCRIPT!-->
-  <script is:inline>
+  </body><script is:inline>
     // 1. Giro de Tarjetas Generales
     document.querySelectorAll(".single-card-container").forEach((card) => {
       card.addEventListener("click", () => {
@@ -2136,7 +2706,7 @@ const subtitulo = "Club Social & Deportivo";
 
     if (form) {
       form.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Evita que el navegador abra la respuesta en una pestaña/pantalla nueva
+        e.preventDefault();
 
         let esValido = true;
         if (!inputNombre || !inputNombre.value.trim()) esValido = false;
@@ -2164,7 +2734,6 @@ const subtitulo = "Club Social & Deportivo";
             mode: "no-cors",
           });
 
-          // Éxito: Oculta el formulario y muestra los datos de pago de Brubank en la misma página
           form.classList.add("hidden");
           if (bloquePago) bloquePago.classList.remove("hidden");
         } catch (err) {
@@ -2358,26 +2927,73 @@ const subtitulo = "Club Social & Deportivo";
         if (e.target === sportModal) closeModalFunc();
       });
     }
-  function cambiarDisciplina(disc) {
-    document.querySelectorAll('.disciplina-content').forEach(el => el.classList.add('hidden'));
-    ['f11', 'futsal-m', 'futsal-f'].forEach(d => {
-      const btn = document.getElementById(`btn-${d}`);
-      btn.className = d === disc 
-        ? "px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg"
-        : "px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
-    });
-    document.getElementById(`seccion-${disc}`).classList.remove('hidden');
-  }
 
-  function cambiarCat(disc, catId) {
-    const contenedor = document.getElementById(`seccion-${disc}`);
-    contenedor.querySelectorAll('.cat-content').forEach(el => el.classList.add('hidden'));
-    contenedor.querySelectorAll('button[id^="btn-' + disc + '-"]').forEach(btn => {
-      btn.className = "px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
-    });
-    document.getElementById(`${disc}-${catId}`).classList.remove('hidden');
-    const activeBtn = document.getElementById(`btn-${disc}-${catId}`);
-    activeBtn.className = "px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer";
-  }
+    // 6. Lógica de Resultados de la Fecha (Sección independiente)
+    function cambiarDisciplina(disc) {
+      document
+        .querySelectorAll(".disciplina-content")
+        .forEach((el) => el.classList.add("hidden"));
+      ["f11", "futsal-m", "futsal-f"].forEach((d) => {
+        const btn = document.getElementById(`btn-${d}`);
+        if (btn) {
+          btn.className =
+            d === disc
+              ? "px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg"
+              : "px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
+        }
+      });
+      const targetDisc = document.getElementById(`seccion-${disc}`);
+      if (targetDisc) targetDisc.classList.remove("hidden");
+    }
+
+    function cambiarCat(disc, catId) {
+      const contenedor = document.getElementById(`seccion-${disc}`);
+      if (!contenedor) return;
+
+      contenedor
+        .querySelectorAll(".cat-content")
+        .forEach((el) => el.classList.add("hidden"));
+
+      contenedor
+        .querySelectorAll(`button[id^="btn-${disc}-"]`)
+        .forEach((btn) => {
+          btn.className =
+            "px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
+        });
+
+      const targetCat = document.getElementById(`${disc}-${catId}`);
+      if (targetCat) targetCat.classList.remove("hidden");
+
+      const activeBtn = document.getElementById(`btn-${disc}-${catId}`);
+      if (activeBtn) {
+        activeBtn.className =
+          "px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer";
+      }
+    }
+
+    function cambiarFecha(catContainerId, fechaId) {
+      const contenedorCat = document.getElementById(catContainerId);
+      if (!contenedorCat) return;
+
+      contenedorCat
+        .querySelectorAll(".fecha-content")
+        .forEach((el) => el.classList.add("hidden"));
+
+      contenedorCat.querySelectorAll('button[id^="btn-"]').forEach((btn) => {
+        btn.className =
+          "px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer";
+      });
+
+      const targetFecha = document.getElementById(fechaId);
+      if (targetFecha) targetFecha.classList.remove("hidden");
+
+      const btnActivo = document.getElementById(
+        `btn-${catContainerId}-${fechaId}`,
+      );
+      if (btnActivo) {
+        btnActivo.className =
+          "px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer";
+      }
+    }
   </script>
 </html>
