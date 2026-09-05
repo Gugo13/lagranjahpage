@@ -1013,703 +1013,354 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </div>
 
-    <!-- SECCIÓN: RESULTADOS DE LA FECHA -->
-    <section class="py-12 px-4 max-w-4xl mx-auto">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-black uppercase tracking-wider text-white">
-          Resultados de la Fecha
-        </h2>
-        <p class="text-xs text-slate-400 mt-1">
-          Torneo Oficial – Temporada Actual
-        </p>
+<!-- SECCIÓN: RESULTADOS DE LA FECHA -->
+<section class="py-12 px-4 max-w-4xl mx-auto">
+  <div class="text-center mb-8">
+    <h2 class="text-2xl font-black uppercase tracking-wider text-white">Resultados de la Fecha</h2>
+    <p class="text-xs text-slate-400 mt-1">Torneo Oficial – Temporada Actual</p>
+  </div>
+
+  <!-- DISCIPLINAS PRINCIPALES (Pestañas Generales) -->
+  <div class="flex justify-center gap-2 mb-6">
+    <button onclick="cambiarDisciplina('f11')" id="btn-f11" class="px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg">Fútbol 11</button>
+    <button onclick="cambiarDisciplina('futsal-m')" id="btn-futsal-m" class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">Futsal Masculino</button>
+    <button onclick="cambiarDisciplina('futsal-f')" id="btn-futsal-f" class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">Futsal Femenino</button>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- CONTENEDOR FÚTBOL 11 (2 Categorías) -->
+  <!-- ========================================== -->
+  <div id="seccion-f11" class="disciplina-content space-y-6">
+    <div class="flex justify-center gap-2">
+      <button onclick="cambiarCat('f11', 'cat1')" id="btn-f11-cat1" class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer">Primera</button>
+      <button onclick="cambiarCat('f11', 'cat2')" id="btn-f11-cat2" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer">Reserva</button>
+    </div>
+
+    <!-- F11: Categoría 1 (Primera) -->
+    <div id="f11-cat1" class="cat-content space-y-4" data-total-fechas="2">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('f11-cat1', -1)" id="btn-prev-f11-cat1" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-f11-cat1" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('f11-cat1', 1)" id="btn-next-f11-cat1" class="p-1 text-slate-400 hover:text-white transition cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
       </div>
 
-      <!-- DISCIPLINAS PRINCIPALES (Pestañas Generales) -->
-      <div class="flex justify-center gap-2 mb-6">
-        <button
-          onclick="cambiarDisciplina('f11')"
-          id="btn-f11"
-          class="px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg"
-          >Fútbol 11</button
-        >
-        <button
-          onclick="cambiarDisciplina('futsal-m')"
-          id="btn-futsal-m"
-          class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
-          >Futsal Masculino</button
-        >
-        <button
-          onclick="cambiarDisciplina('futsal-f')"
-          id="btn-futsal-f"
-          class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
-          >Futsal Femenino</button
-        >
+      <div id="f11-cat1-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Fútbol 11 – Primera – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">2 - 0</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Defensores</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <!-- ========================================== -->
-      <!-- CONTENEDOR FÚTBOL 11 (2 Categorías) -->
-      <!-- ========================================== -->
-      <div id="seccion-f11" class="disciplina-content space-y-6">
-        <div class="flex justify-center gap-2">
-          <button
-            onclick="cambiarCat('f11', 'cat1')"
-            id="btn-f11-cat1"
-            class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer"
-            >Primera</button
-          >
-          <button
-            onclick="cambiarCat('f11', 'cat2')"
-            id="btn-f11-cat2"
-            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
-            >Reserva</button
-          >
-        </div>
+      <div id="f11-cat1-f2" class="fecha-item-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Fútbol 11 – Primera – Fecha 2</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">1 - 1</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Defensores</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-        <!-- F11: Categoría 1 (Primera) -->
-        <div id="f11-cat1" class="cat-content space-y-4">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('f11-cat1', 'f11-c1-f1')"
-              id="btn-f11-cat1-f11-c1-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-            <button
-              onclick="cambiarFecha('f11-cat1', 'f11-c1-f2')"
-              id="btn-f11-cat1-f11-c1-f2"
-              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
-              >Fecha 2</button
-            >
-          </div>
-
-          <div
-            id="f11-c1-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Fútbol 11 – Primera – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >2 - 0</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Defensores</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div
-            id="f11-c1-f2"
-            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Fútbol 11 – Primera – Fecha 2
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >1 - 1</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Defensores</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- F11: Categoría 2 (Reserva) -->
-        <div id="f11-cat2" class="cat-content space-y-4 hidden">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('f11-cat2', 'f11-c2-f1')"
-              id="btn-f11-cat2-f11-c2-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-            <button
-              onclick="cambiarFecha('f11-cat2', 'f11-c2-f2')"
-              id="btn-f11-cat2-f11-c2-f2"
-              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
-              >Fecha 2</button
-            >
-          </div>
-
-          <div
-            id="f11-c2-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Fútbol 11 – Reserva – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >1 - 1</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Defensores</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div
-            id="f11-c2-f2"
-            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Fútbol 11 – Reserva – Fecha 2
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >2 - 1</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Defensores</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <!-- F11: Categoría 2 (Reserva) -->
+    <div id="f11-cat2" class="cat-content space-y-4 hidden" data-total-fechas="2">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('f11-cat2', -1)" id="btn-prev-f11-cat2" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-f11-cat2" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('f11-cat2', 1)" id="btn-next-f11-cat2" class="p-1 text-slate-400 hover:text-white transition cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
       </div>
 
-      <!-- ========================================== -->
-      <!-- CONTENEDOR FUTSAL MASCULINO (5 Categorías) -->
-      <!-- ========================================== -->
-      <div id="seccion-futsal-m" class="disciplina-content space-y-6 hidden">
-        <div class="flex justify-center gap-1.5 flex-wrap">
-          <button
-            onclick="cambiarCat('futsal-m', 'm1')"
-            id="btn-futsal-m-m1"
-            class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-750"
-            >Primera</button
-          >
-          <button
-            onclick="cambiarCat('futsal-m', 'm2')"
-            id="btn-futsal-m-m2"
-            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
-            >Reserva</button
-          >
-          <button
-            onclick="cambiarCat('futsal-m', 'm3')"
-            id="btn-futsal-m-m3"
-            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
-            >Sub 17</button
-          >
-          <button
-            onclick="cambiarCat('futsal-m', 'm4')"
-            id="btn-futsal-m-m4"
-            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
-            >Sub 15</button
-          >
-          <button
-            onclick="cambiarCat('futsal-m', 'm5')"
-            id="btn-futsal-m-m5"
-            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
-            >Sub 13</button
-          >
-        </div>
-
-        <!-- Futsal M: m1 (Primera) -->
-        <div id="futsal-m-m1" class="cat-content space-y-4">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('futsal-m-m1', 'fm-m1-f1')"
-              id="btn-futsal-m-m1-fm-m1-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-            <button
-              onclick="cambiarFecha('futsal-m-m1', 'fm-m1-f2')"
-              id="btn-futsal-m-m1-fm-m1-f2"
-              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
-              >Fecha 2</button
-            >
-          </div>
-          <div
-            id="fm-m1-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal M. – Primera – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >4 - 2</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Los Andes</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div
-            id="fm-m1-f2"
-            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal M. – Primera – Fecha 2
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >3 - 1</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Los Andes</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Futsal M: m2 (Reserva) -->
-        <div id="futsal-m-m2" class="cat-content space-y-4 hidden">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('futsal-m-m2', 'fm-m2-f1')"
-              id="btn-futsal-m-m2-fm-m2-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-            <button
-              onclick="cambiarFecha('futsal-m-m2', 'fm-m2-f2')"
-              id="btn-futsal-m-m2-fm-m2-f2"
-              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
-              >Fecha 2</button
-            >
-          </div>
-          <div
-            id="fm-m2-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal M. – Reserva – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >3 - 3</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Los Andes</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div
-            id="fm-m2-f2"
-            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal M. – Reserva – Fecha 2
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >2 - 0</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Los Andes</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Futsal M: m3 (Sub 17) -->
-        <div id="futsal-m-m3" class="cat-content space-y-4 hidden">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('futsal-m-m3', 'fm-m3-f1')"
-              id="btn-futsal-m-m3-fm-m3-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-          </div>
-          <div
-            id="fm-m3-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal M. – Sub 17 – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >1 - 0</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Los Andes</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Futsal M: m4 (Sub 15) -->
-        <div id="futsal-m-m4" class="cat-content space-y-4 hidden">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('futsal-m-m4', 'fm-m4-f1')"
-              id="btn-futsal-m-m4-fm-m4-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-          </div>
-          <div
-            id="fm-m4-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal M. – Sub 15 – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >4 - 4</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Los Andes</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Futsal M: m5 (Sub 13) -->
-        <div id="futsal-m-m5" class="cat-content space-y-4 hidden">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('futsal-m-m5', 'fm-m5-f1')"
-              id="btn-futsal-m-m5-fm-m5-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-          </div>
-          <div
-            id="fm-m5-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal M. – Sub 13 – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >2 - 0</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Los Andes</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div id="f11-cat2-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Fútbol 11 – Reserva – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">1 - 1</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Defensores</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <!-- ========================================== -->
-      <!-- CONTENEDOR FUTSAL FEMENINO (2 Categorías) -->
-      <!-- ========================================== -->
-      <div id="seccion-futsal-f" class="disciplina-content space-y-6 hidden">
-        <div class="flex justify-center gap-2">
-          <button
-            onclick="cambiarCat('futsal-f', 'f1')"
-            id="btn-futsal-f-f1"
-            class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700"
-            >Primera</button
-          >
-          <button
-            onclick="cambiarCat('futsal-f', 'f2')"
-            id="btn-futsal-f-f2"
-            class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800"
-            >Reserva</button
-          >
-        </div>
-
-        <!-- Futsal F: f1 (Primera) -->
-        <div id="futsal-f-f1" class="cat-content space-y-4">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('futsal-f-f1', 'ff-f1-f1')"
-              id="btn-futsal-f-f1-ff-f1-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-            <button
-              onclick="cambiarFecha('futsal-f-f1', 'ff-f1-f2')"
-              id="btn-futsal-f-f1-ff-f1-f2"
-              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
-              >Fecha 2</button
-            >
-          </div>
-          <div
-            id="ff-f1-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal Femenino – Primera – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >5 - 1</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Racing</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div
-            id="ff-f1-f2"
-            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal Femenino – Primera – Fecha 2
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >2 - 0</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Racing</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Futsal F: f2 (Reserva) -->
-        <div id="futsal-f-f2" class="cat-content space-y-4 hidden">
-          <div
-            class="flex justify-center gap-1.5 bg-neutral-950/50 p-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto"
-          >
-            <button
-              onclick="cambiarFecha('futsal-f-f2', 'ff-f2-f1')"
-              id="btn-futsal-f-f2-ff-f2-f1"
-              class="px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer"
-              >Fecha 1</button
-            >
-            <button
-              onclick="cambiarFecha('futsal-f-f2', 'ff-f2-f2')"
-              id="btn-futsal-f-f2-ff-f2-f2"
-              class="px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer"
-              >Fecha 2</button
-            >
-          </div>
-          <div
-            id="ff-f2-f1"
-            class="fecha-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal Femenino – Reserva – Fecha 1
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >0 - 0</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Racing</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div
-            id="ff-f2-f2"
-            class="fecha-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl"
-          >
-            <div
-              class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase"
-            >
-              Futsal Femenino – Reserva – Fecha 2
-            </div>
-            <table class="w-full text-left border-collapse text-sm">
-              <tbody>
-                <tr class="bg-emerald-950/20">
-                  <td class="py-3 px-4 font-bold text-emerald-400"
-                    >La Granjah</td
-                  >
-                  <td class="py-3 px-4 text-center font-black text-white"
-                    ><span
-                      class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono"
-                      >1 - 0</span
-                    ></td
-                  >
-                  <td class="py-3 px-4 text-right text-slate-300 font-medium"
-                    >Racing</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div id="f11-cat2-f2" class="fecha-item-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Fútbol 11 – Reserva – Fecha 2</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">2 - 1</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Defensores</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </section>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- CONTENEDOR FUTSAL MASCULINO (5 Categorías) -->
+  <!-- ========================================== -->
+  <div id="seccion-futsal-m" class="disciplina-content space-y-6 hidden">
+    <div class="flex justify-center gap-1.5 flex-wrap">
+      <button onclick="cambiarCat('futsal-m', 'm1')" id="btn-futsal-m-m1" class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-750">Primera</button>
+      <button onclick="cambiarCat('futsal-m', 'm2')" id="btn-futsal-m-m2" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">Reserva</button>
+      <button onclick="cambiarCat('futsal-m', 'm3')" id="btn-futsal-m-m3" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">Sub 17</button>
+      <button onclick="cambiarCat('futsal-m', 'm4')" id="btn-futsal-m-m4" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">Sub 15</button>
+      <button onclick="cambiarCat('futsal-m', 'm5')" id="btn-futsal-m-m5" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">Sub 13</button>
+    </div>
+
+    <!-- Futsal M: m1 (Primera) -->
+    <div id="futsal-m-m1" class="cat-content space-y-4" data-total-fechas="2">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('futsal-m-m1', -1)" id="btn-prev-futsal-m-m1" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-futsal-m-m1" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('futsal-m-m1', 1)" id="btn-next-futsal-m-m1" class="p-1 text-slate-400 hover:text-white transition cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <div id="futsal-m-m1-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal M. – Primera – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">4 - 2</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="futsal-m-m1-f2" class="fecha-item-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal M. – Primera – Fecha 2</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">3 - 1</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Futsal M: m2 (Reserva) -->
+    <div id="futsal-m-m2" class="cat-content space-y-4 hidden" data-total-fechas="2">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('futsal-m-m2', -1)" id="btn-prev-futsal-m-m2" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-futsal-m-m2" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('futsal-m-m2', 1)" id="btn-next-futsal-m-m2" class="p-1 text-slate-400 hover:text-white transition cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <div id="futsal-m-m2-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal M. – Reserva – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">3 - 3</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="futsal-m-m2-f2" class="fecha-item-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal M. – Reserva – Fecha 2</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">2 - 0</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Futsal M: m3 (Sub 17) -->
+    <div id="futsal-m-m3" class="cat-content space-y-4 hidden" data-total-fechas="1">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('futsal-m-m3', -1)" id="btn-prev-futsal-m-m3" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-futsal-m-m3" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('futsal-m-m3', 1)" id="btn-next-futsal-m-m3" class="p-1 text-slate-400 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <div id="futsal-m-m3-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal M. – Sub 17 – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">1 - 0</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Futsal M: m4 (Sub 15) -->
+    <div id="futsal-m-m4" class="cat-content space-y-4 hidden" data-total-fechas="1">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('futsal-m-m4', -1)" id="btn-prev-futsal-m-m4" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-futsal-m-m4" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('futsal-m-m4', 1)" id="btn-next-futsal-m-m4" class="p-1 text-slate-400 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <div id="futsal-m-m4-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal M. – Sub 15 – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">4 - 4</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Futsal M: m5 (Sub 13) -->
+    <div id="futsal-m-m5" class="cat-content space-y-4 hidden" data-total-fechas="1">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('futsal-m-m5', -1)" id="btn-prev-futsal-m-m5" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-futsal-m-m5" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('futsal-m-m5', 1)" id="btn-next-futsal-m-m5" class="p-1 text-slate-400 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <div id="futsal-m-m5-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal M. – Sub 13 – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">2 - 0</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Los Andes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- CONTENEDOR FUTSAL FEMENINO (2 Categorías) -->
+  <!-- ========================================== -->
+  <div id="seccion-futsal-f" class="disciplina-content space-y-6 hidden">
+    <div class="flex justify-center gap-2">
+      <button onclick="cambiarCat('futsal-f', 'f1')" id="btn-futsal-f-f1" class="px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700">Primera</button>
+      <button onclick="cambiarCat('futsal-f', 'f2')" id="btn-futsal-f-f2" class="px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800">Reserva</button>
+    </div>
+
+    <!-- Futsal F: f1 (Primera) -->
+    <div id="futsal-f-f1" class="cat-content space-y-4" data-total-fechas="2">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('futsal-f-f1', -1)" id="btn-prev-futsal-f-f1" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-futsal-f-f1" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('futsal-f-f1', 1)" id="btn-next-futsal-f-f1" class="p-1 text-slate-400 hover:text-white transition cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <div id="futsal-f-f1-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Femenino – Primera – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">5 - 1</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Racing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="futsal-f-f1-f2" class="fecha-item-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Femenino – Primera – Fecha 2</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">2 - 0</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Racing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Futsal F: f2 (Reserva) -->
+    <div id="futsal-f-f2" class="cat-content space-y-4 hidden" data-total-fechas="2">
+      <div class="flex items-center justify-between bg-neutral-950/50 px-3 py-1.5 rounded-lg border border-neutral-800/80 max-w-xs mx-auto">
+        <button onclick="navegarFecha('futsal-f-f2', -1)" id="btn-prev-futsal-f-f2" class="p-1 text-slate-500 hover:text-white transition cursor-pointer invisible">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <span id="label-futsal-f-f2" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Fecha 1</span>
+        <button onclick="navegarFecha('futsal-f-f2', 1)" id="btn-next-futsal-f-f2" class="p-1 text-slate-400 hover:text-white transition cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+      <div id="futsal-f-f2-f1" class="fecha-item-content bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Femenino – Reserva – Fecha 1</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">0 - 0</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Racing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="futsal-f-f2-f2" class="fecha-item-content hidden bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
+        <div class="p-3 bg-neutral-950 border-b border-neutral-800 text-xs font-bold text-slate-300 uppercase">Futsal Femenino – Reserva – Fecha 2</div>
+        <table class="w-full text-left border-collapse text-sm">
+          <tbody>
+            <tr class="bg-emerald-950/20">
+              <td class="py-3 px-4 font-bold text-emerald-400">La Granjah</td>
+              <td class="py-3 px-4 text-center font-black text-white"><span class="bg-neutral-800 px-2.5 py-1 rounded text-xs font-mono">1 - 0</span></td>
+              <td class="py-3 px-4 text-right text-slate-300 font-medium">Racing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- SECCIÓN FORMULARIO DE ASOCIACIÓN -->
     <section
@@ -2602,398 +2253,418 @@ const subtitulo = "Club Social & Deportivo";
         </p>
       </div>
     </footer>
-  </body><script is:inline>
-    // 1. Giro de Tarjetas Generales
-    document.querySelectorAll(".single-card-container").forEach((card) => {
-      card.addEventListener("click", () => {
-        card.classList.toggle("is-flipped");
-      });
+  </body>
+  
+<!-- SCRIPT UNIFICADO -->
+<script is:inline>
+  // 1. Giro de Tarjetas Generales
+  document.querySelectorAll(".single-card-container").forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("is-flipped");
     });
+  });
 
-    // 2. Lógica Menú Hamburguesa
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const iconOpen = document.getElementById("icon-open");
-    const iconClose = document.getElementById("icon-close");
-    const mobileLinks = document.querySelectorAll(".mobile-link");
+  // 2. Lógica Menú Hamburguesa
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconOpen = document.getElementById("icon-open");
+  const iconClose = document.getElementById("icon-close");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
 
-    if (menuBtn) {
-      menuBtn.addEventListener("click", () => {
-        if (mobileMenu) mobileMenu.classList.toggle("hidden");
-        if (iconOpen) iconOpen.classList.toggle("hidden");
-        if (iconClose) iconClose.classList.toggle("hidden");
-      });
-    }
-
-    mobileLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (mobileMenu) mobileMenu.classList.add("hidden");
-        if (iconOpen) iconOpen.classList.remove("hidden");
-        if (iconClose) iconClose.classList.add("hidden");
-      });
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      if (mobileMenu) mobileMenu.classList.toggle("hidden");
+      if (iconOpen) iconOpen.classList.toggle("hidden");
+      if (iconClose) iconClose.classList.toggle("hidden");
     });
+  }
 
-    // 3. Lógica de Campos Condicionales del Formulario
-    const selectResidencia = document.getElementById("lugar-residencia");
-    const campoSJ = document.getElementById("campo-departamento-sj");
-    const campoOtraProvincia = document.getElementById("campo-otra-provincia");
-    const campoOtroResidencia = document.getElementById(
-      "campo-otro-residencia",
-    );
-
-    if (selectResidencia) {
-      selectResidencia.addEventListener("change", (e) => {
-        const val = e.target.value;
-        if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
-        if (campoOtraProvincia)
-          campoOtraProvincia.classList.toggle(
-            "hidden",
-            val !== "Otra provincia",
-          );
-        if (campoOtroResidencia)
-          campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
-      });
-    }
-
-    const radiosAsociarse = document.querySelectorAll(
-      'input[name="quiere_asociarse"]',
-    );
-    const bloqueCategorias = document.getElementById("bloque-categorias-socio");
-    const btnSubmit = document.getElementById("btn-submit-form");
-
-    radiosAsociarse.forEach((radio) => {
-      radio.addEventListener("change", (e) => {
-        if (e.target.value === "Sí") {
-          if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
-          if (btnSubmit)
-            btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
-        } else {
-          if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
-          if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
-        }
-      });
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileMenu) mobileMenu.classList.add("hidden");
+      if (iconOpen) iconOpen.classList.remove("hidden");
+      if (iconClose) iconClose.classList.add("hidden");
     });
+  });
 
-    const selectAporte = document.getElementById("forma-aporte");
-    const campoOtroAporte = document.getElementById("campo-otro-aporte");
+  // 3. Lógica de Campos Condicionales del Formulario
+  const selectResidencia = document.getElementById("lugar-residencia");
+  const campoSJ = document.getElementById("campo-departamento-sj");
+  const campoOtraProvincia = document.getElementById("campo-otra-provincia");
+  const campoOtroResidencia = document.getElementById("campo-otro-residencia");
 
-    if (selectAporte) {
-      selectAporte.addEventListener("change", (e) => {
-        const val = e.target.value;
-        if (campoOtroAporte)
-          campoOtroAporte.classList.toggle("hidden", val !== "Otro");
-      });
-    }
-
-    const radiosJuega = document.querySelectorAll(
-      'input[name="juega_en_club"]',
-    );
-    const contenedorDeporte = document.getElementById("opciones-deporte");
-
-    radiosJuega.forEach((radio) => {
-      radio.addEventListener("change", (e) => {
-        if (contenedorDeporte)
-          contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
-      });
+  if (selectResidencia) {
+    selectResidencia.addEventListener("change", (e) => {
+      const val = e.target.value;
+      if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
+      if (campoOtraProvincia)
+        campoOtraProvincia.classList.toggle("hidden", val !== "Otra provincia");
+      if (campoOtroResidencia)
+        campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
     });
+  }
 
-    // 4. Envío por Fetch del Formulario (Sin recargar / Sin pantalla negra de Google)
-    const form = document.getElementById("mi-formulario-actual");
-    const bloquePago = document.getElementById("bloque-pago-brubank");
-    const inputNombre = document.getElementById("nombre");
-    const inputDoc = document.getElementById("numero-doc");
-    const inputFecha = document.getElementById("fecha-nacimiento");
+  const radiosAsociarse = document.querySelectorAll('input[name="quiere_asociarse"]');
+  const bloqueCategorias = document.getElementById("bloque-categorias-socio");
+  const btnSubmit = document.getElementById("btn-submit-form");
 
-    if (form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        let esValido = true;
-        if (!inputNombre || !inputNombre.value.trim()) esValido = false;
-        if (!inputDoc || !inputDoc.value.trim()) esValido = false;
-        if (!inputFecha || !inputFecha.value) esValido = false;
-
-        if (!esValido) {
-          alert("Por favor completa los campos obligatorios.");
-          return;
-        }
-
-        if (btnSubmit) {
-          btnSubmit.textContent = "Enviando solicitud...";
-          btnSubmit.disabled = true;
-          btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
-        }
-
-        const formData = new FormData(form);
-        const actionUrl = form.action;
-
-        try {
-          await fetch(actionUrl, {
-            method: "POST",
-            body: formData,
-            mode: "no-cors",
-          });
-
-          form.classList.add("hidden");
-          if (bloquePago) bloquePago.classList.remove("hidden");
-        } catch (err) {
-          console.error("Error al enviar:", err);
-          alert("Hubo un error al enviar tus datos. Inténtalo de nuevo.");
-
-          if (btnSubmit) {
-            btnSubmit.textContent = "Enviar Solicitud";
-            btnSubmit.disabled = false;
-            btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
-          }
-        }
-      });
-    }
-
-    // 5. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
-    const sportCards = document.querySelectorAll(".sport-card");
-    const sportModal = document.getElementById("sport-modal");
-    const modalContainer = document.getElementById("modal-container");
-    const closeSportModal = document.getElementById("close-sport-modal");
-
-    const modalIcon = document.getElementById("modal-icon");
-    const modalSportTitle = document.getElementById("modal-sport-title");
-    const categorySelectorContainer = document.getElementById(
-      "category-selector-container",
-    );
-    const matchesListContainer = document.getElementById(
-      "matches-list-container",
-    );
-    const modalImg = document.getElementById("modal-carrusel-img");
-    const prevBtn = document.getElementById("modal-prev-btn");
-    const nextBtn = document.getElementById("modal-next-btn");
-    const contador = document.getElementById("modal-carrusel-contador");
-
-    const generarRutasFotos = (carpeta) => {
-      let fotos = [];
-      for (let i = 1; i <= 10; i++) {
-        fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
+  radiosAsociarse.forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      if (e.target.value === "Sí") {
+        if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
+        if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
+      } else {
+        if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
+        if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
       }
-      return fotos;
-    };
-
-    const fotosPorDisciplina = {
-      "Fútbol 11": generarRutasFotos("futbol11"),
-      "Futsal Masculino": generarRutasFotos("futsalMasc"),
-      "Futsal Femenino": generarRutasFotos("futsalFem"),
-    };
-
-    let currentIndex = 0;
-    let currentImages = [];
-
-    sportCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        const title = card.getAttribute("data-sport-title");
-        const icon = card.getAttribute("data-sport-icon");
-        const categoriesRaw = card.getAttribute("data-categories");
-
-        let categories = [];
-        try {
-          categories = JSON.parse(categoriesRaw);
-        } catch (e) {
-          categories = [];
-        }
-
-        if (modalSportTitle) modalSportTitle.textContent = title;
-        if (modalIcon) modalIcon.textContent = icon;
-
-        currentImages = fotosPorDisciplina[title] || [
-          "/disciplinas/futbol11/foto1.jpg",
-        ];
-        currentIndex = 0;
-        updateCarousel();
-
-        if (categorySelectorContainer) categorySelectorContainer.innerHTML = "";
-        if (matchesListContainer) matchesListContainer.innerHTML = "";
-
-        if (categories.length > 0 && categorySelectorContainer) {
-          categories.forEach((cat, index) => {
-            const btnCat = document.createElement("button");
-            btnCat.type = "button";
-            btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
-              index === 0
-                ? "bg-emerald-500 text-neutral-950 border-emerald-400"
-                : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
-            }`;
-            btnCat.textContent = cat.name;
-
-            btnCat.addEventListener("click", () => {
-              categorySelectorContainer
-                .querySelectorAll("button")
-                .forEach((b) => {
-                  b.className =
-                    "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
-                });
-              btnCat.className =
-                "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
-
-              renderMatches(cat.matches);
-            });
-
-            categorySelectorContainer.appendChild(btnCat);
-          });
-
-          renderMatches(categories[0].matches);
-        } else if (matchesListContainer) {
-          matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
-        }
-
-        if (sportModal) {
-          sportModal.classList.remove("hidden");
-          setTimeout(() => {
-            if (modalContainer) {
-              modalContainer.classList.remove("scale-95");
-              modalContainer.classList.add("scale-100");
-            }
-          }, 10);
-        }
-      });
     });
+  });
 
-    function renderMatches(matches) {
-      if (!matchesListContainer) return;
-      matchesListContainer.innerHTML = "";
-      if (!matches || matches.length === 0) {
-        matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
+  const selectAporte = document.getElementById("forma-aporte");
+  const campoOtroAporte = document.getElementById("campo-otro-aporte");
+
+  if (selectAporte) {
+    selectAporte.addEventListener("change", (e) => {
+      const val = e.target.value;
+      if (campoOtroAporte)
+        campoOtroAporte.classList.toggle("hidden", val !== "Otro");
+    });
+  }
+
+  const radiosJuega = document.querySelectorAll('input[name="juega_en_club"]');
+  const contenedorDeporte = document.getElementById("opciones-deporte");
+
+  radiosJuega.forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      if (contenedorDeporte)
+        contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
+    });
+  });
+
+  // 4. Envío por Fetch del Formulario
+  const form = document.getElementById("mi-formulario-actual");
+  const bloquePago = document.getElementById("bloque-pago-brubank");
+  const inputNombre = document.getElementById("nombre");
+  const inputDoc = document.getElementById("numero-doc");
+  const inputFecha = document.getElementById("fecha-nacimiento");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      let esValido = true;
+      if (!inputNombre || !inputNombre.value.trim()) esValido = false;
+      if (!inputDoc || !inputDoc.value.trim()) esValido = false;
+      if (!inputFecha || !inputFecha.value) esValido = false;
+
+      if (!esValido) {
+        alert("Por favor completa los campos obligatorios.");
         return;
       }
 
-      matches.forEach((m) => {
-        const matchCard = document.createElement("div");
-        matchCard.className =
-          "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
-
-        const fecha = m.fecha || "Fecha";
-        const rival = m.rival || "Rival a confirmar";
-        const cancha = m.cancha || "Predio del club";
-        const condicion = m.condition || m.condicion || "Local";
-        const diaHora = m.date || m.dia || "A confirmar";
-
-        matchCard.innerHTML = `
-          <div>
-            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
-            <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
-            <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
-          </div>
-          <div class="text-right">
-            <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
-          </div>
-        `;
-        matchesListContainer.appendChild(matchCard);
-      });
-    }
-
-    function updateCarousel() {
-      if (modalImg && currentImages.length > 0) {
-        modalImg.src = currentImages[currentIndex];
-        if (contador)
-          contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+      if (btnSubmit) {
+        btnSubmit.textContent = "Enviando solicitud...";
+        btnSubmit.disabled = true;
+        btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
       }
-    }
 
-    if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
-        currentIndex =
-          (currentIndex - 1 + currentImages.length) % currentImages.length;
-        updateCarousel();
-      });
-    }
+      const formData = new FormData(form);
+      const actionUrl = form.action;
 
-    if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % currentImages.length;
-        updateCarousel();
-      });
-    }
-
-    function closeModalFunc() {
-      if (modalContainer) {
-        modalContainer.classList.remove("scale-100");
-        modalContainer.classList.add("scale-95");
-      }
-      setTimeout(() => {
-        if (sportModal) sportModal.classList.add("hidden");
-      }, 200);
-    }
-
-    if (closeSportModal)
-      closeSportModal.addEventListener("click", closeModalFunc);
-    if (sportModal) {
-      sportModal.addEventListener("click", (e) => {
-        if (e.target === sportModal) closeModalFunc();
-      });
-    }
-
-    // 6. Lógica de Resultados de la Fecha (Sección independiente)
-    function cambiarDisciplina(disc) {
-      document
-        .querySelectorAll(".disciplina-content")
-        .forEach((el) => el.classList.add("hidden"));
-      ["f11", "futsal-m", "futsal-f"].forEach((d) => {
-        const btn = document.getElementById(`btn-${d}`);
-        if (btn) {
-          btn.className =
-            d === disc
-              ? "px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg"
-              : "px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
-        }
-      });
-      const targetDisc = document.getElementById(`seccion-${disc}`);
-      if (targetDisc) targetDisc.classList.remove("hidden");
-    }
-
-    function cambiarCat(disc, catId) {
-      const contenedor = document.getElementById(`seccion-${disc}`);
-      if (!contenedor) return;
-
-      contenedor
-        .querySelectorAll(".cat-content")
-        .forEach((el) => el.classList.add("hidden"));
-
-      contenedor
-        .querySelectorAll(`button[id^="btn-${disc}-"]`)
-        .forEach((btn) => {
-          btn.className =
-            "px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
+      try {
+        await fetch(actionUrl, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors",
         });
 
-      const targetCat = document.getElementById(`${disc}-${catId}`);
-      if (targetCat) targetCat.classList.remove("hidden");
+        form.classList.add("hidden");
+        if (bloquePago) bloquePago.classList.remove("hidden");
+      } catch (err) {
+        console.error("Error al enviar:", err);
+        alert("Hubo un error al enviar tus datos. Inténtalo de nuevo.");
 
-      const activeBtn = document.getElementById(`btn-${disc}-${catId}`);
-      if (activeBtn) {
-        activeBtn.className =
-          "px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer";
+        if (btnSubmit) {
+          btnSubmit.textContent = "Enviar Solicitud";
+          btnSubmit.disabled = false;
+          btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+        }
+      }
+    });
+  }
+
+  // 5. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
+  const sportCards = document.querySelectorAll(".sport-card");
+  const sportModal = document.getElementById("sport-modal");
+  const modalContainer = document.getElementById("modal-container");
+  const closeSportModal = document.getElementById("close-sport-modal");
+
+  const modalIcon = document.getElementById("modal-icon");
+  const modalSportTitle = document.getElementById("modal-sport-title");
+  const categorySelectorContainer = document.getElementById("category-selector-container");
+  const matchesListContainer = document.getElementById("matches-list-container");
+  const modalImg = document.getElementById("modal-carrusel-img");
+  const prevBtn = document.getElementById("modal-prev-btn");
+  const nextBtn = document.getElementById("modal-next-btn");
+  const contador = document.getElementById("modal-carrusel-contador");
+
+  const generarRutasFotos = (carpeta) => {
+    let fotos = [];
+    for (let i = 1; i <= 10; i++) {
+      fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
+    }
+    return fotos;
+  };
+
+  const fotosPorDisciplina = {
+    "Fútbol 11": generarRutasFotos("futbol11"),
+    "Futsal Masculino": generarRutasFotos("futsalMasc"),
+    "Futsal Femenino": generarRutasFotos("futsalFem"),
+  };
+
+  let currentIndex = 0;
+  let currentImages = [];
+
+  sportCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const title = card.getAttribute("data-sport-title");
+      const icon = card.getAttribute("data-sport-icon");
+      const categoriesRaw = card.getAttribute("data-categories");
+
+      let categories = [];
+      try {
+        categories = JSON.parse(categoriesRaw);
+      } catch (e) {
+        categories = [];
+      }
+
+      if (modalSportTitle) modalSportTitle.textContent = title;
+      if (modalIcon) modalIcon.textContent = icon;
+
+      currentImages = fotosPorDisciplina[title] || ["/disciplinas/futbol11/foto1.jpg"];
+      currentIndex = 0;
+      updateCarousel();
+
+      if (categorySelectorContainer) categorySelectorContainer.innerHTML = "";
+      if (matchesListContainer) matchesListContainer.innerHTML = "";
+
+      if (categories.length > 0 && categorySelectorContainer) {
+        categories.forEach((cat, index) => {
+          const btnCat = document.createElement("button");
+          btnCat.type = "button";
+          btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
+            index === 0
+              ? "bg-emerald-500 text-neutral-950 border-emerald-400"
+              : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
+          }`;
+          btnCat.textContent = cat.name;
+
+          btnCat.addEventListener("click", () => {
+            categorySelectorContainer.querySelectorAll("button").forEach((b) => {
+              b.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
+            });
+            btnCat.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
+
+            renderMatches(cat.matches);
+          });
+
+          categorySelectorContainer.appendChild(btnCat);
+        });
+
+        renderMatches(categories[0].matches);
+      } else if (matchesListContainer) {
+        matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
+      }
+
+      if (sportModal) {
+        sportModal.classList.remove("hidden");
+        setTimeout(() => {
+          if (modalContainer) {
+            modalContainer.classList.remove("scale-95");
+            modalContainer.classList.add("scale-100");
+          }
+        }, 10);
+      }
+    });
+  });
+
+  function renderMatches(matches) {
+    if (!matchesListContainer) return;
+    matchesListContainer.innerHTML = "";
+    if (!matches || matches.length === 0) {
+      matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
+      return;
+    }
+
+    matches.forEach((m) => {
+      const matchCard = document.createElement("div");
+      matchCard.className = "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
+
+      const fecha = m.fecha || "Fecha";
+      const rival = m.rival || "Rival a confirmar";
+      const cancha = m.cancha || "Predio del club";
+      const condicion = m.condition || m.condicion || "Local";
+      const diaHora = m.date || m.dia || "A confirmar";
+
+      matchCard.innerHTML = `
+        <div>
+          <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
+          <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
+          <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
+        </div>
+        <div class="text-right">
+          <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
+        </div>
+      `;
+      matchesListContainer.appendChild(matchCard);
+    });
+  }
+
+  function updateCarousel() {
+    if (modalImg && currentImages.length > 0) {
+      modalImg.src = currentImages[currentIndex];
+      if (contador) contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateCarousel();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateCarousel();
+    });
+  }
+
+  function closeModalFunc() {
+    if (modalContainer) {
+      modalContainer.classList.remove("scale-100");
+      modalContainer.classList.add("scale-95");
+    }
+    setTimeout(() => {
+      if (sportModal) sportModal.classList.add("hidden");
+    }, 200);
+  }
+
+  if (closeSportModal) closeSportModal.addEventListener("click", closeModalFunc);
+  if (sportModal) {
+    sportModal.addEventListener("click", (e) => {
+      if (e.target === sportModal) closeModalFunc();
+    });
+  }
+
+  // 6. Lógica de Resultados de la Fecha con Flechas y Estado Activo por Categoría
+  const fechasEstado = {};
+
+  function cambiarDisciplina(disc) {
+    document.querySelectorAll('.disciplina-content').forEach(el => el.classList.add('hidden'));
+    ['f11', 'futsal-m', 'futsal-f'].forEach(d => {
+      const btn = document.getElementById(`btn-${d}`);
+      if (btn) {
+        btn.className = d === disc 
+          ? "px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-lg transition cursor-pointer shadow-lg"
+          : "px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-lg border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
+      }
+    });
+    const targetDisc = document.getElementById(`seccion-${disc}`);
+    if (targetDisc) targetDisc.classList.remove('hidden');
+  }
+
+  function cambiarCat(disc, catId) {
+    const contenedor = document.getElementById(`seccion-${disc}`);
+    if (!contenedor) return;
+    
+    contenedor.querySelectorAll('.cat-content').forEach(el => el.classList.add('hidden'));
+    
+    contenedor.querySelectorAll(`button[id^="btn-${disc}-"]`).forEach(btn => {
+      btn.className = "px-3 py-1.5 bg-neutral-900 text-slate-400 font-medium text-xs rounded-md border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
+    });
+    
+    const targetCat = document.getElementById(`${disc}-${catId}`);
+    if (targetCat) targetCat.classList.remove('hidden');
+    
+    const activeBtn = document.getElementById(`btn-${disc}-${catId}`);
+    if (activeBtn) {
+      activeBtn.className = "px-3 py-1.5 bg-neutral-800 text-emerald-400 font-bold text-xs rounded-md border border-neutral-700 transition cursor-pointer";
+    }
+
+    const containerId = `${disc}-${catId}`;
+    if (fechasEstado[containerId] === undefined) {
+      fechasEstado[containerId] = 1;
+    }
+    actualizarVistaFechas(containerId);
+  }
+
+  function navegarFecha(catContainerId, direccion) {
+    const contenedorCat = document.getElementById(catContainerId);
+    if (!contenedorCat) return;
+
+    const total = parseInt(contenedorCat.getAttribute('data-total-fechas')) || 1;
+    if (fechasEstado[catContainerId] === undefined) {
+      fechasEstado[catContainerId] = 1;
+    }
+
+    fechasEstado[catContainerId] += direccion;
+    if (fechasEstado[catContainerId] < 1) fechasEstado[catContainerId] = 1;
+    if (fechasEstado[catContainerId] > total) fechasEstado[catContainerId] = total;
+
+    actualizarVistaFechas(catContainerId);
+  }
+
+  function actualizarVistaFechas(catContainerId) {
+    const contenedorCat = document.getElementById(catContainerId);
+    if (!contenedorCat) return;
+
+    const actual = fechasEstado[catContainerId] || 1;
+    const total = parseInt(contenedorCat.getAttribute('data-total-fechas')) || 1;
+
+    // Mostrar/Ocultar tarjetas de fecha
+    contenedorCat.querySelectorAll('.fecha-item-content').forEach((el, index) => {
+      if (index + 1 === actual) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+
+    // Actualizar texto central
+    const label = document.getElementById(`label-${catContainerId}`);
+    if (label) {
+      label.textContent = `Fecha ${actual}`;
+    }
+
+    // Gestionar visibilidad de las flechas
+    const btnPrev = document.getElementById(`btn-prev-${catContainerId}`);
+    const btnNext = document.getElementById(`btn-next-${catContainerId}`);
+
+    if (btnPrev) {
+      if (actual <= 1) {
+        btnPrev.classList.add('invisible');
+      } else {
+        btnPrev.classList.remove('invisible');
       }
     }
 
-    function cambiarFecha(catContainerId, fechaId) {
-      const contenedorCat = document.getElementById(catContainerId);
-      if (!contenedorCat) return;
-
-      contenedorCat
-        .querySelectorAll(".fecha-content")
-        .forEach((el) => el.classList.add("hidden"));
-
-      contenedorCat.querySelectorAll('button[id^="btn-"]').forEach((btn) => {
-        btn.className =
-          "px-3 py-1 bg-transparent text-slate-400 font-medium text-[11px] rounded hover:text-white transition cursor-pointer";
-      });
-
-      const targetFecha = document.getElementById(fechaId);
-      if (targetFecha) targetFecha.classList.remove("hidden");
-
-      const btnActivo = document.getElementById(
-        `btn-${catContainerId}-${fechaId}`,
-      );
-      if (btnActivo) {
-        btnActivo.className =
-          "px-3 py-1 bg-emerald-500 text-neutral-950 font-bold text-[11px] rounded transition cursor-pointer";
+    if (btnNext) {
+      if (actual >= total) {
+        btnNext.classList.add('invisible');
+      } else {
+        btnNext.classList.remove('invisible');
       }
     }
-  </script>
+  }
+
+  // Inicializar estado por defecto al cargar la página para las categorías visibles de inicio
+  document.addEventListener("DOMContentLoaded", () => {
+    ['f11-cat1', 'f11-cat2', 'futsal-m-m1', 'futsal-m-m2', 'futsal-m-m3', 'futsal-m-m4', 'futsal-m-m5', 'futsal-f-f1', 'futsal-f-f2'].forEach(id => {
+      fechasEstado[id] = 1;
+      actualizarVistaFechas(id);
+    });
+  });
+</script>
 </html>
