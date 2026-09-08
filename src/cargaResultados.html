@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Carga - Resultados</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-neutral-950 text-white min-h-screen p-4 md:p-8 font-sans">
+    <div class="max-w-3xl mx-auto">
+      <!-- Botón para volver al sitio principal -->
+      <div class="flex justify-end mb-4">
+        <a
+          href="index.html"
+          class="text-xs bg-neutral-800 hover:bg-neutral-700 text-neutral-300 font-bold py-2 px-3 rounded-lg border border-neutral-700 transition"
+        >
+          ← Volver al Sitio
+        </a>
+      </div>
+
+      <!-- Panel de Carga -->
+      <div
+        class="p-6 bg-neutral-900 border border-neutral-800 rounded-2xl shadow-xl text-white"
+      >
+        <h2
+          class="text-2xl font-black text-amber-400 mb-6 uppercase flex items-center gap-2 tracking-wide"
+        >
+          <span>📋</span> Panel de Carga Multidisciplina
+        </h2>
+
+        <form id="form-cargar-resultado" class="space-y-6">
+          <!-- Selector de Disciplina, Categoría y Fecha -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label
+                class="block text-xs text-neutral-400 uppercase font-bold mb-1"
+                >Disciplina</label
+              >
+              <select
+                id="admin-disciplina"
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-white font-semibold focus:border-amber-400 outline-none"
+              >
+                <option value="f11">Fútbol 11</option>
+                <option value="futsal_m">Futsal Masculino</option>
+                <option value="futsal_f">Futsal Femenino</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block text-xs text-neutral-400 uppercase font-bold mb-1"
+                >Categoría</label
+              >
+              <select
+                id="admin-categoria"
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-white font-semibold focus:border-amber-400 outline-none"
+              >
+                <!-- Dinámico -->
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block text-xs text-neutral-400 uppercase font-bold mb-1"
+                >N° de Fecha</label
+              >
+              <input
+                type="number"
+                id="admin-numero-fecha"
+                value="1"
+                min="1"
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-white font-semibold focus:border-amber-400 outline-none"
+              />
+            </div>
+          </div>
+
+          <!-- Carga de Partido (Espaciado Corregido) -->
+          <div
+            class="bg-neutral-800/50 p-5 rounded-xl border border-neutral-800"
+          >
+            <div
+              class="flex flex-col md:flex-row items-center justify-between gap-4"
+            >
+              <!-- Equipo Local -->
+              <div class="w-full md:w-5/12">
+                <label class="block text-xs text-emerald-400 font-bold mb-1"
+                  >Equipo Local</label
+                >
+                <select
+                  id="admin-local"
+                  class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-sm text-white focus:border-amber-400 outline-none"
+                ></select>
+              </div>
+
+              <!-- Marcador de Goles con bastante espacio -->
+              <div
+                class="flex items-center justify-center gap-3 my-2 md:my-0 px-2"
+              >
+                <div class="flex flex-col items-center">
+                  <span
+                    class="text-[10px] text-neutral-400 font-bold mb-1 md:hidden"
+                    >GL</span
+                  >
+                  <input
+                    type="number"
+                    id="goles-local"
+                    min="0"
+                    placeholder="0"
+                    class="w-14 h-12 bg-neutral-900 border border-neutral-700 rounded-xl text-center text-white font-black text-xl focus:border-amber-400 outline-none"
+                  />
+                </div>
+
+                <span class="text-neutral-500 font-black text-sm pt-4 md:pt-0"
+                  >VS</span
+                >
+
+                <div class="flex flex-col items-center">
+                  <span
+                    class="text-[10px] text-neutral-400 font-bold mb-1 md:hidden"
+                    >GV</span
+                  >
+                  <input
+                    type="number"
+                    id="goles-visitante"
+                    min="0"
+                    placeholder="0"
+                    class="w-14 h-12 bg-neutral-900 border border-neutral-700 rounded-xl text-center text-white font-black text-xl focus:border-amber-400 outline-none"
+                  />
+                </div>
+              </div>
+
+              <!-- Equipo Visitante -->
+              <div class="w-full md:w-5/12">
+                <label class="block text-xs text-emerald-400 font-bold mb-1"
+                  >Equipo Visitante</label
+                >
+                <select
+                  id="admin-visitante"
+                  class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-sm text-white focus:border-amber-400 outline-none"
+                ></select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de Acción -->
+          <div class="flex gap-3 pt-2">
+            <button
+              type="submit"
+              class="flex-1 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black py-3 px-4 rounded-xl transition duration-200 uppercase tracking-wider"
+            >
+              Guardar Partido
+            </button>
+            <button
+              type="button"
+              id="btn-exportar-json"
+              class="bg-neutral-800 hover:bg-neutral-700 text-white font-bold py-3 px-4 rounded-xl transition border border-neutral-700 flex items-center gap-2"
+            >
+              <span>💾</span> Exportar Datos
+            </button>
+            <button
+              type="button"
+              onclick="borrarUltimoPartido()"
+              class="bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 font-bold p-2.5 rounded-xl text-xs transition flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>↩️</span> Borrar último partido cargado
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Configuraciones y listado de equipos por disciplina
+      const configuracionClub = {
+        f11: {
+          nombre: "Fútbol 11",
+          estiloColor: "emerald",
+          categorias: ["Liga Universitaria", "Liga de Profesionales"],
+          // 3- Modificá estos nombres por los equipos de F11
+          equipos: [
+            "Equipo F11 A",
+            "Equipo F11 B",
+            "Equipo F11 C",
+            "Equipo F11 D",
+          ],
+        },
+        futsal_m: {
+          nombre: "Futsal Masculino",
+          estiloColor: "amber",
+          categorias: ["Primera", "Reserva", "Sub 17", "Sub 15", "Sub 13"],
+          // 3- Modificá estos nombres por los equipos de Futsal M
+          equipos: [
+            "La Granjah",
+            "Colón Juniors",
+            "San Ricardo",
+            "Don Bosco",
+            "Estrella",
+            "Villa Hipódromo",
+            "Def. de los Andes",
+            "Punteto",
+            "Trinidad",
+          ],
+        },
+        futsal_f: {
+          nombre: "Futsal Femenino",
+          estiloColor: "red",
+          categorias: ["Primera", "Reserva"],
+          // 3- Modificá estos nombres por los equipos de Futsal F
+          equipos: [
+            "La Granjah",
+            "Sarmiento",
+            "Marquesado",
+            "San Ricardo",
+            "Don Bosco",
+            "CORA",
+            "Trinidad",
+            "Arbol verde",
+            "Def. Argentinos",
+            "Punteto",
+          ],
+        },
+      };
+
+      function actualizarSelects() {
+        const disciplinaKey = document.getElementById("admin-disciplina").value;
+        const config = configuracionClub[disciplinaKey];
+
+        const selectCat = document.getElementById("admin-categoria");
+        const selectLocal = document.getElementById("admin-local");
+        const selectVisitante = document.getElementById("admin-visitante");
+
+        selectCat.innerHTML = "";
+        config.categorias.forEach((cat) => {
+          selectCat.innerHTML += `<option value="${cat}">${cat}</option>`;
+        });
+
+        selectLocal.innerHTML = "";
+        selectVisitante.innerHTML = "";
+        config.equipos.forEach((equipo) => {
+          selectLocal.innerHTML += `<option value="${equipo}">${equipo}</option>`;
+          selectVisitante.innerHTML += `<option value="${equipo}">${equipo}</option>`;
+        });
+      }
+
+      document
+        .getElementById("form-cargar-resultado")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const disciplina = document.getElementById("admin-disciplina").value;
+          const categoria = document.getElementById("admin-categoria").value;
+          const numFecha = parseInt(
+            document.getElementById("admin-numero-fecha").value,
+          );
+          const local = document.getElementById("admin-local").value;
+          const visitante = document.getElementById("admin-visitante").value;
+          const golesLocal =
+            parseInt(document.getElementById("goles-local").value) || 0;
+          const golesVisitante =
+            parseInt(document.getElementById("goles-visitante").value) || 0;
+
+          if (local === visitante) {
+            alert("⚠️ El equipo local y el visitante deben ser distintos.");
+            return;
+          }
+
+          const nuevoPartido = {
+            id: Date.now(),
+            disciplina: disciplina,
+            categoria: categoria,
+            fechaNum: numFecha,
+            local: local,
+            golesLocal: golesLocal,
+            visitante: visitante,
+            golesVisitante: golesVisitante,
+            estado: "Finalizado",
+          };
+
+          // Dentro del eventListener del formulario en cargaResultados.html:
+          const db = JSON.parse(
+            localStorage.getItem("club_resultados") || "[]",
+          );
+          db.push(nuevoPartido);
+          localStorage.setItem("club_resultados", JSON.stringify(db));
+
+          alert(
+            `✅ Guardado [${configuracionClub[disciplina].nombre} - ${categoria}]: ${local} ${golesLocal} - ${golesVisitante} ${visitante}`,
+          );
+
+          document.getElementById("goles-local").value = "";
+          document.getElementById("goles-visitante").value = "";
+        });
+
+      document
+        .getElementById("btn-exportar-json")
+        .addEventListener("click", function () {
+          const data = localStorage.getItem("club_resultados") || "[]";
+          const blob = new Blob([data], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "resultados-club.json";
+          a.click();
+        });
+
+      document
+        .getElementById("admin-disciplina")
+        .addEventListener("change", actualizarSelects);
+      document.addEventListener("DOMContentLoaded", actualizarSelects);
+
+      function borrarUltimoPartido() {
+        const db = JSON.parse(localStorage.getItem("club_resultados") || "[]");
+
+        if (db.length === 0) {
+          alert("No hay partidos cargados para borrar.");
+          return;
+        }
+
+        const ultimo = db[db.length - 1];
+        const confirmar = confirm(
+          `¿Querés borrar el último partido cargado?\n\n${ultimo.local} vs ${ultimo.visitante} (${ultimo.golesLocal} - ${ultimo.golesVisitante})`,
+        );
+
+        if (confirmar) {
+          db.pop(); // Elimina únicamente el último registro cargado
+          localStorage.setItem("club_resultados", JSON.stringify(db));
+          alert("¡Último partido eliminado correctamente!");
+          location.reload(); // Recarga la vista para actualizar
+        }
+      }
+    </script>
+  </body>
+</html>

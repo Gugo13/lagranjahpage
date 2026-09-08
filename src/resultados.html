@@ -37,7 +37,7 @@
           type="button"
           id="btn-f11"
           onclick="cambiarDisciplina('f11')"
-          class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-xl border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
+          class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs uppercase rounded-xl border border-emerald-500 hover:bg-emerald-500 transition cursor-pointer shadow-md"
         >
           Fútbol 11
         </button>
@@ -45,7 +45,7 @@
           type="button"
           id="btn-futsal-m"
           onclick="cambiarDisciplina('futsal-m')"
-          class="px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-xl transition cursor-pointer shadow-lg shadow-emerald-500/10"
+          class="px-5 py-2.5 bg-amber-400 text-neutral-950 font-black text-xs uppercase rounded-xl transition cursor-pointer shadow-md"
         >
           Futsal Masculino
         </button>
@@ -53,14 +53,14 @@
           type="button"
           id="btn-futsal-f"
           onclick="cambiarDisciplina('futsal-f')"
-          class="px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-xl border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer"
+          class="px-5 py-2.5 bg-red-600 text-white font-bold text-xs uppercase rounded-xl border border-red-500 hover:bg-red-500 transition cursor-pointer shadow-md"
         >
           Futsal Femenino
         </button>
       </div>
 
       <!-- ================= SECCIÓN: FÚTBOL 11 ================= -->
-       
+
       <div id="seccion-f11" class="disciplina-content space-y-6 hidden">
         <div class="flex justify-center gap-2">
           <button
@@ -75,7 +75,7 @@
             type="button"
             id="btn-f11-cat2"
             onclick="cambiarCat('f11', 'cat2')"
-            class="px-4 py-1.5 bg-neutral-900 border border-neutral-800 text-slate-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
+            class="px-4 py-1.5 bg-neutral-900 border border-emerald-500/50 text-emerald-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
           >
             Reserva
           </button>
@@ -87,376 +87,6 @@
             id="f11-cat1"
             class="cat-content space-y-4 max-w-xl mx-auto w-full"
             data-total-fechas="1"
-          >
-            <div
-              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm "
-            >
-              <button
-                type="button"
-                id="btn-prev-f11-cat1"
-                onclick="navegarFecha('f11-cat1', -1)"
-                class="text-slate-400 hover:text-white cursor-pointer text-xs"
-              >
-                ❮
-              </button>
-              <span
-                id="label-f11-cat1"
-                class="font-black text-xs uppercase tracking-widest text-emerald-400"
-                >Fecha 1</span
-              >
-              <button
-                type="button"
-                id="btn-next-f11-cat1"
-                onclick="navegarFecha('f11-cat1', 1)"
-                class="text-slate-400 hover:text-white cursor-pointer text-xs"
-              >
-                ❯
-              </button>
-            </div>
-            <div class="flex flex-col justify-between space-y-3">
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Primera – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-bold text-emerald-400 w-1/3 equipo-local"
-                    >La Granjah</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">2</span> -
-                    <span class="goles-visita">0</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 2</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Primera – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 3</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">1</span> -
-                    <span class="goles-visita">1</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 4</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Primera – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 5</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">0</span> -
-                    <span class="goles-visita">1</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 6</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Primera – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 7</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">3</span> -
-                    <span class="goles-visita">0</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 8</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Primera – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 9</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">2</span> -
-                    <span class="goles-visita">2</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 10</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- F11 - Reserva -->
-          <div
-            id="f11-cat2"
-            class="cat-content space-y-4 max-w-xl mx-auto w-full hidden"
-            data-total-fechas="1"
-          >
-            <div
-              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
-            >
-              <button
-                type="button"
-                id="btn-prev-f11-cat2"
-                onclick="navegarFecha('f11-cat2', -1)"
-                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm"
-              >
-                ❮
-              </button>
-              <span
-                id="label-f11-cat2"
-                class="font-black text-xs uppercase tracking-widest text-emerald-400"
-                >Fecha 1</span
-              >
-              <button
-                type="button"
-                id="btn-next-f11-cat2"
-                onclick="navegarFecha('f11-cat2', 1)"
-                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm"
-              >
-                ❯
-              </button>
-            </div>
-            <div class="flex flex-col justify-between space-y-3">
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Reserva – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-bold text-emerald-400 w-1/3 equipo-local"
-                    >La Granjah (Res)</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">1</span> -
-                    <span class="goles-visita">1</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 2 (Res)</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Reserva – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 3 (Res)</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">2</span> -
-                    <span class="goles-visita">0</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 4 (Res)</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Reserva – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 5 (Res)</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">0</span> -
-                    <span class="goles-visita">2</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 6 (Res)</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Reserva – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 7 (Res)</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">1</span> -
-                    <span class="goles-visita">0</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 8 (Res)</span
-                  >
-                </div>
-              </div>
-              <div
-                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
-              >
-                <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
-                >
-                  Fútbol 11 – Reserva – Fecha 1
-                </div>
-                <div class="p-4 flex items-center justify-between text-xs">
-                  <span class="font-semibold text-slate-300 w-1/3 equipo-local"
-                    >Rival 9 (Res)</span
-                  >
-                  <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
-                  >
-                    <span class="goles-local">1</span> -
-                    <span class="goles-visita">1</span>
-                  </div>
-                  <span
-                    class="font-semibold text-slate-300 text-right w-1/3 equipo-visita"
-                    >Rival 10 (Res)</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tabla Dinámica F11 -->
-          <div
-            class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 shadow-xl overflow-x-auto flex flex-col justify-center"
-          >
-            <h3
-              id="titulo-tabla-f11"
-              class="text-xs font-black text-center text-slate-400 uppercase tracking-widest mb-4"
-            >
-              TABLA DE POSICIONES – FÚTBOL 11 (PRIMERA)
-            </h3>
-            <table class="w-full text-left text-xs">
-              <thead>
-                <tr
-                  class="border-b border-neutral-800 text-slate-500 font-bold uppercase tracking-wider text-[10px]"
-                >
-                  <th class="py-3 px-2">#</th>
-                  <th class="py-3 px-2">Equipo</th>
-                  <th class="py-3 px-2 text-center">PJ</th>
-                  <th class="py-3 px-2 text-center">PG</th>
-                  <th class="py-3 px-2 text-center">PE</th>
-                  <th class="py-3 px-2 text-center">PP</th>
-                  <th class="py-3 px-2 text-center">GF</th>
-                  <th class="py-3 px-2 text-center">GC</th>
-                  <th class="py-3 px-2 text-center text-emerald-400 font-bold">
-                    PTS
-                  </th>
-                </tr>
-              </thead>
-              <tbody
-                id="tabla-dinamica-f11"
-                class="divide-y divide-neutral-800/40 font-medium"
-              ></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ================= SECCIÓN: FUTSAL MASCULINO ================= -->
-      <div id="seccion-futsal-m" class="disciplina-content space-y-6">
-        <div class="flex justify-center gap-2">
-          <button
-            type="button"
-            id="btn-futsal-m-cat1"
-            onclick="cambiarCat('futsal-m', 'cat1')"
-            class="px-4 py-1.5 bg-neutral-900 border border-emerald-500/50 text-emerald-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer"
-          >
-            Primera
-          </button>
-          <button
-            type="button"
-            id="btn-futsal-m-cat2"
-            onclick="cambiarCat('futsal-m', 'cat2')"
-            class="px-4 py-1.5 bg-neutral-900 border border-neutral-800 text-slate-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
-          >
-            Reserva
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-          <!-- Futsal M - Primera -->
-
-          <div
-            id="futsal-m-cat1"
-            class="cat-content space-y-4 max-w-xl mx-auto w-full"
-            data-total-fechas="2"
           >
             <div
               class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
@@ -483,28 +113,411 @@
                 ❯
               </button>
             </div>
+            <div class="flex flex-col justify-between space-y-3">
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Primera – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-bold text-emerald-400 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >La Granjah</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">2</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-bold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 2</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Primera – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 3</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">1</span> -
+                    <span class="goles-visita">1</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 4</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Primera – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 5</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">0</span> -
+                    <span class="goles-visita">1</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 6</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Primera – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 7</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">3</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 8</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Primera – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 9</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">2</span> -
+                    <span class="goles-visita">2</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 10</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- F11 - Reserva -->
+          <div
+            id="f11-cat2"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full hidden"
+            data-total-fechas="1"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-futsal-m-cat1"
+                onclick="navegarFecha('futsal-m-cat1', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm"
+              >
+                ❮
+              </button>
+              <span
+                id="label-futsal-m-cat1"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-futsal-m-cat1"
+                onclick="navegarFecha('futsal-m-cat1', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm"
+              >
+                ❯
+              </button>
+            </div>
+
+            <div class="flex flex-col justify-between space-y-3">
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Reserva – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-bold text-emerald-400 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >La Granjah (Res)</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">1</span> -
+                    <span class="goles-visita">1</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 2 (Res)</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Reserva – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 3 (Res)</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">2</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 4 (Res)</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Reserva – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 5 (Res)</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">0</span> -
+                    <span class="goles-visita">2</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
+                    >Rival 6 (Res)</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Reserva – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 7 (Res)</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">1</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Rival 8 (Res)</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Fútbol 11 – Reserva – Fecha 1
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Rival 9 (Res)</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">1</span> -
+                    <span class="goles-visita">1</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Rival 10 (Res)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla Dinámica F11 -->
+          <div
+            class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 shadow-xl overflow-x-auto flex flex-col justify-center"
+          >
+            <h3
+              id="titulo-tabla-f11"
+              class="text-base md:text-lg font-black text-center text-emerald-400 uppercase tracking-widest mb-4"
+            >
+              TABLA DE POSICIONES – FÚTBOL 11 (PRIMERA)
+            </h3>
+            <table class="w-full text-left text-sm md:text-base">
+              <thead>
+                <tr
+                  class="border-b border-neutral-800 text-slate-400 font-bold uppercase tracking-wider text-xs"
+                >
+                  <th class="py-3.5 px-3">#</th>
+                  <th class="py-3.5 px-3">Equipo</th>
+                  <th class="py-3.5 px-3 text-center">PJ</th>
+                  <th class="py-3.5 px-3 text-center">PG</th>
+                  <th class="py-3.5 px-3 text-center">PE</th>
+                  <th class="py-3.5 px-3 text-center">PP</th>
+                  <th class="py-3.5 px-3 text-center">GF</th>
+                  <th class="py-3.5 px-3 text-center">GC</th>
+                  <th
+                    class="py-3.5 px-3 text-center text-emerald-300 font-black"
+                  >
+                    PTS
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                id="tabla-dinamica-f11"
+                class="divide-y divide-neutral-800/40 font-medium text-slate-200"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SECCIÓN: FUTSAL MASCULINO ================= -->
+      <div id="seccion-futsal-m" class="disciplina-content space-y-6">
+        <div class="flex justify-center gap-2">
+          <button
+            type="button"
+            id="btn-futsal-m-cat1"
+            onclick="cambiarCat('futsal-m', 'cat1')"
+            class="px-4 py-1.5 bg-neutral-900 border border-amber-500/50 text-amber-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer"
+          >
+            Primera
+          </button>
+          <button
+            type="button"
+            id="btn-futsal-m-cat2"
+            onclick="cambiarCat('futsal-m', 'cat2')"
+            class="px-4 py-1.5 bg-neutral-900 border border-amber-500/50 text-amber-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
+          >
+            Reserva
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <!-- Futsal M - Primera -->
+
+          <div
+            id="futsal-m-cat1"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full"
+            data-total-fechas="2"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-futsal-m-cat1"
+                onclick="navegarFecha('futsal-m-cat1', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+              >
+                ❮
+              </button>
+              <span
+                id="label-futsal-m-cat1"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-futsal-m-cat1"
+                onclick="navegarFecha('futsal-m-cat1', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+              >
+                ❯
+              </button>
+            </div>
             <div class="fecha-item-content space-y-3">
               <div
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >San Ricardo</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">1</span> -
                     <span class="goles-visita">3</span>
                   </div>
                   <span
-                    class="font-bold text-emerald-400 w-1/3 text-center equipo-visita"
+                    class="font-bold text-emerald-400 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >La Granjah</span
                   >
                 </div>
@@ -513,23 +526,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Villa Hipódromo</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">5</span> -
                     <span class="goles-visita">3</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Colón Juniors</span
                   >
                 </div>
@@ -538,23 +551,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Def. de los Andes</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">3</span> -
                     <span class="goles-visita">4</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Punteto</span
                   >
                 </div>
@@ -563,23 +576,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Estrella</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">3</span> -
                     <span class="goles-visita">2</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Trinidad</span
                   >
                 </div>
@@ -588,17 +601,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 1
                 </div>
-                <div class="p-4 flex items-center justify-center text-xs">
+                <div class="p-4 flex items-center justify-center">
                   <div
-                  class="bg-neutral-950 border border-neutral-800 px-6 py-2 rounded-xl font-mono font-bold text-center shadow-inner tracking-wider flex items-center justify-center space-x-2"
-                >
-                  <span class="text-white">Fecha Libre:</span>
-                  <span class="font-bold !text-emerald-300">Don Bosco</span>
-                </div>
+                    class="bg-neutral-950 border border-neutral-800 px-7 py-3 rounded-xl font-mono font-bold text-base text-center shadow-inner tracking-wider flex items-center justify-center space-x-2.5"
+                  >
+                    <span class="text-white">Fecha Libre:</span>
+                    <span class="font-bold text-slate-300">Don Bosco</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -610,17 +623,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Don Bosco</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
@@ -635,7 +648,7 @@
                     >
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >Estrella</span
                   >
                 </div>
@@ -646,17 +659,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Colón Juniors</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
@@ -671,7 +684,7 @@
                     >
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >San Ricardo</span
                   >
                 </div>
@@ -682,17 +695,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Trinidad</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
@@ -707,7 +720,7 @@
                     >
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >Def. de los Andes</span
                   >
                 </div>
@@ -718,17 +731,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-[10px] font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Punteto</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
@@ -743,7 +756,7 @@
                     >
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >Villa Hipódromo</span
                   >
                 </div>
@@ -754,17 +767,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Primera – Fecha 2
                 </div>
-                <div class="p-4 flex items-center justify-center text-xs">
+                <div class="p-4 flex items-center justify-center">
                   <div
-                  class="bg-neutral-950 border border-neutral-800 px-6 py-2 rounded-xl font-mono font-bold text-center shadow-inner tracking-wider flex items-center justify-center space-x-2"
-                >
-                  <span class="text-white">Fecha Libre:</span>
-                  <span class="font-bold !text-emerald-300">La Granjah</span>
-                </div>
+                    class="bg-neutral-950 border border-neutral-800 px-7 py-3 rounded-xl font-mono font-bold text-base text-center shadow-inner tracking-wider flex items-center justify-center space-x-2.5"
+                  >
+                    <span class="text-white">Fecha Libre:</span>
+                    <span class="font-bold !text-emerald-300">La Granjah</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -807,23 +820,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >San Ricardo</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">4</span> -
                     <span class="goles-visita">6</span>
                   </div>
                   <span
-                    class="font-bold text-emerald-400 w-1/3 text-center equipo-visita"
+                    class="font-bold text-emerald-400 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >La Granjah</span
                   >
                 </div>
@@ -832,23 +845,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-local"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
                     >Villa Hipódromo</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">0</span> -
                     <span class="goles-visita">4</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Colón Juniors</span
                   >
                 </div>
@@ -857,23 +870,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-local"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
                     >Def. de los Andes</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">5</span> -
                     <span class="goles-visita">8</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Punteto</span
                   >
                 </div>
@@ -882,23 +895,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-local"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
                     >Estrella</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">1</span> -
                     <span class="goles-visita">2</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Trinidad</span
                   >
                 </div>
@@ -907,15 +920,16 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 1
                 </div>
-                <div class="p-4 flex items-center justify-center text-xs">
+                <div class="p-4 flex items-center justify-center">
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-6 py-2 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider"
+                    class="bg-neutral-950 border border-neutral-800 px-7 py-3 rounded-xl font-mono font-bold text-base text-center shadow-inner tracking-wider flex items-center justify-center space-x-2.5"
                   >
-                    Fecha Libre: Don Bosco
+                    <span class="text-white">Fecha Libre:</span>
+                    <span class="font-bold text-slate-300">Don Bosco</span>
                   </div>
                 </div>
               </div>
@@ -929,32 +943,30 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Don Bosco</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-3 py-2 rounded-xl font-mono font-bold text-xs md:text-sm text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
                       contenteditable="true"
-                      ></span
-                    >
-                    -Suspendido-
+                    ></span>
+                    -SUSPENDIDO-
                     <span
                       class="goles-visita outline-none focus:bg-neutral-900 px-1 rounded"
                       contenteditable="true"
-                      ></span
-                    >
+                    ></span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >Estrella</span
                   >
                 </div>
@@ -965,17 +977,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Colón Juniors</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
@@ -990,7 +1002,7 @@
                     >
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >San Ricardo</span
                   >
                 </div>
@@ -1001,17 +1013,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Trinidad</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
@@ -1026,7 +1038,7 @@
                     >
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >Def. de los Andes</span
                   >
                 </div>
@@ -1037,17 +1049,17 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 2
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Punteto</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container flex items-center space-x-1 justify-center"
                   >
                     <span
                       class="goles-local outline-none focus:bg-neutral-900 px-1 rounded"
@@ -1062,7 +1074,7 @@
                     >
                   </div>
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-visita"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >Villa Hipódromo</span
                   >
                 </div>
@@ -1073,13 +1085,13 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal M. – Reserva – Fecha 2
                 </div>
-                <div class="p-4 flex items-center justify-center text-xs">
+                <div class="p-4 flex items-center justify-center">
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-6 py-2 rounded-xl font-mono font-bold text-center shadow-inner tracking-wider flex items-center justify-center space-x-2"
+                    class="bg-neutral-950 border border-neutral-800 px-7 py-3 rounded-xl font-mono font-bold text-base text-center shadow-inner tracking-wider flex items-center justify-center space-x-2.5"
                   >
                     <span class="text-white">Fecha Libre:</span>
                     <span class="font-bold !text-emerald-300">La Granjah</span>
@@ -1087,7 +1099,6 @@
                 </div>
               </div>
             </div>
-
           </div>
 
           <!-- Tabla Dinámica Futsal M -->
@@ -1096,31 +1107,31 @@
           >
             <h3
               id="titulo-tabla-futsal-m"
-              class="text-xs font-black text-center text-slate-400 uppercase tracking-widest mb-4"
+              class="text-base md:text-lg font-black text-center text-amber-400 uppercase tracking-widest mb-4"
             >
               TABLA DE POSICIONES – FUTSAL M. (PRIMERA)
             </h3>
-            <table class="w-full text-left text-xs">
+            <table class="w-full text-left text-sm md:text-base">
               <thead>
                 <tr
-                  class="border-b border-neutral-800 text-slate-500 font-bold uppercase tracking-wider text-[10px]"
+                  class="border-b border-neutral-800 text-slate-400 font-bold uppercase tracking-wider text-xs"
                 >
-                  <th class="py-3 px-2">#</th>
-                  <th class="py-3 px-2">Equipo</th>
-                  <th class="py-3 px-2 text-center">PJ</th>
-                  <th class="py-3 px-2 text-center">PG</th>
-                  <th class="py-3 px-2 text-center">PE</th>
-                  <th class="py-3 px-2 text-center">PP</th>
-                  <th class="py-3 px-2 text-center">GF</th>
-                  <th class="py-3 px-2 text-center">GC</th>
-                  <th class="py-3 px-2 text-center text-emerald-400 font-bold">
+                  <th class="py-3.5 px-3">#</th>
+                  <th class="py-3.5 px-3">Equipo</th>
+                  <th class="py-3.5 px-3 text-center">PJ</th>
+                  <th class="py-3.5 px-3 text-center">PG</th>
+                  <th class="py-3.5 px-3 text-center">PE</th>
+                  <th class="py-3.5 px-3 text-center">PP</th>
+                  <th class="py-3.5 px-3 text-center">GF</th>
+                  <th class="py-3.5 px-3 text-center">GC</th>
+                  <th class="py-3.5 px-3 text-center text-amber-300 font-black">
                     PTS
                   </th>
                 </tr>
               </thead>
               <tbody
                 id="tabla-dinamica-futsal-m"
-                class="divide-y divide-neutral-800/40 font-medium"
+                class="divide-y divide-neutral-800/40 font-medium text-slate-200"
               ></tbody>
             </table>
           </div>
@@ -1134,7 +1145,7 @@
             type="button"
             id="btn-futsal-f-cat1"
             onclick="cambiarCat('futsal-f', 'cat1')"
-            class="px-4 py-1.5 bg-neutral-900 border border-amber-500/50 text-amber-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer"
+            class="px-4 py-1.5 bg-neutral-900 border border-red-500/50 text-red-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer"
           >
             Primera
           </button>
@@ -1142,18 +1153,18 @@
             type="button"
             id="btn-futsal-f-cat2"
             onclick="cambiarCat('futsal-f', 'cat2')"
-            class="px-4 py-1.5 bg-neutral-900 border border-amber-500/50 text-amber-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
+            class="px-4 py-1.5 bg-neutral-900 border border-red-500/50 text-red-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
           >
             Reserva
           </button>
         </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
           <!-- Futsal F - Primera -->
+
           <div
             id="futsal-f-cat1"
             class="cat-content space-y-4 max-w-xl mx-auto w-full"
-            data-total-fechas="1"
+            data-total-fechas="2"
           >
             <div
               class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
@@ -1162,7 +1173,7 @@
                 type="button"
                 id="btn-prev-futsal-f-cat1"
                 onclick="navegarFecha('futsal-f-cat1', -1)"
-                class="text-slate-400 hover:text-white cursor-pointer text-xs"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
               >
                 ❮
               </button>
@@ -1175,33 +1186,35 @@
                 type="button"
                 id="btn-next-futsal-f-cat1"
                 onclick="navegarFecha('futsal-f-cat1', 1)"
-                class="text-slate-400 hover:text-white cursor-pointer text-xs"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
               >
                 ❯
               </button>
             </div>
+
+            <!-- FECHA 1 -->
             <div class="fecha-item-content space-y-3">
               <div
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >CORA</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">3</span> -
                     <span class="goles-visita">3</span>
                   </div>
                   <span
-                    class="font-bold text-emerald-400 w-1/3 text-center equipo-visita"
+                    class="font-bold text-emerald-400 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >La Granjah</span
                   >
                 </div>
@@ -1210,23 +1223,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-local"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
                     >Trinidad</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">0</span> -
                     <span class="goles-visita">1</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Punteto</span
                   >
                 </div>
@@ -1235,23 +1248,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-local"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
                     >Marquesado</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">4</span> -
                     <span class="goles-visita">5</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Def. Argentinos</span
                   >
                 </div>
@@ -1260,23 +1273,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-local"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
                     >Don Bosco</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">1</span> -
                     <span class="goles-visita">2</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >San Ricardo</span
                   >
                 </div>
@@ -1285,23 +1298,152 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Primera – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 w-1/3 text-center equipo-local"
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
                     >Sarmiento</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">18</span> -
                     <span class="goles-visita">0</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Arbol Verde</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- FECHA 2  -->
+            <div class="fecha-item-content space-y-3 hidden">
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Primera – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-bold text-emerald-400 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >La Granjah</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">1</span> -
+                    <span class="goles-visita">5</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Marquesado</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Primera – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Trinidad</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">2</span> -
+                    <span class="goles-visita">4</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Don Bosco</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Primera – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Sarmiento</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">9</span> -
+                    <span class="goles-visita">2</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Def. Argentinos</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Primera – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >Punteto</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">3</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >CORA</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Primera – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 w-1/3 text-center text-sm md:text-base equipo-local"
+                    >San Ricardo</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">4</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Arbol Verde</span
                   >
                 </div>
@@ -1313,7 +1455,7 @@
           <div
             id="futsal-f-cat2"
             class="cat-content space-y-4 max-w-xl mx-auto w-full hidden"
-            data-total-fechas="1"
+            data-total-fechas="2"
           >
             <div
               class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
@@ -1322,7 +1464,7 @@
                 type="button"
                 id="btn-prev-futsal-f-cat2"
                 onclick="navegarFecha('futsal-f-cat2', -1)"
-                class="text-slate-400 hover:text-white cursor-pointer text-xs"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
               >
                 ❮
               </button>
@@ -1335,33 +1477,35 @@
                 type="button"
                 id="btn-next-futsal-f-cat2"
                 onclick="navegarFecha('futsal-f-cat2', 1)"
-                class="text-slate-400 hover:text-white cursor-pointer text-xs"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
               >
                 ❯
               </button>
             </div>
+
+            <!-- FECHA 1 -->
             <div class="fecha-item-content space-y-3">
               <div
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >CORA</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">2</span> -
                     <span class="goles-visita">2</span>
                   </div>
                   <span
-                    class="font-bold text-emerald-400 w-1/3 text-center equipo-visita"
+                    class="font-bold text-emerald-400 w-1/3 text-center text-sm md:text-base equipo-visita"
                     >La Granjah</span
                   >
                 </div>
@@ -1370,23 +1514,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Trinidad</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">0</span> -
                     <span class="goles-visita">2</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Punteto</span
                   >
                 </div>
@@ -1395,23 +1539,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Marquesado</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">4</span> -
                     <span class="goles-visita">3</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Def. Argentinos</span
                   >
                 </div>
@@ -1420,23 +1564,23 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Don Bosco</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">3</span> -
                     <span class="goles-visita">3</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >San Ricardo</span
                   >
                 </div>
@@ -1445,23 +1589,152 @@
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
-                  class="bg-neutral-950 px-4 py-2 border-b border-neutral-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider"
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
                 >
                   Futsal F. – Reserva – Fecha 1
                 </div>
                 <div class="p-4 flex items-center justify-between text-xs">
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-local"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
                     >Sarmiento</span
                   >
                   <div
-                    class="bg-neutral-950 border border-neutral-800 px-3 py-1.5 rounded-xl font-mono font-bold text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
                   >
                     <span class="goles-local">15</span> -
                     <span class="goles-visita">1</span>
                   </div>
                   <span
-                    class="font-semibold text-slate-300 text-center w-1/3 equipo-visita"
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Arbol verde</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- FECHA 2 -->
+            <div class="fecha-item-content space-y-3 hidden">
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Reserva – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-emerald-400 text-center w-1/3 text-sm md:text-base equipo-local"
+                    >La Granjah</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">0</span> -
+                    <span class="goles-visita">3</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Marquesado</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Reserva – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
+                    >Trinidad</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">2</span> -
+                    <span class="goles-visita">3</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Don Bosco</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Reserva – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
+                    >Sarmiento</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">9</span> -
+                    <span class="goles-visita">2</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >Def. Argentinos</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Reserva – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
+                    >Punteto</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">3</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
+                    >CORA</span
+                  >
+                </div>
+              </div>
+              <div
+                class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
+              >
+                <div
+                  class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md"
+                >
+                  Futsal F. – Reserva – Fecha 2
+                </div>
+                <div class="p-4 flex items-center justify-between text-xs">
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-local"
+                    >San Ricardo</span
+                  >
+                  <div
+                    class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container"
+                  >
+                    <span class="goles-local">4</span> -
+                    <span class="goles-visita">0</span>
+                  </div>
+                  <span
+                    class="font-semibold text-slate-300 text-center w-1/3 text-sm md:text-base equipo-visita"
                     >Arbol verde</span
                   >
                 </div>
@@ -1475,31 +1748,31 @@
           >
             <h3
               id="titulo-tabla-futsal-f"
-              class="text-xs font-black text-center text-slate-400 uppercase tracking-widest mb-4"
+              class="text-base md:text-lg font-black text-center text-red-400 uppercase tracking-widest mb-4"
             >
               TABLA DE POSICIONES – FUTSAL F. (PRIMERA)
             </h3>
-            <table class="w-full text-left text-xs">
+            <table class="w-full text-left text-sm md:text-base">
               <thead>
                 <tr
-                  class="border-b border-neutral-800 text-slate-500 font-bold uppercase tracking-wider text-[10px]"
+                  class="border-b border-neutral-800 text-slate-400 font-bold uppercase tracking-wider text-xs"
                 >
-                  <th class="py-3 px-2">#</th>
-                  <th class="py-3 px-2">Equipo</th>
-                  <th class="py-3 px-2 text-center">PJ</th>
-                  <th class="py-3 px-2 text-center">PG</th>
-                  <th class="py-3 px-2 text-center">PE</th>
-                  <th class="py-3 px-2 text-center">PP</th>
-                  <th class="py-3 px-2 text-center">GF</th>
-                  <th class="py-3 px-2 text-center">GC</th>
-                  <th class="py-3 px-2 text-center text-emerald-400 font-bold">
+                  <th class="py-3.5 px-3">#</th>
+                  <th class="py-3.5 px-3">Equipo</th>
+                  <th class="py-3.5 px-3 text-center">PJ</th>
+                  <th class="py-3.5 px-3 text-center">PG</th>
+                  <th class="py-3.5 px-3 text-center">PE</th>
+                  <th class="py-3.5 px-3 text-center">PP</th>
+                  <th class="py-3.5 px-3 text-center">GF</th>
+                  <th class="py-3.5 px-3 text-center">GC</th>
+                  <th class="py-3.5 px-3 text-center text-red-300 font-black">
                     PTS
                   </th>
                 </tr>
               </thead>
               <tbody
                 id="tabla-dinamica-futsal-f"
-                class="divide-y divide-neutral-800/40 font-medium"
+                class="divide-y divide-neutral-800/40 font-medium text-slate-200"
               ></tbody>
             </table>
           </div>
@@ -1507,271 +1780,389 @@
       </div>
     </div>
 
-    <script>
-      const fechasEstado = {};
-      let disciplinaActual = "futsal-m";
-      let categoriaActual = "cat1";
+    <!-- SCRIPT -->
+<script>
+  const fechasEstado = {};
+  let disciplinaActual = "futsal-m";
+  let categoriaActual = "cat1";
 
-      function cambiarDisciplina(disc) {
-        disciplinaActual = disc;
-        document
-          .querySelectorAll(".disciplina-content")
-          .forEach((el) => el.classList.add("hidden"));
-        ["f11", "futsal-m", "futsal-f"].forEach((d) => {
-          const btn = document.getElementById(`btn-${d}`);
-          if (btn) {
+  // Mapeo de IDs del panel de carga hacia los IDs de tu resultados.html
+  const mapaDisciplinas = {
+    f11: "f11",
+    futsal_m: "futsal-m",
+    futsal_f: "futsal-f",
+  };
+
+  function cambiarDisciplina(disc) {
+    disciplinaActual = disc;
+    document
+      .querySelectorAll(".disciplina-content")
+      .forEach((el) => el.classList.add("hidden"));
+    ["f11", "futsal-m", "futsal-f"].forEach((d) => {
+      const btn = document.getElementById(`btn-${d}`);
+      if (btn) {
+        if (d === disc) {
+          if (d === "f11") {
             btn.className =
-              d === disc
-                ? "px-5 py-2.5 bg-emerald-500 text-neutral-950 font-black text-xs uppercase rounded-xl transition cursor-pointer shadow-lg shadow-emerald-500/10"
-                : "px-5 py-2.5 bg-neutral-900 text-slate-300 font-bold text-xs uppercase rounded-xl border border-neutral-800 hover:bg-neutral-800 transition cursor-pointer";
-          }
-        });
-        const targetDisc = document.getElementById(`seccion-${disc}`);
-        if (targetDisc) targetDisc.classList.remove("hidden");
-
-        calcularTablaUniversal(disc, categoriaActual);
-      }
-
-      function cambiarCat(disc, catId) {
-        categoriaActual = catId;
-        const contenedor = document.getElementById(`seccion-${disc}`);
-        if (!contenedor) return;
-
-        contenedor
-          .querySelectorAll(".cat-content")
-          .forEach((el) => el.classList.add("hidden"));
-
-        contenedor
-          .querySelectorAll(`button[id^="btn-${disc}-"]`)
-          .forEach((btn) => {
+              "px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs uppercase rounded-xl border border-emerald-500 shadow-md transition cursor-pointer";
+          } else if (d === "futsal-m") {
             btn.className =
-              "px-4 py-1.5 bg-neutral-900 border border-neutral-800 text-slate-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer";
-          });
-
-        const targetCat = document.getElementById(`${disc}-${catId}`);
-        if (targetCat) targetCat.classList.remove("hidden");
-
-        const activeBtn = document.getElementById(`btn-${disc}-${catId}`);
-        if (activeBtn) {
-          activeBtn.className =
-            "px-4 py-1.5 bg-neutral-900 border border-emerald-500/50 text-emerald-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer";
-        }
-
-        const containerId = `${disc}-${catId}`;
-        if (fechasEstado[containerId] === undefined) {
-          fechasEstado[containerId] = 1;
-        }
-        actualizarVistaFechas(containerId);
-      }
-
-      function navegarFecha(catContainerId, direccion) {
-        const contenedorCat = document.getElementById(catContainerId);
-        if (!contenedorCat) return;
-
-        const total =
-          parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
-        if (fechasEstado[catContainerId] === undefined) {
-          fechasEstado[catContainerId] = 1;
-        }
-
-        fechasEstado[catContainerId] += direccion;
-        if (fechasEstado[catContainerId] < 1) fechasEstado[catContainerId] = 1;
-        if (fechasEstado[catContainerId] > total)
-          fechasEstado[catContainerId] = total;
-
-        actualizarVistaFechas(catContainerId);
-      }
-
-      function actualizarVistaFechas(catContainerId) {
-        const contenedorCat = document.getElementById(catContainerId);
-        if (!contenedorCat) return;
-
-        const actual = fechasEstado[catContainerId] || 1;
-        const total =
-          parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
-
-        contenedorCat
-          .querySelectorAll(".fecha-item-content")
-          .forEach((el, index) => {
-            if (index + 1 === actual) {
-              el.classList.remove("hidden");
-            } else {
-              el.classList.add("hidden");
-            }
-          });
-
-        const label = document.getElementById(`label-${catContainerId}`);
-        if (label) {
-          label.textContent = `Fecha ${actual}`;
-        }
-
-        const btnPrev = document.getElementById(`btn-prev-${catContainerId}`);
-        const btnNext = document.getElementById(`btn-next-${catContainerId}`);
-
-        if (btnPrev) {
-          btnPrev.classList.toggle("invisible", actual <= 1);
-        }
-        if (btnNext) {
-          btnNext.classList.toggle("invisible", actual >= total);
-        }
-
-        const partes = catContainerId.split("-");
-        const disc =
-          partes[0] === "futsal" ? `${partes[0]}-${partes[1]}` : partes[0];
-        const cat = partes[partes.length - 1];
-
-        calcularTablaUniversal(disc, cat);
-      }
-
-      function calcularTablaUniversal(disc, catId) {
-        const catContainerId = `${disc}-${catId}`;
-        const contenedorCat = document.getElementById(catContainerId);
-        if (!contenedorCat) return;
-
-        const equipos = {};
-
-        function asegurarEquipo(nombre) {
-          if (!equipos[nombre]) {
-            equipos[nombre] = {
-              nombre,
-              pj: 0,
-              pg: 0,
-              pe: 0,
-              pp: 0,
-              gf: 0,
-              gc: 0,
-              pts: 0,
-            };
+              "px-5 py-2.5 bg-amber-400 text-neutral-950 font-black text-xs uppercase rounded-xl shadow-md transition cursor-pointer";
+          } else if (d === "futsal-f") {
+            btn.className =
+              "px-5 py-2.5 bg-red-600 text-white font-bold text-xs uppercase rounded-xl border border-red-500 shadow-md transition cursor-pointer";
+          }
+        } else {
+          if (d === "f11") {
+            btn.className =
+              "px-5 py-2.5 bg-neutral-900 text-emerald-500 font-bold text-xs uppercase rounded-xl border border-emerald-900/50 hover:bg-neutral-800 transition cursor-pointer";
+          } else if (d === "futsal-m") {
+            btn.className =
+              "px-5 py-2.5 bg-neutral-900 text-amber-400 font-bold text-xs uppercase rounded-xl border border-amber-900/50 hover:bg-neutral-800 transition cursor-pointer";
+          } else if (d === "futsal-f") {
+            btn.className =
+              "px-5 py-2.5 bg-neutral-900 text-red-500 font-bold text-xs uppercase rounded-xl border border-red-900/50 hover:bg-neutral-800 transition cursor-pointer";
           }
         }
-
-        contenedorCat.querySelectorAll(".partido-row").forEach((row) => {
-          const local = row.querySelector(".equipo-local")?.textContent.trim();
-          const visita = row
-            .querySelector(".equipo-visita")
-            ?.textContent.trim();
-          const gLocalText = row
-            .querySelector(".goles-local")
-            ?.textContent.trim();
-          const gVisitaText = row
-            .querySelector(".goles-visita")
-            ?.textContent.trim();
-
-          if (!local || !visita || gLocalText === "" || gVisitaText === "")
-            return;
-
-          const gLocal = parseInt(gLocalText);
-          const gVisita = parseInt(gVisitaText);
-
-          if (isNaN(gLocal) || isNaN(gVisita)) return;
-
-          asegurarEquipo(local);
-          asegurarEquipo(visita);
-
-          equipos[local].pj += 1;
-          equipos[visita].pj += 1;
-          equipos[local].gf += gLocal;
-          equipos[local].gc += gVisita;
-          equipos[visita].gf += gVisita;
-          equipos[visita].gc += gLocal;
-
-          if (gLocal > gVisita) {
-            equipos[local].pg += 1;
-            equipos[local].pts += 3;
-            equipos[visita].pp += 1;
-          } else if (gLocal < gVisita) {
-            equipos[visita].pg += 1;
-            equipos[visita].pts += 3;
-            equipos[local].pp += 1;
-          } else {
-            equipos[local].pe += 1;
-            equipos[local].pts += 1;
-            equipos[visita].pe += 1;
-            equipos[visita].pts += 1;
-          }
-        });
-
-        contenedorCat.querySelectorAll(".partido-row").forEach((row) => {
-          const textoLibre = row.textContent.trim();
-          if (textoLibre.includes("Fecha Libre:")) {
-            const partes = textoLibre.split(":");
-            if (partes.length > 1) {
-              const nombreLibre = partes[1].trim();
-              if (nombreLibre) {
-                asegurarEquipo(nombreLibre);
-              }
-            }
-          }
-        });
-
-        const arrayEquipos = Object.values(equipos).sort((a, b) => {
-          // Si uno tiene 0 PJ y el otro no, el que tiene 0 PJ va al final
-          if (a.pj === 0 && b.pj > 0) return 1;
-          if (b.pj === 0 && a.pj > 0) return -1;
-
-          // Orden normal por puntos, diferencia de gol y goles a favor
-          if (b.pts !== a.pts) return b.pts - a.pts;
-          const difA = a.gf - a.gc;
-          const difB = b.gf - b.gc;
-          if (difB !== difA) return difB - difA;
-          return b.gf - a.gf;
-        });
-
-        const tituloDiscMap = {
-          f11: "FÚTBOL 11",
-          "futsal-m": "FUTSAL M.",
-          "futsal-f": "FUTSAL F.",
-        };
-        const nombreCat = catId === "cat1" ? "PRIMERA" : "RESERVA";
-        const elTitulo = document.getElementById(`titulo-tabla-${disc}`);
-        if (elTitulo) {
-          elTitulo.textContent = `TABLA DE POSICIONES – ${tituloDiscMap[disc]} (${nombreCat})`;
-        }
-
-        const tbody = document.getElementById(`tabla-dinamica-${disc}`);
-        if (!tbody) return;
-
-        tbody.innerHTML = "";
-        if (arrayEquipos.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-slate-500">No hay partidos con resultados cargados.</td></tr>`;
-          return;
-        }
-
-        arrayEquipos.forEach((eq, index) => {
-          const esPrimero = index === 0;
-          const tr = document.createElement("tr");
-          tr.className = esPrimero
-            ? "bg-neutral-950/50 text-emerald-400 font-bold"
-            : "text-slate-300";
-          tr.innerHTML = `
-          <td class="py-3 px-2">${index + 1}</td>
-          <td class="py-3 px-2">${eq.nombre}</td>
-          <td class="py-3 px-2 text-center">${eq.pj}</td>
-          <td class="py-3 px-2 text-center">${eq.pg}</td>
-          <td class="py-3 px-2 text-center">${eq.pe}</td>
-          <td class="py-3 px-2 text-center">${eq.pp}</td>
-          <td class="py-3 px-2 text-center">${eq.gf}</td>
-          <td class="py-3 px-2 text-center">${eq.gc}</td>
-          <td class="py-3 px-2 text-center ${esPrimero ? "font-black" : "font-bold"}">${eq.pts}</td>
-        `;
-          tbody.appendChild(tr);
-        });
       }
+    });
+    const targetDisc = document.getElementById(`seccion-${disc}`);
+    if (targetDisc) targetDisc.classList.remove("hidden");
 
-      document.addEventListener("DOMContentLoaded", () => {
-        [
-          "f11-cat1",
-          "f11-cat2",
-          "futsal-m-cat1",
-          "futsal-m-cat2",
-          "futsal-f-cat1",
-          "futsal-f-cat2",
-        ].forEach((id) => {
-          fechasEstado[id] = 1;
-          actualizarVistaFechas(id);
-        });
-        cambiarDisciplina("futsal-m");
+    calcularTablaUniversal(disc, categoriaActual);
+  }
+
+  function cambiarCat(disc, catId) {
+    categoriaActual = catId;
+    const contenedor = document.getElementById(`seccion-${disc}`);
+    if (!contenedor) return;
+
+    contenedor
+      .querySelectorAll(".cat-content")
+      .forEach((el) => el.classList.add("hidden"));
+
+    contenedor
+      .querySelectorAll(`button[id^="btn-${disc}-"]`)
+      .forEach((btn) => {
+        btn.className =
+          "px-4 py-1.5 bg-neutral-900 border border-neutral-800 text-slate-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer";
       });
-    </script>
+
+    const targetCat = document.getElementById(`${disc}-${catId}`);
+    if (targetCat) targetCat.classList.remove("hidden");
+
+    const activeBtn = document.getElementById(`btn-${disc}-${catId}`);
+    if (activeBtn) {
+      let colorClasses = "border-emerald-500/50 text-emerald-400";
+      if (disc === "futsal-m") {
+        colorClasses = "border-amber-500/50 text-amber-400";
+      } else if (disc === "futsal-f") {
+        colorClasses = "border-red-500/50 text-red-400";
+      }
+
+      activeBtn.className = `px-4 py-1.5 bg-neutral-900 border ${colorClasses} font-bold text-xs rounded-xl shadow-sm cursor-pointer`;
+    }
+
+    const containerId = `${disc}-${catId}`;
+    if (fechasEstado[containerId] === undefined) {
+      fechasEstado[containerId] = 1;
+    }
+    actualizarVistaFechas(containerId);
+  }
+
+  function navegarFecha(catContainerId, direccion) {
+    const contenedorCat = document.getElementById(catContainerId);
+    if (!contenedorCat) return;
+
+    const total =
+      parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
+
+    if (fechasEstado[catContainerId] === undefined) {
+      fechasEstado[catContainerId] = 1;
+    }
+
+    let nuevaFecha = fechasEstado[catContainerId] + direccion;
+
+    if (nuevaFecha < 1) nuevaFecha = 1;
+    if (nuevaFecha > total) nuevaFecha = total;
+
+    fechasEstado[catContainerId] = nuevaFecha;
+    actualizarVistaFechas(catContainerId);
+  }
+
+  function renderizarPartidosGuardados(catContainerId) {
+    const contenedorCat = document.getElementById(catContainerId);
+    if (!contenedorCat) return;
+
+    const partes = catContainerId.split("-");
+    const disc = partes[0] === "futsal" ? `${partes[0]}-${partes[1]}` : partes[0];
+    const catId = partes[partes.length - 1];
+    const nombreCatLargo = catId === "cat1" ? "Primera" : "Reserva";
+
+    const partidosGuardados = JSON.parse(
+      localStorage.getItem("club_resultados") || "[]"
+    );
+
+    let maxFechaActual = parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
+
+    partidosGuardados.forEach((p) => {
+      const discConvertida = mapaDisciplinas[p.disciplina] || p.disciplina;
+
+      // Verificar pertenencia por disciplina y categoría
+      if (
+        discConvertida === disc &&
+        (p.categoria === nombreCatLargo || p.categoria === catId)
+      ) {
+        const numFecha = parseInt(p.fechaNum || p.fecha || 1);
+
+        if (numFecha > maxFechaActual) {
+          maxFechaActual = numFecha;
+        }
+
+        // Obtener la lista actual de elementos .fecha-item-content
+        let listaFechas = contenedorCat.querySelectorAll(":scope > .fecha-item-content");
+
+        // Si la fecha cargada es mayor que la cantidad de contenedores existentes, creamos los necesarios
+        while (listaFechas.length < numFecha) {
+          const nuevaIndex = listaFechas.length + 1;
+          const nuevoDivFecha = document.createElement("div");
+          nuevoDivFecha.className = "fecha-item-content space-y-3 hidden";
+          contenedorCat.appendChild(nuevoDivFecha);
+          listaFechas = contenedorCat.querySelectorAll(":scope > .fecha-item-content");
+        }
+
+        const contenedorFecha = listaFechas[numFecha - 1];
+        const idUnico = `partido-dinamico-${p.local}-${p.visitante}-${numFecha}`.replace(/\s+/g, '-');
+
+        // Evitar duplicados si el partido ya fue renderizado
+        if (!contenedorFecha.querySelector(`#${idUnico}`)) {
+          // Determinar la barra de color según la disciplina
+          let bgHeader = "bg-gradient-to-r from-emerald-500 to-amber-500";
+          let textoHeader = `${disc.toUpperCase()} - FECHA ${numFecha}`;
+          
+          if (disc === "futsal-m") {
+            bgHeader = "bg-gradient-to-r from-amber-500 to-orange-500";
+          } else if (disc === "futsal-f") {
+            bgHeader = "bg-gradient-to-r from-emerald-400 via-amber-400 to-red-500";
+            textoHeader = `FUTSAL F. – ${nombreCatLargo.toUpperCase()} – FECHA ${numFecha}`;
+          }
+
+          const cardHTML = `
+            <div id="${idUnico}" class="partido-row bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-lg">
+              <div class="${bgHeader} py-1 px-3 text-center">
+                <span class="text-[10px] font-black uppercase text-neutral-950 tracking-wider">
+                  ${textoHeader}
+                </span>
+              </div>
+              <div class="p-4 flex justify-between items-center text-xs">
+                <span class="equipo-local font-bold text-neutral-200 text-right w-5/12 truncate">${p.local}</span>
+                <span class="font-black text-amber-400 bg-neutral-950 border border-neutral-800 px-3 py-1 rounded-xl mx-2 text-sm">
+                  <span class="goles-local">${p.golesLocal}</span> - <span class="goles-visita">${p.golesVisitante}</span>
+                </span>
+                <span class="equipo-visita font-bold text-neutral-200 text-left w-5/12 truncate">${p.visitante}</span>
+              </div>
+            </div>
+          `;
+
+          contenedorFecha.insertAdjacentHTML("beforeend", cardHTML);
+        }
+      }
+    });
+
+    // Actualizar el atributo data-total-fechas dinámicamente
+    contenedorCat.setAttribute("data-total-fechas", maxFechaActual);
+  }
+
+  function actualizarVistaFechas(catContainerId) {
+    const contenedorCat = document.getElementById(catContainerId);
+    if (!contenedorCat) return;
+
+    // Inyectar partidos dinámicos y actualizar el total de fechas antes de renderizar
+    renderizarPartidosGuardados(catContainerId);
+
+    const actual = fechasEstado[catContainerId] || 1;
+    const total =
+      parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
+
+    const itemsFecha = contenedorCat.querySelectorAll(
+      ":scope > .fecha-item-content"
+    );
+
+    itemsFecha.forEach((el, index) => {
+      if (index + 1 === actual) {
+        el.classList.remove("hidden");
+      } else {
+        el.classList.add("hidden");
+      }
+    });
+
+    const label = contenedorCat.querySelector(`#label-${catContainerId}`);
+    if (label) {
+      label.textContent = `Fecha ${actual}`;
+    }
+
+    const btnPrev = document.getElementById(`btn-prev-${catContainerId}`);
+    const btnNext = document.getElementById(`btn-next-${catContainerId}`);
+
+    if (btnPrev) btnPrev.classList.toggle("invisible", actual <= 1);
+    if (btnNext) btnNext.classList.toggle("invisible", actual >= total);
+
+    const partes = catContainerId.split("-");
+    const disc =
+      partes[0] === "futsal" ? `${partes[0]}-${partes[1]}` : partes[0];
+    const cat = partes[partes.length - 1];
+
+    calcularTablaUniversal(disc, cat);
+  }
+
+  function calcularTablaUniversal(disc, catId) {
+    const catContainerId = `${disc}-${catId}`;
+    const contenedorCat = document.getElementById(catContainerId);
+    if (!contenedorCat) return;
+
+    const equipos = {};
+
+    function asegurarEquipo(nombre) {
+      if (!equipos[nombre]) {
+        equipos[nombre] = {
+          nombre,
+          pj: 0,
+          pg: 0,
+          pe: 0,
+          pp: 0,
+          gf: 0,
+          gc: 0,
+          pts: 0,
+        };
+      }
+    }
+
+    // Lee los partidos en pantalla (estáticos + dinámicos agregados)
+    contenedorCat.querySelectorAll(".partido-row").forEach((row) => {
+      const local = row.querySelector(".equipo-local")?.textContent.trim();
+      const visita = row
+        .querySelector(".equipo-visita")
+        ?.textContent.trim();
+      const gLocalText = row
+        .querySelector(".goles-local")
+        ?.textContent.trim();
+      const gVisitaText = row
+        .querySelector(".goles-visita")
+        ?.textContent.trim();
+
+      if (!local || !visita || gLocalText === "" || gVisitaText === "")
+        return;
+
+      const gLocal = parseInt(gLocalText);
+      const gVisita = parseInt(gVisitaText);
+
+      if (isNaN(gLocal) || isNaN(gVisita)) return;
+
+      asegurarEquipo(local);
+      asegurarEquipo(visita);
+
+      equipos[local].pj += 1;
+      equipos[visita].pj += 1;
+      equipos[local].gf += gLocal;
+      equipos[local].gc += gVisita;
+      equipos[visita].gf += gVisita;
+      equipos[visita].gc += gLocal;
+
+      if (gLocal > gVisita) {
+        equipos[local].pg += 1;
+        equipos[local].pts += 3;
+        equipos[visita].pp += 1;
+      } else if (gLocal < gVisita) {
+        equipos[visita].pg += 1;
+        equipos[visita].pts += 3;
+        equipos[local].pp += 1;
+      } else {
+        equipos[local].pe += 1;
+        equipos[local].pts += 1;
+        equipos[visita].pe += 1;
+        equipos[visita].pts += 1;
+      }
+    });
+
+    // Fechas libres del HTML
+    contenedorCat.querySelectorAll(".partido-row").forEach((row) => {
+      const textoLibre = row.textContent.trim();
+      if (textoLibre.includes("Fecha Libre:")) {
+        const partes = textoLibre.split(":");
+        if (partes.length > 1) {
+          const nombreLibre = partes[1].trim();
+          if (nombreLibre) asegurarEquipo(nombreLibre);
+        }
+      }
+    });
+
+    // Ordenar posiciones
+    const arrayEquipos = Object.values(equipos).sort((a, b) => {
+      if (a.pj === 0 && b.pj > 0) return 1;
+      if (b.pj === 0 && a.pj > 0) return -1;
+
+      if (b.pts !== a.pts) return b.pts - a.pts;
+      const difA = a.gf - a.gc;
+      const difB = b.gf - b.gc;
+      if (difB !== difA) return difB - difA;
+      return b.gf - a.gf;
+    });
+
+    const tituloDiscMap = {
+      f11: "FÚTBOL 11",
+      "futsal-m": "FUTSAL M.",
+      "futsal-f": "FUTSAL F.",
+    };
+    const nombreCat = catId === "cat1" ? "PRIMERA" : "RESERVA";
+    const elTitulo = document.getElementById(`titulo-tabla-${disc}`);
+    if (elTitulo) {
+      elTitulo.textContent = `TABLA DE POSICIONES – ${tituloDiscMap[disc]} (${nombreCat})`;
+    }
+
+    const tbody = document.getElementById(`tabla-dinamica-${disc}`);
+    if (!tbody) return;
+
+    tbody.innerHTML = "";
+    if (arrayEquipos.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-slate-500">No hay partidos con resultados cargados.</td></tr>`;
+      return;
+    }
+
+    arrayEquipos.forEach((eq, index) => {
+      const esPrimero = index === 0;
+      const tr = document.createElement("tr");
+      tr.className = esPrimero
+        ? "bg-neutral-950/50 text-emerald-400 font-bold"
+        : "text-slate-300";
+      tr.innerHTML = `
+        <td class="py-3 px-2">${index + 1}</td>
+        <td class="py-3 px-2">${eq.nombre}</td>
+        <td class="py-3 px-2 text-center">${eq.pj}</td>
+        <td class="py-3 px-2 text-center">${eq.pg}</td>
+        <td class="py-3 px-2 text-center">${eq.pe}</td>
+        <td class="py-3 px-2 text-center">${eq.pp}</td>
+        <td class="py-3 px-2 text-center">${eq.gf}</td>
+        <td class="py-3 px-2 text-center">${eq.gc}</td>
+        <td class="py-3 px-2 text-center ${esPrimero ? "font-black" : "font-bold"}">${eq.pts}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    [
+      "f11-cat1",
+      "f11-cat2",
+      "futsal-m-cat1",
+      "futsal-m-cat2",
+      "futsal-f-cat1",
+      "futsal-f-cat2",
+    ].forEach((id) => {
+      fechasEstado[id] = 1;
+      actualizarVistaFechas(id);
+    });
+    cambiarDisciplina("futsal-m");
+  });
+</script>
   </body>
 </html>

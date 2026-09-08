@@ -38,7 +38,7 @@ const subtitulo = "Club Social & Deportivo";
 
         <!-- Menú exclusivo para PC -->
         <nav
-          class="desktop-only flex items-center gap-8 text-sm font-semibold text-slate-300"
+          class="desktop-only hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300"
         >
           <a href="#disciplinas" class="hover:text-amber-400 transition"
             >Disciplinas</a
@@ -57,12 +57,12 @@ const subtitulo = "Club Social & Deportivo";
           </a>
         </nav>
 
-        <!-- Botón Hamburguesa exclusivo para celulares -->
+        <!-- Botón Hamburguesa exclusivo para celulares y tablets -->
         <button
           id="menu-btn"
           type="button"
           aria-label="Abrir menú"
-          class="mobile-only text-slate-100 hover:text-amber-400 focus:outline-none p-2 rounded-lg bg-neutral-900 border border-neutral-800 cursor-pointer"
+          class="text-slate-100 hover:text-amber-400 focus:outline-none p-2 rounded-lg bg-neutral-900 border border-neutral-800 cursor-pointer lg:hidden"
         >
           <svg
             id="icon-open"
@@ -93,30 +93,30 @@ const subtitulo = "Club Social & Deportivo";
         </button>
       </div>
 
-      <!-- Desplegable Exclusivo para Celulares -->
+      <!-- Menú desplegable flotante, delicado y alineado a la derecha -->
       <div
         id="mobile-menu"
-        class="hidden mobile-only bg-neutral-950/95 border-b border-neutral-800 px-6 pt-2 pb-6 space-y-3"
+        class="hidden lg:hidden absolute right-4 top-20 w-72 bg-neutral-950/80 backdrop-blur-xl border border-neutral-800/60 rounded-2xl p-4 shadow-2xl space-y-2 z-50"
       >
-        <nav class="flex flex-col gap-3 text-base font-medium text-slate-200">
+        <nav class="flex flex-col gap-1 text-sm font-medium text-slate-300">
           <a
             href="#disciplinas"
-            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
             >Disciplinas Deportivas</a
           >
           <a
             href="#indumentaria"
-            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
             >Indumentaria</a
           >
           <a
             href="#identidad"
-            class="mobile-link hover:text-amber-400 transition py-2 border-b border-neutral-900"
+            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
             >Nuestra Esencia</a
           >
           <a
             href="#sumate"
-            class="mobile-link text-center bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-black py-3 rounded-xl uppercase tracking-wider shadow-md mt-2"
+            class="mobile-link text-center bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-bold py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md mt-2 block text-xs"
             >Sumate al Club</a
           >
         </nav>
@@ -272,15 +272,17 @@ const subtitulo = "Club Social & Deportivo";
                 <span class="text-rose-500">GRANJHÍSTICA</span>
               </h3>
               <p class="text-neutral-400 text-sm sm:text-base">
-                Se viene la nueva colección oficial. ¡Estate atento a los
-                lanzamientos!
+                Se viene la nueva colección oficial.
               </p>
+              <h2 class="text-neutral-400 text-sm sm:text-base mt-2">
+                ¡Pronto podrás adquirirla en nuestra tienda online!
+              </h2>
             </div>
           </div>
 
-          <!-- GRID DE CARDS CON BLUR APLICADO (Muestra solo 2 en celu, las 6 en sm en adelante) -->
+          <!-- GRID DE CARDS CON BLUR APLICADO (Muestra solo 1 en celu, 2 en tablet y 6 en sm en adelante) -->
           <div
-            class="filter blur-md pointer-events-none select-none opacity-40 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 [&>div:nth-child(n+3)]:hidden sm:[&>div:nth-child(n+3)]:block"
+            class="filter blur-md pointer-events-none select-none opacity-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 [&>div:nth-child(n+2)]:hidden md:[&>div:nth-child(n+2)]:block md:[&>div:nth-child(n+3)]:hidden lg:[&>div:nth-child(n+3)]:block"
           >
             <!-- CARD 1 -->
             <div class="single-card-container group h-[420px] cursor-pointer">
@@ -745,7 +747,7 @@ const subtitulo = "Club Social & Deportivo";
         </div>
 
         <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto justify-items-center"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4"
         >
           <!-- CARD 1: FÚTBOL 11 -->
           <div
@@ -755,15 +757,11 @@ const subtitulo = "Club Social & Deportivo";
             data-categories='[
               {
                 "name": "Liga de Profesionales",
-                "matches": [
-                  {"fecha": "Fecha 5", "rival": "Club de amigos", "cancha": "Adepu-cancha 5", "dia": "Dom 06/09-09:30 hs"}
-                ]
+                "matches": []
               },
               {
                 "name": "Liga Universitaria",
-                "matches": [
-                  {"Información": "Próximamente más información"}
-                ]
+                "matches": []
               }
             ]'
           >
@@ -805,8 +803,10 @@ const subtitulo = "Club Social & Deportivo";
             data-sport-title="Futsal Masculino"
             data-sport-icon="👟"
             data-categories='[
-              { "name": "Primera", "matches": [] },
-              { "name": "Reserva", "matches": [] },
+              { "name": "Primera", "matches": [{ "fecha": "Fecha 1", "rival": "San Ricardo", "cancha": "San Ricardo", "condicion": "VISITANTE", "dia": "Mier 19/08-22:00 hs" },
+               { "fecha": "Fecha 2", "libre": true },
+                { "fecha": "Fecha 3", "rival": "Colón Juniors", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 09/09-22:00 hs" }] },
+              { "name": "Reserva", "matches": [{ "fecha": "Fecha 1", "rival": "San Ricardo", "cancha": "San Ricardo", "condicion": "VISITANTE", "dia": "Mier 19/08-21:00 hs" }, { "fecha": "Fecha 2", "libre": true }, { "fecha": "Fecha 3", "rival": "Colón Juniors", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 09/09-21:00 hs" }] },
               { "name": "Sub 17", "matches": [] },
               { "name": "Sub 15", "matches": [] },
               { "name": "Sub 13", "matches": [] }
@@ -846,20 +846,24 @@ const subtitulo = "Club Social & Deportivo";
 
           <!-- CARD 3: FUTSAL FEMENINO -->
           <div
-            class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl"
+            class="sport-card group bg-neutral-950 border border-neutral-800 hover:border-red-500/50 rounded-2xl p-6 transition duration-300 cursor-pointer flex flex-col justify-between shadow-xl h-full md:col-span-2 md:max-w-md md:mx-auto lg:col-span-1 lg:max-w-none"
             data-sport-title="Futsal Femenino"
             data-sport-icon="👟"
             data-categories='[
               {
                 "name": "Primera",
                 "matches": [
-                  { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-20:00 hs" }
+                  { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-20:00 hs" }, 
+                  { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "Local", "dia": "Dom 06/09-20:00 hs" },
+                  { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 13/09-20:00 hs" }
                 ]
               },
               {
                 "name": "Reserva",
                 "matches": [
-                  { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-19:00 hs" }
+                  { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-19:00 hs" },
+                  { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "Local", "dia": "Dom 06/09-19:00 hs" },
+                  { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 13/09-19:00 hs" }
                 ]
               }
             ]'
@@ -1906,306 +1910,486 @@ const subtitulo = "Club Social & Deportivo";
     </footer>
   </body>
   
-<script is:inline>
-  // 1. Giro de Tarjetas Generales
-  document.querySelectorAll(".single-card-container").forEach((card) => {
-    card.addEventListener("click", () => {
-      card.classList.toggle("is-flipped");
+  <!-- SCRIPT -->
+  <script is:inline>
+    // 1. Giro de Tarjetas Generales
+    document.querySelectorAll(".single-card-container").forEach((card) => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("is-flipped");
+      });
     });
-  });
 
-  // 2. Lógica Menú Hamburguesa
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const iconOpen = document.getElementById("icon-open");
-  const iconClose = document.getElementById("icon-close");
-  const mobileLinks = document.querySelectorAll(".mobile-link");
+    // 2. Lógica Menú Hamburguesa
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const iconOpen = document.getElementById("icon-open");
+    const iconClose = document.getElementById("icon-close");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
 
-  if (menuBtn) {
-    menuBtn.addEventListener("click", () => {
-      if (mobileMenu) mobileMenu.classList.toggle("hidden");
-      if (iconOpen) iconOpen.classList.toggle("hidden");
-      if (iconClose) iconClose.classList.toggle("hidden");
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        if (mobileMenu) mobileMenu.classList.toggle("hidden");
+        if (iconOpen) iconOpen.classList.toggle("hidden");
+        if (iconClose) iconClose.classList.toggle("hidden");
+      });
+    }
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (mobileMenu) mobileMenu.classList.add("hidden");
+        if (iconOpen) iconOpen.classList.remove("hidden");
+        if (iconClose) iconClose.classList.add("hidden");
+      });
     });
-  }
 
-  mobileLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (mobileMenu) mobileMenu.classList.add("hidden");
-      if (iconOpen) iconOpen.classList.remove("hidden");
-      if (iconClose) iconClose.classList.add("hidden");
+    // 3. Lógica de Campos Condicionales del Formulario
+    const selectResidencia = document.getElementById("lugar-residencia");
+    const campoSJ = document.getElementById("campo-departamento-sj");
+    const campoOtraProvincia = document.getElementById("campo-otra-provincia");
+    const campoOtroResidencia = document.getElementById(
+      "campo-otro-residencia",
+    );
+
+    if (selectResidencia) {
+      selectResidencia.addEventListener("change", (e) => {
+        const val = e.target.value;
+        if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
+        if (campoOtraProvincia)
+          campoOtraProvincia.classList.toggle(
+            "hidden",
+            val !== "Otra provincia",
+          );
+        if (campoOtroResidencia)
+          campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
+      });
+    }
+
+    const radiosAsociarse = document.querySelectorAll(
+      'input[name="quiere_asociarse"]',
+    );
+    const bloqueCategorias = document.getElementById("bloque-categorias-socio");
+    //const btnSubmit = document.getElementById("btn-submit-form");
+
+    radiosAsociarse.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        if (e.target.value === "Sí") {
+          if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
+          if (btnSubmit)
+            btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
+        } else {
+          if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
+          if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
+        }
+      });
     });
-  });
 
-  // 3. Lógica de Campos Condicionales del Formulario
-  const selectResidencia = document.getElementById("lugar-residencia");
-  const campoSJ = document.getElementById("campo-departamento-sj");
-  const campoOtraProvincia = document.getElementById("campo-otra-provincia");
-  const campoOtroResidencia = document.getElementById("campo-otro-residencia");
+    const selectAporte = document.getElementById("forma-aporte");
+    const campoOtroAporte = document.getElementById("campo-otro-aporte");
 
-  if (selectResidencia) {
-    selectResidencia.addEventListener("change", (e) => {
-      const val = e.target.value;
-      if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
-      if (campoOtraProvincia)
-        campoOtraProvincia.classList.toggle("hidden", val !== "Otra provincia");
-      if (campoOtroResidencia)
-        campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
+    if (selectAporte) {
+      selectAporte.addEventListener("change", (e) => {
+        const val = e.target.value;
+        if (campoOtroAporte)
+          campoOtroAporte.classList.toggle("hidden", val !== "Otro");
+      });
+    }
+
+    const radiosJuega = document.querySelectorAll(
+      'input[name="juega_en_club"]',
+    );
+    const contenedorDeporte = document.getElementById("opciones-deporte");
+
+    radiosJuega.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        if (contenedorDeporte)
+          contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
+      });
     });
-  }
 
-  const radiosAsociarse = document.querySelectorAll('input[name="quiere_asociarse"]');
-  const bloqueCategorias = document.getElementById("bloque-categorias-socio");
-  const btnSubmit = document.getElementById("btn-submit-form");
+    // 4. Validación y envío del formulario
+    const form = document.getElementById("mi-formulario-actual");
+    const bloquePago = document.getElementById("bloque-pago-brubank");
+    const btnSubmit = document.getElementById("btn-submit-form");
 
-  radiosAsociarse.forEach((radio) => {
-    radio.addEventListener("change", (e) => {
-      if (e.target.value === "Sí") {
-        if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
-        if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
-      } else {
-        if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
-        if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
+    const inputNombre = document.getElementById("nombre");
+    const inputDoc = document.getElementById("numero-doc");
+    const inputFecha = document.getElementById("fecha-nacimiento");
+    const inputEmail = document.getElementById("email");
+    const inputTelefono = document.getElementById("telefono");
+    const codigoPais = document.getElementById("codigo-pais");
+    const aceptaProtocolo = document.getElementById("acepta-protocolo");
+
+    const mostrarError = (id, mensaje) => {
+      const error = document.getElementById(id);
+
+      if (!error) return;
+
+      error.textContent = mensaje;
+      error.classList.remove("hidden");
+    };
+
+    const ocultarError = (id) => {
+      const error = document.getElementById(id);
+
+      if (error) {
+        error.classList.add("hidden");
       }
-    });
-  });
+    };
 
-  const selectAporte = document.getElementById("forma-aporte");
-  const campoOtroAporte = document.getElementById("campo-otro-aporte");
+    const validarNombre = (valor) =>
+      /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(valor.trim());
 
-  if (selectAporte) {
-    selectAporte.addEventListener("change", (e) => {
-      const val = e.target.value;
-      if (campoOtroAporte)
-        campoOtroAporte.classList.toggle("hidden", val !== "Otro");
-    });
-  }
+    const validarDocumento = (valor) => /^\d{7,10}$/.test(valor.trim());
 
-  const radiosJuega = document.querySelectorAll('input[name="juega_en_club"]');
-  const contenedorDeporte = document.getElementById("opciones-deporte");
+    const validarEmail = (valor) =>
+      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim());
 
-  radiosJuega.forEach((radio) => {
-    radio.addEventListener("change", (e) => {
-      if (contenedorDeporte)
-        contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
-    });
-  });
+    const validarTelefono = (valor) => {
+      const telefonoLimpio = valor.replace(/\D/g, "");
+      return telefonoLimpio.length >= 7 && telefonoLimpio.length <= 15;
+    };
 
-  // 4. Envío por Fetch del Formulario
-  const form = document.getElementById("mi-formulario-actual");
-  const bloquePago = document.getElementById("bloque-pago-brubank");
-  const inputNombre = document.getElementById("nombre");
-  const inputDoc = document.getElementById("numero-doc");
-  const inputFecha = document.getElementById("fecha-nacimiento");
+    const validarFecha = (valor) => {
+      if (!valor) return false;
 
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+      const fechaSeleccionada = new Date(`${valor}T00:00:00`);
+      const hoy = new Date();
 
+      hoy.setHours(0, 0, 0, 0);
+
+      return fechaSeleccionada <= hoy;
+    };
+
+    const validarFormulario = ({ validarProtocolo = false } = {}) => {
       let esValido = true;
-      if (!inputNombre || !inputNombre.value.trim()) esValido = false;
-      if (!inputDoc || !inputDoc.value.trim()) esValido = false;
-      if (!inputFecha || !inputFecha.value) esValido = false;
 
-      if (!esValido) {
-        alert("Por favor completa los campos obligatorios.");
+      if (!inputNombre?.value.trim()) {
+        mostrarError("error-nombre", "⚠️ Ingresá tu nombre y apellido.");
+        esValido = false;
+      } else if (!validarNombre(inputNombre.value)) {
+        mostrarError(
+          "error-nombre",
+          "⚠️ El nombre solo puede contener letras y espacios.",
+        );
+        esValido = false;
+      } else {
+        ocultarError("error-nombre");
+      }
+
+      if (!inputDoc?.value.trim()) {
+        mostrarError("error-doc", "⚠️ Ingresá tu número de documento.");
+        esValido = false;
+      } else if (!validarDocumento(inputDoc.value)) {
+        mostrarError(
+          "error-doc",
+          "⚠️ El documento debe contener entre 7 y 10 números.",
+        );
+        esValido = false;
+      } else {
+        ocultarError("error-doc");
+      }
+
+      if (!validarFecha(inputFecha?.value || "")) {
+        mostrarError(
+          "error-fecha",
+          "⚠️ Ingresá una fecha válida que no sea futura.",
+        );
+        esValido = false;
+      } else {
+        ocultarError("error-fecha");
+      }
+
+      if (!inputEmail?.value.trim()) {
+        mostrarError("error-email", "⚠️ Ingresá tu correo electrónico.");
+        esValido = false;
+      } else if (!validarEmail(inputEmail.value)) {
+        mostrarError("error-email", "⚠️ Ingresá un correo electrónico válido.");
+        esValido = false;
+      } else {
+        ocultarError("error-email");
+      }
+
+      if (!inputTelefono?.value.trim()) {
+        mostrarError("error-telefono", "⚠️ Ingresá tu número de teléfono.");
+        esValido = false;
+      } else if (!validarTelefono(inputTelefono.value)) {
+        mostrarError(
+          "error-telefono",
+          "⚠️ El teléfono debe contener entre 7 y 15 números.",
+        );
+        esValido = false;
+      } else {
+        ocultarError("error-telefono");
+      }
+
+      const quiereAsociarse = document.querySelector(
+        'input[name="quiere_asociarse"]:checked',
+      )?.value;
+
+      if (validarProtocolo && !aceptaProtocolo?.checked) {
+        alert(
+          "Tenés que aceptar el Protocolo de Convivencia para enviar la solicitud.",
+        );
+        esValido = false;
+      }
+
+      return esValido;
+    };
+
+    [
+      [inputNombre, "error-nombre"],
+      [inputDoc, "error-doc"],
+      [inputFecha, "error-fecha"],
+      [inputEmail, "error-email"],
+      [inputTelefono, "error-telefono"],
+    ].forEach(([campo, errorId]) => {
+      campo?.addEventListener("blur", () => {
+        if (campo.value.trim()) {
+          validarFormulario();
+        }
+      });
+
+      campo?.addEventListener("input", () => {
+        ocultarError(errorId);
+      });
+    });
+
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!validarFormulario({ validarProtocolo: true })) return;
+
+        const telefonoLimpio = inputTelefono.value.replace(/\D/g, "");
+        document.getElementById("telefono-completo").value =
+          `${codigoPais.value}${telefonoLimpio}`;
+
+        if (btnSubmit) {
+          btnSubmit.textContent = "Enviando solicitud...";
+          btnSubmit.disabled = true;
+          btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+        }
+
+        try {
+          await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            mode: "no-cors",
+          });
+
+          form.classList.add("hidden");
+          bloquePago?.classList.remove("hidden");
+        } catch (error) {
+          console.error("Error al enviar:", error);
+          alert("Hubo un error al enviar tus datos. Intentá nuevamente.");
+
+          if (btnSubmit) {
+            btnSubmit.textContent = "Enviar Solicitud";
+            btnSubmit.disabled = false;
+            btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+          }
+        }
+      });
+    }
+
+    // 5. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
+    const sportCards = document.querySelectorAll(".sport-card");
+    const sportModal = document.getElementById("sport-modal");
+    const modalContainer = document.getElementById("modal-container");
+    const closeSportModal = document.getElementById("close-sport-modal");
+
+    const modalIcon = document.getElementById("modal-icon");
+    const modalSportTitle = document.getElementById("modal-sport-title");
+    const categorySelectorContainer = document.getElementById(
+      "category-selector-container",
+    );
+    const matchesListContainer = document.getElementById(
+      "matches-list-container",
+    );
+    const modalImg = document.getElementById("modal-carrusel-img");
+    const prevBtn = document.getElementById("modal-prev-btn");
+    const nextBtn = document.getElementById("modal-next-btn");
+    const contador = document.getElementById("modal-carrusel-contador");
+
+    const generarRutasFotos = (carpeta) => {
+      let fotos = [];
+      for (let i = 1; i <= 10; i++) {
+        fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
+      }
+      return fotos;
+    };
+
+    const fotosPorDisciplina = {
+      "Fútbol 11": generarRutasFotos("futbol11"),
+      "Futsal Masculino": generarRutasFotos("futsalMasc"),
+      "Futsal Femenino": generarRutasFotos("futsalFem"),
+    };
+
+    let currentIndex = 0;
+    let currentImages = [];
+
+    sportCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const title = card.getAttribute("data-sport-title");
+        const icon = card.getAttribute("data-sport-icon");
+        const categoriesRaw = card.getAttribute("data-categories");
+
+        let categories = [];
+        try {
+          categories = JSON.parse(categoriesRaw);
+        } catch (e) {
+          categories = [];
+        }
+
+        if (modalSportTitle) modalSportTitle.textContent = title;
+        if (modalIcon) modalIcon.textContent = icon;
+
+        currentImages = fotosPorDisciplina[title] || [
+          "/disciplinas/futbol11/foto1.jpg",
+        ];
+        currentIndex = 0;
+        updateCarousel();
+
+        if (categorySelectorContainer) categorySelectorContainer.innerHTML = "";
+        if (matchesListContainer) matchesListContainer.innerHTML = "";
+
+        if (categories.length > 0 && categorySelectorContainer) {
+          categories.forEach((cat, index) => {
+            const btnCat = document.createElement("button");
+            btnCat.type = "button";
+            btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
+              index === 0
+                ? "bg-emerald-500 text-neutral-950 border-emerald-400"
+                : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
+            }`;
+            btnCat.textContent = cat.name;
+
+            btnCat.addEventListener("click", () => {
+              categorySelectorContainer
+                .querySelectorAll("button")
+                .forEach((b) => {
+                  b.className =
+                    "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
+                });
+              btnCat.className =
+                "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
+
+              renderMatches(cat.matches);
+            });
+
+            categorySelectorContainer.appendChild(btnCat);
+          });
+
+          renderMatches(categories[0].matches);
+        } else if (matchesListContainer) {
+          matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
+        }
+
+        if (sportModal) {
+          sportModal.classList.remove("hidden");
+          setTimeout(() => {
+            if (modalContainer) {
+              modalContainer.classList.remove("scale-95");
+              modalContainer.classList.add("scale-100");
+            }
+          }, 10);
+        }
+      });
+    });
+
+    function renderMatches(matches) {
+      if (!matchesListContainer) return;
+      matchesListContainer.innerHTML = "";
+      if (!matches || matches.length === 0) {
+        matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
         return;
       }
 
-      if (btnSubmit) {
-        btnSubmit.textContent = "Enviando solicitud...";
-        btnSubmit.disabled = true;
-        btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
-      }
+      matches.forEach((m) => {
+        const matchCard = document.createElement("div");
+        
+        // Verificación de Fecha Libre
+        if (m.libre) {
+          matchCard.className =
+            "bg-neutral-950/60 border border-neutral-800/80 p-3 rounded-xl flex items-center justify-between text-xs";
+          const fecha = m.fecha || "Fecha Libre";
+          
+          matchCard.innerHTML = `
+            <div>
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide">${fecha}</span>
+              <p class="font-bold text-slate-300 text-sm mt-0.5">La Granjah</p>
+            </div>
+            <div class="text-right">
+              <span class="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-1 rounded-md font-semibold text-[11px] uppercase tracking-wider">
+                Fecha Libre
+              </span>
+            </div>
+          `;
+        } else {
+          matchCard.className =
+            "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
 
-      const formData = new FormData(form);
-      const actionUrl = form.action;
+          const fecha = m.fecha || "Fecha";
+          const rival = m.rival || "Rival a confirmar";
+          const cancha = m.cancha || "Predio del club";
+          const condicion = m.condition || m.condicion || "Local";
+          const diaHora = m.date || m.dia || "A confirmar";
 
-      try {
-        await fetch(actionUrl, {
-          method: "POST",
-          body: formData,
-          mode: "no-cors",
-        });
-
-        form.classList.add("hidden");
-        if (bloquePago) bloquePago.classList.remove("hidden");
-      } catch (err) {
-        console.error("Error al enviar:", err);
-        alert("Hubo un error al enviar tus datos. Inténtalo de nuevo.");
-
-        if (btnSubmit) {
-          btnSubmit.textContent = "Enviar Solicitud";
-          btnSubmit.disabled = false;
-          btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+          matchCard.innerHTML = `
+            <div>
+              <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
+              <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
+              <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
+            </div>
+            <div class="text-right">
+              <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
+            </div>
+          `;
         }
-      }
-    });
-  }
-
-  // 5. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
-  const sportCards = document.querySelectorAll(".sport-card");
-  const sportModal = document.getElementById("sport-modal");
-  const modalContainer = document.getElementById("modal-container");
-  const closeSportModal = document.getElementById("close-sport-modal");
-
-  const modalIcon = document.getElementById("modal-icon");
-  const modalSportTitle = document.getElementById("modal-sport-title");
-  const categorySelectorContainer = document.getElementById("category-selector-container");
-  const matchesListContainer = document.getElementById("matches-list-container");
-  const modalImg = document.getElementById("modal-carrusel-img");
-  const prevBtn = document.getElementById("modal-prev-btn");
-  const nextBtn = document.getElementById("modal-next-btn");
-  const contador = document.getElementById("modal-carrusel-contador");
-
-  const generarRutasFotos = (carpeta) => {
-    let fotos = [];
-    for (let i = 1; i <= 10; i++) {
-      fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
-    }
-    return fotos;
-  };
-
-  const fotosPorDisciplina = {
-    "Fútbol 11": generarRutasFotos("futbol11"),
-    "Futsal Masculino": generarRutasFotos("futsalMasc"),
-    "Futsal Femenino": generarRutasFotos("futsalFem"),
-  };
-
-  let currentIndex = 0;
-  let currentImages = [];
-
-  sportCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const title = card.getAttribute("data-sport-title");
-      const icon = card.getAttribute("data-sport-icon");
-      const categoriesRaw = card.getAttribute("data-categories");
-
-      let categories = [];
-      try {
-        categories = JSON.parse(categoriesRaw);
-      } catch (e) {
-        categories = [];
-      }
-
-      if (modalSportTitle) modalSportTitle.textContent = title;
-      if (modalIcon) modalIcon.textContent = icon;
-
-      currentImages = fotosPorDisciplina[title] || ["/disciplinas/futbol11/foto1.jpg"];
-      currentIndex = 0;
-      updateCarousel();
-
-      if (categorySelectorContainer) categorySelectorContainer.innerHTML = "";
-      if (matchesListContainer) matchesListContainer.innerHTML = "";
-
-      if (categories.length > 0 && categorySelectorContainer) {
-        categories.forEach((cat, index) => {
-          const btnCat = document.createElement("button");
-          btnCat.type = "button";
-          btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
-            index === 0
-              ? "bg-emerald-500 text-neutral-950 border-emerald-400"
-              : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
-          }`;
-          btnCat.textContent = cat.name;
-
-          btnCat.addEventListener("click", () => {
-            categorySelectorContainer.querySelectorAll("button").forEach((b) => {
-              b.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
-            });
-            btnCat.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
-
-            renderMatches(cat.matches);
-          });
-
-          categorySelectorContainer.appendChild(btnCat);
-        });
-
-        renderMatches(categories[0].matches);
-      } else if (matchesListContainer) {
-        matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
-      }
-
-      if (sportModal) {
-        sportModal.classList.remove("hidden");
-        setTimeout(() => {
-          if (modalContainer) {
-            modalContainer.classList.remove("scale-95");
-            modalContainer.classList.add("scale-100");
-          }
-        }, 10);
-      }
-    });
-  });
-
-  function renderMatches(matches) {
-    if (!matchesListContainer) return;
-    matchesListContainer.innerHTML = "";
-    if (!matches || matches.length === 0) {
-      matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
-      return;
+        
+        matchesListContainer.appendChild(matchCard);
+      });
     }
 
-    matches.forEach((m) => {
-      const matchCard = document.createElement("div");
-      matchCard.className = "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
-
-      const fecha = m.fecha || "Fecha";
-      const rival = m.rival || "Rival a confirmar";
-      const cancha = m.cancha || "Predio del club";
-      const condicion = m.condition || m.condicion || "Local";
-      const diaHora = m.date || m.dia || "A confirmar";
-
-      matchCard.innerHTML = `
-        <div>
-          <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
-          <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
-          <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
-        </div>
-        <div class="text-right">
-          <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
-        </div>
-      `;
-      matchesListContainer.appendChild(matchCard);
-    });
-  }
-
-  function updateCarousel() {
-    if (modalImg && currentImages.length > 0) {
-      modalImg.src = currentImages[currentIndex];
-      if (contador) contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+    function updateCarousel() {
+      if (modalImg && currentImages.length > 0) {
+        modalImg.src = currentImages[currentIndex];
+        if (contador)
+          contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+      }
     }
-  }
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-      updateCarousel();
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % currentImages.length;
-      updateCarousel();
-    });
-  }
-
-  function closeModalFunc() {
-    if (modalContainer) {
-      modalContainer.classList.remove("scale-100");
-      modalContainer.classList.add("scale-95");
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - 1 + currentImages.length) % currentImages.length;
+        updateCarousel();
+      });
     }
-    setTimeout(() => {
-      if (sportModal) sportModal.classList.add("hidden");
-    }, 200);
-  }
 
-  if (closeSportModal) closeSportModal.addEventListener("click", closeModalFunc);
-  if (sportModal) {
-    sportModal.addEventListener("click", (e) => {
-      if (e.target === sportModal) closeModalFunc();
-    });
-  }
-</script>
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        updateCarousel();
+      });
+    }
+
+    function closeModalFunc() {
+      if (modalContainer) {
+        modalContainer.classList.remove("scale-100");
+        modalContainer.classList.add("scale-95");
+      }
+      setTimeout(() => {
+        if (sportModal) sportModal.classList.add("hidden");
+      }, 200);
+    }
+
+    if (closeSportModal)
+      closeSportModal.addEventListener("click", closeModalFunc);
+    if (sportModal) {
+      sportModal.addEventListener("click", (e) => {
+        if (e.target === sportModal) closeModalFunc();
+      });
+    }
+  </script>
 </html>
