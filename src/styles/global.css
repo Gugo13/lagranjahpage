@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+/* Celda de Puntos con Borde Neón Tricolor Elegante */
+.pts-neon-cell {
+  min-width: 55px !important;
+  border-left: 3px solid transparent !important;
+  border-image: linear-gradient(180deg, #00f2fe 0%, #4facfe 35%, #00ff87 70%, #ff0844 100%) 1 !important;
+  background: linear-gradient(90deg, rgba(0, 242, 254, 0.08) 0%, rgba(0, 0, 0, 0.2) 100%) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 18px rgba(0, 255, 135, 0.4) !important;
+}
+
+/* Efecto hover fino al pasar sobre la fila (opcional) */
+tr:hover .pts-neon-cell {
+  background: linear-gradient(90deg, rgba(0, 242, 254, 0.15) 0%, rgba(0, 255, 135, 0.08) 100%);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 22px rgba(0, 255, 135, 0.7);
+}

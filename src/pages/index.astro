@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Carrusel from "../components/Carrusel.astro";
 import Analytics from "@vercel/analytics/astro";
+import Resultados from '../components/Resultados.astro';
 
 const titulo = "La Granjah";
 const subtitulo = "Club Social & Deportivo";
@@ -38,7 +39,7 @@ const subtitulo = "Club Social & Deportivo";
 
         <!-- Menú exclusivo para PC -->
         <nav
-          class="desktop-only hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300"
+          class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300"
         >
           <a href="#disciplinas" class="hover:text-amber-400 transition"
             >Disciplinas</a
@@ -93,10 +94,10 @@ const subtitulo = "Club Social & Deportivo";
         </button>
       </div>
 
-      <!-- Menú desplegable flotante, delicado y alineado a la derecha -->
+      <!-- Menú desplegable flotante -->
       <div
         id="mobile-menu"
-        class="hidden lg:hidden absolute right-4 top-20 w-72 bg-neutral-950/80 backdrop-blur-xl border border-neutral-800/60 rounded-2xl p-4 shadow-2xl space-y-2 z-50"
+        class="hidden lg:hidden absolute right-4 top-20 w-72 bg-neutral-950/90 backdrop-blur-xl border border-neutral-800/60 rounded-2xl p-4 shadow-2xl space-y-2 z-50"
       >
         <nav class="flex flex-col gap-1 text-sm font-medium text-slate-300">
           <a
@@ -123,25 +124,10 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </header>
 
-    <!-- ESTILOS DE VISIBILIDAD DEDICADOS -->
-    <style>
-      @media (max-width: 767px) {
-        .desktop-only {
-          display: none !important;
-        }
-      }
-      @media (min-width: 768px) {
-        .mobile-only {
-          display: none !important;
-        }
-      }
-    </style>
-
-    <!-- HERO PRINCIPAL CON ESCUDOS ADAPTATIVOS PARA CELU Y PC -->
+    <!-- HERO PRINCIPAL CON ESCUDOS ADAPTATIVOS -->
     <section
       class="relative py-20 md:py-32 text-center border-b border-neutral-800 overflow-hidden bg-neutral-950"
     >
-      <!-- Escudo Izquierdo de fondo (ahora visible en celu y compu, con tamaño adaptativo) -->
       <div
         class="absolute left-2 sm:left-[5%] md:left-[10%] top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-15 sm:opacity-20"
       >
@@ -152,7 +138,6 @@ const subtitulo = "Club Social & Deportivo";
         />
       </div>
 
-      <!-- Escudo Derecho de fondo (visible en celu y compu) -->
       <div
         class="absolute right-2 sm:right-[5%] md:right-[10%] top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-15 sm:opacity-20"
       >
@@ -163,7 +148,6 @@ const subtitulo = "Club Social & Deportivo";
         />
       </div>
 
-      <!-- Contenido del Hero (por encima de los escudos) -->
       <div
         class="max-w-4xl mx-auto px-6 flex flex-col items-center relative z-10"
       >
@@ -236,7 +220,6 @@ const subtitulo = "Club Social & Deportivo";
       >
       </div>
 
-      <!-- CONTENEDOR GENERAL CON POSITION RELATIVE PARA EL CARTEL FLOTANTE -->
       <div class="max-w-6xl mx-auto px-6 relative z-10">
         <div class="text-center mb-16">
           <span
@@ -255,9 +238,8 @@ const subtitulo = "Club Social & Deportivo";
           </p>
         </div>
 
-        <!-- WRAPPER RELATIVO PARA APLICAR EL BLUR A LAS CARDS Y PONER EL CARTEL ENCIMA -->
         <div class="relative w-full">
-          <!-- CARTEL TRICOLOR FLOTANTE POR ENCIMA -->
+          <!-- CARTEL TRICOLOR FLOTANTE -->
           <div
             class="absolute inset-0 z-30 flex items-center justify-center p-4"
           >
@@ -274,13 +256,13 @@ const subtitulo = "Club Social & Deportivo";
               <p class="text-neutral-400 text-sm sm:text-base">
                 Se viene la nueva colección oficial.
               </p>
-              <h2 class="text-neutral-400 text-sm sm:text-base mt-2">
+              <h4 class="text-neutral-400 text-sm sm:text-base mt-2 font-medium">
                 ¡Pronto podrás adquirirla en nuestra tienda online!
-              </h2>
+              </h4>
             </div>
           </div>
 
-          <!-- GRID DE CARDS CON BLUR APLICADO (Muestra solo 1 en celu, 2 en tablet y 6 en sm en adelante) -->
+          <!-- GRID DE CARDS CON BLUR APLICADO -->
           <div
             class="filter blur-md pointer-events-none select-none opacity-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 [&>div:nth-child(n+2)]:hidden md:[&>div:nth-child(n+2)]:block md:[&>div:nth-child(n+3)]:hidden lg:[&>div:nth-child(n+3)]:block"
           >
@@ -667,7 +649,7 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </section>
 
-    <!-- ESTILOS Y ANIMACIONES -->
+    <!-- ESTILOS Y ANIMACIONES CARD 3D -->
     <style>
       .single-card-container {
         perspective: 1200px;
@@ -684,7 +666,7 @@ const subtitulo = "Club Social & Deportivo";
       }
       .single-card-container:hover .card-3d-inner,
       .single-card-container.is-flipped .card-3d-inner {
-        transform: rotateY(1260deg);
+        transform: rotateY(180deg);
       }
       .revealed-shirt {
         opacity: 0;
@@ -692,13 +674,12 @@ const subtitulo = "Club Social & Deportivo";
         transition:
           opacity 0.6s ease-in,
           transform 0.6s ease-in;
-        transition-delay: 0s;
       }
       .single-card-container:hover .revealed-shirt,
       .single-card-container.is-flipped .revealed-shirt {
         opacity: 1;
         transform: scale(1);
-        transition-delay: 1.8s;
+        transition-delay: 0.3s;
       }
       .neon-glow-bg {
         background: linear-gradient(
@@ -741,8 +722,7 @@ const subtitulo = "Club Social & Deportivo";
           </h2>
           <p class="text-slate-400 mt-2 text-sm md:text-base">
             Hacé clic en cualquier disciplina para consultar las categorías y el
-            fixture oficial de <strong class="text-slate-200">La Granjah</strong
-            >.
+            camino de <strong class="text-slate-200">La Granjah</strong>.
           </p>
         </div>
 
@@ -757,10 +737,6 @@ const subtitulo = "Club Social & Deportivo";
             data-categories='[
               {
                 "name": "Liga de Profesionales",
-                "matches": []
-              },
-              {
-                "name": "Liga Universitaria",
                 "matches": []
               }
             ]'
@@ -787,12 +763,12 @@ const subtitulo = "Club Social & Deportivo";
               class="mt-6 pt-4 border-t border-neutral-800/80 flex items-center justify-between"
             >
               <span class="text-xs font-semibold text-slate-400"
-                >2 Categorías</span
+                >1 Categoría</span
               >
               <span
                 class="text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
               >
-                Ver Fixture ➔
+                Ver más ➔
               </span>
             </div>
           </div>
@@ -839,7 +815,7 @@ const subtitulo = "Club Social & Deportivo";
               <span
                 class="text-xs font-bold text-amber-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
               >
-                Ver Fixture ➔
+                Ver más ➔
               </span>
             </div>
           </div>
@@ -854,7 +830,7 @@ const subtitulo = "Club Social & Deportivo";
                 "name": "Primera",
                 "matches": [
                   { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-20:00 hs" }, 
-                  { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "Local", "dia": "Dom 06/09-20:00 hs" },
+                  { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Dom 06/09-20:00 hs" },
                   { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 13/09-20:00 hs" }
                 ]
               },
@@ -862,7 +838,7 @@ const subtitulo = "Club Social & Deportivo";
                 "name": "Reserva",
                 "matches": [
                   { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-19:00 hs" },
-                  { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "Local", "dia": "Dom 06/09-19:00 hs" },
+                  { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Dom 06/09-19:00 hs" },
                   { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 13/09-19:00 hs" }
                 ]
               }
@@ -895,7 +871,7 @@ const subtitulo = "Club Social & Deportivo";
               <span
                 class="text-xs font-bold text-red-400 group-hover:translate-x-1 transition-transform flex items-center gap-1"
               >
-                Ver Fixture ➔
+                Ver más ➔
               </span>
             </div>
           </div>
@@ -921,7 +897,7 @@ const subtitulo = "Club Social & Deportivo";
             <div>
               <span
                 class="text-[10px] font-black uppercase tracking-widest text-emerald-400"
-                >Fixture Oficial & Galería</span
+                >Fechas & Galería</span
               >
               <h3
                 id="modal-sport-title"
@@ -939,11 +915,10 @@ const subtitulo = "Club Social & Deportivo";
           </button>
         </div>
 
-        <!-- CUERPO DEL MODAL (GRID 2 COLUMNAS) -->
+        <!-- CUERPO DEL MODAL -->
         <div
           class="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1"
         >
-          <!-- COLUMNA IZQUIERDA: CATEGORÍAS Y FIXTURE -->
           <div class="flex flex-col justify-between p-5">
             <div>
               <p
@@ -965,7 +940,6 @@ const subtitulo = "Club Social & Deportivo";
             </div>
           </div>
 
-          <!-- COLUMNA DERECHA: VISOR DE FOTOS DE LA DISCIPLINA -->
           <div
             class="relative bg-neutral-950 p-5 flex flex-col items-center justify-center min-h-[250px] lg:min-h-full"
           >
@@ -980,7 +954,6 @@ const subtitulo = "Club Social & Deportivo";
                 class="w-full h-full object-cover transition-all duration-300"
               />
 
-              <!-- Botones de navegación -->
               <button
                 id="modal-prev-btn"
                 type="button"
@@ -1017,24 +990,25 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </div>
 
+    <div> 
+      <Resultados/>
+    </div>
+
     <!-- SECCIÓN FORMULARIO DE ASOCIACIÓN -->
-    <section
-      id="sumate"
-      style="padding-top: 5rem; padding-bottom: 5rem; background-color: rgba(23, 23, 23, 0.4); border-top: 1px solid #262626;"
-    >
+    <section id="sumate" class="py-20 bg-neutral-900/40 border-t border-neutral-800">
       <div class="max-w-3xl mx-auto px-6">
-        <div style="text-align: center; margin-bottom: 2.5rem;">
+        <div class="text-center mb-10">
           <span
-            style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #34d399; background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); padding-left: 0.75rem; padding-right: 0.75rem; padding-top: 0.25rem; padding-bottom: 0.25rem; border-radius: 9999px;"
+            class="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full"
           >
             Hacete Socio
           </span>
           <h2
-            style="font-size: 1.875rem; font-weight: 900; text-transform: uppercase; color: #f1f5f9; margin-top: 1rem;"
+            class="text-3xl font-black uppercase text-slate-100 mt-4"
           >
-            Sumate a <span style="color: #fbbf24;">La Granjah</span>
+            Sumate a <span class="text-amber-400">La Granjah</span>
           </h2>
-          <p style="color: #94a3b8; margin-top: 0.5rem;">
+          <p class="text-slate-400 mt-2">
             Completá tus datos y sé parte de la familia que sostiene este club.
           </p>
         </div>
@@ -1164,8 +1138,7 @@ const subtitulo = "Club Social & Deportivo";
               <span
                 id="error-email"
                 class="hidden text-xs text-red-500 mt-1.5 font-medium"
-                >⚠️ Correo inválido (debe finalizar en @gmail.com o
-                @hotmail.com).</span
+                >⚠️ Correo inválido.</span
               >
             </div>
 
@@ -1352,7 +1325,7 @@ const subtitulo = "Club Social & Deportivo";
               >Elegí tu categoría de socio</label
             >
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <!-- Opción 1: Socio Granjhistico -->
+              <!-- Socio Granjhistico -->
               <label
                 class="relative flex flex-col justify-between p-5 bg-neutral-950 border-2 border-neutral-800 rounded-xl cursor-pointer hover:border-emerald-500 transition [&:has(input:checked)]:border-emerald-500 [&:has(input:checked)]:bg-emerald-950/10"
               >
@@ -1381,7 +1354,6 @@ const subtitulo = "Club Social & Deportivo";
                   </p>
                 </div>
 
-                <!-- Beneficios distribuidos uniformemente para ocupar el espacio -->
                 <ul
                   class="text-xs text-slate-300 space-y-3 border-t border-neutral-800/80 pt-4 mt-auto flex flex-col justify-around flex-1"
                 >
@@ -1409,14 +1381,14 @@ const subtitulo = "Club Social & Deportivo";
                 </ul>
               </label>
 
-              <!-- Opción 2: Socio Granjhístico Premium -->
+              <!-- Socio Granjhístico Premium -->
               <label
                 class="relative flex flex-col justify-between p-5 bg-neutral-950 border-2 border-neutral-800 rounded-xl cursor-pointer hover:border-amber-400 transition [&:has(input:checked)]:border-amber-400 [&:has(input:checked)]:bg-amber-950/10"
               >
                 <input
                   type="radio"
                   name="tipo_socio"
-                  value="Socio Granjhístico Premium"
+                  value="Socio Faraón"
                   class="sr-only"
                 />
                 <div>
@@ -1438,7 +1410,6 @@ const subtitulo = "Club Social & Deportivo";
                   </p>
                 </div>
 
-                <!-- Beneficios -->
                 <ul
                   class="text-xs text-slate-300 space-y-2 border-t border-neutral-800/80 pt-4 mt-auto"
                 >
@@ -1468,7 +1439,7 @@ const subtitulo = "Club Social & Deportivo";
                   </li>
                   <li class="flex items-start gap-2">
                     <span class="text-amber-400 font-bold mt-0.5">✓</span>
-                    <span>Carnet digital de socio oficial de La Granja.</span>
+                    <span>Carnet digital de socio oficial de La Granjah.</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <span class="text-amber-400 font-bold mt-0.5">✓</span>
@@ -1571,12 +1542,9 @@ const subtitulo = "Club Social & Deportivo";
               <option value="Futbol 11 (Profesionales)"
                 >1- Fútbol 11 (Profesionales)</option
               >
-              <option value="Futbol 11 (Universitario)"
-                >2- Fútbol 11 (Universitario)</option
-              >
-              <option value="Futsal masculino">3- Futsal masculino</option>
-              <option value="Futsal femenino">4- Futsal femenino</option>
-              <option value="Inferiores">5- Inferiores</option>
+              <option value="Futsal masculino">2- Futsal masculino</option>
+              <option value="Futsal femenino">3- Futsal femenino</option>
+              <option value="Inferiores">4- Inferiores</option>
             </select>
           </div>
 
@@ -1601,7 +1569,7 @@ const subtitulo = "Club Social & Deportivo";
               type="checkbox"
               id="acepta-protocolo"
               required
-              class="mt-1 w-4 h-4 rounded border-neutral-800 bg-neutral-950 text-emerald-500 focus:ring-emerald-500 focus:ring-offset-neutral-900 cursor-pointer"
+              class="mt-1 w-4 h-4 rounded border-neutral-800 bg-neutral-950 text-emerald-500 focus:ring-emerald-500 cursor-pointer"
             />
             <label
               for="acepta-protocolo"
@@ -1687,7 +1655,7 @@ const subtitulo = "Club Social & Deportivo";
               <span class="text-[10px] font-bold text-slate-500 uppercase block"
                 >CUIT / CUIL</span
               >
-              <span class="text-sm font-mono font-bold text-slate-200"
+              <span id="cuit-val" class="text-sm font-mono font-bold text-slate-200"
                 >27-38218813-1</span
               >
             </div>
@@ -1707,7 +1675,7 @@ const subtitulo = "Club Social & Deportivo";
               <span class="text-[10px] font-bold text-amber-400 uppercase block"
                 >Alias Brubank</span
               >
-              <span class="text-base font-mono font-black text-amber-300"
+              <span id="alias-val" class="text-base font-mono font-black text-amber-300"
                 >granjah.socios.bru</span
               >
             </div>
@@ -1732,131 +1700,92 @@ const subtitulo = "Club Social & Deportivo";
           </div>
         </div>
 
-        <!-- BLOQUE DEL CARNET DIGITAL (ÚNICO Y CORREGIDO) -->
+        <!-- BLOQUE DEL CARNET DIGITAL -->
         <div
           id="bloque-carnet-digital"
-          style="display: none; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; width: 100%; margin-top: 1.5rem; margin-bottom: 1.5rem;"
+          class="hidden flex-col items-center justify-center gap-4 w-full mt-6 mb-6"
         >
-          <p
-            style="color: #e2e8f0; font-size: 0.875rem; font-weight: 500; text-align: center;"
-          >
-            ¡Solicitud enviada con éxito! Este es tu carnet provisional. Hacé
-            clic sobre él para girarlo o ver el dorso.
+          <p class="text-slate-200 text-sm font-medium text-center">
+            ¡Solicitud enviada con éxito! Este es tu carnet provisional.
           </p>
 
-          <div
-            class="single-card-container cursor-pointer perspective-1000 w-[400px] h-[250px]"
-          >
+          <div class="w-[350px] sm:w-[400px] h-[230px] sm:h-[250px] relative">
             <div
-              class="card-inner relative w-full h-full duration-500 transform-style-3d transition-transform"
+              id="tarjeta-carnet"
+              class="w-full h-full bg-slate-900 text-white font-sans rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between p-5 relative shadow-2xl"
             >
-              <!-- FRENTE DEL CARNET -->
+              <!-- Escudo de fondo -->
               <div
-                id="tarjeta-carnet"
-                style="position: absolute; inset: 0px; width: 100%; height: 100%; background-color: #0f172a; color: #ffffff; font-family: sans-serif; border-radius: 1rem; overflow: hidden; border: 1px solid #1e293b; display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem;"
+                class="absolute -right-5 -bottom-5 w-48 h-48 pointer-events-none z-0 flex items-center justify-center"
               >
-                <!-- Escudo de fondo (Marca de agua) -->
-                <div
-                  style="position: absolute; right: -20px; bottom: -20px; width: 12rem; height: 12rem; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center;"
-                >
+                <img
+                  src="/escudo/escudoLagranjah.png"
+                  alt="Marca de agua"
+                  id="escudo-fondo"
+                  class="w-full h-full object-contain opacity-10 filter grayscale"
+                />
+              </div>
+
+              <!-- Franja Tricolor Superior -->
+              <div class="absolute top-0 left-0 right-0 h-2.5 flex z-10">
+                <div class="w-1/3 bg-emerald-500"></div>
+                <div class="w-1/3 bg-amber-400"></div>
+                <div class="w-1/3 bg-rose-500"></div>
+              </div>
+
+              <!-- Encabezado / Logo con Escudo -->
+              <div class="flex justify-between items-center mt-2 relative z-10">
+                <div class="flex items-center gap-2">
                   <img
                     src="/escudo/escudoLagranjah.png"
-                    crossorigin="anonymous"
-                    alt="Marca de agua"
-                    id="escudo-fondo"
-                    style="width: 100%; height: 100%; object-fit: contain; opacity: 0.1; filter: grayscale(100%);"
+                    alt="Escudo La Granjah"
+                    class="w-8 h-8 object-contain"
                   />
-                </div>
-
-                <!-- Franja Tricolor Superior -->
-                <div
-                  style="position: absolute; top: 0px; left: 0px; right: 0px; height: 0.625rem; display: flex; z-index: 10;"
-                >
-                  <div style="width: 33.333%; background-color: #10b981;"></div>
-                  <div style="width: 33.333%; background-color: #fbbf24;"></div>
-                  <div style="width: 33.333%; background-color: #f43f5e;"></div>
-                </div>
-
-                <!-- Encabezado / Logo con Escudo -->
-                <div
-                  style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; position: relative; z-index: 10;"
-                >
-                  <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <img
-                      src="/escudo/escudoLagranjah.png"
-                      crossorigin="anonymous"
-                      alt="Escudo La Granjah"
-                      style="width: 2rem; height: 2rem; object-fit: contain;"
-                    />
-                    <span
-                      id="texto-titulo"
-                      style="color: #ffffff; font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase; font-size: 1.125rem;"
-                      >La Granjah</span
-                    >
-                  </div>
                   <span
-                    id="badge-socio"
-                    style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #34d399; background-color: #064e3b; padding-left: 0.625rem; padding-right: 0.625rem; padding-top: 0.25rem; padding-bottom: 0.25rem; border-radius: 9999px; border: 1px solid #065f46;"
-                    >Socio Activo</span
+                    class="text-white font-black tracking-wider uppercase text-lg"
+                    >La Granjah</span
                   >
                 </div>
-
-                <!-- Cuerpo: Foto y Datos -->
-                <div
-                  style="display: flex; align-items: center; gap: 1rem; margin-top: auto; margin-bottom: auto; position: relative; z-index: 10;"
+                <span
+                  id="badge-socio"
+                  class="text-[10px] font-semibold uppercase tracking-widest text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded-full border border-emerald-800"
+                  >Socio Activo</span
                 >
-                  <div
-                    id="contenedor-foto"
-                    style="width: 5rem; height: 6rem; background-color: #1e293b; border-radius: 0.5rem; border: 2px solid #334155; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.75rem; font-weight: 500; text-align: center; overflow: hidden; flex-shrink: 0;"
-                  >
-                    FOTO
-                  </div>
-                  <div
-                    style="display: flex; flex-direction: column; gap: 0.25rem;"
-                  >
-                    <div>
-                      <p
-                        id="label-nombre"
-                        style="font-size: 0.625rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;"
-                      >
-                        Apellido y Nombre
-                      </p>
-                      <p
-                        id="txt-nombre"
-                        style="color: #ffffff; font-weight: 700; font-size: 1rem; line-height: 1.25;"
-                      >
-                        Cargando...
-                      </p>
-                    </div>
-                    <div>
-                      <p
-                        style="font-size: 0.625rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;"
-                      >
-                        DNI
-                      </p>
-                      <p
-                        id="txt-dni"
-                        style="color: #e2e8f0; font-size: 0.875rem; font-family: monospace;"
-                      >
-                        -
-                      </p>
-                    </div>
-                    <div>
-                      <p
-                        style="font-size: 0.625rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;"
-                      >
-                        Categoría
-                      </p>
-                      <p
-                        id="txt-socio"
-                        style="color: #fbbf24; font-family: monospace; font-weight: 700; font-size: 0.875rem;"
-                      >
-                        Activo
-                      </p>
-                    </div>
-                  </div>
+              </div>
+
+              <!-- Cuerpo: Datos -->
+              <div class="flex items-center gap-4 my-auto relative z-10">
+                <div
+                  id="contenedor-foto"
+                  class="w-20 h-24 bg-slate-800 rounded-lg border-2 border-slate-700 flex items-center justify-center text-slate-400 text-xs font-medium text-center overflow-hidden shrink-0"
+                >
+                  SOCIO
                 </div>
-                <div style="height: 0.25rem; position: relative; z-index: 10;">
+                <div class="flex flex-col gap-1">
+                  <div>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                      Apellido y Nombre
+                    </p>
+                    <p id="txt-nombre" class="text-white font-bold text-base leading-tight">
+                      -
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                      Documento
+                    </p>
+                    <p id="txt-dni" class="text-slate-200 text-xs font-mono">
+                      -
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                      Categoría
+                    </p>
+                    <p id="txt-socio" class="text-amber-400 font-mono font-bold text-xs">
+                      Activo
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1865,14 +1794,13 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </section>
 
-    <!-- PIE DE PÁGINA CON ESCUDO CENTRADO Y DESTACADO -->
+    <!-- PIE DE PÁGINA -->
     <footer
       class="border-t border-neutral-800 bg-neutral-950 py-12 relative overflow-hidden"
     >
       <div
         class="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center gap-6 text-center"
       >
-        <!-- Escudo centrado y con buen tamaño para que se luzca -->
         <div
           class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-neutral-700 bg-neutral-900 shadow-xl p-1 transition hover:scale-105 duration-300"
         >
@@ -1883,7 +1811,6 @@ const subtitulo = "Club Social & Deportivo";
           />
         </div>
 
-        <!-- Título y Puntos de colores -->
         <div class="flex flex-col items-center gap-2">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
@@ -1899,7 +1826,6 @@ const subtitulo = "Club Social & Deportivo";
           </div>
         </div>
 
-        <!-- Derechos / Copyright -->
         <p
           class="text-xs text-slate-500 border-t border-neutral-900 pt-6 w-full max-w-md"
         >
@@ -1908,488 +1834,444 @@ const subtitulo = "Club Social & Deportivo";
         </p>
       </div>
     </footer>
-  </body>
-  
-  <!-- SCRIPT -->
-  <script is:inline>
-    // 1. Giro de Tarjetas Generales
-    document.querySelectorAll(".single-card-container").forEach((card) => {
-      card.addEventListener("click", () => {
-        card.classList.toggle("is-flipped");
+
+    <!-- SCRIPT PRINCIPAL -->
+    <script is:inline>
+      // 1. Giro de Tarjetas Generales (Cards 3D)
+      document.querySelectorAll(".single-card-container").forEach((card) => {
+        card.addEventListener("click", () => {
+          card.classList.toggle("is-flipped");
+        });
       });
-    });
 
-    // 2. Lógica Menú Hamburguesa
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const iconOpen = document.getElementById("icon-open");
-    const iconClose = document.getElementById("icon-close");
-    const mobileLinks = document.querySelectorAll(".mobile-link");
+      // 2. Menú Hamburguesa
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const iconOpen = document.getElementById("icon-open");
+      const iconClose = document.getElementById("icon-close");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
 
-    if (menuBtn) {
-      menuBtn.addEventListener("click", () => {
-        if (mobileMenu) mobileMenu.classList.toggle("hidden");
-        if (iconOpen) iconOpen.classList.toggle("hidden");
-        if (iconClose) iconClose.classList.toggle("hidden");
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          if (mobileMenu) mobileMenu.classList.toggle("hidden");
+          if (iconOpen) iconOpen.classList.toggle("hidden");
+          if (iconClose) iconClose.classList.toggle("hidden");
+        });
+      }
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (mobileMenu) mobileMenu.classList.add("hidden");
+          if (iconOpen) iconOpen.classList.remove("hidden");
+          if (iconClose) iconClose.classList.add("hidden");
+        });
       });
-    }
 
-    mobileLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (mobileMenu) mobileMenu.classList.add("hidden");
-        if (iconOpen) iconOpen.classList.remove("hidden");
-        if (iconClose) iconClose.classList.add("hidden");
+      // 3. Campos Condicionales del Formulario
+      const selectResidencia = document.getElementById("lugar-residencia");
+      const campoSJ = document.getElementById("campo-departamento-sj");
+      const campoOtraProvincia = document.getElementById("campo-otra-provincia");
+      const campoOtroResidencia = document.getElementById("campo-otro-residencia");
+
+      if (selectResidencia) {
+        selectResidencia.addEventListener("change", (e) => {
+          const val = e.target.value;
+          if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
+          if (campoOtraProvincia)
+            campoOtraProvincia.classList.toggle("hidden", val !== "Otra provincia");
+          if (campoOtroResidencia)
+            campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
+        });
+      }
+
+      const radiosAsociarse = document.querySelectorAll('input[name="quiere_asociarse"]');
+      const bloqueCategorias = document.getElementById("bloque-categorias-socio");
+      const btnSubmit = document.getElementById("btn-submit-form");
+
+      radiosAsociarse.forEach((radio) => {
+        radio.addEventListener("change", (e) => {
+          if (e.target.value === "Sí") {
+            if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
+            if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
+          } else {
+            if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
+            if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
+          }
+        });
       });
-    });
 
-    // 3. Lógica de Campos Condicionales del Formulario
-    const selectResidencia = document.getElementById("lugar-residencia");
-    const campoSJ = document.getElementById("campo-departamento-sj");
-    const campoOtraProvincia = document.getElementById("campo-otra-provincia");
-    const campoOtroResidencia = document.getElementById(
-      "campo-otro-residencia",
-    );
+      const selectAporte = document.getElementById("forma-aporte");
+      const campoOtroAporte = document.getElementById("campo-otro-aporte");
 
-    if (selectResidencia) {
-      selectResidencia.addEventListener("change", (e) => {
-        const val = e.target.value;
-        if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
-        if (campoOtraProvincia)
-          campoOtraProvincia.classList.toggle(
-            "hidden",
-            val !== "Otra provincia",
-          );
-        if (campoOtroResidencia)
-          campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
+      if (selectAporte) {
+        selectAporte.addEventListener("change", (e) => {
+          if (campoOtroAporte)
+            campoOtroAporte.classList.toggle("hidden", e.target.value !== "Otro");
+        });
+      }
+
+      const radiosJuega = document.querySelectorAll('input[name="juega_en_club"]');
+      const contenedorDeporte = document.getElementById("opciones-deporte");
+
+      radiosJuega.forEach((radio) => {
+        radio.addEventListener("change", (e) => {
+          if (contenedorDeporte)
+            contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
+        });
       });
-    }
 
-    const radiosAsociarse = document.querySelectorAll(
-      'input[name="quiere_asociarse"]',
-    );
-    const bloqueCategorias = document.getElementById("bloque-categorias-socio");
-    //const btnSubmit = document.getElementById("btn-submit-form");
+      // 4. Copiar Datos Brubank
+      const copyText = (elementId) => {
+        const text = document.getElementById(elementId)?.innerText;
+        if (text) {
+          navigator.clipboard.writeText(text);
+          alert("¡Copiado al portapapeles!");
+        }
+      };
 
-    radiosAsociarse.forEach((radio) => {
-      radio.addEventListener("change", (e) => {
-        if (e.target.value === "Sí") {
-          if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
-          if (btnSubmit)
-            btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
+      document.getElementById("btn-copy-cuit")?.addEventListener("click", () => copyText("cuit-val"));
+      document.getElementById("btn-copy-alias")?.addEventListener("click", () => copyText("alias-val"));
+
+      // 5. Validación y Envío del Formulario
+      const form = document.getElementById("mi-formulario-actual");
+      const bloquePago = document.getElementById("bloque-pago-brubank");
+      const bloqueCarnet = document.getElementById("bloque-carnet-digital");
+
+      const inputNombre = document.getElementById("nombre");
+      const inputTipoDoc = document.getElementById("tipo-doc");
+      const inputDoc = document.getElementById("numero-doc");
+      const inputFecha = document.getElementById("fecha-nacimiento");
+      const inputEmail = document.getElementById("email");
+      const inputTelefono = document.getElementById("telefono");
+      const codigoPais = document.getElementById("codigo-pais");
+      const aceptaProtocolo = document.getElementById("acepta-protocolo");
+
+      const mostrarError = (id, mensaje) => {
+        const error = document.getElementById(id);
+        if (error) {
+          error.textContent = mensaje;
+          error.classList.remove("hidden");
+        }
+      };
+
+      const ocultarError = (id) => {
+        const error = document.getElementById(id);
+        if (error) error.classList.add("hidden");
+      };
+
+      const validarNombre = (valor) => /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(valor.trim());
+      const validarDocumento = (valor) => /^\d{7,10}$/.test(valor.trim());
+      const validarEmail = (valor) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim());
+      const validarTelefono = (valor) => {
+        const limpio = valor.replace(/\D/g, "");
+        return limpio.length >= 7 && limpio.length <= 15;
+      };
+
+      const validarFecha = (valor) => {
+        if (!valor) return false;
+        const fechaSeleccionada = new Date(`${valor}T00:00:00`);
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        return fechaSeleccionada <= hoy;
+      };
+
+      const validarFormulario = ({ validarProtocolo = false } = {}) => {
+        let esValido = true;
+
+        if (!inputNombre?.value.trim()) {
+          mostrarError("error-nombre", "⚠️ Ingresá tu nombre y apellido.");
+          esValido = false;
+        } else if (!validarNombre(inputNombre.value)) {
+          mostrarError("error-nombre", "⚠️ El nombre solo puede contener letras y espacios.");
+          esValido = false;
         } else {
-          if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
-          if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
-        }
-      });
-    });
-
-    const selectAporte = document.getElementById("forma-aporte");
-    const campoOtroAporte = document.getElementById("campo-otro-aporte");
-
-    if (selectAporte) {
-      selectAporte.addEventListener("change", (e) => {
-        const val = e.target.value;
-        if (campoOtroAporte)
-          campoOtroAporte.classList.toggle("hidden", val !== "Otro");
-      });
-    }
-
-    const radiosJuega = document.querySelectorAll(
-      'input[name="juega_en_club"]',
-    );
-    const contenedorDeporte = document.getElementById("opciones-deporte");
-
-    radiosJuega.forEach((radio) => {
-      radio.addEventListener("change", (e) => {
-        if (contenedorDeporte)
-          contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
-      });
-    });
-
-    // 4. Validación y envío del formulario
-    const form = document.getElementById("mi-formulario-actual");
-    const bloquePago = document.getElementById("bloque-pago-brubank");
-    const btnSubmit = document.getElementById("btn-submit-form");
-
-    const inputNombre = document.getElementById("nombre");
-    const inputDoc = document.getElementById("numero-doc");
-    const inputFecha = document.getElementById("fecha-nacimiento");
-    const inputEmail = document.getElementById("email");
-    const inputTelefono = document.getElementById("telefono");
-    const codigoPais = document.getElementById("codigo-pais");
-    const aceptaProtocolo = document.getElementById("acepta-protocolo");
-
-    const mostrarError = (id, mensaje) => {
-      const error = document.getElementById(id);
-
-      if (!error) return;
-
-      error.textContent = mensaje;
-      error.classList.remove("hidden");
-    };
-
-    const ocultarError = (id) => {
-      const error = document.getElementById(id);
-
-      if (error) {
-        error.classList.add("hidden");
-      }
-    };
-
-    const validarNombre = (valor) =>
-      /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(valor.trim());
-
-    const validarDocumento = (valor) => /^\d{7,10}$/.test(valor.trim());
-
-    const validarEmail = (valor) =>
-      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim());
-
-    const validarTelefono = (valor) => {
-      const telefonoLimpio = valor.replace(/\D/g, "");
-      return telefonoLimpio.length >= 7 && telefonoLimpio.length <= 15;
-    };
-
-    const validarFecha = (valor) => {
-      if (!valor) return false;
-
-      const fechaSeleccionada = new Date(`${valor}T00:00:00`);
-      const hoy = new Date();
-
-      hoy.setHours(0, 0, 0, 0);
-
-      return fechaSeleccionada <= hoy;
-    };
-
-    const validarFormulario = ({ validarProtocolo = false } = {}) => {
-      let esValido = true;
-
-      if (!inputNombre?.value.trim()) {
-        mostrarError("error-nombre", "⚠️ Ingresá tu nombre y apellido.");
-        esValido = false;
-      } else if (!validarNombre(inputNombre.value)) {
-        mostrarError(
-          "error-nombre",
-          "⚠️ El nombre solo puede contener letras y espacios.",
-        );
-        esValido = false;
-      } else {
-        ocultarError("error-nombre");
-      }
-
-      if (!inputDoc?.value.trim()) {
-        mostrarError("error-doc", "⚠️ Ingresá tu número de documento.");
-        esValido = false;
-      } else if (!validarDocumento(inputDoc.value)) {
-        mostrarError(
-          "error-doc",
-          "⚠️ El documento debe contener entre 7 y 10 números.",
-        );
-        esValido = false;
-      } else {
-        ocultarError("error-doc");
-      }
-
-      if (!validarFecha(inputFecha?.value || "")) {
-        mostrarError(
-          "error-fecha",
-          "⚠️ Ingresá una fecha válida que no sea futura.",
-        );
-        esValido = false;
-      } else {
-        ocultarError("error-fecha");
-      }
-
-      if (!inputEmail?.value.trim()) {
-        mostrarError("error-email", "⚠️ Ingresá tu correo electrónico.");
-        esValido = false;
-      } else if (!validarEmail(inputEmail.value)) {
-        mostrarError("error-email", "⚠️ Ingresá un correo electrónico válido.");
-        esValido = false;
-      } else {
-        ocultarError("error-email");
-      }
-
-      if (!inputTelefono?.value.trim()) {
-        mostrarError("error-telefono", "⚠️ Ingresá tu número de teléfono.");
-        esValido = false;
-      } else if (!validarTelefono(inputTelefono.value)) {
-        mostrarError(
-          "error-telefono",
-          "⚠️ El teléfono debe contener entre 7 y 15 números.",
-        );
-        esValido = false;
-      } else {
-        ocultarError("error-telefono");
-      }
-
-      const quiereAsociarse = document.querySelector(
-        'input[name="quiere_asociarse"]:checked',
-      )?.value;
-
-      if (validarProtocolo && !aceptaProtocolo?.checked) {
-        alert(
-          "Tenés que aceptar el Protocolo de Convivencia para enviar la solicitud.",
-        );
-        esValido = false;
-      }
-
-      return esValido;
-    };
-
-    [
-      [inputNombre, "error-nombre"],
-      [inputDoc, "error-doc"],
-      [inputFecha, "error-fecha"],
-      [inputEmail, "error-email"],
-      [inputTelefono, "error-telefono"],
-    ].forEach(([campo, errorId]) => {
-      campo?.addEventListener("blur", () => {
-        if (campo.value.trim()) {
-          validarFormulario();
-        }
-      });
-
-      campo?.addEventListener("input", () => {
-        ocultarError(errorId);
-      });
-    });
-
-    if (form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        if (!validarFormulario({ validarProtocolo: true })) return;
-
-        const telefonoLimpio = inputTelefono.value.replace(/\D/g, "");
-        document.getElementById("telefono-completo").value =
-          `${codigoPais.value}${telefonoLimpio}`;
-
-        if (btnSubmit) {
-          btnSubmit.textContent = "Enviando solicitud...";
-          btnSubmit.disabled = true;
-          btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+          ocultarError("error-nombre");
         }
 
-        try {
-          await fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            mode: "no-cors",
-          });
+        if (!inputDoc?.value.trim()) {
+          mostrarError("error-doc", "⚠️ Ingresá tu número de documento.");
+          esValido = false;
+        } else if (!validarDocumento(inputDoc.value)) {
+          mostrarError("error-doc", "⚠️ El documento debe contener entre 7 y 10 números.");
+          esValido = false;
+        } else {
+          ocultarError("error-doc");
+        }
 
-          form.classList.add("hidden");
-          bloquePago?.classList.remove("hidden");
-        } catch (error) {
-          console.error("Error al enviar:", error);
-          alert("Hubo un error al enviar tus datos. Intentá nuevamente.");
+        if (!validarFecha(inputFecha?.value || "")) {
+          mostrarError("error-fecha", "⚠️ Ingresá una fecha válida.");
+          esValido = false;
+        } else {
+          ocultarError("error-fecha");
+        }
+
+        if (!inputEmail?.value.trim() || !validarEmail(inputEmail.value)) {
+          mostrarError("error-email", "⚠️ Ingresá un correo electrónico válido.");
+          esValido = false;
+        } else {
+          ocultarError("error-email");
+        }
+
+        if (!inputTelefono?.value.trim() || !validarTelefono(inputTelefono.value)) {
+          mostrarError("error-telefono", "⚠️ El teléfono debe contener entre 7 y 15 números.");
+          esValido = false;
+        } else {
+          ocultarError("error-telefono");
+        }
+
+        if (validarProtocolo && !aceptaProtocolo?.checked) {
+          alert("Tenés que aceptar el Protocolo de Convivencia para enviar la solicitud.");
+          esValido = false;
+        }
+
+        return esValido;
+      };
+
+      [
+        [inputNombre, "error-nombre"],
+        [inputDoc, "error-doc"],
+        [inputFecha, "error-fecha"],
+        [inputEmail, "error-email"],
+        [inputTelefono, "error-telefono"],
+      ].forEach(([campo, errorId]) => {
+        campo?.addEventListener("blur", () => {
+          if (campo.value.trim()) validarFormulario();
+        });
+        campo?.addEventListener("input", () => ocultarError(errorId));
+      });
+
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          if (!validarFormulario({ validarProtocolo: true })) return;
+
+          const telefonoLimpio = inputTelefono.value.replace(/\D/g, "");
+          document.getElementById("telefono-completo").value = `${codigoPais.value}${telefonoLimpio}`;
 
           if (btnSubmit) {
-            btnSubmit.textContent = "Enviar Solicitud";
-            btnSubmit.disabled = false;
-            btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+            btnSubmit.textContent = "Enviando solicitud...";
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
           }
-        }
-      });
-    }
 
-    // 5. Lógica de Disciplinas Deportivas (Fixture y Carrusel Local)
-    const sportCards = document.querySelectorAll(".sport-card");
-    const sportModal = document.getElementById("sport-modal");
-    const modalContainer = document.getElementById("modal-container");
-    const closeSportModal = document.getElementById("close-sport-modal");
-
-    const modalIcon = document.getElementById("modal-icon");
-    const modalSportTitle = document.getElementById("modal-sport-title");
-    const categorySelectorContainer = document.getElementById(
-      "category-selector-container",
-    );
-    const matchesListContainer = document.getElementById(
-      "matches-list-container",
-    );
-    const modalImg = document.getElementById("modal-carrusel-img");
-    const prevBtn = document.getElementById("modal-prev-btn");
-    const nextBtn = document.getElementById("modal-next-btn");
-    const contador = document.getElementById("modal-carrusel-contador");
-
-    const generarRutasFotos = (carpeta) => {
-      let fotos = [];
-      for (let i = 1; i <= 10; i++) {
-        fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
-      }
-      return fotos;
-    };
-
-    const fotosPorDisciplina = {
-      "Fútbol 11": generarRutasFotos("futbol11"),
-      "Futsal Masculino": generarRutasFotos("futsalMasc"),
-      "Futsal Femenino": generarRutasFotos("futsalFem"),
-    };
-
-    let currentIndex = 0;
-    let currentImages = [];
-
-    sportCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        const title = card.getAttribute("data-sport-title");
-        const icon = card.getAttribute("data-sport-icon");
-        const categoriesRaw = card.getAttribute("data-categories");
-
-        let categories = [];
-        try {
-          categories = JSON.parse(categoriesRaw);
-        } catch (e) {
-          categories = [];
-        }
-
-        if (modalSportTitle) modalSportTitle.textContent = title;
-        if (modalIcon) modalIcon.textContent = icon;
-
-        currentImages = fotosPorDisciplina[title] || [
-          "/disciplinas/futbol11/foto1.jpg",
-        ];
-        currentIndex = 0;
-        updateCarousel();
-
-        if (categorySelectorContainer) categorySelectorContainer.innerHTML = "";
-        if (matchesListContainer) matchesListContainer.innerHTML = "";
-
-        if (categories.length > 0 && categorySelectorContainer) {
-          categories.forEach((cat, index) => {
-            const btnCat = document.createElement("button");
-            btnCat.type = "button";
-            btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
-              index === 0
-                ? "bg-emerald-500 text-neutral-950 border-emerald-400"
-                : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
-            }`;
-            btnCat.textContent = cat.name;
-
-            btnCat.addEventListener("click", () => {
-              categorySelectorContainer
-                .querySelectorAll("button")
-                .forEach((b) => {
-                  b.className =
-                    "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
-                });
-              btnCat.className =
-                "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
-
-              renderMatches(cat.matches);
+          try {
+            await fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              mode: "no-cors",
             });
 
-            categorySelectorContainer.appendChild(btnCat);
-          });
+            form.classList.add("hidden");
 
-          renderMatches(categories[0].matches);
-        } else if (matchesListContainer) {
-          matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
-        }
+            // Rellenar Carnet Digital con Datos
+            document.getElementById("txt-nombre").textContent = inputNombre.value;
+            document.getElementById("txt-dni").textContent = `${inputTipoDoc.value} ${inputDoc.value}`;
+            
+            const tipoSocioSel = document.querySelector('input[name="tipo_socio"]:checked')?.value || "Activo";
+            document.getElementById("txt-socio").textContent = tipoSocioSel;
 
-        if (sportModal) {
-          sportModal.classList.remove("hidden");
-          setTimeout(() => {
-            if (modalContainer) {
-              modalContainer.classList.remove("scale-95");
-              modalContainer.classList.add("scale-100");
+            bloquePago?.classList.remove("hidden");
+            bloqueCarnet?.classList.remove("hidden");
+            bloqueCarnet?.classList.add("flex");
+          } catch (error) {
+            console.error("Error al enviar:", error);
+            alert("Hubo un error al enviar tus datos. Intentá nuevamente.");
+
+            if (btnSubmit) {
+              btnSubmit.textContent = "Enviar Solicitud";
+              btnSubmit.disabled = false;
+              btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
             }
-          }, 10);
+          }
+        });
+      }
+
+      // 6. Modal Fixture & Galería
+      const sportCards = document.querySelectorAll(".sport-card");
+      const sportModal = document.getElementById("sport-modal");
+      const modalContainer = document.getElementById("modal-container");
+      const closeSportModal = document.getElementById("close-sport-modal");
+
+      const modalIcon = document.getElementById("modal-icon");
+      const modalSportTitle = document.getElementById("modal-sport-title");
+      const categorySelectorContainer = document.getElementById("category-selector-container");
+      const matchesListContainer = document.getElementById("matches-list-container");
+      const modalImg = document.getElementById("modal-carrusel-img");
+      const prevBtn = document.getElementById("modal-prev-btn");
+      const nextBtn = document.getElementById("modal-next-btn");
+      const contador = document.getElementById("modal-carrusel-contador");
+
+      const generarRutasFotos = (carpeta) => {
+        let fotos = [];
+        for (let i = 1; i <= 10; i++) {
+          fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
         }
+        return fotos;
+      };
+
+      const fotosPorDisciplina = {
+        "Fútbol 11": generarRutasFotos("futbol11"),
+        "Futsal Masculino": generarRutasFotos("futsalMasc"),
+        "Futsal Femenino": generarRutasFotos("futsalFem"),
+      };
+
+      let currentIndex = 0;
+      let currentImages = [];
+
+      sportCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const title = card.getAttribute("data-sport-title");
+          const icon = card.getAttribute("data-sport-icon");
+          const categoriesRaw = card.getAttribute("data-categories");
+
+          let categories = [];
+          try {
+            categories = JSON.parse(categoriesRaw);
+          } catch (e) {
+            categories = [];
+          }
+
+          if (modalSportTitle) modalSportTitle.textContent = title;
+          if (modalIcon) modalIcon.textContent = icon;
+
+          currentImages = fotosPorDisciplina[title] || ["/disciplinas/futbol11/foto1.jpg"];
+          currentIndex = 0;
+          updateCarousel();
+
+          if (categorySelectorContainer) categorySelectorContainer.innerHTML = "";
+          if (matchesListContainer) matchesListContainer.innerHTML = "";
+
+          if (categories.length > 0 && categorySelectorContainer) {
+            categories.forEach((cat, index) => {
+              const btnCat = document.createElement("button");
+              btnCat.type = "button";
+              btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
+                index === 0
+                  ? "bg-emerald-500 text-neutral-950 border-emerald-400"
+                  : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
+              }`;
+              btnCat.textContent = cat.name;
+
+              btnCat.addEventListener("click", () => {
+                categorySelectorContainer.querySelectorAll("button").forEach((b) => {
+                  b.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
+                });
+                btnCat.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
+
+                renderMatches(cat.matches);
+              });
+
+              categorySelectorContainer.appendChild(btnCat);
+            });
+
+            renderMatches(categories[0].matches);
+          } else if (matchesListContainer) {
+            matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
+          }
+
+          if (sportModal) {
+            sportModal.classList.remove("hidden");
+            setTimeout(() => {
+              if (modalContainer) {
+                modalContainer.classList.remove("scale-95");
+                modalContainer.classList.add("scale-100");
+              }
+            }, 10);
+          }
+        });
       });
-    });
 
-    function renderMatches(matches) {
-      if (!matchesListContainer) return;
-      matchesListContainer.innerHTML = "";
-      if (!matches || matches.length === 0) {
-        matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
-        return;
-      }
+      function renderMatches(matches) {
+        if (!matchesListContainer) return;
+        matchesListContainer.innerHTML = "";
 
-      matches.forEach((m) => {
-        const matchCard = document.createElement("div");
-        
-        // Verificación de Fecha Libre
-        if (m.libre) {
-          matchCard.className =
-            "bg-neutral-950/60 border border-neutral-800/80 p-3 rounded-xl flex items-center justify-between text-xs";
-          const fecha = m.fecha || "Fecha Libre";
-          
-          matchCard.innerHTML = `
-            <div>
-              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide">${fecha}</span>
-              <p class="font-bold text-slate-300 text-sm mt-0.5">La Granjah</p>
-            </div>
-            <div class="text-right">
-              <span class="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-1 rounded-md font-semibold text-[11px] uppercase tracking-wider">
-                Fecha Libre
-              </span>
-            </div>
-          `;
-        } else {
-          matchCard.className =
-            "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
-
-          const fecha = m.fecha || "Fecha";
-          const rival = m.rival || "Rival a confirmar";
-          const cancha = m.cancha || "Predio del club";
-          const condicion = m.condition || m.condicion || "Local";
-          const diaHora = m.date || m.dia || "A confirmar";
-
-          matchCard.innerHTML = `
-            <div>
-              <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
-              <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
-              <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
-            </div>
-            <div class="text-right">
-              <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
-            </div>
-          `;
+        if (!matches || matches.length === 0) {
+          matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
+          return;
         }
-        
-        matchesListContainer.appendChild(matchCard);
-      });
-    }
 
-    function updateCarousel() {
-      if (modalImg && currentImages.length > 0) {
-        modalImg.src = currentImages[currentIndex];
-        if (contador)
-          contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        matches.forEach((m) => {
+          const matchCard = document.createElement("div");
+
+          if (m.libre) {
+            matchCard.className = "bg-neutral-950/60 border border-neutral-800/80 p-3 rounded-xl flex items-center justify-between text-xs";
+            const fecha = m.fecha || "Fecha Libre";
+
+            matchCard.innerHTML = `
+              <div>
+                <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide">${fecha}</span>
+                <p class="font-bold text-slate-300 text-sm mt-0.5">La Granjah</p>
+              </div>
+              <div class="text-right">
+                <span class="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-1 rounded-md font-semibold text-[11px] uppercase tracking-wider">
+                  Fecha Libre
+                </span>
+              </div>
+            `;
+          } else {
+            matchCard.className = "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
+
+            const fecha = m.fecha || "Fecha";
+            const rival = m.rival || "Rival a confirmar";
+            const cancha = m.cancha || "Predio del club";
+            const condicion = m.condicion || "Local";
+            const diaHora = m.dia || "A confirmar";
+
+            matchCard.innerHTML = `
+              <div>
+                <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
+                <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
+                <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
+              </div>
+              <div class="text-right">
+                <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
+              </div>
+            `;
+          }
+
+          matchesListContainer.appendChild(matchCard);
+        });
       }
-    }
 
-    if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
-        currentIndex =
-          (currentIndex - 1 + currentImages.length) % currentImages.length;
-        updateCarousel();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % currentImages.length;
-        updateCarousel();
-      });
-    }
-
-    function closeModalFunc() {
-      if (modalContainer) {
-        modalContainer.classList.remove("scale-100");
-        modalContainer.classList.add("scale-95");
+      function updateCarousel() {
+        if (modalImg && currentImages.length > 0) {
+          modalImg.src = currentImages[currentIndex];
+          if (contador)
+            contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        }
       }
-      setTimeout(() => {
-        if (sportModal) sportModal.classList.add("hidden");
-      }, 200);
-    }
 
-    if (closeSportModal)
-      closeSportModal.addEventListener("click", closeModalFunc);
-    if (sportModal) {
-      sportModal.addEventListener("click", (e) => {
-        if (e.target === sportModal) closeModalFunc();
-      });
-    }
-  </script>
+      if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+          currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+          updateCarousel();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          currentIndex = (currentIndex + 1) % currentImages.length;
+          updateCarousel();
+        });
+      }
+
+      function closeModalFunc() {
+        if (modalContainer) {
+          modalContainer.classList.remove("scale-100");
+          modalContainer.classList.add("scale-95");
+        }
+        setTimeout(() => {
+          if (sportModal) sportModal.classList.add("hidden");
+        }, 200);
+      }
+
+      if (closeSportModal) closeSportModal.addEventListener("click", closeModalFunc);
+      if (sportModal) {
+        sportModal.addEventListener("click", (e) => {
+          if (e.target === sportModal) closeModalFunc();
+        });
+      }
+    </script>
+  </body>
 </html>

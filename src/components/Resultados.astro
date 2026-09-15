@@ -1,0 +1,947 @@
+---
+// Resultados.astro
+// Asegúrate de ajustar la ruta relativa según dónde guardaste tu partidos.json
+import partidosJsonData from "../data/partidos.json";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resultados de la Fecha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#0b0f0e] text-slate-100 min-h-screen p-6 font-sans">
+    <div class="max-w-7xl mx-auto space-y-6">
+      <!-- TÍTULO Y SUBRAYADO TRICOLOR EXTENDIDO -->
+      <div class="text-center">
+        <div class="inline-block space-y-2">
+          <h1
+            class="text-3xl font-black tracking-wider text-white uppercase drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]"
+          >
+            RESULTADOS Y TABLA DE POSICIONES
+          </h1>
+
+          <!-- Subrayado Tricolor Neón que cubre todo el ancho del título -->
+          <div class="w-full space-y-[2px] pt-1">
+            <div
+              class="h-[1px] bg-emerald-400 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+            >
+            </div>
+            <div
+              class="h-[1px] bg-amber-400 rounded-full shadow-[0_0_8px_rgba(251,191,36,0.8)]"
+            >
+            </div>
+            <div
+              class="h-[1px] bg-rose-500 rounded-full shadow-[0_0_8px_rgba(244,63,94,0.8)]"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de Disciplinas -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <button
+          type="button"
+          id="btn-f11"
+          onclick="cambiarDisciplina('f11')"
+          class="px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs uppercase rounded-xl border border-emerald-500 hover:bg-emerald-500 transition cursor-pointer shadow-md"
+        >
+          Fútbol 11
+        </button>
+        <button
+          type="button"
+          id="btn-futsal-m"
+          onclick="cambiarDisciplina('futsal-m')"
+          class="px-5 py-2.5 bg-amber-400 text-neutral-950 font-black text-xs uppercase rounded-xl transition cursor-pointer shadow-md"
+        >
+          Futsal Masculino
+        </button>
+        <button
+          type="button"
+          id="btn-futsal-f"
+          onclick="cambiarDisciplina('futsal-f')"
+          class="px-5 py-2.5 bg-red-600 text-white font-bold text-xs uppercase rounded-xl border border-red-500 hover:bg-red-500 transition cursor-pointer shadow-md"
+        >
+          Futsal Femenino
+        </button>
+      </div>
+
+      <!-- ================= SECCIÓN: FÚTBOL 11 ================= -->
+      <div id="seccion-f11" class="disciplina-content space-y-6 hidden">
+        <div class="flex justify-center gap-2">
+          <button
+            type="button"
+            id="btn-f11-cat1"
+            onclick="cambiarCat('f11', 'cat1')"
+            class="px-4 py-1.5 bg-neutral-900 border border-emerald-500/50 text-emerald-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer"
+          >
+            Liga de Profesionales
+          </button>
+         <!--  <button
+            type="button"
+            id="btn-f11-cat2"
+            onclick="cambiarCat('f11', 'cat2')"
+            class="px-4 py-1.5 bg-neutral-900 border border-emerald-500/50 text-emerald-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
+          >
+            Reserva
+          </button> -->
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <!-- F11 - Liga de Profesionales -->
+          <div
+            id="f11-cat1"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full"
+            data-total-fechas="1"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-f11-cat1"
+                onclick="navegarFecha('f11-cat1', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❮</button
+              >
+              <span
+                id="label-f11-cat1"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-f11-cat1"
+                onclick="navegarFecha('f11-cat1', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❯</button
+              >
+            </div>
+            <!-- Contenedor dinámico base -->
+            <div class="fecha-item-content space-y-3"></div>
+          </div>
+
+          <!-- F11 - Reserva -->
+          <div
+            id="f11-cat2"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full hidden"
+            data-total-fechas="1"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-f11-cat2"
+                onclick="navegarFecha('f11-cat2', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❮</button
+              >
+              <span
+                id="label-f11-cat2"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-f11-cat2"
+                onclick="navegarFecha('f11-cat2', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❯</button
+              >
+            </div>
+            <div class="fecha-item-content space-y-3"></div>
+          </div>
+
+          <!-- Tabla Dinámica F11 -->
+          <div
+            class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 shadow-xl overflow-x-auto flex flex-col justify-center"
+          >
+            <h3
+              id="titulo-tabla-f11"
+              class="text-base md:text-lg font-black text-center text-emerald-400 uppercase tracking-widest mb-4"
+            >
+              TABLA DE POSICIONES – FÚTBOL 11
+            </h3>
+            <table class="w-full text-left text-sm md:text-base">
+              <thead>
+                <tr
+                  class="text-xs uppercase text-slate-400 border-b border-neutral-800"
+                >
+                  <th class="py-3 px-2 text-left">#</th>
+                  <th class="py-3 px-2 text-left">Equipo</th>
+                  <th class="py-3 px-2 text-center">PJ</th>
+                  <th class="py-3 px-2 text-center">PG</th>
+                  <th class="py-3 px-2 text-center">PE</th>
+                  <th class="py-3 px-2 text-center">PP</th>
+                  <th class="py-3 px-2 text-center">GF</th>
+                  <th class="py-3 px-2 text-center">GC</th>
+                  <th class="py-3 px-2 text-center">DIF</th>
+                  <th
+                    class="py-3 px-3 text-center text-base font-black text-white"
+                    >PTS</th
+                  >
+                </tr>
+              </thead>
+              <tbody
+                id="tabla-dinamica-f11"
+                class="divide-y divide-neutral-800/40 font-medium text-slate-200"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SECCIÓN: FUTSAL MASCULINO ================= -->
+      <div id="seccion-futsal-m" class="disciplina-content space-y-6">
+        <div class="flex justify-center gap-2">
+          <button
+            type="button"
+            id="btn-futsal-m-cat1"
+            onclick="cambiarCat('futsal-m', 'cat1')"
+            class="px-4 py-1.5 bg-neutral-900 border border-amber-500/50 text-amber-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer"
+          >
+            Primera
+          </button>
+          <button
+            type="button"
+            id="btn-futsal-m-cat2"
+            onclick="cambiarCat('futsal-m', 'cat2')"
+            class="px-4 py-1.5 bg-neutral-900 border border-amber-500/50 text-amber-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
+          >
+            Reserva
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <!-- Futsal M - Primera -->
+          <div
+            id="futsal-m-cat1"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full"
+            data-total-fechas="1"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-futsal-m-cat1"
+                onclick="navegarFecha('futsal-m-cat1', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❮</button
+              >
+              <span
+                id="label-futsal-m-cat1"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-futsal-m-cat1"
+                onclick="navegarFecha('futsal-m-cat1', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❯</button
+              >
+            </div>
+            <div class="fecha-item-content space-y-3"></div>
+          </div>
+
+          <!-- Futsal M - Reserva -->
+          <div
+            id="futsal-m-cat2"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full hidden"
+            data-total-fechas="1"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-futsal-m-cat2"
+                onclick="navegarFecha('futsal-m-cat2', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm"
+                >❮</button
+              >
+              <span
+                id="label-futsal-m-cat2"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-futsal-m-cat2"
+                onclick="navegarFecha('futsal-m-cat2', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm"
+                >❯</button
+              >
+            </div>
+            <div class="fecha-item-content space-y-3"></div>
+          </div>
+
+          <!-- Tabla Dinámica Futsal M -->
+          <div
+            class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 shadow-xl overflow-x-auto flex flex-col justify-center"
+          >
+            <h3
+              id="titulo-tabla-futsal-m"
+              class="text-base md:text-lg font-black text-center text-amber-400 uppercase tracking-widest mb-4"
+            >
+              TABLA DE POSICIONES – FUTSAL M.
+            </h3>
+            <table class="w-full text-left text-sm md:text-base">
+              <thead>
+                <tr
+                  class="border-b border-neutral-800 text-slate-400 font-bold uppercase tracking-wider text-xs"
+                >
+                  <th class="py-3.5 px-3">#</th>
+                  <th class="py-3.5 px-3">Equipo</th>
+                  <th class="py-3.5 px-3 text-center">PJ</th>
+                  <th class="py-3.5 px-3 text-center">PG</th>
+                  <th class="py-3.5 px-3 text-center">PE</th>
+                  <th class="py-3.5 px-3 text-center">PP</th>
+                  <th class="py-3.5 px-3 text-center">GF</th>
+                  <th class="py-3.5 px-3 text-center">GC</th>
+                  <th class="py-3.5 px-3 text-center text-amber-300 font-black"
+                    >PTS</th
+                  >
+                </tr>
+              </thead>
+              <tbody
+                id="tabla-dinamica-futsal-m"
+                class="divide-y divide-neutral-800/40 font-medium text-slate-200"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SECCIÓN: FUTSAL FEMENINO ================= -->
+      <div id="seccion-futsal-f" class="disciplina-content space-y-6 hidden">
+        <div class="flex justify-center gap-2">
+          <button
+            type="button"
+            id="btn-futsal-f-cat1"
+            onclick="cambiarCat('futsal-f', 'cat1')"
+            class="px-4 py-1.5 bg-neutral-900 border border-red-500/50 text-red-400 font-bold text-xs rounded-xl shadow-sm cursor-pointer"
+          >
+            Primera
+          </button>
+          <button
+            type="button"
+            id="btn-futsal-f-cat2"
+            onclick="cambiarCat('futsal-f', 'cat2')"
+            class="px-4 py-1.5 bg-neutral-900 border border-red-500/50 text-red-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer"
+          >
+            Reserva
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <!-- Futsal F - Primera -->
+          <div
+            id="futsal-f-cat1"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full"
+            data-total-fechas="1"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-futsal-f-cat1"
+                onclick="navegarFecha('futsal-f-cat1', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❮</button
+              >
+              <span
+                id="label-futsal-f-cat1"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-futsal-f-cat1"
+                onclick="navegarFecha('futsal-f-cat1', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❯</button
+              >
+            </div>
+            <div class="fecha-item-content space-y-3"></div>
+          </div>
+
+          <!-- Futsal F - Reserva -->
+          <div
+            id="futsal-f-cat2"
+            class="cat-content space-y-4 max-w-xl mx-auto w-full hidden"
+            data-total-fechas="1"
+          >
+            <div
+              class="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 shadow-sm"
+            >
+              <button
+                type="button"
+                id="btn-prev-futsal-f-cat2"
+                onclick="navegarFecha('futsal-f-cat2', -1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❮</button
+              >
+              <span
+                id="label-futsal-f-cat2"
+                class="font-black text-xs uppercase tracking-widest text-emerald-400"
+                >Fecha 1</span
+              >
+              <button
+                type="button"
+                id="btn-next-futsal-f-cat2"
+                onclick="navegarFecha('futsal-f-cat2', 1)"
+                class="px-5 py-2.5 rounded-xl bg-neutral-900 border border-neutral-800 text-slate-300 hover:text-white hover:border-emerald-500 font-medium text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
+                >❯</button
+              >
+            </div>
+            <div class="fecha-item-content space-y-3"></div>
+          </div>
+
+          <!-- Tabla Dinámica Futsal F -->
+          <div
+            class="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 shadow-xl overflow-x-auto flex flex-col justify-center"
+          >
+            <h3
+              id="titulo-tabla-futsal-f"
+              class="text-base md:text-lg font-black text-center text-red-400 uppercase tracking-widest mb-4"
+            >
+              TABLA DE POSICIONES – FUTSAL F.
+            </h3>
+            <table class="w-full text-left text-sm md:text-base">
+              <thead>
+                <tr
+                  class="border-b border-neutral-800 text-slate-400 font-bold uppercase tracking-wider text-xs"
+                >
+                  <th class="py-3.5 px-3">#</th>
+                  <th class="py-3.5 px-3">Equipo</th>
+                  <th class="py-3.5 px-3 text-center">PJ</th>
+                  <th class="py-3.5 px-3 text-center">PG</th>
+                  <th class="py-3.5 px-3 text-center">PE</th>
+                  <th class="py-3.5 px-3 text-center">PP</th>
+                  <th class="py-3.5 px-3 text-center">GF</th>
+                  <th class="py-3.5 px-3 text-center">GC</th>
+                  <th class="py-3.5 px-3 text-center text-red-300 font-black"
+                    >PTS</th
+                  >
+                </tr>
+              </thead>
+              <tbody
+                id="tabla-dinamica-futsal-f"
+                class="divide-y divide-neutral-800/40 font-medium text-slate-200"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- SCRIPT RESULTADOS.ASTRO -->
+  <script is:inline define:vars={{ partidosJsonData }}>
+    const fechasEstado = {};
+    let disciplinaActual = "f11";
+    let categoriaActual = "cat1";
+
+    let partidosJsonCargados =
+      typeof partidosJsonData !== "undefined" ? partidosJsonData : [];
+
+    const mapaDisciplinas = {
+      f11: "f11",
+      "futbol-11": "f11",
+      "fútbol 11": "f11",
+      futsal_m: "futsal-m",
+      "futsal-m": "futsal-m",
+      futsal_f: "futsal-f",
+      "futsal-f": "futsal-f",
+    };
+
+    function obtenerColorEquipo(nombreEquipo) {
+      if (!nombreEquipo) return "text-slate-300";
+      return nombreEquipo.trim().toLowerCase() === "la granjah"
+        ? "text-emerald-400 font-bold"
+        : "text-slate-300 font-semibold";
+    }
+
+    function cambiarDisciplina(disc) {
+      disciplinaActual = disc;
+
+      document
+        .querySelectorAll(".disciplina-content")
+        .forEach((el) => el.classList.add("hidden"));
+
+      ["f11", "futsal-m", "futsal-f"].forEach((d) => {
+        const btn = document.getElementById(`btn-${d}`);
+        if (btn) {
+          if (d === disc) {
+            if (d === "f11") {
+              btn.className =
+                "px-5 py-2.5 bg-emerald-600 text-white font-bold text-xs uppercase rounded-xl border border-emerald-500 shadow-md transition cursor-pointer";
+            } else if (d === "futsal-m") {
+              btn.className =
+                "px-5 py-2.5 bg-amber-400 text-neutral-950 font-black text-xs uppercase rounded-xl shadow-md transition cursor-pointer";
+            } else if (d === "futsal-f") {
+              btn.className =
+                "px-5 py-2.5 bg-red-600 text-white font-bold text-xs uppercase rounded-xl border border-red-500 shadow-md transition cursor-pointer";
+            }
+          } else {
+            if (d === "f11") {
+              btn.className =
+                "px-5 py-2.5 bg-neutral-900 text-emerald-500 font-bold text-xs uppercase rounded-xl border border-emerald-900/50 hover:bg-neutral-800 transition cursor-pointer";
+            } else if (d === "futsal-m") {
+              btn.className =
+                "px-5 py-2.5 bg-neutral-900 text-amber-400 font-bold text-xs uppercase rounded-xl border border-amber-900/50 hover:bg-neutral-800 transition cursor-pointer";
+            } else if (d === "futsal-f") {
+              btn.className =
+                "px-5 py-2.5 bg-neutral-900 text-red-500 font-bold text-xs uppercase rounded-xl border border-red-900/50 hover:bg-neutral-800 transition cursor-pointer";
+            }
+          }
+        }
+      });
+
+      const targetDisc = document.getElementById(`seccion-${disc}`);
+      if (targetDisc) {
+        targetDisc.classList.remove("hidden");
+      }
+
+      cambiarCat(disc, categoriaActual);
+    }
+
+    function cambiarCat(disc, catId) {
+      categoriaActual = catId;
+      const contenedor = document.getElementById(`seccion-${disc}`);
+      if (!contenedor) return;
+
+      contenedor
+        .querySelectorAll(".cat-content")
+        .forEach((el) => el.classList.add("hidden"));
+
+      contenedor
+        .querySelectorAll(`button[id^="btn-${disc}-"]`)
+        .forEach((btn) => {
+          btn.className =
+            "px-4 py-1.5 bg-neutral-900 border border-neutral-800 text-slate-400 font-medium text-xs rounded-xl hover:bg-neutral-800 hover:text-white transition cursor-pointer";
+        });
+
+      const targetCat = document.getElementById(`${disc}-${catId}`);
+      if (targetCat) targetCat.classList.remove("hidden");
+
+      const activeBtn = document.getElementById(`btn-${disc}-${catId}`);
+      if (activeBtn) {
+        let colorClasses = "border-emerald-500/50 text-emerald-400";
+        if (disc === "futsal-m") {
+          colorClasses = "border-amber-500/50 text-amber-400";
+        } else if (disc === "futsal-f") {
+          colorClasses = "border-red-500/50 text-red-400";
+        }
+        activeBtn.className = `px-4 py-1.5 bg-neutral-900 border ${colorClasses} font-bold text-xs rounded-xl shadow-sm cursor-pointer`;
+      }
+
+      const containerId = `${disc}-${catId}`;
+      if (fechasEstado[containerId] === undefined) {
+        fechasEstado[containerId] = 1;
+      }
+      actualizarVistaFechas(containerId);
+    }
+
+    function navegarFecha(catContainerId, direccion) {
+      const contenedorCat = document.getElementById(catContainerId);
+      if (!contenedorCat) return;
+
+      const total =
+        parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
+
+      if (fechasEstado[catContainerId] === undefined) {
+        fechasEstado[catContainerId] = 1;
+      }
+
+      let nuevaFecha = fechasEstado[catContainerId] + direccion;
+      if (nuevaFecha < 1) nuevaFecha = 1;
+      if (nuevaFecha > total) nuevaFecha = total;
+
+      fechasEstado[catContainerId] = nuevaFecha;
+      actualizarVistaFechas(catContainerId);
+    }
+
+    function renderizarPartidosGuardados(catContainerId) {
+      const contenedorCat = document.getElementById(catContainerId);
+      if (!contenedorCat) return;
+
+      contenedorCat
+        .querySelectorAll(".partido-dinamico-creado")
+        .forEach((el) => el.remove());
+
+      const partes = catContainerId.split("-");
+      const disc = catContainerId.includes("futsal-m")
+        ? "futsal-m"
+        : catContainerId.includes("futsal-f")
+          ? "futsal-f"
+          : partes[0];
+      const catId = partes[partes.length - 1];
+
+      let nombreCatLargo = "Primera";
+      if (disc === "f11") {
+        nombreCatLargo = catId === "cat2" ? "Reserva" : "Liga de Profesionales";
+      } else {
+        nombreCatLargo = catId === "cat2" ? "Reserva" : "Primera";
+      }
+
+      let maxFechaActual = 1;
+
+      partidosJsonCargados.forEach((p) => {
+        const discGuardada = (p.disciplina || "").toLowerCase().trim();
+        const discConvertida = mapaDisciplinas[discGuardada] || discGuardada;
+
+        const esMatchDisciplina =
+          discConvertida === disc ||
+          (disc === "f11" &&
+            (discGuardada.includes("f11") ||
+              discGuardada.includes("futbol") ||
+              discGuardada.includes("fútbol")));
+
+        const catGuardada = (p.categoria || "").toLowerCase().trim();
+        const esMatchCat =
+          catGuardada === catId ||
+          (catId === "cat1" &&
+            (catGuardada === "liga de profesionales" ||
+              catGuardada === "primera" ||
+              catGuardada === "cat1")) ||
+          (catId === "cat2" &&
+            (catGuardada === "reserva" || catGuardada === "cat2"));
+
+        if (esMatchDisciplina && esMatchCat) {
+          let valorFechaCrudo =
+            p.fechaNum ?? p.nroFecha ?? p.numeroFecha ?? p.fecha ?? 1;
+          if (typeof valorFechaCrudo === "string") {
+            valorFechaCrudo = valorFechaCrudo.replace(/\D/g, "");
+          }
+          const numFecha = parseInt(valorFechaCrudo) || 1;
+
+          if (numFecha > maxFechaActual) {
+            maxFechaActual = numFecha;
+          }
+
+          let listaFechas = contenedorCat.querySelectorAll(
+            ":scope > .fecha-item-content",
+          );
+
+          while (listaFechas.length < numFecha) {
+            const nuevoDivFecha = document.createElement("div");
+            nuevoDivFecha.className = "fecha-item-content space-y-3 hidden";
+            contenedorCat.appendChild(nuevoDivFecha);
+            listaFechas = contenedorCat.querySelectorAll(
+              ":scope > .fecha-item-content",
+            );
+          }
+
+          const contenedorFecha = listaFechas[numFecha - 1];
+
+          let nombreDiscTexto = "Fútbol 11";
+          if (disc === "futsal-m") nombreDiscTexto = "Futsal M.";
+          if (disc === "futsal-f") nombreDiscTexto = "Futsal F.";
+
+          const textoHeader = `${nombreDiscTexto} – ${nombreCatLargo} – Fecha ${numFecha}`;
+          let cardHTML = "";
+
+          if (p.esLibre || p.equipoLibre) {
+            const nombreEquipoLibre = p.equipoLibre || p.local;
+            const claseColorLibre = obtenerColorEquipo(nombreEquipoLibre);
+
+            cardHTML = `
+              <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row partido-dinamico-creado">
+                <div class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md">
+                  ${textoHeader}
+                </div>
+                <div class="p-4 flex items-center justify-center text-xs">
+                  <div class="bg-neutral-950 border border-neutral-800 px-6 py-2 rounded-xl text-center shadow-inner">
+                    <span class="text-slate-400 font-bold text-sm md:text-base">Fecha Libre: </span>
+                    <span class="equipo-libre-nombre text-sm md:text-base ml-1 ${claseColorLibre}">${nombreEquipoLibre}</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          } else {
+            const claseColorLocal = obtenerColorEquipo(p.local);
+            const claseColorVisita = obtenerColorEquipo(p.visitante);
+            const resolucionEscritorio = p.resolucion || p.sancion || "ninguna";
+            let badgeEscritorio = "";
+            let dataResolucionAttr = `data-resolucion="${resolucionEscritorio}"`;
+
+            if (resolucionEscritorio === "local") {
+              badgeEscritorio = `<div class="bg-amber-500/20 text-amber-400 text-[10px] font-black uppercase px-2 py-0.5 rounded-md border border-amber-500/30 text-center mt-1">Gana Local por sanción</div>`;
+            } else if (resolucionEscritorio === "visitante") {
+              badgeEscritorio = `<div class="bg-amber-500/20 text-amber-400 text-[10px] font-black uppercase px-2 py-0.5 rounded-md border border-amber-500/30 text-center mt-1">Gana Visita por sanción</div>`;
+            } else if (resolucionEscritorio === "ambos_pierden") {
+              badgeEscritorio = `<div class="bg-red-500/20 text-red-400 text-[10px] font-black uppercase px-2 py-0.5 rounded-md border border-red-500/30 text-center mt-1">Ambos Pierden Puntos</div>`;
+            }
+
+            cardHTML = `
+              <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row partido-dinamico-creado" ${dataResolucionAttr}>
+                <div class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 px-4 py-2 border-b border-neutral-800 text-xs font-black text-neutral-950 uppercase tracking-wider text-center shadow-md">
+                  ${textoHeader}
+                </div>
+                <div class="p-4 flex flex-col items-center justify-between text-xs">
+                  <div class="w-full flex items-center justify-between">
+                    <span class="text-center w-1/3 text-sm md:text-base equipo-local ${claseColorLocal}">${p.local}</span>
+                    <div class="bg-neutral-950 border border-neutral-800 px-4 py-2 rounded-xl font-mono font-bold text-base md:text-lg text-slate-200 text-center shadow-inner tracking-wider goles-container">
+                      <span class="goles-local">${p.golesLocal ?? 0}</span> - <span class="goles-visita">${p.golesVisitante ?? 0}</span>
+                    </div>
+                    <span class="text-center w-1/3 text-sm md:text-base equipo-visita ${claseColorVisita}">${p.visitante}</span>
+                  </div>
+                  ${badgeEscritorio}
+                </div>
+              </div>
+            `;
+          }
+
+          if (contenedorFecha) {
+            contenedorFecha.insertAdjacentHTML("beforeend", cardHTML);
+          }
+        }
+      });
+
+      contenedorCat.setAttribute("data-total-fechas", maxFechaActual);
+    }
+
+    function actualizarVistaFechas(catContainerId) {
+      const contenedorCat = document.getElementById(catContainerId);
+      if (!contenedorCat) return;
+
+      renderizarPartidosGuardados(catContainerId);
+
+      const actual = fechasEstado[catContainerId] || 1;
+      const total =
+        parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
+
+      const itemsFecha = contenedorCat.querySelectorAll(
+        ":scope > .fecha-item-content",
+      );
+
+      itemsFecha.forEach((el, index) => {
+        if (index + 1 === actual) {
+          el.classList.remove("hidden");
+        } else {
+          el.classList.add("hidden");
+        }
+      });
+
+      const label = contenedorCat.querySelector(`#label-${catContainerId}`);
+      if (label) {
+        label.textContent = `Fecha ${actual}`;
+      }
+
+      const btnPrev = document.getElementById(`btn-prev-${catContainerId}`);
+      const btnNext = document.getElementById(`btn-next-${catContainerId}`);
+
+      if (btnPrev) btnPrev.classList.toggle("invisible", actual <= 1);
+      if (btnNext) btnNext.classList.toggle("invisible", actual >= total);
+
+      const disc = catContainerId.includes("futsal-m")
+        ? "futsal-m"
+        : catContainerId.includes("futsal-f")
+          ? "futsal-f"
+          : catContainerId.split("-")[0];
+      const cat = catContainerId.split("-").pop();
+
+      calcularTablaUniversal(disc, cat);
+    }
+
+    function calcularTablaUniversal(disc, catId) {
+      const catContainerId = `${disc}-${catId}`;
+      const contenedorCat = document.getElementById(catContainerId);
+      if (!contenedorCat) return;
+
+      const equipos = {};
+
+      function asegurarEquipo(nombre) {
+        if (!equipos[nombre]) {
+          equipos[nombre] = {
+            nombre,
+            pj: 0,
+            pg: 0,
+            pe: 0,
+            pp: 0,
+            gf: 0,
+            gc: 0,
+            pts: 0,
+          };
+        }
+      }
+
+      contenedorCat.querySelectorAll(".partido-row").forEach((row) => {
+        const local = row.querySelector(".equipo-local")?.textContent.trim();
+        const visita = row.querySelector(".equipo-visita")?.textContent.trim();
+        const gLocalText = row
+          .querySelector(".goles-local")
+          ?.textContent.trim();
+        const gVisitaText = row
+          .querySelector(".goles-visita")
+          ?.textContent.trim();
+
+        if (!local || !visita || gLocalText === "" || gVisitaText === "")
+          return;
+
+        let gLocal = parseInt(gLocalText);
+        let gVisita = parseInt(gVisitaText);
+
+        if (isNaN(gLocal) || isNaN(gVisita)) return;
+
+        asegurarEquipo(local);
+        asegurarEquipo(visita);
+
+        const resolucion = row.getAttribute("data-resolucion") || "ninguna";
+
+        equipos[local].pj += 1;
+        equipos[visita].pj += 1;
+        equipos[local].gf += gLocal;
+        equipos[local].gc += gVisita;
+        equipos[visita].gf += gVisita;
+        equipos[visita].gc += gLocal;
+
+        if (resolucion === "local") {
+          equipos[local].pts += 3;
+          equipos[visita].pp += 1;
+          equipos[local].pp += gLocal < gVisita ? 1 : 0;
+        } else if (resolucion === "visitante") {
+          equipos[visita].pts += 3;
+          equipos[local].pp += 1;
+          equipos[visita].pp += gVisita < gLocal ? 1 : 0;
+        } else if (resolucion === "ambos_pierden") {
+          equipos[local].pp += 1;
+          equipos[visita].pp += 1;
+        } else {
+          if (gLocal > gVisita) {
+            equipos[local].pg += 1;
+            equipos[local].pts += 3;
+            equipos[visita].pp += 1;
+          } else if (gLocal < gVisita) {
+            equipos[visita].pg += 1;
+            equipos[visita].pts += 3;
+            equipos[local].pp += 1;
+          } else {
+            equipos[local].pe += 1;
+            equipos[local].pts += 1;
+            equipos[visita].pe += 1;
+            equipos[visita].pts += 1;
+          }
+        }
+      });
+
+      contenedorCat.querySelectorAll(".equipo-libre-nombre").forEach((el) => {
+        const nombreLibre = el.textContent.trim();
+        if (nombreLibre) asegurarEquipo(nombreLibre);
+      });
+
+      const arrayEquipos = Object.values(equipos).sort((a, b) => {
+        if (b.pts !== a.pts) return b.pts - a.pts;
+        const difA = a.gf - a.gc;
+        const difB = b.gf - b.gc;
+        if (difB !== difA) return difB - difA;
+        if (b.gf !== a.gf) return b.gf - a.gf;
+        if (b.pg !== a.pg) return b.pg - a.pg;
+        return b.pj - a.pj;
+      });
+
+      const tituloDiscMap = {
+        f11: "FÚTBOL 11",
+        "futsal-m": "FUTSAL M.",
+        "futsal-f": "FUTSAL F.",
+      };
+
+      let nombreCat = "PRIMERA";
+      if (disc === "f11") {
+        nombreCat = catId === "cat2" ? "RESERVA" : "LIGA DE PROFESIONALES";
+      } else {
+        nombreCat = catId === "cat2" ? "RESERVA" : "PRIMERA";
+      }
+
+      const elTitulo = document.getElementById(`titulo-tabla-${disc}`);
+      if (elTitulo) {
+        elTitulo.textContent = `TABLA DE POSICIONES – ${tituloDiscMap[disc]} (${nombreCat})`;
+      }
+
+      const tbody = document.getElementById(`tabla-dinamica-${disc}`);
+      if (!tbody) return;
+
+      tbody.innerHTML = "";
+      if (arrayEquipos.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" class="text-center py-4 text-slate-500">No hay partidos con resultados cargados en el JSON.</td></tr>`;
+        return;
+      }
+
+      arrayEquipos.forEach((eq, index) => {
+        const esPrimero = index === 0;
+        const esLaGranjah = eq.nombre.trim().toLowerCase() === "la granjah";
+        const difGoles = eq.gf - eq.gc;
+        const difTexto = difGoles > 0 ? `+${difGoles}` : `${difGoles}`;
+
+        let colorFila = "text-slate-300";
+        if (esLaGranjah) {
+          colorFila = "text-emerald-400 font-bold bg-emerald-950/20";
+        } else if (esPrimero) {
+          colorFila = "bg-neutral-950/50 text-emerald-400 font-bold";
+        }
+
+        const tr = document.createElement("tr");
+        tr.className = colorFila;
+        tr.innerHTML = `
+          <td class="py-3 px-2">${index + 1}</td>
+          <td class="py-3 px-2">${eq.nombre}</td>
+          <td class="py-3 px-2 text-center">${eq.pj}</td>
+          <td class="py-3 px-2 text-center">${eq.pg}</td>
+          <td class="py-3 px-2 text-center">${eq.pe}</td>
+          <td class="py-3 px-2 text-center">${eq.pp}</td>
+          <td class="py-3 px-2 text-center">${eq.gf}</td>
+          <td class="py-3 px-2 text-center">${eq.gc}</td>
+          <td class="py-3 px-2 text-center font-bold text-slate-400">${difTexto}</td>
+          <td class="py-2 px-3 text-center">
+            <span 
+              class="inline-flex items-center justify-center w-10 h-10 text-xl font-black text-white rounded-full relative"
+              style="
+              background: #111;
+              border: 3px solid transparent;
+              background-image: linear-gradient(#111, #111), conic-gradient(from 180deg, #00ff87, #ffeb3b, #ff0844, #00ff87);
+              background-origin: border-box;
+              background-clip: padding-box, border-box;
+              box-shadow: 0 0 12px rgba(0, 255, 135, 0.6), 0 0 16px rgba(255, 8, 68, 0.4), inset 0 0 8px rgba(0, 0, 0, 0.8);
+              "
+            >
+              ${eq.pts}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    window.cambiarDisciplina = cambiarDisciplina;
+    window.cambiarCat = cambiarCat;
+    window.navegarFecha = navegarFecha;
+    window.renderizarPartidosGuardados = renderizarPartidosGuardados;
+    window.actualizarVistaFechas = actualizarVistaFechas;
+    window.calcularTablaUniversal = calcularTablaUniversal;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      [
+        "f11-cat1",
+        "f11-cat2",
+        "futsal-m-cat1",
+        "futsal-m-cat2",
+        "futsal-f-cat1",
+        "futsal-f-cat2",
+      ].forEach((id) => {
+        fechasEstado[id] = 1;
+        if (document.getElementById(id)) {
+          actualizarVistaFechas(id);
+        }
+      });
+
+      cambiarDisciplina("f11");
+    });
+  </script>
+</html>

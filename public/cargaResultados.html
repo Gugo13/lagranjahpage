@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Carga - Resultados</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-neutral-950 text-white min-h-screen p-4 md:p-8 font-sans">
+    <div class="max-w-3xl mx-auto">
+      <!-- Panel de Carga -->
+      <div
+        class="p-6 bg-neutral-900 border border-neutral-800 rounded-2xl shadow-xl text-white"
+      >
+        <h2
+          class="text-2xl font-black text-amber-400 mb-6 uppercase flex items-center gap-2 tracking-wide"
+        >
+          <span>📋</span> Panel de Carga Multidisciplina
+        </h2>
+
+        <form id="form-cargar-resultado" class="space-y-6">
+          <!-- Selector de Disciplina, Categoría y Fecha -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label
+                class="block text-xs text-neutral-400 uppercase font-bold mb-1"
+              >
+                Disciplina
+              </label>
+              <select
+                id="admin-disciplina"
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-white font-semibold focus:border-amber-400 outline-none"
+              >
+                <option value="f11">Fútbol 11</option>
+                <option value="futsal-m">Futsal Masculino</option>
+                <option value="futsal-f">Futsal Femenino</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block text-xs text-neutral-400 uppercase font-bold mb-1"
+              >
+                Categoría
+              </label>
+              <select
+                id="admin-categoria"
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-white font-semibold focus:border-amber-400 outline-none"
+              >
+                <!-- Dinámico -->
+              </select>
+            </div>
+
+            <div>
+              <label
+                class="block text-xs text-neutral-400 uppercase font-bold mb-1"
+              >
+                N° de Fecha
+              </label>
+              <input
+                type="number"
+                id="admin-numero-fecha"
+                value="1"
+                min="1"
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-white font-semibold focus:border-amber-400 outline-none"
+              />
+            </div>
+          </div>
+
+          <!-- Carga de Partido Normal -->
+          <div
+            class="bg-neutral-800/50 p-5 rounded-xl border border-neutral-800 space-y-4"
+          >
+            <!-- Fila de Selección de Equipos y Goles -->
+            <div
+              class="flex flex-col md:flex-row items-center justify-between gap-4"
+            >
+              <!-- Equipo Local -->
+              <div class="w-full md:w-5/12">
+                <label class="block text-xs text-emerald-400 font-bold mb-1">
+                  Equipo Local
+                </label>
+                <select
+                  id="admin-local"
+                  class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-sm text-white focus:border-amber-400 outline-none"
+                ></select>
+              </div>
+
+              <!-- Marcador de Goles -->
+              <div
+                class="flex items-center justify-center gap-3 my-2 md:my-0 px-2"
+              >
+                <div class="flex flex-col items-center">
+                  <span
+                    class="text-[10px] text-neutral-400 font-bold mb-1 md:hidden"
+                    >GL</span
+                  >
+                  <input
+                    type="number"
+                    id="goles-local"
+                    min="0"
+                    placeholder="0"
+                    class="w-14 h-12 bg-neutral-900 border border-neutral-700 rounded-xl text-center text-white font-black text-xl focus:border-amber-400 outline-none"
+                  />
+                </div>
+
+                <span class="text-neutral-500 font-black text-sm pt-4 md:pt-0"
+                  >VS</span
+                >
+
+                <div class="flex flex-col items-center">
+                  <span
+                    class="text-[10px] text-neutral-400 font-bold mb-1 md:hidden"
+                    >GV</span
+                  >
+                  <input
+                    type="number"
+                    id="goles-visitante"
+                    min="0"
+                    placeholder="0"
+                    class="w-14 h-12 bg-neutral-900 border border-neutral-700 rounded-xl text-center text-white font-black text-xl focus:border-amber-400 outline-none"
+                  />
+                </div>
+              </div>
+
+              <!-- Equipo Visitante -->
+              <div class="w-full md:w-5/12">
+                <label class="block text-xs text-emerald-400 font-bold mb-1">
+                  Equipo Visitante
+                </label>
+                <select
+                  id="admin-visitante"
+                  class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-sm text-white focus:border-amber-400 outline-none"
+                ></select>
+              </div>
+            </div>
+
+            <!-- Opción para Sanción / Escritorio (ID corregido y mejorado) -->
+            <div class="pt-2 border-t border-neutral-800">
+              <label
+                for="admin-resolucion"
+                class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
+              >
+                Resolución Disciplinaria / Escritorio (Opcional)
+              </label>
+              <select
+                id="admin-resolucion"
+                class="w-full bg-neutral-900 border border-neutral-700 rounded-lg p-2.5 text-xs text-slate-200 focus:border-amber-400 outline-none transition"
+              >
+                <option value="auto">
+                  Automático (Según goles cargados en cancha)
+                </option>
+                <option value="local">
+                  Gana Local por sanción (+3 pts Local)
+                </option>
+                <option value="visitante">
+                  Gana Visitante por sanción (+3 pts Visitante)
+                </option>
+                <option value="ambos_pierden">
+                  Sanción: Ambos Pierden Puntos (0 pts ambos)
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- SECCIÓN DEDICADA: FECHA LIBRE -->
+          <div
+            class="bg-amber-500/5 p-4 rounded-xl border border-amber-500/20 flex flex-col sm:flex-row items-end gap-3"
+          >
+            <div class="w-full sm:flex-1">
+              <label
+                class="block text-xs text-amber-400 font-bold mb-1 uppercase tracking-wide"
+              >
+                🏖️ Equipo con Fecha Libre
+              </label>
+              <select
+                id="admin-equipo-libre"
+                class="w-full bg-neutral-800 border border-neutral-700 rounded-lg p-2.5 text-sm text-white focus:border-amber-400 outline-none"
+              ></select>
+            </div>
+            <button
+              type="button"
+              onclick="guardarFechaLibre()"
+              class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-neutral-950 font-black py-2.5 px-5 rounded-lg transition cursor-pointer text-xs uppercase tracking-wider h-10 flex items-center justify-center gap-1.5 whitespace-nowrap"
+            >
+              Guardar Fecha Libre
+            </button>
+          </div>
+
+          <!-- Botones de Acción Globales -->
+          <div class="flex flex-wrap gap-3 pt-2">
+            <button
+              type="submit"
+              class="flex-1 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-black py-3 px-4 rounded-xl transition duration-200 uppercase tracking-wider cursor-pointer"
+            >
+              Guardar Partido
+            </button>
+
+            <button
+              type="button"
+              id="btn-exportar-json"
+              class="bg-neutral-800 hover:bg-neutral-700 text-white font-bold py-3 px-4 rounded-xl transition border border-neutral-700 flex items-center gap-2 cursor-pointer"
+            >
+              <span>💾</span> Exportar Datos
+            </button>
+
+            <button
+              type="button"
+              onclick="borrarUltimoPartido()"
+              class="bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 font-bold p-2.5 rounded-xl text-xs transition flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>↩️</span> Borrar último
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SCRIPT DE CARGA Y EDICIÓN DE RESULTADOS (CORREGIDO Y OPTIMIZADO) -->
+    <script>
+      const configuracionClub = {
+        f11: {
+          nombre: "Fútbol 11",
+          estiloColor: "emerald",
+          categorias: [{ id: "cat1", nombre: "Liga de Profesionales" }],
+          equipos: [
+            "La Granjah",
+            "La Franja",
+            "Bianconeri",
+            "Club de amigos",
+            "La Gloria sanjuanina",
+            "Abogados A Rufrano",
+            "Jockers F.C",
+            "Champagnat",
+            "Atlético Hispano",
+            "Versus",
+            "Otro equipo",
+            "Once calvas",
+            "Gloria recargada",
+            "La espesa",
+            "C.A.L.I.S.E pro",
+          ],
+        },
+        "futsal-m": {
+          nombre: "Futsal Masculino",
+          estiloColor: "amber",
+          categorias: [
+            { id: "cat1", nombre: "Primera" },
+            { id: "cat2", nombre: "Reserva" },
+          ],
+          equipos: [
+            "La Granjah",
+            "Colón Juniors",
+            "San Ricardo",
+            "Don Bosco",
+            "Estrella",
+            "Villa Hipódromo",
+            "Def. de los Andes",
+            "Punteto",
+            "Trinidad",
+          ],
+        },
+        "futsal-f": {
+          nombre: "Futsal Femenino",
+          estiloColor: "red",
+          categorias: [
+            { id: "cat1", nombre: "Primera" },
+            { id: "cat2", nombre: "Reserva" },
+          ],
+          equipos: [
+            "La Granjah",
+            "Sarmiento",
+            "Marquesado",
+            "San Ricardo",
+            "Don Bosco",
+            "CORA",
+            "Trinidad",
+            "Arbol verde",
+            "Def. Argentinos",
+            "Punteto",
+          ],
+        },
+      };
+
+      let guardando = false;
+
+      // Función auxiliar para generar IDs únicos sin riesgo de colisión
+      function generarIdUnico() {
+        return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      }
+
+      function actualizarSelects() {
+        const disciplinaKey = document.getElementById("admin-disciplina").value;
+        const config = configuracionClub[disciplinaKey];
+
+        const selectCat = document.getElementById("admin-categoria");
+        const selectLocal = document.getElementById("admin-local");
+        const selectVisitante = document.getElementById("admin-visitante");
+        const selectLibre = document.getElementById("admin-equipo-libre");
+
+        const catSeleccionadaPrev = selectCat.value;
+
+        if (
+          selectCat.children.length === 0 ||
+          !config.categorias.some((c) => c.id === catSeleccionadaPrev)
+        ) {
+          selectCat.innerHTML = "";
+          config.categorias.forEach((cat) => {
+            selectCat.innerHTML += `<option value="${cat.id}">${cat.nombre}</option>`;
+          });
+        }
+
+        const catSeleccionada = selectCat.value;
+
+        let listaEquipos = [];
+        if (config.equiposPorCategoria) {
+          listaEquipos = config.equiposPorCategoria[catSeleccionada] || [];
+        } else {
+          listaEquipos = config.equipos || [];
+        }
+
+        selectLocal.innerHTML = "";
+        selectVisitante.innerHTML = "";
+        if (selectLibre) selectLibre.innerHTML = "";
+
+        listaEquipos.forEach((equipo) => {
+          selectLocal.innerHTML += `<option value="${equipo}">${equipo}</option>`;
+          selectVisitante.innerHTML += `<option value="${equipo}">${equipo}</option>`;
+          if (selectLibre) {
+            selectLibre.innerHTML += `<option value="${equipo}">${equipo}</option>`;
+          }
+        });
+      }
+
+      function procesarGuardado(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+
+        if (guardando) return;
+        guardando = true;
+
+        const disciplina = document.getElementById("admin-disciplina").value;
+        const catId = document.getElementById("admin-categoria").value;
+        const numFecha = parseInt(
+          document.getElementById("admin-numero-fecha").value,
+        );
+        const local = document.getElementById("admin-local").value;
+        const visitante = document.getElementById("admin-visitante").value;
+        const golesLocalInput = document.getElementById("goles-local").value;
+        const golesVisitanteInput =
+          document.getElementById("goles-visitante").value;
+
+        const resolucionSelect = document.getElementById("admin-resolucion");
+        const resolucionPuntos = resolucionSelect
+          ? resolucionSelect.value
+          : "ninguna";
+
+        if (!numFecha || numFecha < 1) {
+          alert("⚠️ Por favor, ingresa un número de fecha válido.");
+          guardando = false;
+          return;
+        }
+
+        if (local === visitante) {
+          alert("⚠️ El equipo local y el visitante deben ser distintos.");
+          guardando = false;
+          return;
+        }
+
+        if (golesLocalInput === "" || golesVisitanteInput === "") {
+          alert("⚠️ Por favor, completa los goles de ambos equipos.");
+          guardando = false;
+          return;
+        }
+
+        const golesLocal = parseInt(golesLocalInput) || 0;
+        const golesVisitante = parseInt(golesVisitanteInput) || 0;
+
+        const configDisc = configuracionClub[disciplina];
+        const catObj = configDisc.categorias.find((c) => c.id === catId);
+        const nombreCatLargo = catObj ? catObj.nombre : catId;
+
+        let db = JSON.parse(localStorage.getItem("club_resultados") || "[]");
+
+        const indexExistente = db.findIndex((p) => {
+          if (p.esLibre) return false;
+
+          const mismaDisc = p.disciplina === disciplina;
+          const mismaCat =
+            p.categoria === catId || p.categoria === nombreCatLargo;
+          const mismaFecha = (p.fechaNum || p.fecha) === numFecha;
+
+          if (!mismaDisc || !mismaCat || !mismaFecha) return false;
+
+          const locGuardado = (p.local || "").trim().toLowerCase();
+          const visGuardado = (p.visitante || "").trim().toLowerCase();
+          const locNuevo = local.trim().toLowerCase();
+          const visNuevo = visitante.trim().toLowerCase();
+
+          return (
+            (locGuardado === locNuevo && visGuardado === visNuevo) ||
+            (locGuardado === visNuevo && visGuardado === locNuevo)
+          );
+        });
+
+        const datosPartido = {
+          id: indexExistente !== -1 ? db[indexExistente].id : generarIdUnico(),
+          disciplina: disciplina,
+          categoria: catId,
+          fechaNum: numFecha,
+          local: local,
+          golesLocal: golesLocal,
+          visitante: visitante,
+          golesVisitante: golesVisitante,
+          resolucion: resolucionPuntos,
+          resolucionPuntos: resolucionPuntos,
+          estado: "Finalizado",
+        };
+
+        let mensajeEstado = "";
+
+        if (indexExistente !== -1) {
+          db[indexExistente] = datosPartido;
+          mensajeEstado = "✏️ ¡Partido actualizado correctamente!";
+        } else {
+          db.push(datosPartido);
+          mensajeEstado = "✅ ¡Resultado guardado con éxito!";
+        }
+
+        localStorage.setItem("club_resultados", JSON.stringify(db));
+
+        let mensajeResolucion = "";
+        if (resolucionPuntos === "local")
+          mensajeResolucion = " (Puntos a Local por sanción)";
+        if (resolucionPuntos === "visitante")
+          mensajeResolucion = " (Puntos a Visitante por sanción)";
+        if (resolucionPuntos === "ambos_pierden")
+          mensajeResolucion = " (Ambos Pierden Puntos)";
+
+        alert(
+          `${mensajeEstado}\n[${configDisc.nombre} - ${nombreCatLargo} - Fecha ${numFecha}]: ${local} ${golesLocal} - ${golesVisitante} ${visitante}${mensajeResolucion}`,
+        );
+
+        document.getElementById("goles-local").value = "";
+        document.getElementById("goles-visitante").value = "";
+
+        setTimeout(() => {
+          guardando = false;
+        }, 400);
+      }
+
+      function guardarFechaLibre() {
+        const disciplina = document.getElementById("admin-disciplina").value;
+        const catId = document.getElementById("admin-categoria").value;
+        const numFecha = parseInt(
+          document.getElementById("admin-numero-fecha").value,
+        );
+        const equipoLibre =
+          document.getElementById("admin-equipo-libre")?.value;
+
+        if (!numFecha || numFecha < 1) {
+          alert("⚠️ Por favor, ingresa un número de fecha válido.");
+          return;
+        }
+
+        if (!equipoLibre) {
+          alert("⚠️ Selecciona un equipo libre.");
+          return;
+        }
+
+        const configDisc = configuracionClub[disciplina];
+        const catObj = configDisc.categorias.find((c) => c.id === catId);
+        const nombreCatLargo = catObj ? catObj.nombre : catId;
+
+        let db = JSON.parse(localStorage.getItem("club_resultados") || "[]");
+
+        const registroLibre = {
+          id: generarIdUnico(),
+          disciplina: disciplina,
+          categoria: catId,
+          fechaNum: numFecha,
+          esLibre: true,
+          equipoLibre: equipoLibre,
+        };
+
+        const indexExistente = db.findIndex(
+          (p) =>
+            p.disciplina === disciplina &&
+            (p.categoria === catId || p.categoria === nombreCatLargo) &&
+            (p.fechaNum === numFecha || p.fecha === numFecha) &&
+            p.esLibre &&
+            p.equipoLibre === equipoLibre,
+        );
+
+        if (indexExistente !== -1) {
+          db[indexExistente] = registroLibre;
+          alert(
+            `✏️ Fecha libre actualizada: ${equipoLibre} (Fecha ${numFecha})`,
+          );
+        } else {
+          db.push(registroLibre);
+          alert(
+            `✅ Fecha libre cargada: ${equipoLibre} [${configDisc.nombre} - ${nombreCatLargo} - Fecha ${numFecha}]`,
+          );
+        }
+
+        localStorage.setItem("club_resultados", JSON.stringify(db));
+      }
+
+      function borrarUltimoPartido() {
+        const db = JSON.parse(localStorage.getItem("club_resultados") || "[]");
+
+        if (db.length === 0) {
+          alert("No hay partidos cargados para borrar.");
+          return;
+        }
+
+        const ultimo = db[db.length - 1];
+        const textoPartido = ultimo.esLibre
+          ? `Fecha Libre: ${ultimo.equipoLibre} (Fecha ${ultimo.fechaNum})`
+          : `${ultimo.local} vs ${ultimo.visitante} (${ultimo.golesLocal} - ${ultimo.golesVisitante})`;
+
+        const confirmar = confirm(
+          `¿Querés borrar el último elemento cargado?\n\n${textoPartido}`,
+        );
+
+        if (confirmar) {
+          db.pop();
+          localStorage.setItem("club_resultados", JSON.stringify(db));
+          alert("¡Eliminado correctamente!");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        actualizarSelects();
+
+        const formCargar = document.getElementById("form-cargar-resultado");
+        if (formCargar) {
+          formCargar.addEventListener("submit", procesarGuardado);
+        }
+
+        const selectDisc = document.getElementById("admin-disciplina");
+        if (selectDisc) {
+          selectDisc.addEventListener("change", () => {
+            const selectCat = document.getElementById("admin-categoria");
+            selectCat.innerHTML = "";
+            actualizarSelects();
+          });
+        }
+
+        const selectCat = document.getElementById("admin-categoria");
+        if (selectCat) {
+          selectCat.addEventListener("change", actualizarSelects);
+        }
+
+        const btnExportar = document.getElementById("btn-exportar-json");
+        if (btnExportar) {
+          btnExportar.addEventListener("click", () => {
+            const data = localStorage.getItem("club_resultados") || "[]";
+            const blob = new Blob([data], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            // Descarga directa con el nombre exacto que leerá Astro
+            a.download = "partidos.json";
+            a.click();
+            URL.revokeObjectURL(url);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
