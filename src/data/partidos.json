@@ -1259,5 +1259,13 @@
         "fechaNum": 4,
         "esLibre": true,
         "equipoLibre": "Colón Juniors"
+    },
+    {
+        "id": "id_1790101400001_colonsuper",
+        "disciplina": "futsal-m",
+        "categoria": "cat1",
+        "fechaNum": 4,
+        "esLibre": true,
+        "equipoLibre": "Colón Juniors"
     }
 ]
