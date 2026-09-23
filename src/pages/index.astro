@@ -2,7 +2,8 @@
 import "../styles/global.css";
 import Carrusel from "../components/Carrusel.astro";
 import Analytics from "@vercel/analytics/astro";
-import Resultados from '../components/Resultados.astro';
+import Resultados from "../components/Resultados.astro";
+import Sponsors from "../components/sponsors.astro";
 
 const titulo = "La Granjah";
 const subtitulo = "Club Social & Deportivo";
@@ -256,7 +257,9 @@ const subtitulo = "Club Social & Deportivo";
               <p class="text-neutral-400 text-sm sm:text-base">
                 Se viene la nueva colección oficial.
               </p>
-              <h4 class="text-neutral-400 text-sm sm:text-base mt-2 font-medium">
+              <h4
+                class="text-neutral-400 text-sm sm:text-base mt-2 font-medium"
+              >
                 ¡Pronto podrás adquirirla en nuestra tienda online!
               </h4>
             </div>
@@ -703,6 +706,8 @@ const subtitulo = "Club Social & Deportivo";
       }
     </style>
 
+    <!-- <Sponsors /> -->
+
     <!-- SECCIÓN DISCIPLINAS DEPORTIVAS CON FIXTURE Y GALERÍA INTEGRADA -->
     <section
       id="disciplinas"
@@ -735,11 +740,18 @@ const subtitulo = "Club Social & Deportivo";
             data-sport-title="Fútbol 11"
             data-sport-icon="⚽"
             data-categories='[
-              {
-                "name": "Liga de Profesionales",
-                "matches": []
-              }
-            ]'
+    {
+      "name": "Liga de Profesionales",
+      "matches": [
+        { "fecha": "Fecha 1", "rival": "Jockers FC", "cancha": "ADEPU/CANCHA 5", "condicion": "VISITANTE", "dia": "DOM 09/08-13:00 hs" },
+        { "fecha": "Fecha 2", "libre": true },
+        { "fecha": "Fecha 3", "rival": "Champagnat", "cancha": "ADEPU/CANCHA 2", "condicion": "LOCAL", "dia": "DOM 23/08-11:15 hs" },
+        { "fecha": "Fecha 4", "rival": "Bianconeri", "cancha": "ADEPU/CANCHA 5", "condicion": "VISITANTE", "dia": "DOM 06/09-11:00 hs" },
+        { "fecha": "Fecha 5", "rival": "Club de amigos", "cancha": "ADEPU/CANCHA 5", "condicion": "LOCAL", "dia": "DOM 13/09-09:30 hs" },
+        { "fecha": "Fecha 6", "rival": "Versus", "cancha": "ADEPU/CANCHA 5", "condicion": "VISITANTE", "dia": "SAB 19/09-11:00 hs" }
+      ]
+    }
+  ]'
           >
             <div>
               <div class="flex items-center justify-between mb-4">
@@ -781,8 +793,14 @@ const subtitulo = "Club Social & Deportivo";
             data-categories='[
               { "name": "Primera", "matches": [{ "fecha": "Fecha 1", "rival": "San Ricardo", "cancha": "San Ricardo", "condicion": "VISITANTE", "dia": "Mier 19/08-22:00 hs" },
                { "fecha": "Fecha 2", "libre": true },
-                { "fecha": "Fecha 3", "rival": "Colón Juniors", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 09/09-22:00 hs" }] },
-              { "name": "Reserva", "matches": [{ "fecha": "Fecha 1", "rival": "San Ricardo", "cancha": "San Ricardo", "condicion": "VISITANTE", "dia": "Mier 19/08-21:00 hs" }, { "fecha": "Fecha 2", "libre": true }, { "fecha": "Fecha 3", "rival": "Colón Juniors", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 09/09-21:00 hs" }] },
+                { "fecha": "Fecha 3", "rival": "Colón Juniors", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 09/09-22:00 hs" },
+                 {"fecha": "Fecha 4", "rival": "Punteto", "cancha": "Villa Obrera", "condicion": "VISITANTE", "dia": "Mier 16/09-22:00 hs" },
+                 {"fecha": "Fecha 5", "rival": "Trinidad", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 23/09-22:00 hs" }] },
+              { "name": "Reserva", "matches": [{ "fecha": "Fecha 1", "rival": "San Ricardo", "cancha": "San Ricardo", "condicion": "VISITANTE", "dia": "Mier 19/08-21:00 hs" },
+                { "fecha": "Fecha 2", "libre": true },
+                { "fecha": "Fecha 3", "rival": "Colón Juniors", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 09/09-21:00 hs" },
+                { "fecha": "Fecha 4", "rival": "Punteto", "cancha": "Villa Obrera", "condicion": "VISITANTE", "dia": "Mier 16/09-21:00 hs" },
+                 {"fecha": "Fecha 5", "rival": "Trinidad", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Mier 23/09-21:00 hs" }] },
               { "name": "Sub 17", "matches": [] },
               { "name": "Sub 15", "matches": [] },
               { "name": "Sub 13", "matches": [] }
@@ -831,7 +849,7 @@ const subtitulo = "Club Social & Deportivo";
                 "matches": [
                   { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-20:00 hs" }, 
                   { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Dom 06/09-20:00 hs" },
-                  { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 13/09-20:00 hs" }
+                  { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 21/09-21:00 hs" }
                 ]
               },
               {
@@ -839,7 +857,7 @@ const subtitulo = "Club Social & Deportivo";
                 "matches": [
                   { "fecha": "Fecha 1", "rival": "CORA", "cancha": "CORA", "condicion": "VISITANTE", "dia": "Dom 30/08-19:00 hs" },
                   { "fecha": "Fecha 2", "rival": "Marquesado", "cancha": "Cruz del Sur", "condicion": "LOCAL", "dia": "Dom 06/09-19:00 hs" },
-                  { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 13/09-19:00 hs" }
+                  { "fecha": "Fecha 3", "rival": "Sarmiento", "cancha": "Sarmiento", "condicion": "VISITANTE", "dia": "Dom 21/09-20:00 hs" }
                 ]
               }
             ]'
@@ -917,7 +935,7 @@ const subtitulo = "Club Social & Deportivo";
 
         <!-- CUERPO DEL MODAL -->
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1"
+          class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1"
         >
           <div class="flex flex-col justify-between p-5">
             <div>
@@ -933,7 +951,7 @@ const subtitulo = "Club Social & Deportivo";
               </div>
 
               <div
-                class="space-y-3 max-h-[350px] overflow-y-auto pr-1"
+                class="space-y-3 max-h-[240px] overflow-y-auto pr-1"
                 id="matches-list-container"
               >
               </div>
@@ -989,14 +1007,17 @@ const subtitulo = "Club Social & Deportivo";
         </div>
       </div>
     </div>
-    
+
     <!-- RESULTADOS Y TABLA DE POSICIONES -->
-    <div> 
-      <Resultados/>
+    <div>
+      <Resultados />
     </div>
 
     <!-- SECCIÓN FORMULARIO DE ASOCIACIÓN -->
-    <section id="sumate" class="py-20 bg-neutral-900/40 border-t border-neutral-800">
+    <section
+      id="sumate"
+      class="py-20 bg-neutral-900/40 border-t border-neutral-800"
+    >
       <div class="max-w-3xl mx-auto px-6">
         <div class="text-center mb-10">
           <span
@@ -1004,9 +1025,7 @@ const subtitulo = "Club Social & Deportivo";
           >
             Hacete Socio
           </span>
-          <h2
-            class="text-3xl font-black uppercase text-slate-100 mt-4"
-          >
+          <h2 class="text-3xl font-black uppercase text-slate-100 mt-4">
             Sumate a <span class="text-amber-400">La Granjah</span>
           </h2>
           <p class="text-slate-400 mt-2">
@@ -1656,7 +1675,9 @@ const subtitulo = "Club Social & Deportivo";
               <span class="text-[10px] font-bold text-slate-500 uppercase block"
                 >CUIT / CUIL</span
               >
-              <span id="cuit-val" class="text-sm font-mono font-bold text-slate-200"
+              <span
+                id="cuit-val"
+                class="text-sm font-mono font-bold text-slate-200"
                 >27-38218813-1</span
               >
             </div>
@@ -1676,7 +1697,9 @@ const subtitulo = "Club Social & Deportivo";
               <span class="text-[10px] font-bold text-amber-400 uppercase block"
                 >Alias Brubank</span
               >
-              <span id="alias-val" class="text-base font-mono font-black text-amber-300"
+              <span
+                id="alias-val"
+                class="text-base font-mono font-black text-amber-300"
                 >granjah.socios.bru</span
               >
             </div>
@@ -1764,15 +1787,22 @@ const subtitulo = "Club Social & Deportivo";
                 </div>
                 <div class="flex flex-col gap-1">
                   <div>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                    <p
+                      class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                    >
                       Apellido y Nombre
                     </p>
-                    <p id="txt-nombre" class="text-white font-bold text-base leading-tight">
+                    <p
+                      id="txt-nombre"
+                      class="text-white font-bold text-base leading-tight"
+                    >
                       -
                     </p>
                   </div>
                   <div>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                    <p
+                      class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                    >
                       Documento
                     </p>
                     <p id="txt-dni" class="text-slate-200 text-xs font-mono">
@@ -1780,10 +1810,15 @@ const subtitulo = "Club Social & Deportivo";
                     </p>
                   </div>
                   <div>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                    <p
+                      class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                    >
                       Categoría
                     </p>
-                    <p id="txt-socio" class="text-amber-400 font-mono font-bold text-xs">
+                    <p
+                      id="txt-socio"
+                      class="text-amber-400 font-mono font-bold text-xs"
+                    >
                       Activo
                     </p>
                   </div>
@@ -1871,29 +1906,41 @@ const subtitulo = "Club Social & Deportivo";
       // 3. Campos Condicionales del Formulario
       const selectResidencia = document.getElementById("lugar-residencia");
       const campoSJ = document.getElementById("campo-departamento-sj");
-      const campoOtraProvincia = document.getElementById("campo-otra-provincia");
-      const campoOtroResidencia = document.getElementById("campo-otro-residencia");
+      const campoOtraProvincia = document.getElementById(
+        "campo-otra-provincia",
+      );
+      const campoOtroResidencia = document.getElementById(
+        "campo-otro-residencia",
+      );
 
       if (selectResidencia) {
         selectResidencia.addEventListener("change", (e) => {
           const val = e.target.value;
           if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
           if (campoOtraProvincia)
-            campoOtraProvincia.classList.toggle("hidden", val !== "Otra provincia");
+            campoOtraProvincia.classList.toggle(
+              "hidden",
+              val !== "Otra provincia",
+            );
           if (campoOtroResidencia)
             campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
         });
       }
 
-      const radiosAsociarse = document.querySelectorAll('input[name="quiere_asociarse"]');
-      const bloqueCategorias = document.getElementById("bloque-categorias-socio");
+      const radiosAsociarse = document.querySelectorAll(
+        'input[name="quiere_asociarse"]',
+      );
+      const bloqueCategorias = document.getElementById(
+        "bloque-categorias-socio",
+      );
       const btnSubmit = document.getElementById("btn-submit-form");
 
       radiosAsociarse.forEach((radio) => {
         radio.addEventListener("change", (e) => {
           if (e.target.value === "Sí") {
             if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
-            if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
+            if (btnSubmit)
+              btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
           } else {
             if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
             if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
@@ -1907,17 +1954,25 @@ const subtitulo = "Club Social & Deportivo";
       if (selectAporte) {
         selectAporte.addEventListener("change", (e) => {
           if (campoOtroAporte)
-            campoOtroAporte.classList.toggle("hidden", e.target.value !== "Otro");
+            campoOtroAporte.classList.toggle(
+              "hidden",
+              e.target.value !== "Otro",
+            );
         });
       }
 
-      const radiosJuega = document.querySelectorAll('input[name="juega_en_club"]');
+      const radiosJuega = document.querySelectorAll(
+        'input[name="juega_en_club"]',
+      );
       const contenedorDeporte = document.getElementById("opciones-deporte");
 
       radiosJuega.forEach((radio) => {
         radio.addEventListener("change", (e) => {
           if (contenedorDeporte)
-            contenedorDeporte.classList.toggle("hidden", e.target.value !== "Sí");
+            contenedorDeporte.classList.toggle(
+              "hidden",
+              e.target.value !== "Sí",
+            );
         });
       });
 
@@ -1930,8 +1985,12 @@ const subtitulo = "Club Social & Deportivo";
         }
       };
 
-      document.getElementById("btn-copy-cuit")?.addEventListener("click", () => copyText("cuit-val"));
-      document.getElementById("btn-copy-alias")?.addEventListener("click", () => copyText("alias-val"));
+      document
+        .getElementById("btn-copy-cuit")
+        ?.addEventListener("click", () => copyText("cuit-val"));
+      document
+        .getElementById("btn-copy-alias")
+        ?.addEventListener("click", () => copyText("alias-val"));
 
       // 5. Validación y Envío del Formulario
       const form = document.getElementById("mi-formulario-actual");
@@ -1960,9 +2019,11 @@ const subtitulo = "Club Social & Deportivo";
         if (error) error.classList.add("hidden");
       };
 
-      const validarNombre = (valor) => /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(valor.trim());
+      const validarNombre = (valor) =>
+        /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(valor.trim());
       const validarDocumento = (valor) => /^\d{7,10}$/.test(valor.trim());
-      const validarEmail = (valor) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim());
+      const validarEmail = (valor) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim());
       const validarTelefono = (valor) => {
         const limpio = valor.replace(/\D/g, "");
         return limpio.length >= 7 && limpio.length <= 15;
@@ -1983,7 +2044,10 @@ const subtitulo = "Club Social & Deportivo";
           mostrarError("error-nombre", "⚠️ Ingresá tu nombre y apellido.");
           esValido = false;
         } else if (!validarNombre(inputNombre.value)) {
-          mostrarError("error-nombre", "⚠️ El nombre solo puede contener letras y espacios.");
+          mostrarError(
+            "error-nombre",
+            "⚠️ El nombre solo puede contener letras y espacios.",
+          );
           esValido = false;
         } else {
           ocultarError("error-nombre");
@@ -1993,7 +2057,10 @@ const subtitulo = "Club Social & Deportivo";
           mostrarError("error-doc", "⚠️ Ingresá tu número de documento.");
           esValido = false;
         } else if (!validarDocumento(inputDoc.value)) {
-          mostrarError("error-doc", "⚠️ El documento debe contener entre 7 y 10 números.");
+          mostrarError(
+            "error-doc",
+            "⚠️ El documento debe contener entre 7 y 10 números.",
+          );
           esValido = false;
         } else {
           ocultarError("error-doc");
@@ -2007,21 +2074,32 @@ const subtitulo = "Club Social & Deportivo";
         }
 
         if (!inputEmail?.value.trim() || !validarEmail(inputEmail.value)) {
-          mostrarError("error-email", "⚠️ Ingresá un correo electrónico válido.");
+          mostrarError(
+            "error-email",
+            "⚠️ Ingresá un correo electrónico válido.",
+          );
           esValido = false;
         } else {
           ocultarError("error-email");
         }
 
-        if (!inputTelefono?.value.trim() || !validarTelefono(inputTelefono.value)) {
-          mostrarError("error-telefono", "⚠️ El teléfono debe contener entre 7 y 15 números.");
+        if (
+          !inputTelefono?.value.trim() ||
+          !validarTelefono(inputTelefono.value)
+        ) {
+          mostrarError(
+            "error-telefono",
+            "⚠️ El teléfono debe contener entre 7 y 15 números.",
+          );
           esValido = false;
         } else {
           ocultarError("error-telefono");
         }
 
         if (validarProtocolo && !aceptaProtocolo?.checked) {
-          alert("Tenés que aceptar el Protocolo de Convivencia para enviar la solicitud.");
+          alert(
+            "Tenés que aceptar el Protocolo de Convivencia para enviar la solicitud.",
+          );
           esValido = false;
         }
 
@@ -2048,7 +2126,8 @@ const subtitulo = "Club Social & Deportivo";
           if (!validarFormulario({ validarProtocolo: true })) return;
 
           const telefonoLimpio = inputTelefono.value.replace(/\D/g, "");
-          document.getElementById("telefono-completo").value = `${codigoPais.value}${telefonoLimpio}`;
+          document.getElementById("telefono-completo").value =
+            `${codigoPais.value}${telefonoLimpio}`;
 
           if (btnSubmit) {
             btnSubmit.textContent = "Enviando solicitud...";
@@ -2066,10 +2145,14 @@ const subtitulo = "Club Social & Deportivo";
             form.classList.add("hidden");
 
             // Rellenar Carnet Digital con Datos
-            document.getElementById("txt-nombre").textContent = inputNombre.value;
-            document.getElementById("txt-dni").textContent = `${inputTipoDoc.value} ${inputDoc.value}`;
-            
-            const tipoSocioSel = document.querySelector('input[name="tipo_socio"]:checked')?.value || "Activo";
+            document.getElementById("txt-nombre").textContent =
+              inputNombre.value;
+            document.getElementById("txt-dni").textContent =
+              `${inputTipoDoc.value} ${inputDoc.value}`;
+
+            const tipoSocioSel =
+              document.querySelector('input[name="tipo_socio"]:checked')
+                ?.value || "Activo";
             document.getElementById("txt-socio").textContent = tipoSocioSel;
 
             bloquePago?.classList.remove("hidden");
@@ -2096,8 +2179,12 @@ const subtitulo = "Club Social & Deportivo";
 
       const modalIcon = document.getElementById("modal-icon");
       const modalSportTitle = document.getElementById("modal-sport-title");
-      const categorySelectorContainer = document.getElementById("category-selector-container");
-      const matchesListContainer = document.getElementById("matches-list-container");
+      const categorySelectorContainer = document.getElementById(
+        "category-selector-container",
+      );
+      const matchesListContainer = document.getElementById(
+        "matches-list-container",
+      );
       const modalImg = document.getElementById("modal-carrusel-img");
       const prevBtn = document.getElementById("modal-prev-btn");
       const nextBtn = document.getElementById("modal-next-btn");
@@ -2136,11 +2223,14 @@ const subtitulo = "Club Social & Deportivo";
           if (modalSportTitle) modalSportTitle.textContent = title;
           if (modalIcon) modalIcon.textContent = icon;
 
-          currentImages = fotosPorDisciplina[title] || ["/disciplinas/futbol11/foto1.jpg"];
+          currentImages = fotosPorDisciplina[title] || [
+            "/disciplinas/futbol11/foto1.jpg",
+          ];
           currentIndex = 0;
           updateCarousel();
 
-          if (categorySelectorContainer) categorySelectorContainer.innerHTML = "";
+          if (categorySelectorContainer)
+            categorySelectorContainer.innerHTML = "";
           if (matchesListContainer) matchesListContainer.innerHTML = "";
 
           if (categories.length > 0 && categorySelectorContainer) {
@@ -2155,10 +2245,14 @@ const subtitulo = "Club Social & Deportivo";
               btnCat.textContent = cat.name;
 
               btnCat.addEventListener("click", () => {
-                categorySelectorContainer.querySelectorAll("button").forEach((b) => {
-                  b.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
-                });
-                btnCat.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
+                categorySelectorContainer
+                  .querySelectorAll("button")
+                  .forEach((b) => {
+                    b.className =
+                      "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
+                  });
+                btnCat.className =
+                  "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
 
                 renderMatches(cat.matches);
               });
@@ -2185,6 +2279,8 @@ const subtitulo = "Club Social & Deportivo";
 
       function renderMatches(matches) {
         if (!matchesListContainer) return;
+
+        // Limpiamos el contenido sin alterar las clases del contenedor HTML
         matchesListContainer.innerHTML = "";
 
         if (!matches || matches.length === 0) {
@@ -2192,26 +2288,32 @@ const subtitulo = "Club Social & Deportivo";
           return;
         }
 
+        // Creamos un contenedor interno temporal o agregamos las tarjetas con un grid/flex interno si hace falta espacio
+        const innerDiv = document.createElement("div");
+        innerDiv.className = "flex flex-col gap-3";
+
         matches.forEach((m) => {
           const matchCard = document.createElement("div");
 
           if (m.libre) {
-            matchCard.className = "bg-neutral-950/60 border border-neutral-800/80 p-3 rounded-xl flex items-center justify-between text-xs";
+            matchCard.className =
+              "bg-neutral-950/60 border border-neutral-800/80 p-3 rounded-xl flex items-center justify-between text-xs";
             const fecha = m.fecha || "Fecha Libre";
 
             matchCard.innerHTML = `
-              <div>
-                <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide">${fecha}</span>
-                <p class="font-bold text-slate-300 text-sm mt-0.5">La Granjah</p>
-              </div>
-              <div class="text-right">
-                <span class="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-1 rounded-md font-semibold text-[11px] uppercase tracking-wider">
-                  Fecha Libre
-                </span>
-              </div>
-            `;
+          <div>
+            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide">${fecha}</span>
+            <p class="font-bold text-slate-300 text-sm mt-0.5">La Granjah</p>
+          </div>
+          <div class="text-right">
+            <span class="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-1 rounded-md font-semibold text-[11px] uppercase tracking-wider">
+              Fecha Libre
+            </span>
+          </div>
+        `;
           } else {
-            matchCard.className = "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
+            matchCard.className =
+              "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
 
             const fecha = m.fecha || "Fecha";
             const rival = m.rival || "Rival a confirmar";
@@ -2220,19 +2322,22 @@ const subtitulo = "Club Social & Deportivo";
             const diaHora = m.dia || "A confirmar";
 
             matchCard.innerHTML = `
-              <div>
-                <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
-                <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
-                <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
-              </div>
-              <div class="text-right">
-                <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
-              </div>
-            `;
+          <div>
+            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
+            <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
+            <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
+          </div>
+          <div class="text-right">
+            <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
+          </div>
+        `;
           }
 
-          matchesListContainer.appendChild(matchCard);
+          innerDiv.appendChild(matchCard);
         });
+
+        // Insertamos el bloque de tarjetas dentro del contenedor principal que ya tiene el scroll definido en el HTML
+        matchesListContainer.appendChild(innerDiv);
       }
 
       function updateCarousel() {
@@ -2245,7 +2350,8 @@ const subtitulo = "Club Social & Deportivo";
 
       if (prevBtn) {
         prevBtn.addEventListener("click", () => {
-          currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+          currentIndex =
+            (currentIndex - 1 + currentImages.length) % currentImages.length;
           updateCarousel();
         });
       }
@@ -2267,7 +2373,8 @@ const subtitulo = "Club Social & Deportivo";
         }, 200);
       }
 
-      if (closeSportModal) closeSportModal.addEventListener("click", closeModalFunc);
+      if (closeSportModal)
+        closeSportModal.addEventListener("click", closeModalFunc);
       if (sportModal) {
         sportModal.addEventListener("click", (e) => {
           if (e.target === sportModal) closeModalFunc();
