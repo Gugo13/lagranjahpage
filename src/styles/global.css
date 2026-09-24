@@ -1,6 +1,27 @@
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
 @import "tailwindcss";
 
-/* Celda de Puntos con Borde Neón Tricolor Elegante (Mantenido) */
+/* Efecto Glow / Destello Neón al llegar a la sección */
+.section-glow-effect {
+    animation: neonGlowPulse 0.9s ease-out;
+}
+
+@keyframes neonGlowPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.6), 0 0 0 0 rgba(241, 196, 15, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 30px 10px rgba(46, 204, 113, 0.4), 0 0 50px 20px rgba(241, 196, 15, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0), 0 0 0 0 rgba(241, 196, 15, 0);
+    }
+}
+
+/* Celda de Puntos con Borde Neón Tricolor Elegante */
 .pts-neon-cell {
   min-width: 55px !important;
   border-left: 3px solid transparent !important;
@@ -14,32 +35,89 @@ tr:hover .pts-neon-cell {
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 22px rgba(0, 255, 135, 0.7);
 }
 
-/* Sección general de Sponsors */
+
+/* ==========================================
+   SECCIÓN DE SPONSORS - CHORREADO ARRIBA Y ABAJO
+   ========================================== */
 .sponsors-section {
-    padding: 60px 20px;
-    background-color: #121212;
-    color: #fff;
+    position: relative;
+    padding: 200px 20px 200px 20px; 
+    background-color: #f6f5f0; 
+    color: #1a1a1a;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+}
+
+/* 1. Línea tricolor base arriba de todo */
+.sponsors-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px; 
+    background: linear-gradient(90deg, #2ecc71 33%, #f1c40f 33%, #f1c40f 66%, #e74c3c 66%);
+    z-index: 3;
+}
+
+/* 2. Efecto de pintura chorreando hacia ABAJO desde arriba */
+.sponsors-section::after {
+    content: '';
+    position: absolute;
+    top: 8px; 
+    left: 0;
+    width: 100%;
+    height: 180px; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C60,20 80,80 120,95 C140,105 150,40 180,30 C220,15 250,110 300,120 C350,130 380,50 420,25 C460,0 490,90 540,105 C590,120 620,40 670,65 C720,90 750,15 800,45 C850,75 880,115 930,120 C980,125 1010,35 1060,50 C1110,65 1140,95 1200,30 L1200,0 L0,0 Z' fill='url(%23grad-pintura)'/%3E%3Cdefs%3E%3ClinearGradient id='grad-pintura' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%232ecc71'/%3E%3Cstop offset='33%25' stop-color='%232ecc71'/%3E%3Cstop offset='33%25' stop-color='%23f1c40f'/%3E%3Cstop offset='66%25' stop-color='%23f1c40f'/%3E%3Cstop offset='66%25' stop-color='%23e74c3c'/%3E%3Cstop offset='100%25' stop-color='%23e74c3c'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+
+/* 3. LÍNEA TRICOLOR INFERIOR */
+.sponsors-section .sponsors-bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #2ecc71 33%, #f1c40f 33%, #f1c40f 66%, #e74c3c 66%);
+    z-index: 3;
+}
+
+/* 4. EFECTO DE GOTEO ASCENDENTE (Abajo hacia arriba) */
+.sponsors-section .sponsors-bottom-drip {
+    position: absolute;
+    bottom: 8px; 
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,120 C60,100 80,40 120,25 C140,15 150,80 180,90 C220,105 250,10 300,0 C350,-10 380,70 420,95 C460,120 490,30 540,15 C590,0 620,80 670,55 C720,30 750,105 800,75 C850,45 880,5 930,0 C980,-5 1010,85 1060,70 C1110,55 1140,25 1200,90 L1200,120 L0,120 Z' fill='url(%23grad-pintura-abajo)'/%3E%3Cdefs%3E%3ClinearGradient id='grad-pintura-abajo' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%232ecc71'/%3E%3Cstop offset='33%25' stop-color='%232ecc71'/%3E%3Cstop offset='33%25' stop-color='%23f1c40f'/%3E%3Cstop offset='66%25' stop-color='%23f1c40f'/%3E%3Cstop offset='66%25' stop-color='%23e74c3c'/%3E%3Cstop offset='100%25' stop-color='%23e74c3c'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 2;
 }
 
 .sponsors-section .section-title {
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 900;
-    color: #fff;
-    margin-bottom: 10px;
+    color: #111111;
+    margin-bottom: 8px;
     width: 100%;
+    letter-spacing: -0.5px;
 }
 
 .sponsors-section .section-subtitle {
     text-align: center;
-    font-size: 1.8rem;
-    font-weight: 300;
-    color: #b3b3b3;
-    margin-bottom: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #555555;
+    margin-bottom: 40px;
     width: 100%;
 }
 
@@ -51,31 +129,31 @@ tr:hover .pts-neon-cell {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
+    z-index: 4; /* Para asegurarnos que los banners estén por encima de los fondos */
 }
 
 /* Banner de Sponsor */
-.sponsor-banner {
+.sponsors-section .sponsor-banner {
     display: grid;
     grid-template-columns: 100px 1fr 1fr;
     align-items: center;
     gap: 25px;
-    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box, 
+    background: linear-gradient(#ffffff, #ffffff) padding-box, 
                 linear-gradient(135deg, #2ecc71, #f1c40f, #e74c3c) border-box;
     border: 2px solid transparent;
     border-radius: 16px;
     padding: 22px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sponsor-banner:hover {
+.sponsors-section .sponsor-banner:hover {
     transform: translateY(-4px);
     box-shadow: -5px 5px 20px rgba(46, 204, 113, 0.15), 
                  5px 5px 20px rgba(231, 76, 60, 0.15),
-                 0 0 15px rgba(241, 196, 15, 0.1);
+                 0 0 15px rgba(241, 196, 15, 0.15);
 }
 
-/* 1. Izquierda: Logo */
 .sponsor-logo-container {
     width: 90px;
     height: 90px;
@@ -86,7 +164,7 @@ tr:hover .pts-neon-cell {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border: 1px solid #333333;
+    border: 1px solid #e0e0e0;
     justify-self: center;
 }
 
@@ -97,35 +175,32 @@ tr:hover .pts-neon-cell {
     padding: 6px;
 }
 
-/* 2. Centro: Información y botones */
 .sponsor-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.sponsor-info h3 {
+.sponsors-section .sponsor-info h3 {
     font-size: 1.25rem;
-    font-weight: 800;
+    font-weight: 900;
     text-align: center;
     margin-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    background: linear-gradient(135deg, #ffffff 30%, #2ecc71 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 6px rgba(46, 204, 113, 0.25));
+    color: #111111;
+    background: none;
+    -webkit-text-fill-color: initial;
 }
 
-.sponsor-info p {
+.sponsors-section .sponsor-info p {
     font-size: 0.85rem;
-    color: #b3b3b3;
+    color: #444444;
     margin-bottom: 12px;
     line-height: 1.4;
-    text-align: left;
+    text-align: center;
 }
 
-/* Contenedor de botones */
 .sponsor-actions {
     display: flex;
     gap: 8px;
@@ -152,10 +227,9 @@ tr:hover .pts-neon-cell {
 .btn-whatsapp { background-color: #25d366; color: #fff; }
 .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 
-/* 3. Derecha: Beneficios */
-.sponsor-benefits {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px dashed rgba(255, 255, 255, 0.15);
+.sponsors-section .sponsor-benefits {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px dashed rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     padding: 15px;
     display: flex;
@@ -164,29 +238,28 @@ tr:hover .pts-neon-cell {
     height: 100%;
 }
 
-.sponsor-benefits h4 {
+.sponsors-section .sponsor-benefits h4 {
     font-size: 0.85rem;
-    color: #f1c40f;
+    color: #c0392b;
     margin-bottom: 4px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
 }
 
-.sponsor-benefits p {
+.sponsors-section .sponsor-benefits p {
     font-size: 0.82rem;
-    color: #d1d1d1;
+    color: #222222;
     margin: 0;
     line-height: 1.3;
     font-weight: 700;
 }
 
 /* ==========================================
-   CLASES GLOBALES (FUERA DE LA MEDIA QUERY)
+   CLASES GLOBALES 
    ========================================== */
 
-/* Scroll personalizado para la lista de partidos en el modal */
 .fechas-scroll-container {
   max-height: 240px;
   overflow-y: auto;
@@ -212,35 +285,64 @@ tr:hover .pts-neon-cell {
   background: #6b7280;
 }
 
-/* Footer de agradecimiento de sponsors */
-.footer-sponsors {
+.sponsors-section .footer-sponsors {
     text-align: center;
-    margin: 40px auto 0 auto; /* 'auto' a los lados para que se centre perfectamente */
-    padding: 20px;
+    margin: 40px auto 0 auto !important;
+    padding: 20px 15px;
     width: 100%;
-    max-width: 1000px; /* Mismo ancho máximo que la grilla de sponsors para que respete la misma línea */
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    max-width: 1000px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    z-index: 4;
 }
 
-.footer-sponsors p {
+.sponsors-section .footer-sponsors p {
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #ff3344;
-    letter-spacing: 3.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 16px rgba(255, 51, 68, 0.3);
+    word-break: break-word;
 }
 
-/* DISEÑO RESPONSIVE PARA CELULARES */
+
+/* ==========================================
+   DISEÑO RESPONSIVE PARA CELULARES (OPTIMIZADO)
+   ========================================== */
 @media (max-width: 768px) {
-    .sponsor-banner {
+    .sponsors-section {
+        /* Reducimos el padding vertical gigante a algo más compacto en celulares */
+        padding: 90px 15px 90px 15px; 
+    }
+
+    /* Achicamos la altura de los goteos para que no estorben ni invadan el contenido */
+    .sponsors-section::after,
+    .sponsors-section .sponsors-bottom-drip {
+        height: 70px; 
+    }
+
+    .sponsors-section .section-title {
+        font-size: 1.7rem; /* Título acorde a pantallas chicas */
+    }
+
+    .sponsors-section .section-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+
+    .sponsors-section .sponsor-banner {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 20px;
-        padding: 25px 20px;
+        gap: 16px;
+        padding: 18px 14px;
     }
 
     .sponsor-logo-container {
         margin: 0 auto;
+        width: 75px;
+        height: 75px;
+        min-width: 75px;
     }
 
     .sponsor-info {
@@ -258,5 +360,23 @@ tr:hover .pts-neon-cell {
 
     .sponsor-benefits {
         text-align: center;
+        padding: 12px;
+    }
+}
+
+section#sponsors {
+    scroll-margin-top: -15px;
+}
+
+/* ==========================================
+   SCROLL EXCLUSIVO PARA EL MODAL EN CELULARES
+   ========================================== */
+@media (max-width: 768px) {
+    /* Permitir scroll vertical en el modal y limitar su altura para que no desborde la pantalla */
+    .fechas-galeria-modal, 
+    div[class*="modal"] {
+        max-height: 90vh;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
     }
 }

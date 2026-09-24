@@ -19,6 +19,7 @@ const subtitulo = "Club Social & Deportivo";
   </head>
   <body
     class="bg-neutral-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between"
+    id="inicio"
   >
     <!-- HEADER CON MENÚ ADAPTATIVO -->
     <header
@@ -29,7 +30,7 @@ const subtitulo = "Club Social & Deportivo";
       >
         <!-- Logo / Nombre del Club -->
         <a
-          href="#"
+          href="#inicio"
           class="flex items-center gap-2 text-xl font-black text-slate-100 tracking-wider"
         >
           <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
@@ -42,14 +43,17 @@ const subtitulo = "Club Social & Deportivo";
         <nav
           class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300"
         >
-          <a href="#disciplinas" class="hover:text-amber-400 transition"
-            >Disciplinas</a
+          <a href="#identidad" class="hover:text-amber-400 transition"
+            >Nuestra Esencia</a
           >
           <a href="#indumentaria" class="hover:text-amber-400 transition"
             >Indumentaria</a
           >
-          <a href="#identidad" class="hover:text-amber-400 transition"
-            >Nuestra Esencia</a
+          <!-- <a href="#sponsors" class="hover:text-amber-400 transition"
+            >Sponsors</a
+          > -->
+          <a href="#disciplinas" class="hover:text-amber-400 transition"
+            >Disciplinas</a
           >
           <a
             href="#sumate"
@@ -102,19 +106,29 @@ const subtitulo = "Club Social & Deportivo";
       >
         <nav class="flex flex-col gap-1 text-sm font-medium text-slate-300">
           <a
-            href="#disciplinas"
+            href="#identidad"
             class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
-            >Disciplinas Deportivas</a
+            >Nuestra Esencia</a
           >
           <a
             href="#indumentaria"
             class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
             >Indumentaria</a
           >
-          <a
-            href="#identidad"
+          <!-- <a
+            href="#sponsors"
             class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
-            >Nuestra Esencia</a
+            >Sponsors</a
+          > -->
+          <a
+            href="#disciplinas"
+            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
+            >Disciplinas</a
+          >
+          <a
+            href="#resultados"
+            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
+            >Resultados</a
           >
           <a
             href="#sumate"
@@ -900,15 +914,15 @@ const subtitulo = "Club Social & Deportivo";
     <!-- MODAL FLOTANTE DE FIXTURE Y GALERÍA -->
     <div
       id="sport-modal"
-      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4"
+      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
     >
       <div
-        class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]"
+        class="bg-neutral-900 border border-neutral-800 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative transform scale-95 transition-transform duration-300 flex flex-col my-auto"
         id="modal-container"
       >
         <!-- CABECERA DEL MODAL -->
         <div
-          class="bg-neutral-950 p-5 border-b border-neutral-800 flex justify-between items-center shrink-0"
+          class="bg-neutral-950 p-4 sm:p-5 border-b border-neutral-800 flex justify-between items-center shrink-0"
         >
           <div class="flex items-center gap-3">
             <span id="modal-icon" class="text-3xl">⚽</span>
@@ -919,13 +933,14 @@ const subtitulo = "Club Social & Deportivo";
               >
               <h3
                 id="modal-sport-title"
-                class="text-2xl font-black uppercase text-slate-100"
+                class="text-xl sm:text-2xl font-black uppercase text-slate-100"
               >
                 Fútbol 11
               </h3>
             </div>
           </div>
           <button
+            type="button"
             id="close-sport-modal"
             class="text-slate-400 hover:text-white text-xl font-bold bg-neutral-900 hover:bg-neutral-800 w-8 h-8 rounded-full flex items-center justify-center border border-neutral-700 transition"
           >
@@ -935,9 +950,9 @@ const subtitulo = "Club Social & Deportivo";
 
         <!-- CUERPO DEL MODAL -->
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1"
+          class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-neutral-800 flex-1 overflow-y-auto"
         >
-          <div class="flex flex-col justify-between p-5">
+          <div class="flex flex-col justify-between p-4 sm:p-5">
             <div>
               <p
                 class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2"
@@ -959,11 +974,11 @@ const subtitulo = "Club Social & Deportivo";
           </div>
 
           <div
-            class="relative bg-neutral-950 p-5 flex flex-col items-center justify-center min-h-[250px] lg:min-h-full"
+            class="relative bg-neutral-950 p-4 sm:p-5 flex flex-col items-center justify-center min-h-[250px] lg:min-h-full"
           >
             <div
               id="modal-carrusel"
-              class="relative w-full h-64 sm:h-80 overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center"
+              class="relative w-full h-56 sm:h-80 overflow-hidden rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center"
             >
               <img
                 id="modal-carrusel-img"
@@ -1009,7 +1024,7 @@ const subtitulo = "Club Social & Deportivo";
     </div>
 
     <!-- RESULTADOS Y TABLA DE POSICIONES -->
-    <div>
+    <div id="resultados">
       <Resultados />
     </div>
 
@@ -2280,7 +2295,6 @@ const subtitulo = "Club Social & Deportivo";
       function renderMatches(matches) {
         if (!matchesListContainer) return;
 
-        // Limpiamos el contenido sin alterar las clases del contenedor HTML
         matchesListContainer.innerHTML = "";
 
         if (!matches || matches.length === 0) {
@@ -2288,7 +2302,6 @@ const subtitulo = "Club Social & Deportivo";
           return;
         }
 
-        // Creamos un contenedor interno temporal o agregamos las tarjetas con un grid/flex interno si hace falta espacio
         const innerDiv = document.createElement("div");
         innerDiv.className = "flex flex-col gap-3";
 
@@ -2336,7 +2349,6 @@ const subtitulo = "Club Social & Deportivo";
           innerDiv.appendChild(matchCard);
         });
 
-        // Insertamos el bloque de tarjetas dentro del contenedor principal que ya tiene el scroll definido en el HTML
         matchesListContainer.appendChild(innerDiv);
       }
 
@@ -2380,6 +2392,28 @@ const subtitulo = "Club Social & Deportivo";
           if (e.target === sportModal) closeModalFunc();
         });
       }
+
+      //------------- scroll limpio y directo -------------
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            // Cerramos el menú móvil por seguridad si estaba abierto
+            if (mobileMenu) mobileMenu.classList.add("hidden");
+            if (iconOpen) iconOpen.classList.remove("hidden");
+            if (iconClose) iconClose.classList.add("hidden");
+
+            // Scroll suave limpio hacia la sección
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
     </script>
   </body>
 </html>
