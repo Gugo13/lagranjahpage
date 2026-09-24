@@ -217,7 +217,7 @@
       </div>
     </div>
 
-    <!-- SCRIPT DE CARGA Y EDICIÓN DE RESULTADOS (CORREGIDO Y OPTIMIZADO) -->
+<!-- SCRIPT DE CARGA Y EDICIÓN DE RESULTADOS (CORREGIDO Y OPTIMIZADO) -->
     <script>
       const configuracionClub = {
         f11: {
@@ -288,6 +288,41 @@
       // Función auxiliar para generar IDs únicos sin riesgo de colisión
       function generarIdUnico() {
         return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      }
+
+      // Función para limpiar duplicados lógicos del array de partidos (Corregida para separar bien categorías)
+      function limpiarPartidosDuplicados(partidos) {
+        const unicos = [];
+        const keys = new Set();
+
+        for (const p of partidos) {
+          let clave = "";
+          const disc = (p.disciplina || "").trim().toLowerCase();
+          
+          // Normalización estricta de categorías
+          let cat = (p.categoria || "").trim().toLowerCase();
+          if (cat === "liga de profesionales" || cat === "primera" || cat === "cat1") cat = "cat1";
+          if (cat === "reserva" || cat === "cat2") cat = "cat2";
+
+          const fecha = parseInt(p.fechaNum || p.fecha || 0);
+
+          if (p.esLibre) {
+            const libre = (p.equipoLibre || "").trim().toLowerCase();
+            clave = `${disc}-${cat}-${fecha}-libre-${libre}`;
+          } else {
+            const loc = (p.local || "").trim().toLowerCase();
+            const vis = (p.visitante || "").trim().toLowerCase();
+            // Ordenamos alfabéticamente para atrapar el partido sin importar el orden local/visitante
+            const equiposOrdenados = [loc, vis].sort().join("-");
+            clave = `${disc}-${cat}-${fecha}-${equiposOrdenados}`;
+          }
+
+          if (!keys.has(clave)) {
+            keys.add(clave);
+            unicos.push(p);
+          }
+        }
+        return unicos;
       }
 
       function actualizarSelects() {
@@ -389,9 +424,14 @@
           if (p.esLibre) return false;
 
           const mismaDisc = p.disciplina === disciplina;
-          const mismaCat =
-            p.categoria === catId || p.categoria === nombreCatLargo;
-          const mismaFecha = (p.fechaNum || p.fecha) === numFecha;
+          
+          const catGuardadaNorm = (p.categoria || "").trim().toLowerCase();
+          const catIdNorm = catId.trim().toLowerCase();
+          const catNombreNorm = nombreCatLargo.trim().toLowerCase();
+          const mismaCat = (catGuardadaNorm === catIdNorm || catGuardadaNorm === catNombreNorm);
+
+          const fechaP = parseInt(p.fechaNum || p.fecha || 0);
+          const mismaFecha = fechaP === numFecha;
 
           if (!mismaDisc || !mismaCat || !mismaFecha) return false;
 
@@ -429,6 +469,9 @@
           db.push(datosPartido);
           mensajeEstado = "✅ ¡Resultado guardado con éxito!";
         }
+
+        // Aplicamos la limpieza general de duplicados antes de guardar
+        db = limpiarPartidosDuplicados(db);
 
         localStorage.setItem("club_resultados", JSON.stringify(db));
 
@@ -507,11 +550,14 @@
           );
         }
 
+        // Limpiamos duplicados también en fechas libres
+        db = limpiarPartidosDuplicados(db);
+
         localStorage.setItem("club_resultados", JSON.stringify(db));
       }
 
       function borrarUltimoPartido() {
-        const db = JSON.parse(localStorage.getItem("club_resultados") || "[]");
+        let db = JSON.parse(localStorage.getItem("club_resultados") || "[]");
 
         if (db.length === 0) {
           alert("No hay partidos cargados para borrar.");
@@ -529,6 +575,7 @@
 
         if (confirmar) {
           db.pop();
+          db = limpiarPartidosDuplicados(db);
           localStorage.setItem("club_resultados", JSON.stringify(db));
           alert("¡Eliminado correctamente!");
         }
@@ -536,6 +583,13 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         actualizarSelects();
+
+        // Al iniciar la página, limpiamos preventivamente cualquier duplicado que ya estuviera guardado
+        let dbInicial = JSON.parse(localStorage.getItem("club_resultados") || "[]");
+        const dbLimpia = limpiarPartidosDuplicados(dbInicial);
+        if (dbLimpia.length !== dbInicial.length) {
+          localStorage.setItem("club_resultados", JSON.stringify(dbLimpia));
+        }
 
         const formCargar = document.getElementById("form-cargar-resultado");
         if (formCargar) {
@@ -564,7 +618,6 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            // Descarga directa con el nombre exacto que leerá Astro
             a.download = "partidos.json";
             a.click();
             URL.revokeObjectURL(url);
