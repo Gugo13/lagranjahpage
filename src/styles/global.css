@@ -39,16 +39,16 @@ tr:hover .pts-neon-cell {
 /* ==========================================
    SECCIÓN DE SPONSORS - CHORREADO ARRIBA Y ABAJO
    ========================================== */
-.sponsors-section {
+    .sponsors-section {
     position: relative;
     padding: 200px 20px 200px 20px; 
-    background-color: #f6f5f0; 
-    color: #1a1a1a;
+    background-color: #121212; 
+    color: #ffffff; 
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.4); 
     overflow: hidden;
 }
 
@@ -106,7 +106,7 @@ tr:hover .pts-neon-cell {
     text-align: center;
     font-size: 2.2rem;
     font-weight: 900;
-    color: #111111;
+    color: #fff;
     margin-bottom: 8px;
     width: 100%;
     letter-spacing: -0.5px;
@@ -116,7 +116,7 @@ tr:hover .pts-neon-cell {
     text-align: center;
     font-size: 1.1rem;
     font-weight: 500;
-    color: #555555;
+    color: #aaaaaa;
     margin-bottom: 40px;
     width: 100%;
 }
@@ -129,29 +129,31 @@ tr:hover .pts-neon-cell {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    z-index: 4; /* Para asegurarnos que los banners estén por encima de los fondos */
+    z-index: 4;
 }
 
-/* Banner de Sponsor */
+/* Banner de Sponsor modificado con sombra difuminada y luz */
 .sponsors-section .sponsor-banner {
     display: grid;
     grid-template-columns: 100px 1fr 1fr;
     align-items: center;
     gap: 25px;
-    background: linear-gradient(#ffffff, #ffffff) padding-box, 
+    background: linear-gradient(#f7f5f0, #f7f5f0) padding-box, 
                 linear-gradient(135deg, #2ecc71, #f1c40f, #e74c3c) border-box;
+    color: #1a1a1a;
     border: 2px solid transparent;
     border-radius: 16px;
     padding: 22px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                0 0 20px rgba(46, 204, 113, 0.15);
+    /* Subimos el tiempo de transición a 0.4s y sumamos scale para que sea más suave y notable */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
 }
 
 .sponsors-section .sponsor-banner:hover {
-    transform: translateY(-4px);
-    box-shadow: -5px 5px 20px rgba(46, 204, 113, 0.15), 
-                 5px 5px 20px rgba(231, 76, 60, 0.15),
-                 0 0 15px rgba(241, 196, 15, 0.15);
+    transform: translateY(-10px) scale(1.10); /* Probá con 1.10 o subilo a 1.12 si querés más tamaño */
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.9), 
+                0 0 40px rgba(241, 196, 15, 0.4);
 }
 
 .sponsor-logo-container {
@@ -159,12 +161,13 @@ tr:hover .pts-neon-cell {
     height: 90px;
     min-width: 90px;
     border-radius: 12px;
-    background-color: #ffffff;
+    background: linear-gradient(#ffffff, #ffffff) padding-box, 
+                linear-gradient(135deg, #2ecc71, #f1c40f, #e74c3c) border-box;
+    border: 2px solid transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border: 1px solid #e0e0e0;
     justify-self: center;
 }
 
@@ -227,9 +230,10 @@ tr:hover .pts-neon-cell {
 .btn-whatsapp { background-color: #25d366; color: #fff; }
 .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 
+/* Caja interna de beneficio en modo oscuro con letras blancas */
 .sponsors-section .sponsor-benefits {
-    background: rgba(0, 0, 0, 0.02);
-    border: 1px dashed rgba(0, 0, 0, 0.15);
+    background: #1a1a1a;
+    border: 1px dashed rgba(255, 255, 255, 0.25);
     border-radius: 12px;
     padding: 15px;
     display: flex;
@@ -240,7 +244,7 @@ tr:hover .pts-neon-cell {
 
 .sponsors-section .sponsor-benefits h4 {
     font-size: 0.85rem;
-    color: #c0392b;
+    color: #f1c40f; /* Un toque amarillo para que resalte lindo */
     margin-bottom: 4px;
     font-weight: 700;
     text-transform: uppercase;
@@ -250,10 +254,11 @@ tr:hover .pts-neon-cell {
 
 .sponsors-section .sponsor-benefits p {
     font-size: 0.82rem;
-    color: #222222;
+    color: #ffffff; /* Letras blancas */
     margin: 0;
     line-height: 1.3;
-    font-weight: 700;
+    font-weight: 500;
+    text-align: center;
 }
 
 /* ==========================================
@@ -287,23 +292,32 @@ tr:hover .pts-neon-cell {
 
 .sponsors-section .footer-sponsors {
     text-align: center;
-    margin: 40px auto 0 auto !important;
-    padding: 20px 15px;
+    margin: 50px auto 20px auto !important;
+    padding: 18px 20px;
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     box-sizing: border-box;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(18, 18, 18, 0.85);
+    /* Borde sutil con un toque de degradado 
+    border: 1px solid rgba(241, 196, 15, 0.3);*/
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 
+                0 0 15px rgba(46, 204, 113, 0.1);
+    backdrop-filter: blur(5px);
     z-index: 4;
 }
 
 .sponsors-section .footer-sponsors p {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #ff3344;
-    letter-spacing: 2px;
+    font-size: 1rem;
+    font-weight: 800;
+    /* Degradado de texto con los colores de la marca */
+    background: linear-gradient(90deg, #2ecc71, #f1c40f, #e74c3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 16px rgba(255, 51, 68, 0.3);
-    word-break: break-word;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin: 0;
 }
 
 
@@ -312,18 +326,16 @@ tr:hover .pts-neon-cell {
    ========================================== */
 @media (max-width: 768px) {
     .sponsors-section {
-        /* Reducimos el padding vertical gigante a algo más compacto en celulares */
         padding: 90px 15px 90px 15px; 
     }
 
-    /* Achicamos la altura de los goteos para que no estorben ni invadan el contenido */
     .sponsors-section::after,
     .sponsors-section .sponsors-bottom-drip {
         height: 70px; 
     }
 
     .sponsors-section .section-title {
-        font-size: 1.7rem; /* Título acorde a pantallas chicas */
+        font-size: 1.7rem; 
     }
 
     .sponsors-section .section-subtitle {
@@ -336,13 +348,6 @@ tr:hover .pts-neon-cell {
         text-align: center;
         gap: 16px;
         padding: 18px 14px;
-    }
-
-    .sponsor-logo-container {
-        margin: 0 auto;
-        width: 75px;
-        height: 75px;
-        min-width: 75px;
     }
 
     .sponsor-info {
@@ -372,11 +377,21 @@ section#sponsors {
    SCROLL EXCLUSIVO PARA EL MODAL EN CELULARES
    ========================================== */
 @media (max-width: 768px) {
-    /* Permitir scroll vertical en el modal y limitar su altura para que no desborde la pantalla */
     .fechas-galeria-modal, 
     div[class*="modal"] {
         max-height: 90vh;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch;
+    }
+
+    .sponsor-logo-container {
+        margin: 0 auto;
+        width: 75px;
+        height: 75px;
+        min-width: 75px;
+        border-radius: 12px;
+        background: linear-gradient(#ffffff, #ffffff) padding-box, 
+                    linear-gradient(135deg, #2ecc71, #f1c40f, #e74c3c) border-box;
+        border: 2px solid transparent;
     }
 }

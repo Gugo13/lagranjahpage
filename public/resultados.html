@@ -1215,9 +1215,7 @@
             </div>
 
             <!-- FECHA 2  -->
-            <div class="fecha-item-content space-y-3 hidden">
-            
-            </div>
+            <div class="fecha-item-content space-y-3 hidden"></div>
           </div>
 
           <!-- Futsal F - Reserva -->
@@ -1254,7 +1252,7 @@
 
             <!-- FECHA 1 -->
             <div class="fecha-item-content space-y-3">
-             <!--  <div
+              <!--  <div
                 class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden shadow-sm partido-row"
               >
                 <div
@@ -1692,9 +1690,41 @@
         nombreCatLargo = catId === "cat2" ? "Reserva" : "Primera";
       }
 
-      const partidosGuardados = JSON.parse(
+      // --- LIMPIEZA DE DUPLICADOS EN TIEMPO DE RENDERIZADO ---
+      let partidosBrutos = JSON.parse(
         localStorage.getItem("club_resultados") || "[]",
       );
+
+      const unicos = [];
+      const keys = new Set();
+
+      for (const p of partidosBrutos) {
+        let clave = "";
+        const d = (p.disciplina || "").trim().toLowerCase();
+        let c = (p.categoria || "").trim().toLowerCase();
+        if (c === "liga de profesionales" || c === "primera" || c === "cat1")
+          c = "cat1";
+        if (c === "reserva" || c === "cat2") c = "cat2";
+        const fecha = parseInt(p.fechaNum || p.fecha || 0);
+
+        if (p.esLibre) {
+          const libre = (p.equipoLibre || "").trim().toLowerCase();
+          clave = `${d}-${c}-${fecha}-libre-${libre}`;
+        } else {
+          const loc = (p.local || "").trim().toLowerCase();
+          const vis = (p.visitante || "").trim().toLowerCase();
+          const equiposOrdenados = [loc, vis].sort().join("-");
+          clave = `${d}-${c}-${fecha}-${equiposOrdenados}`;
+        }
+
+        if (!keys.has(clave)) {
+          keys.add(clave);
+          unicos.push(p);
+        }
+      }
+
+      const partidosGuardados = unicos;
+      // ------------------------------------------------------
 
       let maxFechaActual =
         parseInt(contenedorCat.getAttribute("data-total-fechas")) || 1;
@@ -1712,10 +1742,14 @@
 
         // Validación estricta de categoría para evitar cruces entre cat1 y cat2
         const catGuardada = (p.categoria || "").toLowerCase().trim();
-        const esMatchCat = 
-          catGuardada === catId || 
-          (catId === "cat1" && (catGuardada === "liga de profesionales" || catGuardada === "primera" || catGuardada === "cat1")) ||
-          (catId === "cat2" && (catGuardada === "reserva" || catGuardada === "cat2"));
+        const esMatchCat =
+          catGuardada === catId ||
+          (catId === "cat1" &&
+            (catGuardada === "liga de profesionales" ||
+              catGuardada === "primera" ||
+              catGuardada === "cat1")) ||
+          (catId === "cat2" &&
+            (catGuardada === "reserva" || catGuardada === "cat2"));
 
         if (esMatchDisciplina && esMatchCat) {
           const numFecha = parseInt(p.fechaNum || p.fecha || 1);
