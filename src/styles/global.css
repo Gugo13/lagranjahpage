@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
-@import "tailwindcss";
 
 /* Efecto Glow / Destello Neón al llegar a la sección */
 .section-glow-effect {
@@ -39,7 +42,7 @@ tr:hover .pts-neon-cell {
 /* ==========================================
    SECCIÓN DE SPONSORS - CHORREADO ARRIBA Y ABAJO
    ========================================== */
-    .sponsors-section {
+.sponsors-section {
     position: relative;
     padding: 200px 20px 200px 20px; 
     background-color: #121212; 
@@ -132,12 +135,12 @@ tr:hover .pts-neon-cell {
     z-index: 4;
 }
 
-/* Banner de Sponsor modificado con sombra difuminada y luz */
+/* Banner de Sponsor */
 .sponsors-section .sponsor-banner {
-    display: grid;
-    grid-template-columns: 100px 1fr 1fr;
+    display: flex;
     align-items: center;
-    gap: 25px;
+    justify-content: space-between;
+    gap: 20px;
     background: linear-gradient(#f7f5f0, #f7f5f0) padding-box, 
                 linear-gradient(135deg, #2ecc71, #f1c40f, #e74c3c) border-box;
     color: #1a1a1a;
@@ -146,20 +149,19 @@ tr:hover .pts-neon-cell {
     padding: 22px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
                 0 0 20px rgba(46, 204, 113, 0.15);
-    /* Subimos el tiempo de transición a 0.4s y sumamos scale para que sea más suave y notable */
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
 }
 
 .sponsors-section .sponsor-banner:hover {
-    transform: translateY(-10px) scale(1.10); /* Probá con 1.10 o subilo a 1.12 si querés más tamaño */
+    transform: translateY(-10px) scale(1.03);
     box-shadow: 0 30px 50px rgba(0, 0, 0, 0.9), 
                 0 0 40px rgba(241, 196, 15, 0.4);
 }
 
 .sponsor-logo-container {
-    width: 90px;
-    height: 90px;
-    min-width: 90px;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
     border-radius: 12px;
     background: linear-gradient(#ffffff, #ffffff) padding-box, 
                 linear-gradient(135deg, #2ecc71, #f1c40f, #e74c3c) border-box;
@@ -168,7 +170,7 @@ tr:hover .pts-neon-cell {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    justify-self: center;
+    flex-shrink: 0;
 }
 
 .sponsor-logo-container img {
@@ -182,6 +184,11 @@ tr:hover .pts-neon-cell {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; 
+    text-align: center;   
+    flex: 1;              
+    min-width: 0;       
+    padding: 0 10px;
 }
 
 .sponsors-section .sponsor-info h3 {
@@ -196,12 +203,15 @@ tr:hover .pts-neon-cell {
     -webkit-text-fill-color: initial;
 }
 
+/* REGLA DEFINITIVA PARA EL PÁRRAFO DE SPONSOR (GORDITO Y LEGIBLE) */
 .sponsors-section .sponsor-info p {
-    font-size: 0.85rem;
-    color: #444444;
-    margin-bottom: 12px;
-    line-height: 1.4;
-    text-align: center;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;      /* Negrita pronunciada */
+    color: #111111 !important;        /* Oscuro de alto contraste */
+    margin-bottom: 12px !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    word-break: break-word !important;
 }
 
 .sponsor-actions {
@@ -216,7 +226,7 @@ tr:hover .pts-neon-cell {
     gap: 6px;
     padding: 6px 12px;
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 6px;
     text-decoration: none;
     transition: transform 0.2s ease, filter 0.2s ease;
@@ -230,7 +240,7 @@ tr:hover .pts-neon-cell {
 .btn-whatsapp { background-color: #25d366; color: #fff; }
 .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
 
-/* Caja interna de beneficio en modo oscuro con letras blancas */
+/* Caja interna de beneficio en modo oscuro */
 .sponsors-section .sponsor-benefits {
     background: #1a1a1a;
     border: 1px dashed rgba(255, 255, 255, 0.25);
@@ -239,12 +249,13 @@ tr:hover .pts-neon-cell {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    flex-shrink: 0;
+    width: 280px;
 }
 
 .sponsors-section .sponsor-benefits h4 {
     font-size: 0.85rem;
-    color: #f1c40f; /* Un toque amarillo para que resalte lindo */
+    color: #f1c40f; 
     margin-bottom: 4px;
     font-weight: 700;
     text-transform: uppercase;
@@ -253,12 +264,12 @@ tr:hover .pts-neon-cell {
 }
 
 .sponsors-section .sponsor-benefits p {
-    font-size: 0.82rem;
-    color: #ffffff; /* Letras blancas */
-    margin: 0;
-    line-height: 1.3;
-    font-weight: 500;
-    text-align: center;
+    font-size: 0.82rem !important;
+    color: #ffffff !important; 
+    margin: 0 !important;
+    line-height: 1.3 !important;
+    font-weight: 500 !important;
+    text-align: center !important;
 }
 
 /* ==========================================
@@ -298,8 +309,6 @@ tr:hover .pts-neon-cell {
     max-width: 800px;
     box-sizing: border-box;
     background: rgba(18, 18, 18, 0.85);
-    /* Borde sutil con un toque de degradado 
-    border: 1px solid rgba(241, 196, 15, 0.3);*/
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 
                 0 0 15px rgba(46, 204, 113, 0.1);
@@ -308,21 +317,20 @@ tr:hover .pts-neon-cell {
 }
 
 .sponsors-section .footer-sponsors p {
-    font-size: 1rem;
-    font-weight: 800;
-    /* Degradado de texto con los colores de la marca */
+    font-size: 1rem !important;
+    font-weight: 800 !important;
     background: linear-gradient(90deg, #2ecc71, #f1c40f, #e74c3c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    margin: 0;
+    margin: 0 !important;
 }
 
 
 /* ==========================================
-   DISEÑO RESPONSIVE PARA CELULARES (OPTIMIZADO)
+   DISEÑO RESPONSIVE PARA CELULARES
    ========================================== */
 @media (max-width: 768px) {
     .sponsors-section {
@@ -344,7 +352,7 @@ tr:hover .pts-neon-cell {
     }
 
     .sponsors-section .sponsor-banner {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         text-align: center;
         gap: 16px;
         padding: 18px 14px;
@@ -352,31 +360,19 @@ tr:hover .pts-neon-cell {
 
     .sponsor-info {
         align-items: center;
-    }
-
-    .sponsor-info h3, 
-    .sponsor-info p {
-        text-align: center;
+        width: 100%;
     }
 
     .sponsor-actions {
         justify-content: center;
     }
 
-    .sponsor-benefits {
+    .sponsors-section .sponsor-benefits {
+        width: 100%;
         text-align: center;
         padding: 12px;
     }
-}
 
-section#sponsors {
-    scroll-margin-top: -15px;
-}
-
-/* ==========================================
-   SCROLL EXCLUSIVO PARA EL MODAL EN CELULARES
-   ========================================== */
-@media (max-width: 768px) {
     .fechas-galeria-modal, 
     div[class*="modal"] {
         max-height: 90vh;
@@ -390,8 +386,9 @@ section#sponsors {
         height: 75px;
         min-width: 75px;
         border-radius: 12px;
-        background: linear-gradient(#ffffff, #ffffff) padding-box, 
-                    linear-gradient(135deg, #2ecc71, #f1c40f, #e74c3c) border-box;
-        border: 2px solid transparent;
     }
+}
+
+section#sponsors {
+    scroll-margin-top: -15px;
 }
