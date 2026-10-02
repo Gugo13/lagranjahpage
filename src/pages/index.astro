@@ -175,7 +175,7 @@ const subtitulo = "Club Social & Deportivo";
         <h1
           class="text-4xl md:text-6xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 mb-6 drop-shadow-md"
         >
-          MÁS QUE UN CLUB, UNA FAMILIA
+          MÁS QUE UN CLUB,<br/> UNA FAMILIA
         </h1>
 
         <p
@@ -1905,7 +1905,7 @@ const subtitulo = "Club Social & Deportivo";
       class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-500 opacity-100 p-3 sm:p-4"
     >
       <div
-        class="relative w-full max-w-lg bg-neutral-900 border-2 border-amber-500/50 rounded-2xl p-4 sm:p-6 shadow-2xl text-center text-white transform transition-transform duration-300 scale-100"
+        class="relative w-full max-w-lg bg-neutral-900 border-2 border-emerald-500/50 rounded-2xl p-4 sm:p-6 shadow-[0_0_25px_rgba(16,185,129,0.15)] text-center text-white transform transition-transform duration-300 scale-100"
       >
         <!-- Botón de Cerrar Manual -->
         <button
@@ -1922,54 +1922,71 @@ const subtitulo = "Club Social & Deportivo";
         >
           Beneficios Exclusivos
         </span>
+
         <h3
-          class="text-xl sm:text-2xl font-black uppercase mt-2 sm:mt-3 text-white"
+          class="text-xl sm:text-2xl font-black uppercase mt-2 text-white tracking-wide"
         >
           ¡Sponsors Oficiales!
         </h3>
-        <p class="text-xs sm:text-sm text-neutral-300 mt-1 mb-4 sm:mb-6">
-          Presentá tu carnet de socio de <strong class="text-emerald-500"
-            >La Granjah</strong
-          > y aprovechá estas promociones:
-        </p>
 
-        <!-- Contenedor del Sponsor y Beneficio -->
-        <div class="flex flex-col gap-3 mb-4 sm:mb-6 w-full">
-          <!-- Tarjeta Única del Sponsor con su Beneficio (Adaptable) -->
+        <!-- Equivalencia Alineada -->
+        <div
+          class="my-4 flex items-center justify-center gap-2 text-xs sm:text-sm text-neutral-300 font-medium"
+        >
+          <img
+            src="/escudo/LG-oro.png"
+            alt="Escudo Dorado"
+            class="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-[0_0_6px_rgba(245,158,11,0.6)]"
+          />
+          <span class="text-amber-400 font-black text-base sm:text-lg">=</span>
+          <p class="uppercase tracking-wide">
+            <strong class="text-amber-400 font-black">Promociones</strong>
+          </p>
+        </div>
+
+        <!-- Contenedor del Sponsor -->
+        <div class="mb-5 w-full">
           <div
-            class="bg-neutral-800/80 p-3 sm:p-4 rounded-xl border border-neutral-700 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full text-center sm:text-left shadow-sm"
+            class="bg-neutral-950 p-4 rounded-xl border border-emerald-500/30 flex flex-col sm:flex-row items-center gap-4 w-full text-center sm:text-left shadow-inner"
           >
             <!-- Logo e Identificación -->
-            <div class="flex flex-col items-center justify-center shrink-0">
+            <div
+              class="flex flex-col items-center justify-center shrink-0 w-28"
+            >
               <img
                 src="/sponsors/uffPizza1.jpg"
                 alt="Uff Pizza"
-                class="w-full h-auto max-h-24 object-contain rounded-lg shadow-sm"
+                class="w-full h-auto max-h-20 object-contain rounded-lg shadow-sm"
               />
               <span
-                class="text-[11px] sm:text-[13px] font-black text-amber-400 uppercase tracking-wide"
-                >Uff Pizza</span
+                class="text-xs font-black text-amber-400 uppercase tracking-wide mt-2"
               >
+                Uff Pizza
+              </span>
             </div>
 
-            <!-- Separador Responsive (Horizontal en móvil, Vertical en PC) -->
-            <div class="w-full h-px sm:w-px sm:h-12 bg-neutral-700"></div>
+            <!-- Separador Responsive -->
+            <div class="w-full h-px sm:w-px sm:h-16 bg-neutral-800"></div>
 
             <!-- Texto del Beneficio -->
             <div class="flex-1 w-full">
-              <span
-                class="text-sm sm:text-base font-black text-amber-400 uppercase leading-tight block text-center tracking-wide"
+              <p
+                class="text-xs sm:text-sm font-bold text-neutral-200 uppercase leading-relaxed tracking-wide text-center"
               >
-                Presentando tu carnet de socio tenes <strong
-                  class="text-emerald-500">descuentos</strong
-                > en tu compra.<br />Para consultar promos comunicate con el
-                local!
-              </span>
+                Presentando tu carnet de socio tenés <span
+                  class="text-amber-400 font-black">descuentos</span
+                > en tu compra.
+              </p>
+              <p
+                class="text-[11px] text-neutral-400 mt-2 font-normal lowercase first-letter:uppercase text-center"
+              >
+                Para consultar promos comunicate directamente con el local.
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Barra de progreso visual (Temporizador) -->
+        <!-- Barra de progreso visual -->
         <div
           class="w-full bg-neutral-800 h-1 rounded-full overflow-hidden mb-4"
         >
@@ -1981,13 +1998,13 @@ const subtitulo = "Club Social & Deportivo";
         </div>
 
         <!-- Botón CTA -->
-        <a
+        <!-- <a
           href="#sponsors"
           id="modal-cta-btn"
-          class="inline-block w-full py-2.5 bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-black uppercase text-xs sm:text-sm rounded-xl shadow-lg hover:opacity-95 transition-all active:scale-95"
+          class="inline-block w-full py-2.5 bg-neutral-950 hover:bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 font-black uppercase text-xs sm:text-sm rounded-xl border border-emerald-500/60 shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all active:scale-95 tracking-wider"
         >
-          Ver sponsors y beneficios
-        </a>
+          Ver sponsors
+        </a> -->
       </div>
     </div>
 
