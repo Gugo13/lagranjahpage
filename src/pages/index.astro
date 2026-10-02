@@ -1899,6 +1899,95 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </footer>
 
+    <!-- Modal de Sponsors al Cargar -->
+    <div
+      id="sponsor-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-500 opacity-100 p-3 sm:p-4"
+    >
+      <div
+        class="relative w-full max-w-lg bg-neutral-900 border-2 border-amber-500/50 rounded-2xl p-4 sm:p-6 shadow-2xl text-center text-white transform transition-transform duration-300 scale-100"
+      >
+        <!-- Botón de Cerrar Manual -->
+        <button
+          id="close-modal-btn"
+          class="absolute top-2 right-2 sm:top-3 sm:right-3 text-neutral-400 hover:text-white text-2xl font-bold px-2 py-1 transition-colors"
+          aria-label="Cerrar"
+        >
+          &times;
+        </button>
+
+        <!-- Encabezado Llamativo -->
+        <span
+          class="bg-amber-500/20 text-amber-400 text-[10px] sm:text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-amber-500/30 inline-block"
+        >
+          Beneficios Exclusivos
+        </span>
+        <h3
+          class="text-xl sm:text-2xl font-black uppercase mt-2 sm:mt-3 text-white"
+        >
+          ¡Sponsors Oficiales!
+        </h3>
+        <p class="text-xs sm:text-sm text-neutral-300 mt-1 mb-4 sm:mb-6">
+          Presentá tu carnet de socio de <strong class="text-emerald-500"
+            >La Granjah</strong
+          > y aprovechá estas promociones:
+        </p>
+
+        <!-- Contenedor del Sponsor y Beneficio -->
+        <div class="flex flex-col gap-3 mb-4 sm:mb-6 w-full">
+          <!-- Tarjeta Única del Sponsor con su Beneficio (Adaptable) -->
+          <div
+            class="bg-neutral-800/80 p-3 sm:p-4 rounded-xl border border-neutral-700 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full text-center sm:text-left shadow-sm"
+          >
+            <!-- Logo e Identificación -->
+            <div class="flex flex-col items-center justify-center shrink-0">
+              <img
+                src="/sponsors/uffPizza1.jpg"
+                alt="Uff Pizza"
+                class="w-10 h-10 sm:w-12 sm:h-12 object-contain mb-1"
+              />
+              <span
+                class="text-[11px] sm:text-[13px] font-black text-amber-400 uppercase tracking-wide"
+                >Uff Pizza</span
+              >
+            </div>
+
+            <!-- Separador Responsive (Horizontal en móvil, Vertical en PC) -->
+            <div class="w-full h-px sm:w-px sm:h-12 bg-neutral-700"></div>
+
+            <!-- Texto del Beneficio -->
+            <div class="flex-1 w-full">
+              <span
+                class="text-sm sm:text-base font-black text-amber-400 uppercase leading-tight block text-center tracking-wide"
+              >
+                Presentando tu carnet de socio 10% de descuento en tu compra
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de progreso visual (Temporizador) -->
+        <div
+          class="w-full bg-neutral-800 h-1 rounded-full overflow-hidden mb-4"
+        >
+          <div
+            id="modal-progress-bar"
+            class="bg-amber-500 h-full w-full transition-all duration-[6000ms] ease-linear"
+          >
+          </div>
+        </div>
+
+        <!-- Botón CTA -->
+        <a
+          href="#sponsors"
+          id="modal-cta-btn"
+          class="inline-block w-full py-2.5 bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-black uppercase text-xs sm:text-sm rounded-xl shadow-lg hover:opacity-95 transition-all active:scale-95"
+        >
+          Ver sponsors y beneficios
+        </a>
+      </div>
+    </div>
+
     <!-- SCRIPT PRINCIPAL -->
     <script is:inline>
       // 1. Giro de Tarjetas Generales (Cards 3D)
@@ -2427,6 +2516,44 @@ const subtitulo = "Club Social & Deportivo";
           }
         });
       });
+
+      //-- Lógica JS para el autocierre
+      const modal = document.getElementById("sponsor-modal");
+      const closeBtn = document.getElementById("close-modal-btn");
+      const ctaBtn = document.getElementById("modal-cta-btn");
+      const progressBar = document.getElementById("modal-progress-bar");
+
+      // Función para ocultar el modal suavemente
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.add("opacity-0", "pointer-events-none");
+        setTimeout(() => {
+          modal.remove(); // Lo elimina del DOM para no entorpecer
+        }, 500);
+      }
+
+      // Animación de la barra de tiempo
+      setTimeout(() => {
+        if (progressBar) progressBar.style.width = "0%";
+      }, 100);
+
+      // Auto-cerrar a los 6 segundos (podés cambiar 6000 por 8000 si querés 8s)
+      const autoCloseTimer = setTimeout(closeModal, 6000);
+
+      // Eventos de cierre manual
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          clearTimeout(autoCloseTimer);
+          closeModal();
+        });
+      }
+
+      if (ctaBtn) {
+        ctaBtn.addEventListener("click", () => {
+          clearTimeout(autoCloseTimer);
+          closeModal();
+        });
+      }
     </script>
   </body>
 </html>
