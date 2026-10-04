@@ -21,121 +21,160 @@ const subtitulo = "Club Social & Deportivo";
     class="bg-neutral-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between"
     id="inicio"
   >
-    <!-- HEADER CON MENÚ ADAPTATIVO -->
-    <header
-      class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800"
-    >
+    <!-- HEADER CON MENÚ ADAPTATIVO y BANNER STICKY -->
+    <header class="sticky top-0 z-40 w-full">
+      <!-- 1. Banner de Partidos del Día -->
       <div
-        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+        id="banner-partidos"
+        class="hidden bg-emerald-600 text-white text-xs sm:text-sm font-medium py-2 px-4 shadow-lg border-b border-emerald-500/50 backdrop-blur-md"
       >
-        <!-- Logo / Nombre del Club -->
-        <a
-          href="#inicio"
-          class="flex items-center gap-2 text-xl font-black text-slate-100 tracking-wider"
+        <div
+          class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left"
         >
-          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-          <span class="w-3 h-3 rounded-full bg-amber-400"></span>
-          <span class="w-3 h-3 rounded-full bg-red-500"></span>
-          <span>LA GRANJAH</span>
-        </a>
+          <!-- Tag de aviso -->
+          <div class="flex items-center gap-2 shrink-0">
+            <span
+              class="bg-amber-400 text-neutral-950 text-[10px] sm:text-xs font-black uppercase px-2 py-0.5 rounded tracking-wider animate-pulse"
+            >
+              ⚽ ¡HOY JUEGA LA GRANJAH!
+            </span>
+          </div>
 
-        <!-- Menú exclusivo para PC -->
-        <nav
-          class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300"
-        >
-          <a href="#identidad" class="hover:text-amber-400 transition"
-            >Nuestra Esencia</a
+          <!-- Lista de Partidos -->
+          <div
+            id="banner-partidos-lista"
+            class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs sm:text-sm"
           >
-          <a href="#indumentaria" class="hover:text-amber-400 transition"
-            >Indumentaria</a
-          >
-          <a href="#sponsors" class="hover:text-amber-400 transition"
-            >Sponsors</a
-          >
-          <a href="#disciplinas" class="hover:text-amber-400 transition"
-            >Disciplinas</a
-          >
-          <a
-            href="#sumate"
-            class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-bold px-5 py-2.5 rounded-xl hover:opacity-95 transition shadow-md"
-          >
-            Sumate al Club
-          </a>
-        </nav>
+            <!-- Se llena desde JS -->
+          </div>
 
-        <!-- Botón Hamburguesa exclusivo para celulares y tablets -->
-        <button
-          id="menu-btn"
-          type="button"
-          aria-label="Abrir menú"
-          class="text-slate-100 hover:text-amber-400 focus:outline-none p-2 rounded-lg bg-neutral-900 border border-neutral-800 cursor-pointer lg:hidden"
-        >
-          <svg
-            id="icon-open"
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <!-- Botón para cerrar -->
+          <button
+            id="close-banner-btn"
+            class="hidden md:block text-emerald-200 hover:text-white font-bold px-1 transition-colors"
+            aria-label="Cerrar aviso"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-          <svg
-            id="icon-close"
-            class="w-6 h-6 hidden"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+            &times;
+          </button>
+        </div>
       </div>
 
-      <!-- Menú desplegable flotante -->
+      <!-- 2. NAV DE LA PÁGINA -->
       <div
-        id="mobile-menu"
-        class="hidden lg:hidden absolute right-4 top-20 w-72 bg-neutral-950/90 backdrop-blur-xl border border-neutral-800/60 rounded-2xl p-4 shadow-2xl space-y-2 z-50"
+        class="bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800"
       >
-        <nav class="flex flex-col gap-1 text-sm font-medium text-slate-300">
+        <div
+          class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+        >
+          <!-- Logo / Nombre del Club -->
           <a
-            href="#identidad"
-            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
-            >Nuestra Esencia</a
+            href="#inicio"
+            class="flex items-center gap-2 text-xl font-black text-slate-100 tracking-wider"
           >
-          <a
-            href="#indumentaria"
-            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
-            >Indumentaria</a
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+            <span>LA GRANJAH</span>
+          </a>
+
+          <!-- Menú exclusivo para PC -->
+          <nav
+            class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300"
           >
-          <a
-            href="#sponsors"
-            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
-            >Sponsors</a
+            <a href="#identidad" class="hover:text-amber-400 transition"
+              >Nuestra Esencia</a
+            >
+            <a href="#indumentaria" class="hover:text-amber-400 transition"
+              >Indumentaria</a
+            >
+            <a href="#sponsors" class="hover:text-amber-400 transition"
+              >Sponsors</a
+            >
+            <a href="#disciplinas" class="hover:text-amber-400 transition"
+              >Disciplinas</a
+            >
+            <a
+              href="#sumate"
+              class="bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-bold px-5 py-2.5 rounded-xl hover:opacity-95 transition shadow-md"
+            >
+              Sumate al Club
+            </a>
+          </nav>
+
+          <!-- Botón Hamburguesa cel/tablet -->
+          <button
+            id="menu-btn"
+            type="button"
+            aria-label="Abrir menú"
+            class="text-slate-100 hover:text-amber-400 focus:outline-none p-2 rounded-lg bg-neutral-900 border border-neutral-800 cursor-pointer lg:hidden"
           >
-          <a
-            href="#disciplinas"
-            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
-            >Disciplinas</a
-          >
-          <a
-            href="#resultados"
-            class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
-            >Resultados</a
-          >
-          <a
-            href="#sumate"
-            class="mobile-link text-center bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-bold py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md mt-2 block text-xs"
-            >Sumate al Club</a
-          >
-        </nav>
+            <svg
+              id="icon-open"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <svg
+              id="icon-close"
+              class="w-6 h-6 hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menú desplegable flotante -->
+        <div
+          id="mobile-menu"
+          class="hidden lg:hidden absolute right-4 top-20 w-72 bg-neutral-950/90 backdrop-blur-xl border border-neutral-800/60 rounded-2xl p-4 shadow-2xl space-y-2 z-50"
+        >
+          <nav class="flex flex-col gap-1 text-sm font-medium text-slate-300">
+            <a
+              href="#identidad"
+              class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
+              >Nuestra Esencia</a
+            >
+            <a
+              href="#indumentaria"
+              class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
+              >Indumentaria</a
+            >
+            <a
+              href="#sponsors"
+              class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
+              >Sponsors</a
+            >
+            <a
+              href="#disciplinas"
+              class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
+              >Disciplinas</a
+            >
+            <a
+              href="#resultados"
+              class="mobile-link hover:text-amber-400 hover:bg-neutral-900/50 transition py-2 px-3 rounded-xl block text-right"
+              >Resultados</a
+            >
+            <a
+              href="#sumate"
+              class="mobile-link text-center bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 text-neutral-950 font-bold py-2.5 px-4 rounded-xl uppercase tracking-wider shadow-md mt-2 block text-xs"
+              >Sumate al Club</a
+            >
+          </nav>
+        </div>
       </div>
     </header>
 
@@ -175,7 +214,7 @@ const subtitulo = "Club Social & Deportivo";
         <h1
           class="text-4xl md:text-6xl font-black uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-amber-400 to-red-500 mb-6 drop-shadow-md"
         >
-          MÁS QUE UN CLUB,<br/> UNA FAMILIA
+          MÁS QUE UN CLUB,<br /> UNA FAMILIA
         </h1>
 
         <p
@@ -2537,7 +2576,7 @@ const subtitulo = "Club Social & Deportivo";
         });
       });
 
-      //-- Lógica JS para el autocierre
+      //-- Lógica JS para el autocierre --
       const modal = document.getElementById("sponsor-modal");
       const closeBtn = document.getElementById("close-modal-btn");
       const ctaBtn = document.getElementById("modal-cta-btn");
@@ -2574,6 +2613,58 @@ const subtitulo = "Club Social & Deportivo";
           closeModal();
         });
       }
+
+      // Fixture Semanal (Por ahora configurado con Futsal Femenino)
+      const fixtureSemana = {
+        // 0 = Domingo
+        0: [
+          {
+            cat: "Futsal Femenino",
+            rival: "Trinidad",
+            hora: "19 y 20 hs",
+            lugar: "Cruz del Sur",
+          },
+        ],
+        // las inferiores (Sábados = 6) o Futsal Masc (Miércoles = 3), solo agregar la propiedad acá.
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const hoy = new Date().getDay(); // Detecta el día actual (0 a 6)
+        const partidosHoy = fixtureSemana[hoy];
+
+        const banner = document.getElementById("banner-partidos");
+        const contenedorLista = document.getElementById(
+          "banner-partidos-lista",
+        );
+
+        if (
+          partidosHoy &&
+          partidosHoy.length > 0 &&
+          banner &&
+          contenedorLista
+        ) {
+          contenedorLista.innerHTML = partidosHoy
+            .map(
+              (p) => `
+        <div class="flex items-center gap-1.5 bg-emerald-700/60 px-2.5 py-1 rounded-md border border-emerald-400/20">
+          <strong class="text-amber-300 font-bold uppercase">${p.cat}:</strong>
+          <span>vs ${p.rival}</span>
+          <span class="text-emerald-100 font-normal">(${p.hora} - ${p.lugar})</span>
+        </div>
+      `,
+            )
+            .join("");
+
+          banner.classList.remove("hidden");
+        }
+
+        // Evento para cerrar el banner manualmente
+        document
+          .getElementById("close-banner-btn")
+          ?.addEventListener("click", () => {
+            banner?.classList.add("hidden");
+          });
+      });
     </script>
   </body>
 </html>
