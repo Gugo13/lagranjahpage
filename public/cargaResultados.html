@@ -136,7 +136,7 @@
               </div>
             </div>
 
-            <!-- Opción para Sanción / Escritorio (ID corregido y mejorado) -->
+            <!-- Opción para Sanción / Escritorio -->
             <div class="pt-2 border-t border-neutral-800">
               <label
                 for="admin-resolucion"
@@ -210,14 +210,14 @@
               onclick="borrarUltimoPartido()"
               class="bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 font-bold p-2.5 rounded-xl text-xs transition flex items-center gap-1.5 cursor-pointer"
             >
-              <span>↩️</span> Borrar último
+              <span>↩️️</span> Borrar último
             </button>
           </div>
         </form>
       </div>
     </div>
 
-<!-- SCRIPT DE CARGA Y EDICIÓN DE RESULTADOS (CORREGIDO Y OPTIMIZADO) -->
+    <!-- SCRIPT DE CARGA Y EDICIÓN DE RESULTADOS (CORREGIDO) -->
     <script>
       const configuracionClub = {
         f11: {
@@ -285,21 +285,22 @@
 
       let guardando = false;
 
-      // Función auxiliar para generar IDs únicos sin riesgo de colisión
       function generarIdUnico() {
         return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
       }
 
-      // Función para limpiar duplicados lógicos del array de partidos (Corregida para separar bien categorías)
+      // Función con normalización completa de disciplina ("futsal_m" -> "futsal-m") y categorías
       function limpiarPartidosDuplicados(partidos) {
         const unicos = [];
         const keys = new Set();
 
         for (const p of partidos) {
           let clave = "";
-          const disc = (p.disciplina || "").trim().toLowerCase();
           
-          // Normalización estricta de categorías
+          // 1. Normalización de Disciplina
+          let disc = (p.disciplina || "").trim().toLowerCase().replace("_", "-");
+
+          // 2. Normalización de Categorías
           let cat = (p.categoria || "").trim().toLowerCase();
           if (cat === "liga de profesionales" || cat === "primera" || cat === "cat1") cat = "cat1";
           if (cat === "reserva" || cat === "cat2") cat = "cat2";
@@ -312,13 +313,15 @@
           } else {
             const loc = (p.local || "").trim().toLowerCase();
             const vis = (p.visitante || "").trim().toLowerCase();
-            // Ordenamos alfabéticamente para atrapar el partido sin importar el orden local/visitante
             const equiposOrdenados = [loc, vis].sort().join("-");
             clave = `${disc}-${cat}-${fecha}-${equiposOrdenados}`;
           }
 
           if (!keys.has(clave)) {
             keys.add(clave);
+            // Normalizamos las claves del propio objeto antes de conservarlo
+            p.disciplina = disc;
+            p.categoria = cat;
             unicos.push(p);
           }
         }
@@ -423,12 +426,13 @@
         const indexExistente = db.findIndex((p) => {
           if (p.esLibre) return false;
 
-          const mismaDisc = p.disciplina === disciplina;
+          // Comparación tolerante de disciplina
+          const mismaDisc = (p.disciplina || "").trim().toLowerCase().replace("_", "-") === disciplina.trim().toLowerCase().replace("_", "-");
           
           const catGuardadaNorm = (p.categoria || "").trim().toLowerCase();
           const catIdNorm = catId.trim().toLowerCase();
           const catNombreNorm = nombreCatLargo.trim().toLowerCase();
-          const mismaCat = (catGuardadaNorm === catIdNorm || catGuardadaNorm === catNombreNorm);
+          const mismaCat = (catGuardadaNorm === catIdNorm || catGuardadaNorm === catNombreNorm || (catGuardadaNorm === "primera" && catIdNorm === "cat1") || (catGuardadaNorm === "reserva" && catIdNorm === "cat2"));
 
           const fechaP = parseInt(p.fechaNum || p.fecha || 0);
           const mismaFecha = fechaP === numFecha;
@@ -464,15 +468,13 @@
 
         if (indexExistente !== -1) {
           db[indexExistente] = datosPartido;
-          mensajeEstado = "✏️ ¡Partido actualizado correctamente!";
+          mensajeEstado = "✏️️ ¡Partido actualizado correctamente!";
         } else {
           db.push(datosPartido);
           mensajeEstado = "✅ ¡Resultado guardado con éxito!";
         }
 
-        // Aplicamos la limpieza general de duplicados antes de guardar
         db = limpiarPartidosDuplicados(db);
-
         localStorage.setItem("club_resultados", JSON.stringify(db));
 
         let mensajeResolucion = "";
@@ -531,8 +533,8 @@
 
         const indexExistente = db.findIndex(
           (p) =>
-            p.disciplina === disciplina &&
-            (p.categoria === catId || p.categoria === nombreCatLargo) &&
+            (p.disciplina || "").trim().toLowerCase().replace("_", "-") === disciplina.trim().toLowerCase().replace("_", "-") &&
+            (p.categoria === catId || p.categoria === nombreCatLargo || (p.categoria === "Primera" && catId === "cat1") || (p.categoria === "Reserva" && catId === "cat2")) &&
             (p.fechaNum === numFecha || p.fecha === numFecha) &&
             p.esLibre &&
             p.equipoLibre === equipoLibre,
@@ -550,9 +552,7 @@
           );
         }
 
-        // Limpiamos duplicados también en fechas libres
         db = limpiarPartidosDuplicados(db);
-
         localStorage.setItem("club_resultados", JSON.stringify(db));
       }
 
@@ -584,10 +584,10 @@
       document.addEventListener("DOMContentLoaded", () => {
         actualizarSelects();
 
-        // Al iniciar la página, limpiamos preventivamente cualquier duplicado que ya estuviera guardado
+        // Limpieza automática preventiva al cargar la página
         let dbInicial = JSON.parse(localStorage.getItem("club_resultados") || "[]");
         const dbLimpia = limpiarPartidosDuplicados(dbInicial);
-        if (dbLimpia.length !== dbInicial.length) {
+        if (dbLimpia.length !== dbInicial.length || JSON.stringify(dbLimpia) !== JSON.stringify(dbInicial)) {
           localStorage.setItem("club_resultados", JSON.stringify(dbLimpia));
         }
 
