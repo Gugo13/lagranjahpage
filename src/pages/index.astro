@@ -14,7 +14,31 @@ const subtitulo = "Club Social & Deportivo";
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap"
+    />
     <title>{titulo} — {subtitulo}</title>
+    <meta
+      name="description"
+      content="La Granjah, club social y deportivo de San Juan. Fútbol 11, futsal masculino y femenino. Conocé al club, a nuestros sponsors y sumate como socio."
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content="La Granjah — Club Social & Deportivo" />
+    <meta
+      property="og:description"
+      content="Más que un club, una familia. Disciplinas, resultados y sumate como socio."
+    />
+    <meta
+      property="og:image"
+      content="https://lagranjahpage.vercel.app/escudo/escudoLagranjah.png"
+    />
+    <meta property="og:url" content="https://lagranjahpage.vercel.app/" />
+    <meta name="twitter:card" content="summary" />
     <Analytics />
   </head>
   <body
@@ -187,7 +211,7 @@ const subtitulo = "Club Social & Deportivo";
       >
         <img
           src="/escudo/escudoLagranjah.png"
-          alt="Escudo Izquierdo La Granjah"
+          alt="" aria-hidden="true" decoding="async"
           class="w-[110px] sm:w-[200px] md:w-[280px] h-auto object-contain transform -rotate-12"
         />
       </div>
@@ -197,7 +221,7 @@ const subtitulo = "Club Social & Deportivo";
       >
         <img
           src="/escudo/escudoLagranjah.png"
-          alt="Escudo Derecho La Granjah"
+          alt="" aria-hidden="true" decoding="async"
           class="w-[110px] sm:w-[200px] md:w-[280px] h-auto object-contain transform rotate-12"
         />
       </div>
@@ -368,6 +392,8 @@ const subtitulo = "Club Social & Deportivo";
                   >
                     <img
                       src="https://images.unsplash.com/photo-1580089540114-1ed5a0696377?q=80&w=600&auto=format&fit=crop"
+                      loading="lazy"
+                      decoding="async"
                       alt="Camiseta Titular La Granjah"
                       class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
                     />
@@ -431,6 +457,8 @@ const subtitulo = "Club Social & Deportivo";
                   >
                     <img
                       src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=600&auto=format&fit=crop"
+                      loading="lazy"
+                      decoding="async"
                       alt="Camiseta Suplente La Granjah"
                       class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
                     />
@@ -494,6 +522,8 @@ const subtitulo = "Club Social & Deportivo";
                   >
                     <img
                       src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format&fit=crop"
+                      loading="lazy"
+                      decoding="async"
                       alt="Camiseta Pre-Match La Granjah"
                       class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
                     />
@@ -557,6 +587,8 @@ const subtitulo = "Club Social & Deportivo";
                   >
                     <img
                       src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=600&auto=format&fit=crop"
+                      loading="lazy"
+                      decoding="async"
                       alt="Canilleras Oficiales La Granjah"
                       class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]"
                     />
@@ -620,6 +652,8 @@ const subtitulo = "Club Social & Deportivo";
                   >
                     <img
                       src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80&w=600&auto=format&fit=crop"
+                      loading="lazy"
+                      decoding="async"
                       alt="Medias Oficiales La Granjah"
                       class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(251,191,36,0.7)]"
                     />
@@ -683,6 +717,8 @@ const subtitulo = "Club Social & Deportivo";
                   >
                     <img
                       src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=600&auto=format&fit=crop"
+                      loading="lazy"
+                      decoding="async"
                       alt="Conjunto de Buzo La Granjah"
                       class="revealed-shirt max-h-full object-contain filter drop-shadow-[0_0_20px_rgba(239,68,68,0.7)]"
                     />
@@ -747,14 +783,19 @@ const subtitulo = "Club Social & Deportivo";
         filter: blur(28px);
         animation: neonPulse 3s ease-in-out infinite alternate;
       }
+      /* Solo animamos opacity: es barato para el navegador.
+         Animar filter:blur obliga a repintar el blur en cada frame. */
       @keyframes neonPulse {
         0% {
           opacity: 0.5;
-          filter: blur(22px);
         }
         100% {
           opacity: 0.9;
-          filter: blur(35px);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .neon-glow-bg {
+          animation: none;
         }
       }
     </style>
@@ -1034,8 +1075,8 @@ const subtitulo = "Club Social & Deportivo";
             >
               <img
                 id="modal-carrusel-img"
-                src=""
                 alt="Foto disciplina"
+                decoding="async"
                 class="w-full h-full object-cover transition-all duration-300"
               />
 
@@ -2405,7 +2446,7 @@ const subtitulo = "Club Social & Deportivo";
               contador.classList.remove("hidden");
             }
           } else {
-            modalImg.src = "";
+            modalImg.removeAttribute("src");
             modalImg.classList.add("hidden");
             if (contador) contador.classList.add("hidden");
           }
@@ -2461,6 +2502,14 @@ const subtitulo = "Club Social & Deportivo";
         };
 
         sportCards.forEach((card) => {
+          card.setAttribute("role", "button");
+          card.setAttribute("tabindex", "0");
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              card.click();
+            }
+          });
           card.addEventListener("click", () => {
             const title = card.getAttribute("data-sport-title") || "";
             const icon = card.getAttribute("data-sport-icon") || "";
@@ -2563,28 +2612,18 @@ const subtitulo = "Club Social & Deportivo";
 
         if (closeSportModal)
           closeSportModal.addEventListener("click", closeModalFunc);
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && sportModal && !sportModal.classList.contains("hidden"))
+            closeModalFunc();
+        });
         if (sportModal) {
           sportModal.addEventListener("click", (e) => {
             if (e.target === sportModal) closeModalFunc();
           });
         }
 
-        // 7. Scroll Suave
-        getEls('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-              closeMobileMenu();
-              targetElement.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }
-          });
-        });
+        // 7. Scroll suave: lo resuelve la clase "scroll-smooth" del <html> (CSS).
+        // El menú móvil se cierra con el listener de ".mobile-link" (sección 2).
 
         // 8. Modal Sponsor con Autocierre
         const modalSponsor = getEl("sponsor-modal");
@@ -2621,6 +2660,8 @@ const subtitulo = "Club Social & Deportivo";
         }
 
         // 9. Fixture Semanal (Banner)
+        // Tip: agregá `fecha: "AAAA-MM-DD"` (ej: "2026-10-11") a cada partido
+        // para que el banner aparezca SOLO ese día y no todos los domingos.
         const fixtureSemana = {
           0: [
             {
@@ -2632,8 +2673,12 @@ const subtitulo = "Club Social & Deportivo";
           ],
         };
 
-        const hoy = new Date().getDay();
-        const partidosHoy = fixtureSemana[hoy];
+        const ahora = new Date();
+        const hoy = ahora.getDay();
+        const hoyISO = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, "0")}-${String(ahora.getDate()).padStart(2, "0")}`;
+        const partidosHoy = (fixtureSemana[hoy] || []).filter(
+          (p) => !p.fecha || p.fecha === hoyISO,
+        );
 
         const banner = getEl("banner-partidos");
         const contenedorLista = getEl("banner-partidos-lista");

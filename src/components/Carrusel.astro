@@ -12,9 +12,15 @@ const fotos = [
 
 <div class="relative max-w-4xl mx-auto mt-8 overflow-hidden rounded-2xl border border-neutral-800 shadow-2xl">
   <div id="carrusel-contenedor" class="flex transition-transform duration-500 ease-out">
-    {fotos.map((foto) => (
+    {fotos.map((foto, i) => (
       <div class="min-w-full relative h-[300px] md:h-[450px]">
-        <img src={foto.url} alt={foto.titulo} class="w-full h-full object-cover" />
+        <img
+          src={foto.url}
+          alt={foto.titulo}
+          loading={i === 0 ? "eager" : "lazy"}
+          decoding="async"
+          class="w-full h-full object-cover"
+        />
         <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent flex items-end p-6">
           <span class="bg-neutral-950/80 backdrop-blur text-amber-400 font-bold px-4 py-2 rounded-lg border border-neutral-800">
             {foto.titulo}
@@ -24,10 +30,10 @@ const fotos = [
     ))}
   </div>
 
-  <button id="btn-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-emerald-500 text-white hover:text-neutral-950 p-3 rounded-full transition border border-neutral-700">
+  <button id="btn-prev" type="button" aria-label="Foto anterior" class="absolute left-4 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-emerald-500 text-white hover:text-neutral-950 p-3 rounded-full transition border border-neutral-700">
     ❮
   </button>
-  <button id="btn-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-emerald-500 text-white hover:text-neutral-950 p-3 rounded-full transition border border-neutral-700">
+  <button id="btn-next" type="button" aria-label="Foto siguiente" class="absolute right-4 top-1/2 -translate-y-1/2 bg-neutral-950/70 hover:bg-emerald-500 text-white hover:text-neutral-950 p-3 rounded-full transition border border-neutral-700">
     ❯
   </button>
 </div>
@@ -40,6 +46,16 @@ const fotos = [
   // Obtenemos el total dinámicamente desde los elementos renderizados
   const total = contenedor?.children.length || 0;
   let index = 0;
+
+  // Las fotos 2..6 se cargan en diferido; apenas el usuario toca una flecha
+  // las pedimos todas para que el deslizado no quede en blanco.
+  const precargar = () => {
+    contenedor?.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+      img.loading = 'eager';
+    });
+  };
+  btnNext?.addEventListener('click', precargar, { once: true });
+  btnPrev?.addEventListener('click', precargar, { once: true });
 
   function actualizarCarrusel() {
     if (contenedor) {

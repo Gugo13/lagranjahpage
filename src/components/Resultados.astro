@@ -4,14 +4,11 @@
 import partidosJsonData from "../data/partidos.json";
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Resultados de la Fecha</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-[#0b0f0e] text-slate-100 min-h-screen p-6 font-sans">
+<!--
+  Este componente se inserta dentro de index.astro, por eso NO lleva
+  <html>, <head>, <body> ni el script de Tailwind por CDN: la página ya
+  tiene su propio Tailwind compilado.
+-->
     <div class="max-w-7xl mx-auto space-y-6">
       <!-- TÍTULO Y SUBRAYADO TRICOLOR EXTENDIDO -->
       <div class="text-center">
@@ -442,7 +439,6 @@ import partidosJsonData from "../data/partidos.json";
         </div>
       </div>
     </div>
-  </body>
 
   <!-- SCRIPT RESULTADOS.ASTRO -->
   <script is:inline define:vars={{ partidosJsonData }}>
@@ -946,4 +942,3 @@ import partidosJsonData from "../data/partidos.json";
       cambiarDisciplina("f11");
     });
   </script>
-</html>
