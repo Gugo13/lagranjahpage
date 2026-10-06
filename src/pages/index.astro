@@ -2047,595 +2047,596 @@ const subtitulo = "Club Social & Deportivo";
       </div>
     </div>
 
-    <!-- SCRIPT PRINCIPAL -->
+    <!-- SCRIPT PRINCIPAL COMPLETO -->
     <script is:inline>
-      // 1. Giro de Tarjetas Generales (Cards 3D)
-      document.querySelectorAll(".single-card-container").forEach((card) => {
-        card.addEventListener("click", () => {
-          card.classList.toggle("is-flipped");
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Auxiliares ---
+        const getEl = (id) => document.getElementById(id);
+        const getEls = (selector) => document.querySelectorAll(selector);
+
+        // 1. Giro de Tarjetas Generales (Cards 3D)
+        getEls(".single-card-container").forEach((card) => {
+          card.addEventListener("click", () =>
+            card.classList.toggle("is-flipped"),
+          );
         });
-      });
 
-      // 2. Menú Hamburguesa
-      const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const iconOpen = document.getElementById("icon-open");
-      const iconClose = document.getElementById("icon-close");
-      const mobileLinks = document.querySelectorAll(".mobile-link");
+        // 2. Menú Hamburguesa
+        const menuBtn = getEl("menu-btn");
+        const mobileMenu = getEl("mobile-menu");
+        const iconOpen = getEl("icon-open");
+        const iconClose = getEl("icon-close");
+        const mobileLinks = getEls(".mobile-link");
 
-      if (menuBtn) {
-        menuBtn.addEventListener("click", () => {
-          if (mobileMenu) mobileMenu.classList.toggle("hidden");
-          if (iconOpen) iconOpen.classList.toggle("hidden");
-          if (iconClose) iconClose.classList.toggle("hidden");
-        });
-      }
-
-      mobileLinks.forEach((link) => {
-        link.addEventListener("click", () => {
+        const closeMobileMenu = () => {
           if (mobileMenu) mobileMenu.classList.add("hidden");
           if (iconOpen) iconOpen.classList.remove("hidden");
           if (iconClose) iconClose.classList.add("hidden");
-        });
-      });
+        };
 
-      // 3. Campos Condicionales del Formulario
-      const selectResidencia = document.getElementById("lugar-residencia");
-      const campoSJ = document.getElementById("campo-departamento-sj");
-      const campoOtraProvincia = document.getElementById(
-        "campo-otra-provincia",
-      );
-      const campoOtroResidencia = document.getElementById(
-        "campo-otro-residencia",
-      );
+        if (menuBtn) {
+          menuBtn.addEventListener("click", () => {
+            if (mobileMenu) mobileMenu.classList.toggle("hidden");
+            if (iconOpen) iconOpen.classList.toggle("hidden");
+            if (iconClose) iconClose.classList.toggle("hidden");
+          });
+        }
 
-      if (selectResidencia) {
-        selectResidencia.addEventListener("change", (e) => {
-          const val = e.target.value;
-          if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
-          if (campoOtraProvincia)
-            campoOtraProvincia.classList.toggle(
-              "hidden",
-              val !== "Otra provincia",
-            );
-          if (campoOtroResidencia)
-            campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
-        });
-      }
+        mobileLinks.forEach((link) =>
+          link.addEventListener("click", closeMobileMenu),
+        );
 
-      const radiosAsociarse = document.querySelectorAll(
-        'input[name="quiere_asociarse"]',
-      );
-      const bloqueCategorias = document.getElementById(
-        "bloque-categorias-socio",
-      );
-      const btnSubmit = document.getElementById("btn-submit-form");
+        // 3. Campos Condicionales del Formulario
+        const selectResidencia = getEl("lugar-residencia");
+        const campoSJ = getEl("campo-departamento-sj");
+        const campoOtraProvincia = getEl("campo-otra-provincia");
+        const campoOtroResidencia = getEl("campo-otro-residencia");
 
-      radiosAsociarse.forEach((radio) => {
-        radio.addEventListener("change", (e) => {
-          if (e.target.value === "Sí") {
-            if (bloqueCategorias) bloqueCategorias.classList.remove("hidden");
+        if (selectResidencia) {
+          selectResidencia.addEventListener("change", (e) => {
+            const val = e.target.value;
+            if (campoSJ) campoSJ.classList.toggle("hidden", val !== "San Juan");
+            if (campoOtraProvincia)
+              campoOtraProvincia.classList.toggle(
+                "hidden",
+                val !== "Otra provincia",
+              );
+            if (campoOtroResidencia)
+              campoOtroResidencia.classList.toggle("hidden", val !== "Otro");
+          });
+        }
+
+        const radiosAsociarse = getEls('input[name="quiere_asociarse"]');
+        const bloqueCategorias = getEl("bloque-categorias-socio");
+        const btnSubmit = getEl("btn-submit-form");
+
+        radiosAsociarse.forEach((radio) => {
+          radio.addEventListener("change", (e) => {
+            const esSocio = e.target.value === "Sí";
+            if (bloqueCategorias)
+              bloqueCategorias.classList.toggle("hidden", !esSocio);
             if (btnSubmit)
-              btnSubmit.textContent = "Enviar Solicitud e Ir a Pagar";
+              btnSubmit.textContent = esSocio
+                ? "Enviar Solicitud e Ir a Pagar"
+                : "Enviar Solicitud";
+          });
+        });
+
+        const selectAporte = getEl("forma-aporte");
+        const campoOtroAporte = getEl("campo-otro-aporte");
+
+        if (selectAporte) {
+          selectAporte.addEventListener("change", (e) => {
+            if (campoOtroAporte)
+              campoOtroAporte.classList.toggle(
+                "hidden",
+                e.target.value !== "Otro",
+              );
+          });
+        }
+
+        const radiosJuega = getEls('input[name="juega_en_club"]');
+        const contenedorDeporte = getEl("opciones-deporte");
+
+        radiosJuega.forEach((radio) => {
+          radio.addEventListener("change", (e) => {
+            if (contenedorDeporte)
+              contenedorDeporte.classList.toggle(
+                "hidden",
+                e.target.value !== "Sí",
+              );
+          });
+        });
+
+        // 4. Copiar Datos Brubank
+        const copyText = (elementId) => {
+          const text = getEl(elementId)?.innerText;
+          if (text) {
+            navigator.clipboard.writeText(text);
+            alert("¡Copiado al portapapeles!");
+          }
+        };
+
+        getEl("btn-copy-cuit")?.addEventListener("click", () =>
+          copyText("cuit-val"),
+        );
+        getEl("btn-copy-alias")?.addEventListener("click", () =>
+          copyText("alias-val"),
+        );
+
+        // 5. Validación y Envío del Formulario
+        const form = getEl("mi-formulario-actual");
+        const bloquePago = getEl("bloque-pago-brubank");
+        const bloqueCarnet = getEl("bloque-carnet-digital");
+
+        const inputNombre = getEl("nombre");
+        const inputTipoDoc = getEl("tipo-doc");
+        const inputDoc = getEl("numero-doc");
+        const inputFecha = getEl("fecha-nacimiento");
+        const inputEmail = getEl("email");
+        const inputTelefono = getEl("telefono");
+        const codigoPais = getEl("codigo-pais");
+        const aceptaProtocolo = getEl("acepta-protocolo");
+
+        const mostrarError = (id, mensaje) => {
+          const error = getEl(id);
+          if (error) {
+            error.textContent = mensaje;
+            error.classList.remove("hidden");
+          }
+        };
+
+        const ocultarError = (id) => {
+          const error = getEl(id);
+          if (error) error.classList.add("hidden");
+        };
+
+        const validarNombre = (valor) =>
+          /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(valor.trim());
+        const validarDocumento = (valor) => /^\d{7,10}$/.test(valor.trim());
+        const validarEmail = (valor) =>
+          /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim());
+        const validarTelefono = (valor) => {
+          const limpio = valor.replace(/\D/g, "");
+          return limpio.length >= 7 && limpio.length <= 15;
+        };
+
+        const validarFecha = (valor) => {
+          if (!valor) return false;
+          const fechaSeleccionada = new Date(`${valor}T00:00:00`);
+          const hoy = new Date();
+          hoy.setHours(0, 0, 0, 0);
+          return fechaSeleccionada <= hoy;
+        };
+
+        const validarFormulario = ({ validarProtocolo = false } = {}) => {
+          let esValido = true;
+
+          if (!inputNombre?.value.trim()) {
+            mostrarError("error-nombre", "⚠️ Ingresá tu nombre y apellido.");
+            esValido = false;
+          } else if (!validarNombre(inputNombre.value)) {
+            mostrarError(
+              "error-nombre",
+              "⚠️ El nombre solo puede contener letras y espacios.",
+            );
+            esValido = false;
           } else {
-            if (bloqueCategorias) bloqueCategorias.classList.add("hidden");
-            if (btnSubmit) btnSubmit.textContent = "Enviar Solicitud";
-          }
-        });
-      });
-
-      const selectAporte = document.getElementById("forma-aporte");
-      const campoOtroAporte = document.getElementById("campo-otro-aporte");
-
-      if (selectAporte) {
-        selectAporte.addEventListener("change", (e) => {
-          if (campoOtroAporte)
-            campoOtroAporte.classList.toggle(
-              "hidden",
-              e.target.value !== "Otro",
-            );
-        });
-      }
-
-      const radiosJuega = document.querySelectorAll(
-        'input[name="juega_en_club"]',
-      );
-      const contenedorDeporte = document.getElementById("opciones-deporte");
-
-      radiosJuega.forEach((radio) => {
-        radio.addEventListener("change", (e) => {
-          if (contenedorDeporte)
-            contenedorDeporte.classList.toggle(
-              "hidden",
-              e.target.value !== "Sí",
-            );
-        });
-      });
-
-      // 4. Copiar Datos Brubank
-      const copyText = (elementId) => {
-        const text = document.getElementById(elementId)?.innerText;
-        if (text) {
-          navigator.clipboard.writeText(text);
-          alert("¡Copiado al portapapeles!");
-        }
-      };
-
-      document
-        .getElementById("btn-copy-cuit")
-        ?.addEventListener("click", () => copyText("cuit-val"));
-      document
-        .getElementById("btn-copy-alias")
-        ?.addEventListener("click", () => copyText("alias-val"));
-
-      // 5. Validación y Envío del Formulario
-      const form = document.getElementById("mi-formulario-actual");
-      const bloquePago = document.getElementById("bloque-pago-brubank");
-      const bloqueCarnet = document.getElementById("bloque-carnet-digital");
-
-      const inputNombre = document.getElementById("nombre");
-      const inputTipoDoc = document.getElementById("tipo-doc");
-      const inputDoc = document.getElementById("numero-doc");
-      const inputFecha = document.getElementById("fecha-nacimiento");
-      const inputEmail = document.getElementById("email");
-      const inputTelefono = document.getElementById("telefono");
-      const codigoPais = document.getElementById("codigo-pais");
-      const aceptaProtocolo = document.getElementById("acepta-protocolo");
-
-      const mostrarError = (id, mensaje) => {
-        const error = document.getElementById(id);
-        if (error) {
-          error.textContent = mensaje;
-          error.classList.remove("hidden");
-        }
-      };
-
-      const ocultarError = (id) => {
-        const error = document.getElementById(id);
-        if (error) error.classList.add("hidden");
-      };
-
-      const validarNombre = (valor) =>
-        /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]+$/.test(valor.trim());
-      const validarDocumento = (valor) => /^\d{7,10}$/.test(valor.trim());
-      const validarEmail = (valor) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim());
-      const validarTelefono = (valor) => {
-        const limpio = valor.replace(/\D/g, "");
-        return limpio.length >= 7 && limpio.length <= 15;
-      };
-
-      const validarFecha = (valor) => {
-        if (!valor) return false;
-        const fechaSeleccionada = new Date(`${valor}T00:00:00`);
-        const hoy = new Date();
-        hoy.setHours(0, 0, 0, 0);
-        return fechaSeleccionada <= hoy;
-      };
-
-      const validarFormulario = ({ validarProtocolo = false } = {}) => {
-        let esValido = true;
-
-        if (!inputNombre?.value.trim()) {
-          mostrarError("error-nombre", "⚠️ Ingresá tu nombre y apellido.");
-          esValido = false;
-        } else if (!validarNombre(inputNombre.value)) {
-          mostrarError(
-            "error-nombre",
-            "⚠️ El nombre solo puede contener letras y espacios.",
-          );
-          esValido = false;
-        } else {
-          ocultarError("error-nombre");
-        }
-
-        if (!inputDoc?.value.trim()) {
-          mostrarError("error-doc", "⚠️ Ingresá tu número de documento.");
-          esValido = false;
-        } else if (!validarDocumento(inputDoc.value)) {
-          mostrarError(
-            "error-doc",
-            "⚠️ El documento debe contener entre 7 y 10 números.",
-          );
-          esValido = false;
-        } else {
-          ocultarError("error-doc");
-        }
-
-        if (!validarFecha(inputFecha?.value || "")) {
-          mostrarError("error-fecha", "⚠️ Ingresá una fecha válida.");
-          esValido = false;
-        } else {
-          ocultarError("error-fecha");
-        }
-
-        if (!inputEmail?.value.trim() || !validarEmail(inputEmail.value)) {
-          mostrarError(
-            "error-email",
-            "⚠️ Ingresá un correo electrónico válido.",
-          );
-          esValido = false;
-        } else {
-          ocultarError("error-email");
-        }
-
-        if (
-          !inputTelefono?.value.trim() ||
-          !validarTelefono(inputTelefono.value)
-        ) {
-          mostrarError(
-            "error-telefono",
-            "⚠️ El teléfono debe contener entre 7 y 15 números.",
-          );
-          esValido = false;
-        } else {
-          ocultarError("error-telefono");
-        }
-
-        if (validarProtocolo && !aceptaProtocolo?.checked) {
-          alert(
-            "Tenés que aceptar el Protocolo de Convivencia para enviar la solicitud.",
-          );
-          esValido = false;
-        }
-
-        return esValido;
-      };
-
-      [
-        [inputNombre, "error-nombre"],
-        [inputDoc, "error-doc"],
-        [inputFecha, "error-fecha"],
-        [inputEmail, "error-email"],
-        [inputTelefono, "error-telefono"],
-      ].forEach(([campo, errorId]) => {
-        campo?.addEventListener("blur", () => {
-          if (campo.value.trim()) validarFormulario();
-        });
-        campo?.addEventListener("input", () => ocultarError(errorId));
-      });
-
-      if (form) {
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-
-          if (!validarFormulario({ validarProtocolo: true })) return;
-
-          const telefonoLimpio = inputTelefono.value.replace(/\D/g, "");
-          document.getElementById("telefono-completo").value =
-            `${codigoPais.value}${telefonoLimpio}`;
-
-          if (btnSubmit) {
-            btnSubmit.textContent = "Enviando solicitud...";
-            btnSubmit.disabled = true;
-            btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+            ocultarError("error-nombre");
           }
 
-          try {
-            await fetch(form.action, {
-              method: "POST",
-              body: new FormData(form),
-              mode: "no-cors",
-            });
+          if (!inputDoc?.value.trim()) {
+            mostrarError("error-doc", "⚠️ Ingresá tu número de documento.");
+            esValido = false;
+          } else if (!validarDocumento(inputDoc.value)) {
+            mostrarError(
+              "error-doc",
+              "⚠️ El documento debe contener entre 7 y 10 números.",
+            );
+            esValido = false;
+          } else {
+            ocultarError("error-doc");
+          }
 
-            form.classList.add("hidden");
+          if (!validarFecha(inputFecha?.value || "")) {
+            mostrarError("error-fecha", "⚠️ Ingresá una fecha válida.");
+            esValido = false;
+          } else {
+            ocultarError("error-fecha");
+          }
 
-            // Rellenar Carnet Digital con Datos
-            document.getElementById("txt-nombre").textContent =
-              inputNombre.value;
-            document.getElementById("txt-dni").textContent =
-              `${inputTipoDoc.value} ${inputDoc.value}`;
+          if (!inputEmail?.value.trim() || !validarEmail(inputEmail.value)) {
+            mostrarError(
+              "error-email",
+              "⚠️ Ingresá un correo electrónico válido.",
+            );
+            esValido = false;
+          } else {
+            ocultarError("error-email");
+          }
 
-            const tipoSocioSel =
-              document.querySelector('input[name="tipo_socio"]:checked')
-                ?.value || "Activo";
-            document.getElementById("txt-socio").textContent = tipoSocioSel;
+          if (
+            !inputTelefono?.value.trim() ||
+            !validarTelefono(inputTelefono.value)
+          ) {
+            mostrarError(
+              "error-telefono",
+              "⚠️ El teléfono debe contener entre 7 y 15 números.",
+            );
+            esValido = false;
+          } else {
+            ocultarError("error-telefono");
+          }
 
-            bloquePago?.classList.remove("hidden");
-            bloqueCarnet?.classList.remove("hidden");
-            bloqueCarnet?.classList.add("flex");
-          } catch (error) {
-            console.error("Error al enviar:", error);
-            alert("Hubo un error al enviar tus datos. Intentá nuevamente.");
+          if (validarProtocolo && !aceptaProtocolo?.checked) {
+            alert(
+              "Tenés que aceptar el Protocolo de Convivencia para enviar la solicitud.",
+            );
+            esValido = false;
+          }
+
+          return esValido;
+        };
+
+        [
+          [inputNombre, "error-nombre"],
+          [inputDoc, "error-doc"],
+          [inputFecha, "error-fecha"],
+          [inputEmail, "error-email"],
+          [inputTelefono, "error-telefono"],
+        ].forEach(([campo, errorId]) => {
+          campo?.addEventListener("blur", () => {
+            if (campo.value.trim()) validarFormulario();
+          });
+          campo?.addEventListener("input", () => ocultarError(errorId));
+        });
+
+        if (form) {
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            if (!validarFormulario({ validarProtocolo: true })) return;
+
+            const telefonoLimpio = inputTelefono.value.replace(/\D/g, "");
+            const campoTelCompleto = getEl("telefono-completo");
+            if (campoTelCompleto) {
+              campoTelCompleto.value = `${codigoPais ? codigoPais.value : ""}${telefonoLimpio}`;
+            }
 
             if (btnSubmit) {
-              btnSubmit.textContent = "Enviar Solicitud";
-              btnSubmit.disabled = false;
-              btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+              btnSubmit.textContent = "Enviando solicitud...";
+              btnSubmit.disabled = true;
+              btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
             }
-          }
-        });
-      }
 
-      // 6. Modal Fixture & Galería
-      const sportCards = document.querySelectorAll(".sport-card");
-      const sportModal = document.getElementById("sport-modal");
-      const modalContainer = document.getElementById("modal-container");
-      const closeSportModal = document.getElementById("close-sport-modal");
-
-      const modalIcon = document.getElementById("modal-icon");
-      const modalSportTitle = document.getElementById("modal-sport-title");
-      const categorySelectorContainer = document.getElementById(
-        "category-selector-container",
-      );
-      const matchesListContainer = document.getElementById(
-        "matches-list-container",
-      );
-      const modalImg = document.getElementById("modal-carrusel-img");
-      const prevBtn = document.getElementById("modal-prev-btn");
-      const nextBtn = document.getElementById("modal-next-btn");
-      const contador = document.getElementById("modal-carrusel-contador");
-
-      const generarRutasFotos = (carpeta) => {
-        let fotos = [];
-        for (let i = 1; i <= 10; i++) {
-          fotos.push(`/disciplinas/${carpeta}/foto${i}.jpg`);
-        }
-        return fotos;
-      };
-
-      const fotosPorDisciplina = {
-        "Fútbol 11": generarRutasFotos("futbol11"),
-        "Futsal Masculino": generarRutasFotos("futsalMasc"),
-        "Futsal Femenino": generarRutasFotos("futsalFem"),
-      };
-
-      let currentIndex = 0;
-      let currentImages = [];
-
-      sportCards.forEach((card) => {
-        card.addEventListener("click", () => {
-          const title = card.getAttribute("data-sport-title");
-          const icon = card.getAttribute("data-sport-icon");
-          const categoriesRaw = card.getAttribute("data-categories");
-
-          let categories = [];
-          try {
-            categories = JSON.parse(categoriesRaw);
-          } catch (e) {
-            categories = [];
-          }
-
-          if (modalSportTitle) modalSportTitle.textContent = title;
-          if (modalIcon) modalIcon.textContent = icon;
-
-          currentImages = fotosPorDisciplina[title] || [
-            "/disciplinas/futbol11/foto1.jpg",
-          ];
-          currentIndex = 0;
-          updateCarousel();
-
-          if (categorySelectorContainer)
-            categorySelectorContainer.innerHTML = "";
-          if (matchesListContainer) matchesListContainer.innerHTML = "";
-
-          if (categories.length > 0 && categorySelectorContainer) {
-            categories.forEach((cat, index) => {
-              const btnCat = document.createElement("button");
-              btnCat.type = "button";
-              btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
-                index === 0
-                  ? "bg-emerald-500 text-neutral-950 border-emerald-400"
-                  : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
-              }`;
-              btnCat.textContent = cat.name;
-
-              btnCat.addEventListener("click", () => {
-                categorySelectorContainer
-                  .querySelectorAll("button")
-                  .forEach((b) => {
-                    b.className =
-                      "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
-                  });
-                btnCat.className =
-                  "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
-
-                renderMatches(cat.matches);
+            try {
+              await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                mode: "no-cors",
               });
 
-              categorySelectorContainer.appendChild(btnCat);
-            });
+              form.classList.add("hidden");
 
-            renderMatches(categories[0].matches);
-          } else if (matchesListContainer) {
-            matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
-          }
+              // Rellenar Carnet Digital
+              const txtNombre = getEl("txt-nombre");
+              const txtDni = getEl("txt-dni");
+              const txtSocio = getEl("txt-socio");
 
-          if (sportModal) {
-            sportModal.classList.remove("hidden");
-            setTimeout(() => {
-              if (modalContainer) {
-                modalContainer.classList.remove("scale-95");
-                modalContainer.classList.add("scale-100");
+              if (txtNombre) txtNombre.textContent = inputNombre.value;
+              if (txtDni)
+                txtDni.textContent = `${inputTipoDoc ? inputTipoDoc.value : ""} ${inputDoc.value}`;
+
+              const tipoSocioSel =
+                document.querySelector('input[name="tipo_socio"]:checked')
+                  ?.value || "Activo";
+              if (txtSocio) txtSocio.textContent = tipoSocioSel;
+
+              bloquePago?.classList.remove("hidden");
+              if (bloqueCarnet) {
+                bloqueCarnet.classList.remove("hidden");
+                bloqueCarnet.classList.add("flex");
               }
-            }, 10);
-          }
-        });
-      });
+            } catch (error) {
+              console.error("Error al enviar:", error);
+              alert("Hubo un error al enviar tus datos. Intentá nuevamente.");
 
-      function renderMatches(matches) {
-        if (!matchesListContainer) return;
-
-        matchesListContainer.innerHTML = "";
-
-        if (!matches || matches.length === 0) {
-          matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
-          return;
+              if (btnSubmit) {
+                btnSubmit.textContent = "Enviar Solicitud";
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove("opacity-50", "cursor-not-allowed");
+              }
+            }
+          });
         }
 
-        const innerDiv = document.createElement("div");
-        innerDiv.className = "flex flex-col gap-3";
+        // 6. Modal Fixture & Galería (CORREGIDO)
+        const sportCards = getEls(".sport-card");
+        const sportModal = getEl("sport-modal");
+        const modalContainer = getEl("modal-container");
+        const closeSportModal = getEl("close-sport-modal");
 
-        matches.forEach((m) => {
-          const matchCard = document.createElement("div");
+        const modalIcon = getEl("modal-icon");
+        const modalSportTitle = getEl("modal-sport-title");
+        const categorySelectorContainer = getEl("category-selector-container");
+        const matchesListContainer = getEl("matches-list-container");
+        const modalImg = getEl("modal-carrusel-img");
+        const prevBtn = getEl("modal-prev-btn");
+        const nextBtn = getEl("modal-next-btn");
+        const contador = getEl("modal-carrusel-contador");
 
-          if (m.libre) {
-            matchCard.className =
-              "bg-neutral-950/60 border border-neutral-800/80 p-3 rounded-xl flex items-center justify-between text-xs";
-            const fecha = m.fecha || "Fecha Libre";
+        // Función para generar rutas
+        const generarRutasFotos = (carpeta, cantidad = 10) => {
+          return Array.from(
+            { length: cantidad },
+            (_, i) => `/disciplinas/${carpeta}/foto${i + 1}.jpg`,
+          );
+        };
 
-            matchCard.innerHTML = `
-          <div>
-            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide">${fecha}</span>
-            <p class="font-bold text-slate-300 text-sm mt-0.5">La Granjah</p>
-          </div>
-          <div class="text-right">
-            <span class="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-1 rounded-md font-semibold text-[11px] uppercase tracking-wider">
-              Fecha Libre
-            </span>
-          </div>
-        `;
+        // Normalizador para evitar fallos por tildes o mayúsculas
+        const normalizarTexto = (str) =>
+          str
+            ? str
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .trim()
+            : "";
+
+        // Mapeo con claves normalizadas (sin tildes ni mayúsculas)
+        const fotosPorDisciplina = {
+          "futbol 11": generarRutasFotos("futbol11"),
+          "futsal masculino": generarRutasFotos("futsalMasc"),
+          "futsal femenino": generarRutasFotos("futsalFem"),
+        };
+
+        let currentIndex = 0;
+        let currentImages = [];
+
+        const updateCarousel = () => {
+          if (!modalImg) return;
+
+          if (currentImages && currentImages.length > 0) {
+            modalImg.src = currentImages[currentIndex];
+            modalImg.classList.remove("hidden");
+
+            if (contador) {
+              contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+              contador.classList.remove("hidden");
+            }
           } else {
-            matchCard.className =
-              "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
+            modalImg.src = "";
+            modalImg.classList.add("hidden");
+            if (contador) contador.classList.add("hidden");
+          }
+        };
 
-            const fecha = m.fecha || "Fecha";
-            const rival = m.rival || "Rival a confirmar";
-            const cancha = m.cancha || "Predio del club";
-            const condicion = m.condicion || "Local";
-            const diaHora = m.dia || "A confirmar";
+        const renderMatches = (matches) => {
+          if (!matchesListContainer) return;
 
-            matchCard.innerHTML = `
-          <div>
-            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${fecha} • ${condicion}</span>
-            <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${rival}</p>
-            <p class="text-[11px] text-slate-400 mt-1">📍 ${cancha}</p>
-          </div>
-          <div class="text-right">
-            <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${diaHora}</span>
-          </div>
-        `;
+          matchesListContainer.innerHTML = "";
+
+          if (!matches || matches.length === 0) {
+            matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Sin encuentros cargados para esta categoría.</p>`;
+            return;
           }
 
-          innerDiv.appendChild(matchCard);
+          const innerDiv = document.createElement("div");
+          innerDiv.className = "flex flex-col gap-3";
+
+          matches.forEach((m) => {
+            const matchCard = document.createElement("div");
+
+            if (m.libre) {
+              matchCard.className =
+                "bg-neutral-950/60 border border-neutral-800/80 p-3 rounded-xl flex items-center justify-between text-xs";
+              matchCard.innerHTML = `
+            <div>
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide">${m.fecha || "Fecha Libre"}</span>
+              <p class="font-bold text-slate-300 text-sm mt-0.5">La Granjah</p>
+            </div>
+            <div class="text-right">
+              <span class="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2.5 py-1 rounded-md font-semibold text-[11px] uppercase tracking-wider">
+                Fecha Libre
+              </span>
+            </div>`;
+            } else {
+              matchCard.className =
+                "bg-neutral-950 border border-neutral-800 p-3 rounded-xl flex items-center justify-between text-xs";
+              matchCard.innerHTML = `
+            <div>
+              <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">${m.fecha || "Fecha"} • ${m.condicion || "Local"}</span>
+              <p class="font-bold text-slate-200 text-sm mt-0.5">vs ${m.rival || "Rival a confirmar"}</p>
+              <p class="text-[11px] text-slate-400 mt-1">📍 ${m.cancha || "Predio del club"}</p>
+            </div>
+            <div class="text-right">
+              <span class="bg-neutral-900 border border-neutral-800 text-slate-300 px-2 py-1 rounded-md font-semibold text-[11px]">${m.dia || "A confirmar"}</span>
+            </div>`;
+            }
+
+            innerDiv.appendChild(matchCard);
+          });
+
+          matchesListContainer.appendChild(innerDiv);
+        };
+
+        sportCards.forEach((card) => {
+          card.addEventListener("click", () => {
+            const title = card.getAttribute("data-sport-title") || "";
+            const icon = card.getAttribute("data-sport-icon") || "";
+            const categoriesRaw = card.getAttribute("data-categories");
+
+            if (modalSportTitle) modalSportTitle.textContent = title;
+            if (modalIcon) modalIcon.textContent = icon;
+
+            // Búsqueda tolerante a tildes/mayúsculas
+            const claveNormalizada = normalizarTexto(title);
+
+            // Si no reconoce el deporte, carga por defecto las 10 fotos de futbol11
+            currentImages =
+              fotosPorDisciplina[claveNormalizada] ||
+              generarRutasFotos("futbol11");
+            currentIndex = 0;
+            updateCarousel();
+
+            let categories = [];
+            try {
+              categories = JSON.parse(categoriesRaw);
+            } catch (e) {
+              categories = [];
+            }
+
+            if (categorySelectorContainer)
+              categorySelectorContainer.innerHTML = "";
+            if (matchesListContainer) matchesListContainer.innerHTML = "";
+
+            if (categories.length > 0 && categorySelectorContainer) {
+              categories.forEach((cat, index) => {
+                const btnCat = document.createElement("button");
+                btnCat.type = "button";
+                btnCat.className = `px-3 py-1.5 text-xs font-bold rounded-lg transition border ${
+                  index === 0
+                    ? "bg-emerald-500 text-neutral-950 border-emerald-400"
+                    : "bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600"
+                }`;
+                btnCat.textContent = cat.name;
+
+                btnCat.addEventListener("click", () => {
+                  categorySelectorContainer
+                    .querySelectorAll("button")
+                    .forEach((b) => {
+                      b.className =
+                        "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-neutral-950 text-slate-300 border-neutral-800 hover:border-neutral-600";
+                    });
+                  btnCat.className =
+                    "px-3 py-1.5 text-xs font-bold rounded-lg transition border bg-emerald-500 text-neutral-950 border-emerald-400";
+
+                  renderMatches(cat.matches);
+                });
+
+                categorySelectorContainer.appendChild(btnCat);
+              });
+
+              renderMatches(categories[0].matches);
+            } else if (matchesListContainer) {
+              matchesListContainer.innerHTML = `<p class="text-xs text-slate-500 italic">No hay partidos programados por el momento.</p>`;
+            }
+
+            if (sportModal) {
+              sportModal.classList.remove("hidden");
+              setTimeout(() => {
+                if (modalContainer) {
+                  modalContainer.classList.remove("scale-95");
+                  modalContainer.classList.add("scale-100");
+                }
+              }, 10);
+            }
+          });
         });
 
-        matchesListContainer.appendChild(innerDiv);
-      }
-
-      function updateCarousel() {
-        if (modalImg && currentImages.length > 0) {
-          modalImg.src = currentImages[currentIndex];
-          if (contador)
-            contador.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            if (currentImages.length === 0) return;
+            currentIndex =
+              (currentIndex - 1 + currentImages.length) % currentImages.length;
+            updateCarousel();
+          });
         }
-      }
 
-      if (prevBtn) {
-        prevBtn.addEventListener("click", () => {
-          currentIndex =
-            (currentIndex - 1 + currentImages.length) % currentImages.length;
-          updateCarousel();
-        });
-      }
-
-      if (nextBtn) {
-        nextBtn.addEventListener("click", () => {
-          currentIndex = (currentIndex + 1) % currentImages.length;
-          updateCarousel();
-        });
-      }
-
-      function closeModalFunc() {
-        if (modalContainer) {
-          modalContainer.classList.remove("scale-100");
-          modalContainer.classList.add("scale-95");
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            if (currentImages.length === 0) return;
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            updateCarousel();
+          });
         }
-        setTimeout(() => {
-          if (sportModal) sportModal.classList.add("hidden");
-        }, 200);
-      }
 
-      if (closeSportModal)
-        closeSportModal.addEventListener("click", closeModalFunc);
-      if (sportModal) {
-        sportModal.addEventListener("click", (e) => {
-          if (e.target === sportModal) closeModalFunc();
-        });
-      }
-
-      //------------- scroll limpio y directo -------------
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href");
-          const targetElement = document.querySelector(targetId);
-
-          if (targetElement) {
-            // Cerramos el menú móvil por seguridad si estaba abierto
-            if (mobileMenu) mobileMenu.classList.add("hidden");
-            if (iconOpen) iconOpen.classList.remove("hidden");
-            if (iconClose) iconClose.classList.add("hidden");
-
-            // Scroll suave limpio hacia la sección
-            targetElement.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
+        const closeModalFunc = () => {
+          if (modalContainer) {
+            modalContainer.classList.remove("scale-100");
+            modalContainer.classList.add("scale-95");
           }
+          setTimeout(() => {
+            if (sportModal) sportModal.classList.add("hidden");
+          }, 200);
+        };
+
+        if (closeSportModal)
+          closeSportModal.addEventListener("click", closeModalFunc);
+        if (sportModal) {
+          sportModal.addEventListener("click", (e) => {
+            if (e.target === sportModal) closeModalFunc();
+          });
+        }
+
+        // 7. Scroll Suave
+        getEls('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              closeMobileMenu();
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
         });
-      });
 
-      //-- Lógica JS para el autocierre --
-      const modal = document.getElementById("sponsor-modal");
-      const closeBtn = document.getElementById("close-modal-btn");
-      const ctaBtn = document.getElementById("modal-cta-btn");
-      const progressBar = document.getElementById("modal-progress-bar");
+        // 8. Modal Sponsor con Autocierre
+        const modalSponsor = getEl("sponsor-modal");
+        const closeBtnSponsor = getEl("close-modal-btn");
+        const ctaBtnSponsor = getEl("modal-cta-btn");
+        const progressBar = getEl("modal-progress-bar");
 
-      // Función para ocultar el modal suavemente
-      function closeModal() {
-        if (!modal) return;
-        modal.classList.add("opacity-0", "pointer-events-none");
-        setTimeout(() => {
-          modal.remove(); // Lo elimina del DOM para no entorpecer
-        }, 500);
-      }
+        const closeModalSponsor = () => {
+          if (!modalSponsor) return;
+          modalSponsor.classList.add("opacity-0", "pointer-events-none");
+          setTimeout(() => modalSponsor.remove(), 500);
+        };
 
-      // Animación de la barra de tiempo
-      setTimeout(() => {
-        if (progressBar) progressBar.style.width = "0%";
-      }, 100);
+        if (progressBar) {
+          setTimeout(() => {
+            progressBar.style.width = "0%";
+          }, 100);
+        }
 
-      // Auto-cerrar a los 6 segundos (podés cambiar 6000 por 8000 si querés 8s)
-      const autoCloseTimer = setTimeout(closeModal, 6000);
+        const autoCloseTimer = setTimeout(closeModalSponsor, 6000);
 
-      // Eventos de cierre manual
-      if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-          clearTimeout(autoCloseTimer);
-          closeModal();
-        });
-      }
+        if (closeBtnSponsor) {
+          closeBtnSponsor.addEventListener("click", () => {
+            clearTimeout(autoCloseTimer);
+            closeModalSponsor();
+          });
+        }
 
-      if (ctaBtn) {
-        ctaBtn.addEventListener("click", () => {
-          clearTimeout(autoCloseTimer);
-          closeModal();
-        });
-      }
+        if (ctaBtnSponsor) {
+          ctaBtnSponsor.addEventListener("click", () => {
+            clearTimeout(autoCloseTimer);
+            closeModalSponsor();
+          });
+        }
 
-      // Fixture Semanal (Por ahora configurado con Futsal Femenino)
-      const fixtureSemana = {
-        // 0 = Domingo
-        0: [
-          {
-            cat: "Futsal Femenino",
-            rival: "Trinidad",
-            hora: "19 y 20 hs",
-            lugar: "Cruz del Sur",
-          },
-        ],
-        // las inferiores (Sábados = 6) o Futsal Masc (Miércoles = 3), solo agregar la propiedad acá.
-      };
+        // 9. Fixture Semanal (Banner)
+        const fixtureSemana = {
+          0: [
+            {
+              cat: "Futsal Femenino",
+              rival: "Trinidad",
+              hora: "19 y 20 hs",
+              lugar: "Cruz del Sur",
+            },
+          ],
+        };
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const hoy = new Date().getDay(); // Detecta el día actual (0 a 6)
+        const hoy = new Date().getDay();
         const partidosHoy = fixtureSemana[hoy];
 
-        const banner = document.getElementById("banner-partidos");
-        const contenedorLista = document.getElementById(
-          "banner-partidos-lista",
-        );
+        const banner = getEl("banner-partidos");
+        const contenedorLista = getEl("banner-partidos-lista");
 
         if (
           partidosHoy &&
@@ -2650,20 +2651,16 @@ const subtitulo = "Club Social & Deportivo";
           <strong class="text-amber-300 font-bold uppercase">${p.cat}:</strong>
           <span>vs ${p.rival}</span>
           <span class="text-emerald-100 font-normal">(${p.hora} - ${p.lugar})</span>
-        </div>
-      `,
+        </div>`,
             )
             .join("");
 
           banner.classList.remove("hidden");
         }
 
-        // Evento para cerrar el banner manualmente
-        document
-          .getElementById("close-banner-btn")
-          ?.addEventListener("click", () => {
-            banner?.classList.add("hidden");
-          });
+        getEl("close-banner-btn")?.addEventListener("click", () => {
+          banner?.classList.add("hidden");
+        });
       });
     </script>
   </body>
