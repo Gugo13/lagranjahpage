@@ -211,7 +211,9 @@ const subtitulo = "Club Social & Deportivo";
       >
         <img
           src="/escudo/escudoLagranjah.png"
-          alt="" aria-hidden="true" decoding="async"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
           class="w-[110px] sm:w-[200px] md:w-[280px] h-auto object-contain transform -rotate-12"
         />
       </div>
@@ -221,7 +223,9 @@ const subtitulo = "Club Social & Deportivo";
       >
         <img
           src="/escudo/escudoLagranjah.png"
-          alt="" aria-hidden="true" decoding="async"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
           class="w-[110px] sm:w-[200px] md:w-[280px] h-auto object-contain transform rotate-12"
         />
       </div>
@@ -2613,7 +2617,11 @@ const subtitulo = "Club Social & Deportivo";
         if (closeSportModal)
           closeSportModal.addEventListener("click", closeModalFunc);
         document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && sportModal && !sportModal.classList.contains("hidden"))
+          if (
+            e.key === "Escape" &&
+            sportModal &&
+            !sportModal.classList.contains("hidden")
+          )
             closeModalFunc();
         });
         if (sportModal) {
@@ -2660,25 +2668,27 @@ const subtitulo = "Club Social & Deportivo";
         }
 
         // 9. Fixture Semanal (Banner)
-        // Tip: agregá `fecha: "AAAA-MM-DD"` (ej: "2026-10-11") a cada partido
-        // para que el banner aparezca SOLO ese día y no todos los domingos.
-        const fixtureSemana = {
-          0: [
-            {
-              cat: "Futsal Femenino",
-              rival: "Trinidad",
-              hora: "19 y 20 hs",
-              lugar: "Cruz del Sur",
-            },
-          ],
-        };
+        // Agregá un partido por línea, con su fecha exacta (AAAA-MM-DD).
+        const partidos = [
+          {
+            fecha: "2026-10-07",
+            cat: "Futsal Masculino",
+            rival: "Estrella Jrs.",
+            hora: "20 y 21 hs",
+            lugar: "Cruz del Sur",
+          },
+          // {
+          //   fecha: "2026-10-11",
+          //   cat: "Futsal Femenino",
+          //   rival: "Trinidad",
+          //   hora: "19 y 20 hs",
+          //   lugar: "Cruz del Sur",
+          // },
+        ];
 
         const ahora = new Date();
-        const hoy = ahora.getDay();
         const hoyISO = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, "0")}-${String(ahora.getDate()).padStart(2, "0")}`;
-        const partidosHoy = (fixtureSemana[hoy] || []).filter(
-          (p) => !p.fecha || p.fecha === hoyISO,
-        );
+        const partidosHoy = partidos.filter((p) => p.fecha === hoyISO);
 
         const banner = getEl("banner-partidos");
         const contenedorLista = getEl("banner-partidos-lista");
